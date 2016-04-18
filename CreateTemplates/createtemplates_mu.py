@@ -1,0 +1,343 @@
+from ROOT import *
+import sys
+import numpy
+systematic_direction_ttbar={'nominal':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                          'btag__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_upB)*(wgtMC__ttagSF_ct)',
+                          'btag__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_dnB)*(wgtMC__ttagSF_ct)',
+                          'misbtag__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_upL)*(wgtMC__ttagSF_ct)',
+                          'misbtag__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_dnL)*(wgtMC__ttagSF_ct)',
+                          'toptag__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_upT)',
+                          'toptag__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_dnT)',
+                          'mistoptag__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_upL)',
+                          'mistoptag__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_dnL)',
+                          'pileup__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_up)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                          'pileup__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_dn)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                          'q2ttbar__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__muR_dn__muF_dn)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                          'q2ttbar__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__muR_up__muF_up)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                          'muonID__plus':'(wgtMC__muonIDSF_up)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                          'muonID__minus':'(wgtMC__muonIDSF_dn)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                          'muonHLT__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_up)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                          'muonHLT__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_dn)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)'}
+                         
+systematic_direction_wjets={'nominal':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                            'btag__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_upB)*(wgtMC__ttagSF_ct)',
+                            'btag__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_dnB)*(wgtMC__ttagSF_ct)',
+                            'misbtag__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_upL)*(wgtMC__ttagSF_ct)',
+                            'misbtag__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_dnL)*(wgtMC__ttagSF_ct)',
+                            'toptag__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_upT)',
+                            'toptag__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_dnT)',
+                            'mistoptag__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_upL)',
+                            'mistoptag__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_dnL)',
+                            'pileup__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_up)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                            'pileup__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_dn)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                            'q2wjets__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__muR_dn__muF_dn)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                            'q2wjets__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__muR_up__muF_up)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                           'muonID__plus':'(wgtMC__muonIDSF_up)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                           'muonID__minus':'(wgtMC__muonIDSF_dn)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                           'muonHLT__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_up)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                           'muonHLT__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_dn)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)'}
+
+systematic_direction_otherbkgs = {'nominal':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                            'btag__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_upB)*(wgtMC__ttagSF_ct)',
+                            'btag__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_dnB)*(wgtMC__ttagSF_ct)',
+                            'misbtag__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_upL)*(wgtMC__ttagSF_ct)',
+                            'misbtag__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_dnL)*(wgtMC__ttagSF_ct)',
+                            'toptag__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_upT)',
+                            'toptag__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_dnT)',
+                            'mistoptag__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_upL)',
+                            'mistoptag__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_dnL)',
+                            'pileup__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_up)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                            'pileup__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_dn)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                            'muonID__plus':'(wgtMC__muonIDSF_up)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                            'muonID__minus':'(wgtMC__muonIDSF_dn)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                            'muonHLT__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_up)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                            'muonHLT__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_dn)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)'}
+
+systematic_direction_signal= {'nominal':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                             'btag__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_upB)*(wgtMC__ttagSF_ct)',
+                             'btag__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_dnB)*(wgtMC__ttagSF_ct)',
+                             'misbtag__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_upL)*(wgtMC__ttagSF_ct)',
+                             'misbtag__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_dnL)*(wgtMC__ttagSF_ct)',
+                             'toptag__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_upT)',
+                             'toptag__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_dnT)',
+                             'mistoptag__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_upL)',
+                             'mistoptag__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_dnL)',
+                             'pileup__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_up)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                             'pileup__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_dn)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                             'muonID__plus':'(wgtMC__muonIDSF_up)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                             'muonID__minus':'(wgtMC__muonIDSF_dn)*(wgtMC__muonHLTSF_ct)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                             'muonHLT__plus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_up)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)',
+                             'muonHLT__minus':'(wgtMC__muonIDSF_ct)*(wgtMC__muonHLTSF_dn)*(wgtMC__pileupSF_ct)*(wgtMC__btagSF_ct)*(wgtMC__ttagSF_ct)'}
+
+samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.SingleMU.root','singletop':'uhh2.AnalysisModuleRunner.MC.SingleTop.root','diboson':'uhh2.AnalysisModuleRunner.MC.Diboson.root','zjets':'uhh2.AnalysisModuleRunner.MC.DYJetsToLL.root','wjets_l':'uhh2.AnalysisModuleRunner.MC.WJetsToLNu_HT__L.root', 'wjets_h':'uhh2.AnalysisModuleRunner.MC.WJetsToLNu_HT__H.root','ttbar':'uhh2.AnalysisModuleRunner.MC.TTbar.root','Zprime0500':'uhh2.AnalysisModuleRunner.MC.Zp01w0500.root','Zprime4000':'uhh2.AnalysisModuleRunner.MC.Zp01w4000.root','Zprime1000':'uhh2.AnalysisModuleRunner.MC.Zp01w1000.root','Zprime1500':'uhh2.AnalysisModuleRunner.MC.Zp01w1500.root','Zprime2500':'uhh2.AnalysisModuleRunner.MC.Zp01w2500.root','Zprime750':'uhh2.AnalysisModuleRunner.MC.Zp01w0750.root','Zprime3500':'uhh2.AnalysisModuleRunner.MC.Zp01w3500.root','Zprime3000':'uhh2.AnalysisModuleRunner.MC.Zp01w3000.root','Zprime2000':'uhh2.AnalysisModuleRunner.MC.Zp01w2000.root'}
+
+
+categories=['T1','T0B','T0B0']
+fout = TFile('mu_theta_0413_narrow_v1.root', 'recreate')
+gROOT.SetBatch(kTRUE)
+binning = numpy.arange(0,4100,100)
+for cat in categories:
+    cut_string='(muoN==1 & rec_chi2<30'
+    if cat == 'T1':
+        h_string='mu_1top_mttbar__'
+        for key_sample in samplelist:
+            myfile = TFile(samplelist[key_sample])
+            print "opening", myfile
+            mytree = myfile.Get("AnalysisTree")
+            print "getting", mytree
+            mytree.SetAlias("invmass","sqrt(pow(rec_tlep.Energy()+rec_thad.Energy(),2)-(pow(rec_thad.Px(),2)+pow(rec_thad.Py(),2)+pow(rec_thad.Pz(),2)+pow(rec_tlep.Px(),2)+pow(rec_tlep.Py(),2)+pow(rec_tlep.Pz(),2)+2*(rec_thad.Px()*rec_tlep.Px()+rec_thad.Py()*rec_tlep.Py()+rec_thad.Pz()*rec_tlep.Pz())))")
+            if key_sample == 'DATA':
+                cut = str(cut_string+' & ttagN==1  & btagN>=0)')
+                print "Processing: ",key_sample
+                print "Applying cut:",cut
+                tempdata = TH1F("tempdata","tempdata",160,0,8000)
+                mytree.Draw("invmass>>tempdata",cut)
+                tempdata.SetName(h_string+key_sample)
+                fout.WriteObject(tempdata,h_string+key_sample)
+                del tempdata
+            elif 'Zprime'in key_sample:
+                for syst in systematic_direction_signal:
+                    cut = str(cut_string+' & ttagN==1 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
+                    print "Processing: ",key_sample
+                    print "Applying cut:",cut
+                    if syst == 'nominal':
+                        temp = TH1F("temp","temp",160,0,8000)
+                        mytree.Draw("invmass>>temp",cut)
+                        temp.SetName(h_string+key_sample)
+                        print "Rebinning T1 nom:", str(temp.GetNbinsX())
+                        fout.WriteObject(temp,h_string+key_sample)
+                        del temp
+                    elif 'nominal' not in syst:
+                        tempsys = TH1F("tempsys","tempsys",160,0,8000)
+                        mytree.Draw("invmass>>tempsys",cut)
+                        tempsys.SetName(h_string+key_sample+"__"+syst)
+                        print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
+                        fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
+                        del tempsys
+            elif 'ttbar' in key_sample:
+                for syst in systematic_direction_ttbar:
+                    cut = str(cut_string+' & ttagN==1 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
+                    print "Processing: ",key_sample
+                    print "Applying cut:",cut
+                    if syst == 'nominal':
+                        temp = TH1F("temp","temp",160,0,8000)
+                        mytree.Draw("invmass>>temp",cut)
+                        temp.SetName(h_string+key_sample)
+                        print "Rebinning T1 nom:", str(temp.GetNbinsX())
+                        fout.WriteObject(temp,h_string+key_sample)
+                        del temp
+                    elif 'nominal' not in syst:
+                        tempsys = TH1F("tempsys","tempsys",160,0,8000)
+                        mytree.Draw("invmass>>tempsys",cut)
+                        tempsys.SetName(h_string+key_sample+"__"+syst)
+                        print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
+                        fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
+                        del tempsys
+            elif 'wjets' in key_sample:
+                for syst in systematic_direction_wjets:
+                    cut = str(cut_string+' & ttagN==1 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
+                    print "Processing: ",key_sample
+                    print "Applying cut:",cut
+                    if syst == 'nominal':
+                        temp = TH1F("temp","temp",160,0,8000)
+                        mytree.Draw("invmass>>temp",cut)
+                        temp.SetName(h_string+key_sample)
+                        print "Rebinning T1 nom:", str(temp.GetNbinsX())
+                        fout.WriteObject(temp,h_string+key_sample)
+                        del temp
+                    elif 'nominal' not in syst:
+                        tempsys = TH1F("tempsys","tempsys",160,0,8000)
+                        mytree.Draw("invmass>>tempsys",cut)
+                        tempsys.SetName(h_string+key_sample+"__"+syst)
+                        print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
+                        fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
+                        del tempsys
+            elif 'zjets' or 'diboson' in key_sample:
+                for syst in systematic_direction_otherbkgs:
+                    cut = str(cut_string+' & ttagN==1 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
+                    print "Processing: ",key_sample
+                    print "Applying cut:",cut
+                    if syst == 'nominal':
+                        temp = TH1F("temp","temp",160,0,8000)
+                        mytree.Draw("invmass>>temp",cut)
+                        temp.SetName(h_string+key_sample)
+                        print "Rebinning T1 nom:", str(temp.GetNbinsX())
+                        fout.WriteObject(temp,h_string+key_sample)
+                        del temp
+                    elif 'nominal' not in syst:
+                        tempsys = TH1F("tempsys","tempsys",160,0,8000)
+                        mytree.Draw("invmass>>tempsys",cut)
+                        tempsys.SetName(h_string+key_sample+"__"+syst)
+                        print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
+                        fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
+                        del tempsys
+    elif cat == 'T0B':
+        h_string='mu_0top1btag_mttbar__'
+        for key_sample in samplelist:
+            myfile = TFile(samplelist[key_sample])
+            print "opening", myfile
+            mytree = myfile.Get("AnalysisTree")
+            print "getting", mytree
+            mytree.SetAlias("invmass","sqrt(pow(rec_tlep.Energy()+rec_thad.Energy(),2)-(pow(rec_thad.Px(),2)+pow(rec_thad.Py(),2)+pow(rec_thad.Pz(),2)+pow(rec_tlep.Px(),2)+pow(rec_tlep.Py(),2)+pow(rec_tlep.Pz(),2)+2*(rec_thad.Px()*rec_tlep.Px()+rec_thad.Py()*rec_tlep.Py()+rec_thad.Pz()*rec_tlep.Pz())))")
+            if key_sample == 'DATA':
+                cut = str(cut_string+' & ttagN==0 & btagN>0)')
+                print "Processing: ",key_sample
+                print "Applying cut:",cut
+                temp2data = TH1F("temp2data","temp2data",160,0,8000)
+                mytree.Draw("invmass>>temp2data",cut)
+                temp2data.SetName(h_string+key_sample)
+                fout.WriteObject(temp2data,h_string+key_sample)
+                del temp2data
+            elif 'Zprime'in key_sample:
+                for syst in systematic_direction_signal:
+                    cut = str(cut_string+' & ttagN==0 & btagN>0)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
+                    print "Processing: ",key_sample
+                    print "Applying cut:",cut
+                    if syst == 'nominal':
+                        temp2 = TH1F("temp2","temp2",160,0,8000)
+                        mytree.Draw("invmass>>temp2",cut)
+                        temp2.SetName(h_string+key_sample)
+                        fout.WriteObject(temp2,h_string+key_sample)
+                        del temp2
+                    elif 'nominal' not in syst:
+                        temp2sys = TH1F("temp2sys","temp2sys",160,0,8000)
+                        mytree.Draw("invmass>>temp2sys",cut)
+                        temp2sys.SetName(h_string+key_sample+"__"+syst)
+                        fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
+                        del temp2sys
+            elif 'ttbar' in key_sample:
+                for syst in systematic_direction_ttbar:
+                    cut = str(cut_string+' & ttagN==0 & btagN>0)*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
+                    print "Processing: ",key_sample
+                    print "Applying cut:",cut
+                    if syst == 'nominal':
+                        temp2 = TH1F("temp2","temp2",160,0,8000)
+                        mytree.Draw("invmass>>temp2",cut)
+                        temp2.SetName(h_string+key_sample)
+                        fout.WriteObject(temp2,h_string+key_sample)
+                        del temp2
+                    elif 'nominal' not in syst:
+                        temp2sys = TH1F("temp2sys","temp2sys",160,0,8000)
+                        mytree.Draw("invmass>>temp2sys",cut)
+                        temp2sys.SetName(h_string+key_sample+"__"+syst)
+                        fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
+                        del temp2sys
+            elif 'wjets' in key_sample:
+                for syst in systematic_direction_wjets:
+                    cut = str(cut_string+' & ttagN==0 & btagN>0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
+                    print "Processing: ",key_sample
+                    print "Applying cut:",cut
+                    if syst == 'nominal':
+                        temp2 = TH1F("temp2","temp2",160,0,8000)
+                        mytree.Draw("invmass>>temp2",cut)
+                        temp2.SetName(h_string+key_sample)
+                        fout.WriteObject(temp2,h_string+key_sample)
+                        del temp2
+                    elif 'nominal' not in syst:
+                        temp2sys = TH1F("temp2sys","temp2sys",160,0,8000)
+                        mytree.Draw("invmass>>temp2sys",cut)
+                        temp2sys.SetName(h_string+key_sample+"__"+syst)
+                        fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
+                        del temp2sys
+            elif 'zjets' or 'diboson' in key_sample:
+                for syst in systematic_direction_otherbkgs:
+                    cut = str(cut_string+' & ttagN==0 & btagN>0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
+                    print "Processing: ",key_sample
+                    print "Applying cut:",cut
+                    if syst == 'nominal':
+                        temp2 = TH1F("temp2","temp2",160,0,8000)
+                        mytree.Draw("invmass>>temp2",cut)
+                        temp2.SetName(h_string+key_sample)
+                        fout.WriteObject(temp2,h_string+key_sample)
+                        del temp2
+                    elif 'nominal' not in syst:
+                        temp2sys = TH1F("temp2sys","temp2sys",160,0,8000)
+                        mytree.Draw("invmass>>temp2sys",cut)
+                        temp2sys.SetName(h_string+key_sample+"__"+syst)
+                        fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
+                        del temp2sys
+    elif cat == 'T0B0':
+        h_string='mu_0top0btag_mttbar__'
+        for key_sample in samplelist:
+            myfile = TFile(samplelist[key_sample])
+            print "opening", myfile
+            mytree = myfile.Get("AnalysisTree")
+            print "getting", mytree
+            mytree.SetAlias("invmass","sqrt(pow(rec_tlep.Energy()+rec_thad.Energy(),2)-(pow(rec_thad.Px(),2)+pow(rec_thad.Py(),2)+pow(rec_thad.Pz(),2)+pow(rec_tlep.Px(),2)+pow(rec_tlep.Py(),2)+pow(rec_tlep.Pz(),2)+2*(rec_thad.Px()*rec_tlep.Px()+rec_thad.Py()*rec_tlep.Py()+rec_thad.Pz()*rec_tlep.Pz())))")
+            if key_sample == 'DATA':
+                cut = str(cut_string+' & ttagN==0 & btagN==0)')
+                print "Processing: ",key_sample
+                print "Applying cut:",cut
+                temp3data = TH1F("temp3data","temp3data",160,0,8000)
+                mytree.Draw("invmass>>temp3data",cut)
+                temp3data.SetName(h_string+key_sample)
+                fout.WriteObject(temp3data,h_string+key_sample)
+                del temp3data
+            elif 'Zprime' in key_sample:
+                for syst in systematic_direction_signal:
+                    cut = str(cut_string+' & ttagN==0  & btagN==0)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
+                    print "Processing: ",key_sample
+                    print "Applying cut:",cut
+                    if syst == 'nominal':
+                        temp3 = TH1F("temp3","temp3",160,0,8000)
+                        mytree.Draw("invmass>>temp3",cut)
+                        temp3.SetName(h_string+key_sample)
+                        fout.WriteObject(temp3,h_string+key_sample)
+                        del temp3
+                    elif 'nominal' not in syst:
+                        temp3sys = TH1F("temp3sys","temp3sys",160,0,8000)
+                        mytree.Draw("invmass>>temp3sys",cut)
+                        temp3sys.SetName(h_string+key_sample+"__"+syst)
+                        fout.WriteObject(temp3sys,h_string+key_sample+"__"+syst)
+                        del temp3sys
+            elif 'ttbar' in key_sample:
+                for syst in systematic_direction_ttbar:
+                    cut = str(cut_string+' & ttagN==0  & btagN==0)*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
+                    print "Processing: ",key_sample
+                    print "Applying cut:",cut
+                    if syst == 'nominal':
+                        temp3 = TH1F("temp3","temp3",160,0,8000)
+                        mytree.Draw("invmass>>temp3",cut)
+                        temp3.SetName(h_string+key_sample)
+                        fout.WriteObject(temp3,h_string+key_sample)
+                        del temp3
+                    elif 'nominal' not in syst:
+                        temp3sys = TH1F("temp3sys","temp3sys",160,0,8000)
+                        mytree.Draw("invmass>>temp3sys",cut)
+                        temp3sys.SetName(h_string+key_sample+"__"+syst)
+                        fout.WriteObject(temp3sys,h_string+key_sample+"__"+syst)
+                        del temp3sys
+            elif 'wjets' in key_sample:
+                for syst in systematic_direction_wjets:
+                    cut = str(cut_string+' & ttagN==0  & btagN==0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
+                    print "Processing: ",key_sample
+                    print "Applying cut:",cut
+                    if syst == 'nominal':
+                        temp3 = TH1F("temp3","temp3",160,0,8000)
+                        mytree.Draw("invmass>>temp3",cut)
+                        temp3.SetName(h_string+key_sample)
+                        fout.WriteObject(temp3,h_string+key_sample)
+                        del temp3
+                    elif 'nominal' not in syst:
+                        temp3sys = TH1F("temp3sys","temp3sys",160,0,8000)
+                        mytree.Draw("invmass>>temp3sys",cut)
+                        temp3sys.SetName(h_string+key_sample+"__"+syst)
+                        fout.WriteObject(temp3sys,h_string+key_sample+"__"+syst)
+                        del temp3sys
+            elif 'zjets' or 'diboson' in key_sample:
+                for syst in systematic_direction_otherbkgs:
+                    cut = str(cut_string+' & ttagN==0  & btagN==0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
+                    print "Processing: ",key_sample
+                    print "Applying cut:",cut
+                    if syst == 'nominal':
+                        temp3 = TH1F("temp3","temp3",160,0,8000)
+                        mytree.Draw("invmass>>temp3",cut)
+                        temp3.SetName(h_string+key_sample)
+                        fout.WriteObject(temp3,h_string+key_sample)
+                        del temp3
+                    elif 'nominal' not in syst:
+                        temp3sys = TH1F("temp3sys","temp3sys",160,0,8000)
+                        mytree.Draw("invmass>>temp3sys",cut)
+                        temp3sys.SetName(h_string+key_sample+"__"+syst)
+                        fout.WriteObject(temp3sys,h_string+key_sample+"__"+syst)
+                        del temp3sys 
