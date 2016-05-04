@@ -137,7 +137,7 @@ def binFile(rerror, filename, xtitle, backgrounds):
                     h_data[info.channel] = file.Get(key).Clone()
 
     canvas = TCanvas()
-    canvas.SetLogy()
+#    canvas.SetLogy()
 
     keys = file.GetListOfKeys()
 
@@ -242,7 +242,9 @@ def binFile(rerror, filename, xtitle, backgrounds):
                 output.cd()
                 histogram.Write()
 
-binFile(0.30,  'mu_theta_0413_wide_v1.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','diboson', 'zjets'])
+
+binFile(0.30,  'el_theta_0411_narrow_v1.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson', 'zjets'])
+#binFile(0.30,  'mu_theta_0413_wide_v1.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','diboson', 'zjets'])
 #binFile(0.3, 'itheta_lepton_0709.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar'])
 #binFile(0.3, 'theta_input_twochannel.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar', 'wlight', 'wc', 'wb', 'zlight', 'singletop', 'diboson'])
 #binFile(0.3, 'theta_input_threechannel.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar', 'wlight', 'wc', 'wb', 'zlight', 'singletop', 'diboson'])
