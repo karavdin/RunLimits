@@ -197,7 +197,7 @@ def binFile(rerror, filename, xtitle, backgrounds):
         labellumi.SetMargin(0.12);
         labellumi.SetFillColor(10);
         labellumi.SetBorderSize(0);
-        labellumi.SetHeader('L = 2.4 fb^{-1}')
+        labellumi.SetHeader('L = 2.1 fb^{-1}')
         labellumi.Draw()
 
         labellumi2 = TLegend(.67, .70, .89, .75)

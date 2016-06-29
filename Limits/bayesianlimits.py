@@ -1,7 +1,9 @@
+#! /usr/bin/env python
+
 ### Filter definitions ###
 
 muo_ifile = ['']
-ele_ifile = ['el_theta_0408_narrow_v1_rebinned.root']
+ele_ifile = ['el_theta_0411_narrow_v1_rebinned.root']
 lep_ifile = ['']
 
 def narrow_resonances(hname):
@@ -39,11 +41,11 @@ def build_boosted_semileptonic_model(files, filter, signal, eflag=False):
                 model.scale_predictions(1.0,p,obs)
             elif 'ttbar' in p and '1top' in obs:
                 model.scale_predictions(0.9,p,obs)
-            elif 'wjets_l' in p and '0top1btag' in obs :
+            elif 'wjets' in p and '0top1btag' in obs :
                 model.scale_predictions(1.3,p,obs)
-            elif 'wjets_l' in p and '1top' in obs:
+            elif 'wjets' in p and '1top' in obs:
                 model.scale_predictions(1.3,p,obs)
-            elif 'wjets_h' in p and '1top'in obs:
+            elif 'wjets' in p and '1top'in obs:
                  model.scale_predictions(1,p,obs)
             elif 'zjets' in p:
                  model.scale_predictions(1.03,p)
@@ -52,8 +54,8 @@ def build_boosted_semileptonic_model(files, filter, signal, eflag=False):
                 #model.add_lognormal_uncertainty('eleORjet_trig', math.log(1.01), p, obs)
 
     model.add_lognormal_uncertainty('ttbar_rate',   math.log(1.09), 'ttbar')
-    model.add_lognormal_uncertainty('wjetsl_rate',      math.log(1.09), 'wjets_l')
-    model.add_lognormal_uncertainty('wjetsh_rate',      math.log(1.09), 'wjets_h')
+    model.add_lognormal_uncertainty('wjets_rate',      math.log(1.09), 'wjets')
+#    model.add_lognormal_uncertainty('wjetsh_rate',      math.log(1.09), 'wjets_h')
     #model.add_lognormal_uncertainty('wb_rate',      math.log(1.23), 'wb')
     model.add_lognormal_uncertainty('st_rate',      math.log(1.20), 'singletop')
     model.add_lognormal_uncertainty('zj_rate',      math.log(1.20), 'zjets')

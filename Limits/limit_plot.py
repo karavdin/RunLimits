@@ -3,6 +3,22 @@ from ROOT import ROOT, TCanvas, TColor, TGraph, TLegend, TPaveText, TString, TLi
 from read_input_file import *
 from theory_XsecBR import *
 
+kWhite      = 0     #FFFFFF
+kBlack      = 1     #000000
+kGray       = 920   #CCCCCC
+kRed        = 632   #FF0000
+kPink       = 900   #FF0033
+kMagenta    = 616   #FF00FF
+kViolet     = 880   #CC00FF
+kBlue       = 600   #0000FF
+kAzure      = 860   #0033FF
+kCyan       = 432   #00FFFF
+kTeal       = 840   #00FFCC
+kGreen      = 416   #00FF00
+kSpring     = 820   #33FF00
+kYellow     = 400   #FFFF00
+kOrange     = 800   #FFCC00
+
 label_TL = '#font[62]{CMS}'
 label_TR = '2.5 fb^{-1} (13 TeV)'
 
@@ -52,28 +68,29 @@ def limit_canvas(limits_, signal_, oname_):
     gExp.SetLineStyle(2)
     gExp.SetLineWidth(4)
     gExp.SetLineColor(TColor.GetColor('#112288'))
+    #gExp.Print()
 
     g68.SetLineStyle(1)
     g68.SetLineWidth(0)
-    g68.SetLineColor(ROOT.kBlack)
+    g68.SetLineColor(kBlack)
     g68.SetFillColor(TColor.GetColor('#4488dd'))
 
     g95.SetLineStyle(1)
     g95.SetLineWidth(0)
-    g95.SetLineColor(ROOT.kBlack)
+    g95.SetLineColor(kBlack)
     g95.SetFillColor(TColor.GetColor('#99bbff'))
 
     gObs.SetLineStyle(1)
     gObs.SetLineWidth(4)
-    gObs.SetLineColor(ROOT.kBlack)
+    gObs.SetLineColor(kBlack)
     gObs.SetMarkerStyle(21)
     gObs.SetMarkerSize(0.8)
 
     gTH.SetLineStyle(7)
     gTH.SetLineWidth(4)
     gTH.SetMarkerSize(0)
-    gTH.SetMarkerColor(ROOT.kRed+1)
-    gTH.SetLineColor(ROOT.kRed+1)
+    gTH.SetMarkerColor(kRed+1)
+    gTH.SetLineColor(kRed+1)
 
     leg = TLegend(0.58,0.633,0.969,0.908)
     leg.SetFillColor(0)
@@ -109,8 +126,9 @@ def limit_canvas(limits_, signal_, oname_):
     #hr = c.DrawFrame(0.401,0.001,3.999,1000)
     hr = c.DrawFrame(0.401,0.001,4.199,1000)
     gExp.Sort()
-
+    gTH.Print()
     g95.Draw('f')
+    g95.Print()
     g68.Draw('f')
     gTH.Draw('L')
     gExp.Draw('L')
@@ -134,7 +152,7 @@ def limit_canvas(limits_, signal_, oname_):
     if name.Contains("com"):
         tl = TLine(trans, 1e-3, trans, up)
         tl.SetLineStyle(ROOT.kDashed)
-        tl.SetLineColor(ROOT.kGray+1)
+        tl.SetLineColor(kGray+1)
         tl.SetLineWidth(3)
         tl.Draw()
 
@@ -154,4 +172,6 @@ def limit_plot(ifile_, signal_, output_name_):
 ###
 
 for s in signal_dict:
-    limit_plot('limits_allsyst_mu_wide_0413.txt', s, s+'_mujets_allsyst_wide_0413')
+    #limit_plot('limits_allsyst_mu_wide_0413.txt', s, s+'_mujets_allsyst_wide_0413')
+#    limit_plot('limits.txt', s, s+'_el_theta_0408_narrow_v1')
+    limit_plot('limits_data.txt', s, s+'_el_theta_0408_narrow_v1')
