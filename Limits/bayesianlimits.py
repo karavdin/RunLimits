@@ -2,21 +2,23 @@
 
 ### Filter definitions ###
 
-muo_ifile = ['']
-ele_ifile = ['el_theta_0411_narrow_v1_rebinned.root']
+#muo_ifile = ['mu_theta_0413_narrow_v1_rebinned.root']
+#ele_ifile = ['el_theta_0411_narrow_v1_rebinned.root']
+#muo_ifile = ['mu_theta_20160703_rebinned.root']
+ele_ifile = ['el_theta_weight_rebinned.root']
 lep_ifile = ['']
 
 def narrow_resonances(hname):
     if not ('RSgluon' in hname or 'Zprime' in hname): return True
     pname = hname.split('__')[1]
-    if ('Wide' in pname) or ('RSgluon' in pname): return False
-    mass = pname.strip('Zprime')
+    if not 'ZprimeNarrow' in pname: return False
+    mass = pname.strip('ZprimeNarrow')
     return float(mass) <= 4000
 
 def wide_resonances(hname):
     if not ('RSgluon' in hname or 'Zprime' in hname): return True
     pname = hname.split('__')[1]
-    if not 'Wide' in pname: return False
+    if not 'ZprimeWide' in pname: return False
     mass = pname.strip('ZprimeWide')
     return float(mass) <= 4000
 
@@ -35,6 +37,7 @@ def build_boosted_semileptonic_model(files, filter, signal, eflag=False):
     for p in model.processes:
         model.add_lognormal_uncertainty('lumi', math.log(1.05), p)
         for obs in ['el_0top0btag_mttbar','el_0top1btag_mttbar','el_1top_mttbar']:
+      #  for obs in ['mu_0top0btag_mttbar','mu_0top1btag_mttbar','mu_1top_mttbar']:
             if 'ttbar' in p and '0top0btag' in obs:
                 model.scale_predictions(1.00,p)
             elif 'ttbar' in p and '0top1btag' in obs:
@@ -74,7 +77,7 @@ def build_model(type):
         model = build_boosted_semileptonic_model(
            muo_ifile,
            narrow_resonances,
-           'Zprime*',
+           'ZprimeNarrow*',
            eflag = False
         )
     
@@ -101,7 +104,7 @@ def build_model(type):
         model = build_boosted_semileptonic_model(
            ele_ifile,
            narrow_resonances,
-           'Zprime*',
+           'ZprimeNarrow*',
            eflag = True
         )
 
@@ -128,7 +131,7 @@ def build_model(type):
         model = build_boosted_semileptonic_model(
            lep_ifile,
            narrow_resonances,
-           'Zprime*',
+           'ZprimeNarrow*',
            eflag = True
         )
 
@@ -152,24 +155,61 @@ def build_model(type):
 
     else: raise exceptions.ValueError('Type %s is undefined' % type)
 
-    for p in model.distribution.get_parameters():
-        d = model.distribution.get_distribution(p)
-        if d['typ'] == 'gauss' and d['mean'] == 0.0 and d['width'] == 1.0:
-            model.distribution.set_distribution_parameters(p, range = [-5.0, 5.0])
-            if (p == 'toptag'): model.distribution.set_distribution_parameters(p, width = float("inf"))
+    # free_params = [
+    #     #      'xsec_ttbar',
+    #     #      'xsec_wjets',
+    #     #      'xsec_zjets',
+    #     # 'toptag',
+    #     ]
+    
+    # fixd_params = [
+    #     #      'muRF_ttbar',
+    #     #      'muRF_wjets',
+    #     ]
+    
+    # for p in model.distribution.get_parameters():
+    #     if p in free_params: model.distribution.set_distribution_parameters(p, width = float('inf'))
+    #     if p in fixd_params: model.distribution.set_distribution_parameters(p, width = float(.0001))
+        
+        
+        #  for p in model.distribution.get_parameters():
+        #      d = model.distribution.get_distribution(p)
+        #      if d['typ'] == 'gauss' and d['mean'] == 0.0 and d['width'] == 1.0:
+        #          model.distribution.set_distribution_parameters(p, range = [-5.0, 5.0])
+        #          if (p == 'toptag'): model.distribution.set_distribution_parameters(p, width = float("inf"))
     return model
-
+    
 
 # Code introduced by theta_driver
 
 # Building the statistical model
+#args = {'type': 'narrow_resonances_electron'}
+
+#args = {'type': 'narrow_resonances_muon'}
+#args = {'type': 'wide_resonances_muon'}
+#args = {'type': 'rsg_resonances_muon'}
+
 args = {'type': 'narrow_resonances_electron'}
+#args = {'type': 'wide_resonances_electron'}
+#args = {'type': 'rsg_resonances_electron'}
 
 model = build_model(**args)
 
 args = {}
 
-results = bayesian_limits(model, run_theta = True, **args)
+#results = bayesian_limits(model, run_theta = True, **args)
+results = bayesian_limits(model, input='toys:0', n=10, run_theta = True, **args)
 exp, obs = results
+#print exp
+#parameters = model.get_parameters('narrow_resonances_muon')
+parameters = model.get_parameters('narrow_resonances_electron')
+print parameters
+#print obs
 #execfile("utils.py")
 #limit_table(exp, obs)
+
+
+#exp_l = bayesian_quantiles(model, input='toys:0', n=1000, run_theta=False, hint_method='zero')
+#obs_l = bayesian_quantiles(model, input='data'  , n=  10, run_theta=False, hint_method='zero')
+#for spid in exp_l: exp_l[spid].get_configfile(opts)
+#for spid in obs_l: obs_l[spid].get_configfile(opts)

@@ -13,10 +13,12 @@ def limit_table(exp, obs):
 
 
 def apply_factors(model, factors):
+    #print factors
     for obs in factors:
         for proc in factors[obs]:
             f = factors[obs][proc]
             if type(f) == str: continue # can happen for "n/a"
+            #print f, proc, obs
             model.scale_predictions(f, proc, obs)
 
 
@@ -37,12 +39,19 @@ def generate_yield_table(rate_table):
                          #'el_1top0btag_mttbar': 'electron channel, $N_{\\text{top-tag}} \\ge 1, $N_{\\text{b-tag}} \\ge 0$',
                          #'el_1top1btag_mttbar': 'electron channel, $N_{\\text{top-tag}} \\ge 1, $N_{\\text{b-tag}} \\ge 1$',
                          #'el_1top2btag_mttbar': 'electron channel, $N_{\\text{top-tag}} \\ge 1, $N_{\\text{b-tag}} \\ge 2$',
-                         'el_1top_mttbar': 'elec channel, $N_{\\text{top-tag}}=1$',
-                         'el_0top1btag_mttbar': 'elec channel, $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 1$',
-                         'el_0top0btag_mttbar': 'elec channel, $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 0$'}[c]
-                         #'mu_1top_mttbar': 'muon channel, $N_{\\text{top-tag}}=1$',
-                         #'mu_0top1btag_mttbar': 'muon channel, $N_{\\text{top-tag}} = 0 $N_{\\text{b-tag}} = 1$',
-                         #'mu_0top0btag_mttbar': 'muon channel, $N_{\\text{top-tag}} = 0 $N_{\\text{b-tag}} = 0$'}[c]
+                         #'el_1top_mttbar': 'elec channel, $N_{\\text{top-tag}}=1$, $\chi^{2}$<30',
+                         #'el_0top1btag_mttbar': 'elec channel, $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 1$, $\chi^{2}$<30',
+                         #'el_0top0btag_mttbar': 'elec channel, $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 0$, $\chi^{2}$<30',
+                         #'el_1top_mttbar_highChi2': 'elec channel, $N_{\\text{top-tag}}=1$, $\chi^{2}$>30',
+                         #'el_0top1btag_mttbar_highChi2': 'elec channel, $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 1$, $\chi^{2}$>30',
+                         #'el_0top0btag_mttbar_highChi2': 'elec channel, $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 0$, $\chi^{2}$>30'}[c]
+                         'mu_1top_mttbar': 'muon channel, $N_{\\text{top-tag}}=1$',
+                         'mu_0top1btag_mttbar': 'muon channel, $N_{\\text{top-tag}} = 0 $N_{\\text{b-tag}} = 1$',
+                         'mu_0top0btag_mttbar': 'muon channel, $N_{\\text{top-tag}} = 0 $N_{\\text{b-tag}} = 0$',
+                         'mu_1top_mttbar_highChi2': 'muon channel, $N_{\\text{top-tag}}=1$, $\chi^{2}$<30',
+                         'mu_0top1btag_mttbar_highChi2': 'muon channel, $N_{\\text{top-tag}} = 0 $N_{\\text{b-tag}} = 1$, $\chi^{2}$<30',
+                         'mu_0top0btag_mttbar_highChi2': 'muon channel, $N_{\\text{top-tag}} = 0 $N_{\\text{b-tag}} = 0$, $\chi^{2}$<30',
+                         'mu_mll': 'muon channel, $M_{ll}$'}[c]
         f.write('& %s' % latex_colname)
     f.write('\\\\\n')
     for r in rows:
@@ -58,6 +67,81 @@ def generate_yield_table(rate_table):
         f.write('\\\\ \n')
     f.write('\\\\ \n \\hline')
     f.write('\\end{tabular}\n')
+
+
+def generate_yield_table_AN(rate_table,prefix,channel):
+    rows = rate_table.get_raw_rows()
+    cols = rate_table.get_columns()
+    f = open('yield-table_'+channel+'_'+prefix+'.tex', 'w')
+    f.write('\\begin{tabular}{|l|')
+    for c in cols: f.write('r|')
+    f.write('}\n \\hline\n ')
+    if channel=='muon':
+        f.write('$\mu$+jets')
+    if channel=='elec':
+        f.write('$e$+jets')
+    for c in cols:
+        print c
+        if c=='process': continue
+        if channel=='muon':
+            latex_colname = {'mu_1top_mttbar': ' 1-t',
+                'mu_0top1btag_mttbar': ' 0-t, 1-b',
+                'mu_0top0btag_mttbar': ' 0-t, 0-b',
+                'mu_1top_mttbar_highChi2': ' 1-t, $\chi^{2}$>30',
+                'mu_0top1btag_mttbar_highChi2': ' 0-t, 1-b, $\chi^{2}$>30',
+                'mu_0top0btag_mttbar_highChi2': ' 0-t, 0-b, $\chi^{2}$>30',
+                'mu_mll': ' $M_{ll}$'}[c]
+
+        if channel=='elec':
+            latex_colname = {'el_1top_mttbar': ' $N_{\\text{top-tag}}=1$, $\chi^{2}$<30',
+                'el_0top1btag_mttbar': ' $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 1$, $\chi^{2}$<30',
+                'el_0top0btag_mttbar': ' $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 0$, $\chi^{2}$<30',
+                'el_1top_mttbar_highChi2': ' $N_{\\text{top-tag}}=1$, $\chi^{2}$>30',
+                'el_0top1btag_mttbar_highChi2': ' $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 1$, $\chi^{2}$>30',
+                'el_0top0btag_mttbar_highChi2': ' $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 0$, $\chi^{2}$>30',
+                'el_mll': ' $M_{ll}$'}[c]
+
+        if channel=='lep':
+            latex_colname = {'mu_1top_mttbar': ' 1-t',
+                'mu_0top1btag_mttbar': ' 0-t, 1-b',
+                'mu_0top0btag_mttbar': ' 0-t, 0-b',
+                'mu_1top_mttbar_highChi2': ' 1-t, $\chi^{2}$>30',
+                'mu_0top1btag_mttbar_highChi2': ' 0-t, 1-b, $\chi^{2}$>30',
+                'mu_0top0btag_mttbar_highChi2': ' 0-t, 0-b, $\chi^{2}$>30',
+                'mu_mll': ' $M_{\mu\mu}$',
+                'el_1top_mttbar': ' $N_{\\text{top-tag}}=1$, $\chi^{2}$<30',
+                'el_0top1btag_mttbar': ' $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 1$, $\chi^{2}$<30',
+                'el_0top0btag_mttbar': ' $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 0$, $\chi^{2}$<30',
+                'el_1top_mttbar_highChi2': ' $N_{\\text{top-tag}}=1$, $\chi^{2}$>30',
+                'el_0top1btag_mttbar_highChi2': ' $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 1$, $\chi^{2}$>30',
+                'el_0top0btag_mttbar_highChi2': ' $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 0$, $\chi^{2}$>30'}[c]
+
+        f.write('& %s' % latex_colname)
+    f.write('\\\\\n')
+    for r in rows:
+        # print 'r',r
+        # print 'r0',r[0]
+        # print 'r1',r[1]
+        # print 'r2',r[2]
+        # print 'r3',r[3]
+        # print 'r4',r[4]
+        # print 'r5',r[5]
+        # print 'r6',r[6]
+        # print 'r7',r[7]
+        f.write('%10s' % r[0])
+        for val in r[1:]:
+            if type(val)==tuple: 
+                val_mean = val[0]
+                val_err = val[1]
+            if type(val)==float:
+                val_mean = val
+                val_err = 0
+
+            f.write(' & %6.0f' % val_mean)
+            f.write(' $\pm$ %6.0f' % val_err)
+        f.write('\\\\ \\hline \n ')
+    f.write('\\end{tabular}\n')
+        
 
 
 def print_obsproc_factors_shapes(model):
@@ -93,5 +177,3 @@ def print_obsproc_factors_rateonly(model):
             print "  ", proc, res[''][obs][proc]
             result[obs][proc] = res[''][obs][proc]
     return result
-
-

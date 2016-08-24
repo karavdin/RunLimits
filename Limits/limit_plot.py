@@ -20,7 +20,7 @@ kYellow     = 400   #FFFF00
 kOrange     = 800   #FFCC00
 
 label_TL = '#font[62]{CMS}'
-label_TR = '2.5 fb^{-1} (13 TeV)'
+label_TR = '4.0 fb^{-1} (13 TeV)'
 
 signal_dict = {
   'n': ['Z\'', 'Topcolor Z\' 1.0% width'],
@@ -133,8 +133,9 @@ def limit_canvas(limits_, signal_, oname_):
     gTH.Draw('L')
     gExp.Draw('L')
 
-    gObs.Sort()
-    gObs.Draw('L')
+#Don't draw observed for blind analysis
+#    gObs.Sort()
+#    gObs.Draw('L')
 
     hr.GetXaxis().SetTitle('M_{'+signal_dict[signal_][0]+'} [TeV]')
     hr.GetYaxis().SetTitle('Upper limit on #sigma_{'+signal_dict[signal_][0]+'} #times B('+signal_dict[signal_][0]+' #rightarrow t#bar{t}) [pb]')
@@ -174,4 +175,11 @@ def limit_plot(ifile_, signal_, output_name_):
 for s in signal_dict:
     #limit_plot('limits_allsyst_mu_wide_0413.txt', s, s+'_mujets_allsyst_wide_0413')
 #    limit_plot('limits.txt', s, s+'_el_theta_0408_narrow_v1')
-    limit_plot('limits_data.txt', s, s+'_el_theta_0408_narrow_v1')
+#    limit_plot('limits_data.txt', s, s+'_el_theta_0408_narrow_v1')
+#    limit_plot('limits_muon_narrow.txt', s, s+'_mu_theta_0408_narrow_v1')
+#    limit_plot('limits_elec_narrow.txt', s, s+'_el_theta_0408_narrow_v1')
+#    limit_plot('limits_muon_narrow.txt', s, s+'_mu_theta_0408_narrow_v1')
+ #s = {'n': ['Z\'', 'Topcolor Z\' 1.0% width']}
+#s = {'r': ['g_{KK}', 'KK gluon']}
+#    limit_plot('limits_muon_'+s+'.txt', s, s+'_mu_theta_v1')
+    limit_plot('limits_elec_'+s+'.txt', s, s+'_el_theta_v1')
