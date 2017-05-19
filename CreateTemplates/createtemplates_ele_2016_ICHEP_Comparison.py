@@ -11,97 +11,84 @@ import numpy
 # systematic_direction_wjets={'nominal':'(wgtMC__elecIDSF_ct)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)'}
 # systematic_direction_otherbkgs = {'nominal':'(wgtMC__elecIDSF_ct)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)'}
 # systematic_direction_signal= {'nominal':'(wgtMC__elecIDSF_ct)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)'}
-
-systematic_direction_ttbar={'nominal':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'btag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'btag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'misbtag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'misbtag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'toptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
-                          'toptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
-                          'mistoptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
-                          'mistoptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
-                          'pileup__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'pileup__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'q2ttbar__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(wgtMC__muR_dn__muF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'q2ttbar__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(wgtMC__muR_up__muF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'elecID__plus':'(weight_sfelec_ID_up)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'elecID__minus':'(weight_sfelec_ID_down)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'elecTRK__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
-                          'elecTRK__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
-
+systematic_direction_ttbar={'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'btag__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag_bc_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'btag__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag_bc_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'misbtag__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag_udsg_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'misbtag__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag_udsg_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'toptag__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
+                            'toptag__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
+                            'mistoptag__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
+                            'mistoptag__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
+                            'pileup__plus':'(weight_sfelec_ID)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'pileup__minus':'(weight_sfelec_ID)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'elecID__plus':'(weight_sfelec_ID_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'elecID__minus':'(weight_sfelec_ID_down)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'elecTRK__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
+                            'elecTRK__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
 }
                          
-systematic_direction_wjets={'nominal':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'btag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'btag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'misbtag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'misbtag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'toptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
-                            'toptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
-                            'mistoptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
-                            'mistoptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
-                            'pileup__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'pileup__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'q2wjets__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(wgtMC__muR_dn__muF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'q2wjets__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(wgtMC__muR_up__muF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                           'elecID__plus':'(weight_sfelec_ID_up)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                           'elecID__minus':'(weight_sfelec_ID_down)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                           'elecHLT__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                           'elecHLT__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                           'elecTRK__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
-                           'elecTRK__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
+systematic_direction_wjets={'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'btag__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag_bc_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'btag__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag_bc_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'misbtag__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag_udsg_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'misbtag__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag_udsg_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'toptag__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
+                            'toptag__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
+                            'mistoptag__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
+                            'mistoptag__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
+                            'pileup__plus':'(weight_sfelec_ID)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'pileup__minus':'(weight_sfelec_ID)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'elecID__plus':'(weight_sfelec_ID_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'elecID__minus':'(weight_sfelec_ID_down)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'elecTRK__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
+                            'elecTRK__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
 }
 
-systematic_direction_otherbkgs = {'nominal':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'btag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'btag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'misbtag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'misbtag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'toptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
-                            'toptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
-                            'mistoptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
-                            'mistoptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
-                            'pileup__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'pileup__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'elecID__plus':'(weight_sfelec_ID_up)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'elecID__minus':'(weight_sfelec_ID_down)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'elecHLT__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'elecHLT__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'elecTRK__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
-                            'elecTRK__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
+systematic_direction_otherbkgs = {'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'btag__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag_bc_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'btag__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag_bc_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'misbtag__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag_udsg_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'misbtag__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag_udsg_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'toptag__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
+                            'toptag__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
+                            'mistoptag__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
+                            'mistoptag__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
+                            'pileup__plus':'(weight_sfelec_ID)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'pileup__minus':'(weight_sfelec_ID)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'elecID__plus':'(weight_sfelec_ID_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'elecID__minus':'(weight_sfelec_ID_down)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'elecTRK__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
+                            'elecTRK__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
 }
 
-systematic_direction_signal= {'nominal':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'btag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'btag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'misbtag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'misbtag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'toptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
-                             'toptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
-                             'mistoptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
-                             'mistoptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
-                             'pileup__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'pileup__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'elecID__plus':'(weight_sfelec_ID_up)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'elecID__minus':'(weight_sfelec_ID_down)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'elecHLT__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'elecHLT__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'elecTRK__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
-                             'elecTRK__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
+systematic_direction_signal= {'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                             'btag__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag_bc_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                             'btag__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag_bc_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                             'misbtag__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag_udsg_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                             'misbtag__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag_udsg_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                             'toptag__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
+                             'toptag__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
+                             'mistoptag__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
+                             'mistoptag__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
+                             'pileup__plus':'(weight_sfelec_ID)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                             'pileup__minus':'(weight_sfelec_ID)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                             'elecID__plus':'(weight_sfelec_ID_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                             'elecID__minus':'(weight_sfelec_ID_down)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                             'elecTRK__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
+                             'elecTRK__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
 }
 
+samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA.root','singletop':'uhh2.AnalysisModuleRunner.MC.ST.root','diboson':'uhh2.AnalysisModuleRunner.MC.Diboson.root','zjets':'uhh2.AnalysisModuleRunner.MC.DYJetsToLL_LO.root','ttbar':'uhh2.AnalysisModuleRunner.MC.TTbar.root', 'ZprimeNarrow0500':'uhh2.AnalysisModuleRunner.MC.Zp01w0500.root','ZprimeNarrow0750':'uhh2.AnalysisModuleRunner.MC.Zp01w0750.root','ZprimeNarrow1000':'uhh2.AnalysisModuleRunner.MC.Zp01w1000.root','ZprimeNarrow1250':'uhh2.AnalysisModuleRunner.MC.Zp01w1250.root','ZprimeNarrow1500':'uhh2.AnalysisModuleRunner.MC.Zp01w1500.root','ZprimeNarrow2000':'uhh2.AnalysisModuleRunner.MC.Zp01w2000.root','ZprimeNarrow2500':'uhh2.AnalysisModuleRunner.MC.Zp01w2500.root','ZprimeNarrow3000':'uhh2.AnalysisModuleRunner.MC.Zp01w3000.root','ZprimeNarrow3500':'uhh2.AnalysisModuleRunner.MC.Zp01w3500.root','ZprimeNarrow4000':'uhh2.AnalysisModuleRunner.MC.Zp01w4000.root','ZprimeWide0500':'uhh2.AnalysisModuleRunner.MC.Zp10w0500.root','ZprimeWide0750':'uhh2.AnalysisModuleRunner.MC.Zp10w0750.root','ZprimeWide1000':'uhh2.AnalysisModuleRunner.MC.Zp10w1000.root','ZprimeWide1250':'uhh2.AnalysisModuleRunner.MC.Zp10w1250.root','ZprimeWide1500':'uhh2.AnalysisModuleRunner.MC.Zp10w1500.root','ZprimeWide2000':'uhh2.AnalysisModuleRunner.MC.Zp10w2000.root','ZprimeWide2500':'uhh2.AnalysisModuleRunner.MC.Zp10w2500.root','ZprimeWide3000':'uhh2.AnalysisModuleRunner.MC.Zp10w3000.root','ZprimeWide3500':'uhh2.AnalysisModuleRunner.MC.Zp10w3500.root','ZprimeWide4000':'uhh2.AnalysisModuleRunner.MC.Zp10w4000.root','ZprimeSuperWide1000':'uhh2.AnalysisModuleRunner.MC.Zp30w1000.root','ZprimeSuperWide2000':'uhh2.AnalysisModuleRunner.MC.Zp30w2000.root','ZprimeSuperWide3000':'uhh2.AnalysisModuleRunner.MC.Zp30w3000.root','ZprimeSuperWide4000':'uhh2.AnalysisModuleRunner.MC.Zp30w4000.root','RSgluon500':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-500.root','RSgluon750':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-750.root','RSgluon1000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-1000.root','RSgluon1250':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-1250.root','RSgluon1500':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-1500.root','RSgluon2000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-2000.root','RSgluon2500':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-2500.root','RSgluon3000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-3000.root','RSgluon4000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-4000.root','wjets_b':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__B.root','wjets_c':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__C.root','wjets_l':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__L.root'}
 
-#samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA.root','singletop':'uhh2.AnalysisModuleRunner.MC.ST.root','diboson':'uhh2.AnalysisModuleRunner.MC.Diboson.root','zjets':'uhh2.AnalysisModuleRunner.MC.DYJetsToLL_NLO.root','ttbar':'uhh2.AnalysisModuleRunner.MC.TTbar.root', 'ZprimeNarrow0500':'uhh2.AnalysisModuleRunner.MC.Zp01w0500.root','ZprimeNarrow0750':'uhh2.AnalysisModuleRunner.MC.Zp01w0750.root','ZprimeNarrow1000':'uhh2.AnalysisModuleRunner.MC.Zp01w1000.root','ZprimeNarrow1250':'uhh2.AnalysisModuleRunner.MC.Zp01w1250.root','ZprimeNarrow1500':'uhh2.AnalysisModuleRunner.MC.Zp01w1500.root','ZprimeNarrow2000':'uhh2.AnalysisModuleRunner.MC.Zp01w2000.root','ZprimeNarrow2500':'uhh2.AnalysisModuleRunner.MC.Zp01w2500.root','ZprimeNarrow3000':'uhh2.AnalysisModuleRunner.MC.Zp01w3000.root','ZprimeNarrow3500':'uhh2.AnalysisModuleRunner.MC.Zp01w3500.root','ZprimeNarrow4000':'uhh2.AnalysisModuleRunner.MC.Zp01w4000.root','ZprimeWide0500':'uhh2.AnalysisModuleRunner.MC.Zp10w0500.root','ZprimeWide0750':'uhh2.AnalysisModuleRunner.MC.Zp10w0750.root','ZprimeWide1000':'uhh2.AnalysisModuleRunner.MC.Zp10w1000.root','ZprimeWide1250':'uhh2.AnalysisModuleRunner.MC.Zp10w1250.root','ZprimeWide1500':'uhh2.AnalysisModuleRunner.MC.Zp10w1500.root','ZprimeWide2000':'uhh2.AnalysisModuleRunner.MC.Zp10w2000.root','ZprimeWide2500':'uhh2.AnalysisModuleRunner.MC.Zp10w2500.root','ZprimeWide3000':'uhh2.AnalysisModuleRunner.MC.Zp10w3000.root','ZprimeWide3500':'uhh2.AnalysisModuleRunner.MC.Zp10w3500.root','ZprimeWide4000':'uhh2.AnalysisModuleRunner.MC.Zp10w4000.root','ZprimeSuperWide1000':'uhh2.AnalysisModuleRunner.MC.Zp30w1000.root','ZprimeSuperWide2000':'uhh2.AnalysisModuleRunner.MC.Zp30w2000.root','ZprimeSuperWide3000':'uhh2.AnalysisModuleRunner.MC.Zp30w3000.root','ZprimeSuperWide4000':'uhh2.AnalysisModuleRunner.MC.Zp30w4000.root','RSgluon500':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-500.root','RSgluon750':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-750.root','RSgluon1000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-1000.root','RSgluon1250':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-1250.root','RSgluon1500':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-1500.root','RSgluon2000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-2000.root','RSgluon2500':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-2500.root','RSgluon3000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-3000.root','RSgluon4000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-4000.root','wjets_b':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__B.root','wjets_c':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__C.root','wjets_l':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__L.root'}
-
-samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA.root','singletop':'uhh2.AnalysisModuleRunner.MC.ST.root','diboson':'uhh2.AnalysisModuleRunner.MC.Diboson.root','zjets':'uhh2.AnalysisModuleRunner.MC.DYJetsToLL_LO.root','ttbar':'uhh2.AnalysisModuleRunner.MC.TTbar.root','wjets_b':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__B.root','wjets_c':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__C.root','wjets_l':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__L.root', 'ZprimeNarrow0500':'uhh2.AnalysisModuleRunner.MC.Zp01w0500.root'}
+#samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA.root','singletop':'uhh2.AnalysisModuleRunner.MC.ST.root','diboson':'uhh2.AnalysisModuleRunner.MC.Diboson.root','zjets':'uhh2.AnalysisModuleRunner.MC.DYJetsToLL_LO.root','ttbar':'uhh2.AnalysisModuleRunner.MC.TTbar.root','wjets_b':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__B.root','wjets_c':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__C.root','wjets_l':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__L.root', 'ZprimeNarrow0500':'uhh2.AnalysisModuleRunner.MC.Zp01w0500.root'}
 
 #samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA.root','singletop':'uhh2.AnalysisModuleRunner.MC.ST.root','ttbar':'uhh2.AnalysisModuleRunner.MC.TTbar.root','wjets_b':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__B.root','wjets_c':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__C.root','wjets_l':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__L.root', 'ZprimeNarrow0500':'uhh2.AnalysisModuleRunner.MC.Zp01w0500.root'}
 
 
 
 categories=['T0B0','T1','T0B1']
-fout = TFile('el_theta_20161117.root', 'recreate')
+fout = TFile('el_theta_20161124.root', 'recreate')
 #fout = TFile('el_theta_weight.root', 'recreate')
 gROOT.SetBatch(kTRUE)
 binning = numpy.arange(0,4100,100)

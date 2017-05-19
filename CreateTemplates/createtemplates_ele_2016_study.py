@@ -12,58 +12,192 @@ import numpy
 # systematic_direction_otherbkgs = {'nominal':'(wgtMC__elecIDSF_ct)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)'}
 # systematic_direction_signal= {'nominal':'(wgtMC__elecIDSF_ct)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)'}
 
+# systematic_direction_wjets={'nominal':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'pileup__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'pileup__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+# }
+
+# systematic_direction_wjets={'nominal':'(weight/wgtMC__GEN)',
+#                             'pileup__plus':'(weight/wgtMC__GEN)',
+#                             'pileup__minus':'(weight/wgtMC__GEN)',
+# }
+# systematic_direction_ttbar={'nominal':'(weight/wgtMC__GEN)',
+#                             'pileup__plus':'(weight/wgtMC__GEN)',
+#                             'pileup__minus':'(weight/wgtMC__GEN)',
+# }
+# systematic_direction_otherbkgs ={'nominal':'(weight/wgtMC__GEN)',
+#                             'pileup__plus':'(weight/wgtMC__GEN)',
+#                             'pileup__minus':'(weight/wgtMC__GEN)',
+# }
+# systematic_direction_signal={'nominal':'(weight/wgtMC__GEN)',
+#                             'pileup__plus':'(weight/wgtMC__GEN)',
+#                             'pileup__minus':'(weight/wgtMC__GEN)',
+# }
+# systematic_direction_ttbar={'nominal':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                           'btag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                           'btag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                           'misbtag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                           'misbtag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                           'toptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
+#                           'toptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
+#                           'mistoptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
+#                           'mistoptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
+#                           'pileup__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                           'pileup__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                           'q2ttbar__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(wgtMC__muR_dn__muF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                           'q2ttbar__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(wgtMC__muR_up__muF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                           'elecID__plus':'(weight_sfelec_ID_up)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                           'elecID__minus':'(weight_sfelec_ID_down)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                           'elecTRK__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
+#                           'elecTRK__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
+
+# }
+                         
+# systematic_direction_wjets={'nominal':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'btag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'btag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'misbtag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'misbtag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'toptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
+#                             'toptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
+#                             'mistoptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
+#                             'mistoptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
+#                             'pileup__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'pileup__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'q2wjets__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(wgtMC__muR_dn__muF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'q2wjets__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(wgtMC__muR_up__muF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                            'elecID__plus':'(weight_sfelec_ID_up)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                            'elecID__minus':'(weight_sfelec_ID_down)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                            'elecHLT__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                            'elecHLT__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                            'elecTRK__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
+#                            'elecTRK__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
+# }
+
+# systematic_direction_otherbkgs = {'nominal':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'btag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'btag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'misbtag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'misbtag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'toptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
+#                             'toptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
+#                             'mistoptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
+#                             'mistoptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
+#                             'pileup__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'pileup__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'elecID__plus':'(weight_sfelec_ID_up)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'elecID__minus':'(weight_sfelec_ID_down)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'elecHLT__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'elecHLT__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'elecTRK__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
+#                             'elecTRK__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
+# }
+
+# systematic_direction_signal= {'nominal':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                              'btag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                              'btag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                              'misbtag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                              'misbtag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                              'toptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
+#                              'toptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
+#                              'mistoptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
+#                              'mistoptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
+#                              'pileup__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                              'pileup__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                              'elecID__plus':'(weight_sfelec_ID_up)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                              'elecID__minus':'(weight_sfelec_ID_down)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                              'elecHLT__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                              'elecHLT__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                              'elecTRK__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
+#                              'elecTRK__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
+# }
+
+# #No b-tag
+# systematic_direction_ttbar={'nominal':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'toptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
+#                             'toptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
+#                             'mistoptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
+#                             'mistoptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
+#                             'pileup__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'pileup__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'q2ttbar__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(wgtMC__muR_dn__muF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'q2ttbar__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(wgtMC__muR_up__muF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'elecID__plus':'(weight_sfelec_ID_up)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'elecID__minus':'(weight_sfelec_ID_down)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'elecTRK__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
+#                             'elecTRK__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
+
+# }
+                         
+# systematic_direction_wjets={'nominal':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'toptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
+#                             'toptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
+#                             'mistoptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
+#                             'mistoptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
+#                             'pileup__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'pileup__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'q2wjets__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(wgtMC__muR_dn__muF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'q2wjets__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(wgtMC__muR_up__muF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'elecID__plus':'(weight_sfelec_ID_up)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'elecID__minus':'(weight_sfelec_ID_down)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'elecHLT__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'elecHLT__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                             'elecTRK__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
+#                             'elecTRK__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
+# }
+
+# systematic_direction_otherbkgs = {'nominal':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                                   'toptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
+#                                   'toptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
+#                                   'mistoptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
+#                                   'mistoptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
+#                                   'pileup__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                                   'pileup__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                                   'elecID__plus':'(weight_sfelec_ID_up)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                                   'elecID__minus':'(weight_sfelec_ID_down)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                                   'elecHLT__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                                   'elecHLT__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                                   'elecTRK__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
+#                                   'elecTRK__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
+# }
+
+# systematic_direction_signal= {'nominal':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                               'toptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
+#                               'toptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
+#                               'mistoptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
+#                               'mistoptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
+#                               'pileup__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                               'pileup__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                               'elecID__plus':'(weight_sfelec_ID_up)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                               'elecID__minus':'(weight_sfelec_ID_down)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                               'elecHLT__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                               'elecHLT__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+#                               'elecTRK__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
+#                               'elecTRK__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
+# }
+
+#No b-tag, no pile-up
 systematic_direction_ttbar={'nominal':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'btag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'btag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'misbtag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'misbtag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'toptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
-                          'toptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
-                          'mistoptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
-                          'mistoptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
-                          'pileup__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'pileup__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'q2ttbar__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(wgtMC__muR_dn__muF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'q2ttbar__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(wgtMC__muR_up__muF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'elecID__plus':'(weight_sfelec_ID_up)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'elecID__minus':'(weight_sfelec_ID_down)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                          'elecTRK__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
-                          'elecTRK__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
+                            'toptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
+                            'toptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
+                            'mistoptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
+                            'mistoptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
+                            'q2ttbar__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(wgtMC__muR_dn__muF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'q2ttbar__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(wgtMC__muR_up__muF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'elecID__plus':'(weight_sfelec_ID_up)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'elecID__minus':'(weight_sfelec_ID_down)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                            'elecTRK__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
+                            'elecTRK__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
 
 }
                          
 systematic_direction_wjets={'nominal':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'btag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'btag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'misbtag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'misbtag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
                             'toptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
                             'toptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
                             'mistoptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
                             'mistoptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
-                            'pileup__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'pileup__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
                             'q2wjets__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(wgtMC__muR_dn__muF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
                             'q2wjets__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(wgtMC__muR_up__muF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                           'elecID__plus':'(weight_sfelec_ID_up)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                           'elecID__minus':'(weight_sfelec_ID_down)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                           'elecHLT__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                           'elecHLT__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                           'elecTRK__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
-                           'elecTRK__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
-}
-
-systematic_direction_otherbkgs = {'nominal':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'btag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'btag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'misbtag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'misbtag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'toptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
-                            'toptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
-                            'mistoptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
-                            'mistoptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
-                            'pileup__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                            'pileup__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
                             'elecID__plus':'(weight_sfelec_ID_up)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
                             'elecID__minus':'(weight_sfelec_ID_down)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
                             'elecHLT__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
@@ -72,43 +206,57 @@ systematic_direction_otherbkgs = {'nominal':'(weight_sfelec_ID)*(wgtMC__elecHLTS
                             'elecTRK__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
 }
 
+systematic_direction_otherbkgs = {'nominal':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                                  'toptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
+                                  'toptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
+                                  'mistoptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
+                                  'mistoptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
+                                  'elecID__plus':'(weight_sfelec_ID_up)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                                  'elecID__minus':'(weight_sfelec_ID_down)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                                  'elecHLT__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                                  'elecHLT__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                                  'elecTRK__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
+                                  'elecTRK__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
+}
+
 systematic_direction_signal= {'nominal':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'btag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'btag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_bc_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'misbtag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_up)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'misbtag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag_udsg_down)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'toptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
-                             'toptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
-                             'mistoptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
-                             'mistoptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
-                             'pileup__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_up)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'pileup__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu_down)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'elecID__plus':'(weight_sfelec_ID_up)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'elecID__minus':'(weight_sfelec_ID_down)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'elecHLT__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'elecHLT__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
-                             'elecTRK__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
-                             'elecTRK__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
+                              'toptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)',
+                              'toptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)',
+                              'mistoptag__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)',
+                              'mistoptag__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)',
+                              'elecID__plus':'(weight_sfelec_ID_up)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                              'elecID__minus':'(weight_sfelec_ID_down)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                              'elecHLT__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_up)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                              'elecHLT__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_dn)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)',
+                              'elecTRK__plus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_up)',
+                              'elecTRK__minus':'(weight_sfelec_ID)*(wgtMC__elecHLTSF_ct)*(weight_pu)*(weight_btag)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf_down)'
 }
 
 
 #samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA.root','singletop':'uhh2.AnalysisModuleRunner.MC.ST.root','diboson':'uhh2.AnalysisModuleRunner.MC.Diboson.root','zjets':'uhh2.AnalysisModuleRunner.MC.DYJetsToLL_NLO.root','ttbar':'uhh2.AnalysisModuleRunner.MC.TTbar.root', 'ZprimeNarrow0500':'uhh2.AnalysisModuleRunner.MC.Zp01w0500.root','ZprimeNarrow0750':'uhh2.AnalysisModuleRunner.MC.Zp01w0750.root','ZprimeNarrow1000':'uhh2.AnalysisModuleRunner.MC.Zp01w1000.root','ZprimeNarrow1250':'uhh2.AnalysisModuleRunner.MC.Zp01w1250.root','ZprimeNarrow1500':'uhh2.AnalysisModuleRunner.MC.Zp01w1500.root','ZprimeNarrow2000':'uhh2.AnalysisModuleRunner.MC.Zp01w2000.root','ZprimeNarrow2500':'uhh2.AnalysisModuleRunner.MC.Zp01w2500.root','ZprimeNarrow3000':'uhh2.AnalysisModuleRunner.MC.Zp01w3000.root','ZprimeNarrow3500':'uhh2.AnalysisModuleRunner.MC.Zp01w3500.root','ZprimeNarrow4000':'uhh2.AnalysisModuleRunner.MC.Zp01w4000.root','ZprimeWide0500':'uhh2.AnalysisModuleRunner.MC.Zp10w0500.root','ZprimeWide0750':'uhh2.AnalysisModuleRunner.MC.Zp10w0750.root','ZprimeWide1000':'uhh2.AnalysisModuleRunner.MC.Zp10w1000.root','ZprimeWide1250':'uhh2.AnalysisModuleRunner.MC.Zp10w1250.root','ZprimeWide1500':'uhh2.AnalysisModuleRunner.MC.Zp10w1500.root','ZprimeWide2000':'uhh2.AnalysisModuleRunner.MC.Zp10w2000.root','ZprimeWide2500':'uhh2.AnalysisModuleRunner.MC.Zp10w2500.root','ZprimeWide3000':'uhh2.AnalysisModuleRunner.MC.Zp10w3000.root','ZprimeWide3500':'uhh2.AnalysisModuleRunner.MC.Zp10w3500.root','ZprimeWide4000':'uhh2.AnalysisModuleRunner.MC.Zp10w4000.root','ZprimeSuperWide1000':'uhh2.AnalysisModuleRunner.MC.Zp30w1000.root','ZprimeSuperWide2000':'uhh2.AnalysisModuleRunner.MC.Zp30w2000.root','ZprimeSuperWide3000':'uhh2.AnalysisModuleRunner.MC.Zp30w3000.root','ZprimeSuperWide4000':'uhh2.AnalysisModuleRunner.MC.Zp30w4000.root','RSgluon500':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-500.root','RSgluon750':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-750.root','RSgluon1000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-1000.root','RSgluon1250':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-1250.root','RSgluon1500':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-1500.root','RSgluon2000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-2000.root','RSgluon2500':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-2500.root','RSgluon3000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-3000.root','RSgluon4000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M-4000.root','wjets_b':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__B.root','wjets_c':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__C.root','wjets_l':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__L.root'}
 
-samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA.root','singletop':'uhh2.AnalysisModuleRunner.MC.ST.root','diboson':'uhh2.AnalysisModuleRunner.MC.Diboson.root','zjets':'uhh2.AnalysisModuleRunner.MC.DYJetsToLL_LO.root','ttbar':'uhh2.AnalysisModuleRunner.MC.TTbar.root','wjets_b':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__B.root','wjets_c':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__C.root','wjets_l':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__L.root', 'ZprimeNarrow0500':'uhh2.AnalysisModuleRunner.MC.Zp01w0500.root'}
+#samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA.root','singletop':'uhh2.AnalysisModuleRunner.MC.ST.root','diboson':'uhh2.AnalysisModuleRunner.MC.Diboson.root','zjets':'uhh2.AnalysisModuleRunner.MC.DYJetsToLL_LO.root','ttbar':'uhh2.AnalysisModuleRunner.MC.TTbar.root','wjets_b':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__B.root','wjets_c':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__C.root','wjets_l':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__L.root', 'ZprimeNarrow0500':'uhh2.AnalysisModuleRunner.MC.Zp01w0500.root'}
+
+samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA.root','singletop':'uhh2.AnalysisModuleRunner.MC.ST.root','diboson':'uhh2.AnalysisModuleRunner.MC.Diboson.root','ttbar':'uhh2.AnalysisModuleRunner.MC.TTbar.root','wjetsH':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__H.root','wjetsL':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__L.root', 'ZprimeNarrow0500':'uhh2.AnalysisModuleRunner.MC.Zp01w0500.root'}
 
 #samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA.root','singletop':'uhh2.AnalysisModuleRunner.MC.ST.root','ttbar':'uhh2.AnalysisModuleRunner.MC.TTbar.root','wjets_b':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__B.root','wjets_c':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__C.root','wjets_l':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__L.root', 'ZprimeNarrow0500':'uhh2.AnalysisModuleRunner.MC.Zp01w0500.root'}
 
+#samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA.root','ttbar':'uhh2.AnalysisModuleRunner.MC.TTbar.root'}
 
+#samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA.root','wjetsH':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__H.root','wjetsL':'uhh2.AnalysisModuleRunner.MC.WJets_LNu__L.root','ttbar':'uhh2.AnalysisModuleRunner.MC.TTbar.root'}
 
 categories=['T0B0','T1','T0B1']
-fout = TFile('el_theta_20161117.root', 'recreate')
+#fout = TFile('el_theta_20160725.root', 'recreate')
+#fout = TFile('el_theta_20161004_wjets_ttbar_TEST.root', 'recreate')
+fout = TFile('el_theta_20161004_TEST.root', 'recreate')
+#fout = TFile('el_theta_20161008_TEST.root', 'recreate')
 #fout = TFile('el_theta_weight.root', 'recreate')
 gROOT.SetBatch(kTRUE)
 binning = numpy.arange(0,4100,100)
 
 ## low chi2
 for cat in categories:
-    cut_string='(Mttbar<2000. && eleN==1 & rec_chi2<30'
+    cut_string='(Mttbar<2000. && eleN==1 && muoN==0 && rec_chi2<30'
     if cat == 'T1':
         h_string='el_1top_mttbar__'
         for key_sample in samplelist:
@@ -118,7 +266,7 @@ for cat in categories:
             print "getting", mytree
             mytree.SetAlias("invmass","Mttbar")
             if key_sample == 'DATA':
-                cut = str(cut_string+' & ttagN==1 & ttagevt>=1 & btagN>=0)')
+                cut = str(cut_string+' && ttagN==1 && ttagevt>=1 && btagN>=0)')
                 print "Processing: ",key_sample
                 print "Applying cut:",cut
                 tempDATA = TH1F("tempDATA","tempDATA",20,0,2000)
@@ -128,7 +276,7 @@ for cat in categories:
                 del tempDATA
             elif 'Zprime'in key_sample:
                 for syst in systematic_direction_signal:
-                    cut = str(cut_string+' & ttagN==1 & ttagevt>=1 &btagN>=0)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
+                    cut = str(cut_string+' && ttagN==1 && ttagevt>=1 && btagN>=0)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -147,7 +295,7 @@ for cat in categories:
                         del tempsys
             elif 'ttbar' in key_sample:
                 for syst in systematic_direction_ttbar:
-                    cut = str(cut_string+' & ttagN==1 & ttagevt>=1 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
+                    cut = str(cut_string+' && ttagN==1 && ttagevt>=1 && btagN>=0)*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -166,7 +314,7 @@ for cat in categories:
                         del tempsys
             elif 'wjets' in key_sample:
                 for syst in systematic_direction_wjets:
-                    cut = str(cut_string+' & ttagN==1 & ttagevt>=1 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
+                    cut = str(cut_string+' && ttagN==1 && ttagevt>=1 && btagN>=0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -185,7 +333,7 @@ for cat in categories:
                         del tempsys
             elif 'zjets' or 'diboson' in key_sample:
                 for syst in systematic_direction_otherbkgs:
-                    cut = str(cut_string+' & ttagN==1 & ttagevt>=1 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
+                    cut = str(cut_string+' && ttagN==1 && ttagevt>=1 && btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -211,7 +359,7 @@ for cat in categories:
             print "getting", mytree
             mytree.SetAlias("invmass","Mttbar")
             if key_sample == 'DATA':
-                cut = str(cut_string+' & ttagN==0 & ttagevt>=0 & btagN>=1)')
+                cut = str(cut_string+' && ttagN==0 && ttagevt>=0 && btagN==1)')
                 print "Processing: ",key_sample
                 print "Applying cut:",cut
                 temp2DATA = TH1F("temp2DATA","temp2DATA",200,0,2000)
@@ -222,7 +370,7 @@ for cat in categories:
                 del temp2DATA
             elif 'Zprime'in key_sample:
                 for syst in systematic_direction_signal:
-                    cut = str(cut_string+' & ttagN==0 & ttagevt>=0  & btagN>=1)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
+                    cut = str(cut_string+' && ttagN==0 && ttagevt>=0  && btagN==1)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -239,7 +387,7 @@ for cat in categories:
                         del temp2sys
             elif 'ttbar' in key_sample:
                 for syst in systematic_direction_ttbar:
-                    cut = str(cut_string+' & ttagN==0 & ttagevt>=0  & btagN>=1)*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
+                    cut = str(cut_string+' && ttagN==0 && ttagevt>=0  && btagN==1)*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -256,7 +404,7 @@ for cat in categories:
                         del temp2sys
             elif 'wjets' in key_sample:
                 for syst in systematic_direction_wjets:
-                    cut = str(cut_string+' & ttagN==0 & ttagevt>=0 & btagN>=1)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
+                    cut = str(cut_string+' && ttagN==0 && ttagevt>=0 && btagN==1)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -273,7 +421,7 @@ for cat in categories:
                         del temp2sys
             elif 'zjets' or 'diboson' in key_sample:
                 for syst in systematic_direction_otherbkgs:
-                    cut = str(cut_string+' & ttagN==0 & ttagevt>=0  & btagN>=1)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
+                    cut = str(cut_string+' && ttagN==0 && ttagevt>=0  && btagN==1)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -297,7 +445,7 @@ for cat in categories:
             print "getting", mytree
             mytree.SetAlias("invmass","Mttbar")
             if key_sample == 'DATA':
-                cut = str(cut_string+' & ttagN==0 & ttagevt>=0 & btagN==0)')
+                cut = str(cut_string+' && ttagN==0 && ttagevt>=0 && btagN==0)')
                 print "Processing: ",key_sample
                 print "Applying cut:",cut
                 temp3DATA = TH1F("temp3DATA","temp3DATA",200,0,2000)
@@ -307,7 +455,7 @@ for cat in categories:
                 del temp3DATA
             elif 'Zprime' in key_sample:
                 for syst in systematic_direction_signal:
-                    cut = str(cut_string+' & ttagN==0 & ttagevt>=0 & btagN==0)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
+                    cut = str(cut_string+' && ttagN==0 && ttagevt>=0 && btagN==0)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -324,7 +472,7 @@ for cat in categories:
                         del temp3sys
             elif 'ttbar' in key_sample:
                 for syst in systematic_direction_ttbar:
-                    cut = str(cut_string+' & ttagN==0 & ttagevt>=0 & btagN==0)*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
+                    cut = str(cut_string+' && ttagN==0 && ttagevt>=0 && btagN==0)*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -341,7 +489,7 @@ for cat in categories:
                         del temp3sys
             elif 'wjets' in key_sample:
                 for syst in systematic_direction_wjets:
-                    cut = str(cut_string+' & ttagN==0 & ttagevt>=0 & btagN==0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
+                    cut = str(cut_string+' && ttagN==0 && ttagevt>=0 && btagN==0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -358,7 +506,7 @@ for cat in categories:
                         del temp3sys
             elif 'zjets' or 'diboson' in key_sample:
                 for syst in systematic_direction_otherbkgs:
-                    cut = str(cut_string+' & ttagN==0 & ttagevt>=0 & btagN==0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
+                    cut = str(cut_string+' && ttagN==0 && ttagevt>=0 && btagN==0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -377,7 +525,7 @@ for cat in categories:
 
 ## high chi2
 for cat in categories:
-    cut_string='(eleN==1 & rec_chi2>30'
+    cut_string='(eleN==1 && muoN==0 && rec_chi2>30'
     if cat == 'T1':
         h_string='el_1top_mttbar_highChi2__'
         for key_sample in samplelist:
@@ -387,7 +535,7 @@ for cat in categories:
             print "getting", mytree
             mytree.SetAlias("invmass","Mttbar")
             if key_sample == 'DATA':
-                cut = str(cut_string+' & ttagN==1 & ttagevt>=1 & btagN>=0)')
+                cut = str(cut_string+' && ttagN==1 && ttagevt>=1 && btagN>=0)')
                 print "Processing: ",key_sample
                 print "Applying cut:",cut
                 tempDATA = TH1F("tempDATA","tempDATA",80,0,8000)
@@ -397,7 +545,7 @@ for cat in categories:
                 del tempDATA
             elif 'Zprime'in key_sample:
                 for syst in systematic_direction_signal:
-                    cut = str(cut_string+' & ttagN==1 & ttagevt>=1 &btagN>=0)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
+                    cut = str(cut_string+' && ttagN==1 && ttagevt>=1 &btagN>=0)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -416,7 +564,7 @@ for cat in categories:
                         del tempsys
             elif 'ttbar' in key_sample:
                 for syst in systematic_direction_ttbar:
-                    cut = str(cut_string+' & ttagN==1 & ttagevt>=1 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
+                    cut = str(cut_string+' && ttagN==1 && ttagevt>=1 && btagN>=0)*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -435,7 +583,7 @@ for cat in categories:
                         del tempsys
             elif 'wjets' in key_sample:
                 for syst in systematic_direction_wjets:
-                    cut = str(cut_string+' & ttagN==1 & ttagevt>=1 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
+                    cut = str(cut_string+' && ttagN==1 && ttagevt>=1 && btagN>=0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -454,7 +602,7 @@ for cat in categories:
                         del tempsys
             elif 'zjets' or 'diboson' in key_sample:
                 for syst in systematic_direction_otherbkgs:
-                    cut = str(cut_string+' & ttagN==1 & ttagevt>=1 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
+                    cut = str(cut_string+' && ttagN==1 && ttagevt>=1 && btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -480,7 +628,7 @@ for cat in categories:
             print "getting", mytree
             mytree.SetAlias("invmass","Mttbar")
             if key_sample == 'DATA':
-                cut = str(cut_string+' & ttagN==0 & ttagevt>=0 & btagN>=1)')
+                cut = str(cut_string+' && ttagN==0 && ttagevt>=0 && btagN==1)')
                 print "Processing: ",key_sample
                 print "Applying cut:",cut
                 temp2DATA = TH1F("temp2DATA","temp2DATA",400,0,8000)
@@ -491,7 +639,7 @@ for cat in categories:
                 del temp2DATA
             elif 'Zprime'in key_sample:
                 for syst in systematic_direction_signal:
-                    cut = str(cut_string+' & ttagN==0 & ttagevt>=0  & btagN>=1)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
+                    cut = str(cut_string+' && ttagN==0 && ttagevt>=0  && btagN==1)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -508,7 +656,7 @@ for cat in categories:
                         del temp2sys
             elif 'ttbar' in key_sample:
                 for syst in systematic_direction_ttbar:
-                    cut = str(cut_string+' & ttagN==0 & ttagevt>=0  & btagN>=1)*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
+                    cut = str(cut_string+' && ttagN==0 && ttagevt>=0  && btagN==1)*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -525,7 +673,7 @@ for cat in categories:
                         del temp2sys
             elif 'wjets' in key_sample:
                 for syst in systematic_direction_wjets:
-                    cut = str(cut_string+' & ttagN==0 & ttagevt>=0 & btagN>=1)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
+                    cut = str(cut_string+' && ttagN==0 && ttagevt>=0 && btagN==1)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -542,7 +690,7 @@ for cat in categories:
                         del temp2sys
             elif 'zjets' or 'diboson' in key_sample:
                 for syst in systematic_direction_otherbkgs:
-                    cut = str(cut_string+' & ttagN==0 & ttagevt>=0  & btagN>=1)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
+                    cut = str(cut_string+' && ttagN==0 && ttagevt>=0  && btagN==1)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -566,7 +714,7 @@ for cat in categories:
             print "getting", mytree
             mytree.SetAlias("invmass","Mttbar")
             if key_sample == 'DATA':
-                cut = str(cut_string+' & ttagN==0 & ttagevt>=0 & btagN==0)')
+                cut = str(cut_string+' && ttagN==0 && ttagevt>=0 && btagN==0)')
                 print "Processing: ",key_sample
                 print "Applying cut:",cut
                 temp3DATA = TH1F("temp3DATA","temp3DATA",400,0,8000)
@@ -576,7 +724,7 @@ for cat in categories:
                 del temp3DATA
             elif 'Zprime' in key_sample:
                 for syst in systematic_direction_signal:
-                    cut = str(cut_string+' & ttagN==0 & ttagevt>=0 & btagN==0)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
+                    cut = str(cut_string+' && ttagN==0 && ttagevt>=0 && btagN==0)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -593,7 +741,7 @@ for cat in categories:
                         del temp3sys
             elif 'ttbar' in key_sample:
                 for syst in systematic_direction_ttbar:
-                    cut = str(cut_string+' & ttagN==0 & ttagevt>=0 & btagN==0)*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
+                    cut = str(cut_string+' && ttagN==0 && ttagevt>=0 && btagN==0)*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -610,7 +758,7 @@ for cat in categories:
                         del temp3sys
             elif 'wjets' in key_sample:
                 for syst in systematic_direction_wjets:
-                    cut = str(cut_string+' & ttagN==0 & ttagevt>=0 & btagN==0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
+                    cut = str(cut_string+' && ttagN==0 && ttagevt>=0 && btagN==0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':
@@ -627,7 +775,7 @@ for cat in categories:
                         del temp3sys
             elif 'zjets' or 'diboson' in key_sample:
                 for syst in systematic_direction_otherbkgs:
-                    cut = str(cut_string+' & ttagN==0 & ttagevt>=0 & btagN==0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
+                    cut = str(cut_string+' && ttagN==0 && ttagevt>=0 && btagN==0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
                     if syst == 'nominal':

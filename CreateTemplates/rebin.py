@@ -97,6 +97,7 @@ def computeBinning(histogram, rerror):
     findBinSize(histogram, highindexes, rerror, 0, histogram.GetNbinsX(), histogram.GetNbinsX(), lowindex)
     highindexes = sorted(highindexes)
     binning = [histogram.GetBinLowEdge(0), histogram.GetBinLowEdge(lowindex)+histogram.GetBinWidth(lowindex)]
+    #print binning
     #print highindexes
     for i in highindexes[1:]:
         binning.append(histogram.GetBinLowEdge(i))
@@ -116,6 +117,7 @@ def binFile(rerror, filename, xtitle, backgrounds):
     file = TFile(filename)
     keys = file.GetListOfKeys()
 
+
     h_bkg = {}
     h_data = {}
 
@@ -127,6 +129,7 @@ def binFile(rerror, filename, xtitle, backgrounds):
         if not info.systematic:
             if info.process in backgrounds:
                 if info.channel in h_bkg:
+                    #print info.channel
                     h_bkg[info.channel] = merge(h_bkg[info.channel], file.Get(key).Clone())
                 else:
                     h_bkg[info.channel] = file.Get(key).Clone()
@@ -147,7 +150,7 @@ def binFile(rerror, filename, xtitle, backgrounds):
 
     # print all the histograms for all the channels
     for key in h_bkg:
-
+        #print key
         binning = array.array('d', computeBinning(h_bkg[key], rerror))
         h_bkg[key] = h_bkg[key].Rebin(len(binning)-1, h_bkg[key].GetName(), binning)
         h_data[key] = h_data[key].Rebin(len(binning)-1, h_data[key].GetName(), binning)
@@ -199,7 +202,9 @@ def binFile(rerror, filename, xtitle, backgrounds):
         labellumi.SetMargin(0.12);
         labellumi.SetFillColor(10);
         labellumi.SetBorderSize(0);
-        labellumi.SetHeader('L = 3.99 fb^{-1}')
+#        labellumi.SetHeader('L = 3.99 fb^{-1}')
+#        labellumi.SetHeader('L = 12.9 fb^{-1}')
+        labellumi.SetHeader('L = 36.2 fb^{-1}')
         labellumi.Draw()
 
         labellumi2 = TLegend(.67, .70, .89, .75)
@@ -240,7 +245,7 @@ def binFile(rerror, filename, xtitle, backgrounds):
                 # if info.process.startswith('zp') or info.process.startswith('rsg'):
                 #     print "Scaling signal sample %s by x0.1" % histogram.GetName()
                 #     histogram.Scale(0.1)
-                #histogram = histogram.Rebin(len(binning)-1, histogram.GetName(), binning)
+                # histogram = histogram.Rebin(len(binning)-1, histogram.GetName(), binning)
                 output.cd()
                 histogram.Write()
 
@@ -255,7 +260,13 @@ def binFile(rerror, filename, xtitle, backgrounds):
 #binFile(0.30,  'mu_theta_20160712.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson', 'zjets'])
 #binFile(0.30,  'el_theta_20160712.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson','zjets'])
 
-binFile(0.30,  'el_theta_20160725.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson','zjets'])
+#binFile(0.30,  'el_theta_20160725.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson','zjets'])
+#binFile(0.30,  'el_theta_20161004_wjets.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjetsL','wjetsB','wjetsC','diboson','zjets'])
+#binFile(0.30,  'el_theta_20161004_wjets_ttbar.root','M_{t#bar{t}} [GeV/c^{2}]', ['wjetsL','wjetsH','ttbar'])
+#binFile(0.30,  'el_theta_20161004_wjets_TEST.root','M_{t#bar{t}} [GeV/c^{2}]', ['wjetsL','wjetsH'])
+#binFile(0.30,  'el_theta_20161004_TEST.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjetsL','wjetsH','diboson'])
+
+#binFile(0.30,  'el_theta_20161004_wjets_ttbar_TEST.root','M_{t#bar{t}} [GeV/c^{2}]', ['wjetsL','wjetsH','ttbar'])
 #binFile(0.30,  'mu_theta_20160725.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson','zjets'])
 
 
@@ -278,4 +289,5 @@ binFile(0.30,  'el_theta_20160725.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop'
 #binFile(0.3, 'boosted_semileptonic_muon_interpolated.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar', 'wlight', 'wc', 'wb', 'zlight', 'singletop', 'diboson'])
 #binFile(0.3, 'boosted_semileptonic_lepton_interpolated.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar', 'wlight', 'wc', 'wb', 'zlight', 'singletop', 'diboson'])
 
-
+#binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson','qcd'])
+binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson','qcd'])
