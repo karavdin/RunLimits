@@ -45,23 +45,31 @@ for i in range(4,len(yield_stats)):
         sample = yield_stats[i].split('</td><td>')[0].replace('<tr><td>','')
         #process = Process(sample)
         samples.append(sample)
+
+
+
+
 for sample in samples:
     print sample
     for i in range(4,len(yield_stats)):
        if sample in yield_stats[i]:
-           print yield_stats[i]    
+           #print yield_stats[i]
            s = Process(sample)
            s.add_rateA(float(yield_stats[i].split('</td><td>')[1].split('+/-')[0]))
            s.add_stat_uncA(float(yield_stats[i].split('</td><td>')[1].split('+/-')[1]))
            s.add_rateB(float(yield_stats[i].split('</td><td>')[2].split('+/-')[0]))
            s.add_stat_uncB(float(yield_stats[i].split('</td><td>')[2].split('+/-')[1]))
            s.add_rateC(float(yield_stats[i].split('</td><td>')[3].replace('</td></tr>','').split('+/-')[0]))
-           s.add_stat_uncC(float(yield_stats[i].split('</td><td>')[3].replace('</td></tr>','').split('+/-')[1]))
+           #print s.rateC
+           if s.rateC!=[0.0]:
+               s.add_stat_uncC(float(yield_stats[i].split('</td><td>')[3].replace('</td></tr>','').split('+/-')[1]))
+           else:
+               s.add_stat_uncC(float(yield_stats[i].split('</td><td>')[3].replace('</td></tr>','').split('+/-')[0]))
            sample_classes.append(s)
     
-for s in sample_classes:
-    print s.name, s.rateA, s.rateB, s.rateC
-
+# for s in sample_classes:
+#     print s.name, s.rateA, s.rateB, s.rateC
+#     print s.name, s.stat_uncA, s.stat_uncB, s.stat_uncC
 for line in all_lines:
     if "<h2>Observable '"+ctgs[0]+ "'</h2>" in line:
         idx_3 = all_lines.index(line)
@@ -69,7 +77,7 @@ for line in all_lines:
     elif "<h2>Observable '"+ctgs[1]+ "'</h2>" in line:
         idx_4 = all_lines.index(line)
         print line 
-    elif "<h2>Observable '"+"el_1top_mttbar"+ "'</h2>" in line:
+    elif "<h2>Observable '"+"ele_1top_WJetsMVA_mttbar"+ "'</h2>" in line:
         idx_5 = all_lines.index(line)
         print line
     elif '6. Nuisance Parameter Priors' in line:

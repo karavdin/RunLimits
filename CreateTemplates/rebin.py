@@ -250,45 +250,6 @@ def binFile(rerror, filename, xtitle, backgrounds):
                 histogram.Write()
 
 
-#binFile(0.30,  'el_theta_0411_narrow_v1.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson', 'zjets'])
-#binFile(0.30,  'mu_theta_0413_narrow_v1.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson', 'zjets'])
-#binFile(0.30,  'mu_theta_20160703.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson', 'zjets'])
-#binFile(0.30,  'el_theta_20160703.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson', 'zjets'])
-#binFile(0.30,  'el_theta_weight.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson', 'zjets'])
-#binFile(0.30,  'el_theta_20160708.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson', 'zjets'])
-
-#binFile(0.30,  'mu_theta_20160712.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson', 'zjets'])
-#binFile(0.30,  'el_theta_20160712.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson','zjets'])
-
-#binFile(0.30,  'el_theta_20160725.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson','zjets'])
-#binFile(0.30,  'el_theta_20161004_wjets.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjetsL','wjetsB','wjetsC','diboson','zjets'])
-#binFile(0.30,  'el_theta_20161004_wjets_ttbar.root','M_{t#bar{t}} [GeV/c^{2}]', ['wjetsL','wjetsH','ttbar'])
-#binFile(0.30,  'el_theta_20161004_wjets_TEST.root','M_{t#bar{t}} [GeV/c^{2}]', ['wjetsL','wjetsH'])
-#binFile(0.30,  'el_theta_20161004_TEST.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjetsL','wjetsH','diboson'])
-
-#binFile(0.30,  'el_theta_20161004_wjets_ttbar_TEST.root','M_{t#bar{t}} [GeV/c^{2}]', ['wjetsL','wjetsH','ttbar'])
-#binFile(0.30,  'mu_theta_20160725.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson','zjets'])
-
-
-#binFile(0.30,  'mu_theta_20160712.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_b','wjets_c'])
-
-#binFile(0.30,  'lep_theta_20160712.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson', 'zjets'])
-#binFile(0.30,  'mu_theta_20160712.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson', 'zjets'])
-#binFile(0.30,  'mu_theta_20160703.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson', 'zjets'])
-
-#binFile(0.30,  'mu_theta_0413_wide_v1.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','diboson', 'zjets'])
-#binFile(0.3, 'itheta_lepton_0709.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar'])
-#binFile(0.3, 'theta_input_twochannel.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar', 'wlight', 'wc', 'wb', 'zlight', 'singletop', 'diboson'])
-#binFile(0.3, 'theta_input_threechannel.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar', 'wlight', 'wc', 'wb', 'zlight', 'singletop', 'diboson'])
-#binFile(0.3, 'theta_input_combined_simplescales.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar', 'wlight', 'wc', 'wb', 'zlight', 'singletop', 'diboson'])
-#binFile(0.3, 'theta_input_combined_toptag_simplescales.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar', 'wlight', 'wc', 'wb', 'zlight', 'singletop', 'diboson'])
-#binFile(0.3, 'theta_input_combined_fancyscales.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar', 'wlight', 'wc', 'wb', 'zlight', 'singletop', 'diboson'])
-#binFile(0.3, 'theta_input_combined_toptag_fancyscales.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar', 'wlight', 'wc', 'wb', 'zlight', 'singletop', 'diboson'])
-
-#binFile(0.3, 'boosted_semileptonic_electron_interpolated.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar', 'wlight', 'wc', 'wb', 'zlight', 'singletop', 'diboson'])
-#binFile(0.3, 'boosted_semileptonic_muon_interpolated.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar', 'wlight', 'wc', 'wb', 'zlight', 'singletop', 'diboson'])
-#binFile(0.3, 'boosted_semileptonic_lepton_interpolated.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar', 'wlight', 'wc', 'wb', 'zlight', 'singletop', 'diboson'])
-
 #binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson','qcd'])
 #binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson','qcd','zjets'])
 #binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson'])
@@ -296,4 +257,7 @@ def binFile(rerror, filename, xtitle, backgrounds):
 #binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets','other'])
 
 binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_b','wjets_c','diboson'])
+
+#binFile(0.30,  'ele_theta_bdt0p5_chi30.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','diboson'])
+binFile(0.30,  'mu_theta_bdt0p5_chi30.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','diboson'])
 
