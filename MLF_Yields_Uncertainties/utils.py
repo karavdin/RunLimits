@@ -36,10 +36,16 @@ def generate_yield_table(rate_table):
                          #'el_0top2btag_mttbar': 'electron channel, $N_{\\text{top-tag}} \\ge 0, $N_{\\text{b-tag}} \\ge 2$',
                          #'el_1top0btag_mttbar': 'electron channel, $N_{\\text{top-tag}} \\ge 1, $N_{\\text{b-tag}} \\ge 0$',
                          #'el_1top1btag_mttbar': 'electron channel, $N_{\\text{top-tag}} \\ge 1, $N_{\\text{b-tag}} \\ge 1$',
-                         #'el_1top2btag_mttbar': 'electron channel, $N_{\\text{top-tag}} \\ge 1, $N_{\\text{b-tag}} \\ge 2$',
-                         'el_1top_mttbar': 'elec channel, $N_{\\text{top-tag}}=1$',
-                         'el_0top1btag_mttbar': 'elec channel, $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 1$',
-                         'el_0top0btag_mttbar': 'elec channel, $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 0$'}[c]
+                         #'el_1top2btag_mttbar': 'electron channel, $N_{\\text{top-tag}} \\ge 1, $N_{\\text{b-tag}} \\ge 2$'
+                         'ele_1top_WJetsMVA_mttbar': 'elec channel, $N_{\\text{top-tag}}=1$, WJets MVA\ge0.5',
+                         'ele_0top_WJetsMVA_mttbar': 'elec channel, $N_{\\text{top-tag}}=0$, WJets MVA\ge0.5',
+                         'ele_1top_antiWJetsMVA_mttbar': 'elec channel, $N_{\\text{top-tag}}=1$, WJets MVA<0.5',
+                         'ele_0top_antiWJetsMVA_mttbar': 'elec channel, $N_{\\text{top-tag}}=0$, WJets MVA<0.5',
+
+                         'ele_1top_mttbar': 'elec channel, $N_{\\text{top-tag}}=1$',
+                         'ele_0top_mttbar': 'elec channel, $N_{\\text{top-tag}}=0$',
+                         'ele_0top1btag_mttbar': 'elec channel, $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 1$',
+                         'ele_0top0btag_mttbar': 'elec channel, $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 0$'}[c]
                          #'mu_1top_mttbar': 'muon channel, $N_{\\text{top-tag}}=1$',
                          #'mu_0top1btag_mttbar': 'muon channel, $N_{\\text{top-tag}} = 0 $N_{\\text{b-tag}} = 1$',
                          #'mu_0top0btag_mttbar': 'muon channel, $N_{\\text{top-tag}} = 0 $N_{\\text{b-tag}} = 0$'}[c]
@@ -86,6 +92,7 @@ def print_obsproc_factors_shapes(model):
 def print_obsproc_factors_rateonly(model):
     result = {}
     res = ml_fit_coefficients(model, signal_processes = [''])
+    #print "results from print_obsproc_factors_rateonly", res
     for obs in res['']:
         print("\n" + obs)
         result[obs] = {}

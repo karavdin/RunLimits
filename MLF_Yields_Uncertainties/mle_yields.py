@@ -1,9 +1,10 @@
 ### Filter definitions ###
 print 'Hello World'
-muo_ifile = ['mu_theta_0408_narrow_v1_rebinned.root']
+#muo_ifile = ['mu_theta_0408_narrow_v1_rebinned.root']
+muo_ifile = ['ele_theta_bdt0p5_chi30_rebinned.root']
 #ele_ifile = ['mle_theta_0221_allsignals_allsystematics_rebinned.root']
-ele_ifile = ['el_theta_0408_narrow_v1_rebinned.root']
-lep_ifile = ['lepton_theta_signal_sideband_0412_rebinned.root']
+ele_ifile = ['ele_theta_bdt0p5_chi30_rebinned.root']
+lep_ifile = ['ele_theta_bdt0p5_chi30_rebinned.root']
 
 def narrow_resonances(hname):
     if not ('RSgluon' in hname or 'Zprime' in hname): return True
@@ -32,21 +33,29 @@ def build_boosted_semileptonic_model(files, filter, signal, eflag=False):
     model.set_signal_processes(signal)
 
     for p in model.processes:
-        model.add_lognormal_uncertainty('lumi', math.log(1.046), p)
+        model.add_lognormal_uncertainty('lumi', math.log(1.025), p)
         #if eflag:
             #for obs in ['el_0top0btag_mttbar','el_0top1btag_mttbar','el_1top_mttbar']:
             #for obs in ['el_0top0btag_mttbar','el_0top1btag_mttbar']:
             #for obs in ['el_mttbar']:
                 #model.add_lognormal_uncertainty('ele_trig', math.log(1.05), p, obs)
 
-    model.add_lognormal_uncertainty('ttbar_rate',   math.log(1.5), 'ttbar')
-    model.add_lognormal_uncertainty('wjetsl_rate',      math.log(1.5), 'wjets_l')
+ #   model.add_lognormal_uncertainty('ttbar_rate',   math.log(1.12), 'ttbar')
+    #model.add_lognormal_uncertainty('ttbar_rate',   math.log(1.23), 'ttbar')
+    #model.add_lognormal_uncertainty('wjetsl_rate',      math.log(1.5), 'wjets_l')
+    #model.add_lognormal_uncertainty('wjets_rate',      math.log(1.12), 'wjets')
+#    model.add_lognormal_uncertainty('wjets_rate',      math.log(1.25), 'wjets')
     #model.add_lognormal_uncertainty('wjetsh_rate',      math.log(1.5), 'wjets_h')
     #model.add_lognormal_uncertainty('wc_rate',      math.log(1.25), 'wjetsc')
     #model.add_lognormal_uncertainty('wb_rate',      math.log(1.25), 'wjetsb')
     #model.add_lognormal_uncertainty('st_rate',      math.log(1.5), 'singletop')
-    model.add_lognormal_uncertainty('zj_rate',      math.log(1.5), 'zjets')
-    model.add_lognormal_uncertainty('diboson_rate', math.log(1.5), 'diboson')
+    #model.add_lognormal_uncertainty('zj_rate',      math.log(1.5), 'zjets')
+    #model.add_lognormal_uncertainty('diboson_rate', math.log(1.5), 'diboson')
+    model.add_lognormal_uncertainty('ttbar_rate',   math.log(1.12), 'ttbar')
+    model.add_lognormal_uncertainty('wjets_l_rate',      math.log(1.25), 'wjets_l')
+    model.add_lognormal_uncertainty('wjets_b_rate',      math.log(1.25), 'wjets_b')
+    model.add_lognormal_uncertainty('wjets_c_rate',      math.log(1.25), 'wjets_c')
+    model.add_lognormal_uncertainty('ST_VV_DY_rate', math.log(1.15), 'diboson')
 
     return model
 
@@ -143,9 +152,11 @@ def build_model(type):
         #model.distribution.set_distribution_parameters(p, width = float('inf'), range = [-0.0001,0.0001])
     for p in model.distribution.get_parameters():
         d = model.distribution.get_distribution(p)
+        print "channel and model type", p, d
         if d['typ'] == 'gauss' and d['mean'] == 0.0 and d['width'] == 1.0:
             model.distribution.set_distribution_parameters(p, range = [-5.0, 5.0])
             if (p == 'toptag'): model.distribution.set_distribution_parameters(p, width = float('Inf'), range = [-5.0, 5.0])
+            if (p == 'mistoptag'): model.distribution.set_distribution_parameters(p, width = float('Inf'), range = [-5.0, 5.0])
             #if (p == 'topmistag'): model.distribution.set_distribution_parameters(p, width = float('Inf'), range = [-5.0, 5.0])
             #if (p == 'toptag'): model.distribution.set_distribution_parameters(p, width = float('Inf'), range = [-1.0, 1.0])
             #if (p == 'topmistag'): model.distribution.set_distribution_parameters(p, width = float('Inf'), range = [-1.0, 1.0])
@@ -203,7 +214,7 @@ for r1 in results:
 
 report.write_html('htmlout')
 '''
-execfile('utils.py')
+execfile('/afs/desy.de/user/k/karavdia/xxl/af-cms/RunLimitsZprime_2016/RunLimits/MLF_Yields_Uncertainties/utils.py')
 print 'Fitting rate only'
 #res = ml_fit(model, input = 'data', n = 1, with_error = True, signal_prior = 'fix:0', options = options, **args)
 res = ml_fit(model, signal_processes = [''])
@@ -217,11 +228,17 @@ apply_factors(model, factors)
 tables = model_summary(model)
 generate_yield_table(tables['rate_table'])
 print 'Fitting all the parameters'
-#res = ml_fit(model, input = 'data', n = 1, with_error = True, signal_prior = 'fix:0', options = options, **args)
-res = ml_fit(model, signal_processes = [''], nuisance_constraint = '')
-for p in res['']: print p, res[''][p][0][0]
-
-
+# #res = ml_fit(model, input = 'data', n = 1, with_error = True, signal_prior = 'fix:0', options = options, **args)
+res = ml_fit(model, signal_processes = [''], nuisance_constraint = 'shape:free', signal_prior = 'fix:0')
+# #for p in res['']: print p, res[''][p][0][0]
+#for p in res['']: print res[''][p][0][0], res[''][p][0][1], p
+# factors = print_obsproc_factors_rateonly(model)                                                                                                                       
+# file = open('factors.py', 'w')                                                                                                                                        
+# file.write(repr(factors))                                                                                                                                             
+# file.close()                                                                                                                                                          
+# apply_factors(model, factors)                                                                                                                                         
+# tables = model_summary(model)                                                                                                                                         
+# generate_yield_table(tables['rate_table'])    
 
 
 #results = bayesian_limits(model, run_theta = True, **args)
