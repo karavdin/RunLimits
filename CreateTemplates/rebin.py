@@ -67,7 +67,7 @@ def findLowIndex(histogram, rerror):
 
 
 def findBinSize(histogram, highindexes, rerror, minvalue, maxbinsize, start, stop):
-    print "minvalue %f, maxbinsize %d, start %d, stop %d : " % (minvalue, maxbinsize, start, stop), highindexes
+    #print "minvalue %f, maxbinsize %d, start %d, stop %d : " % (minvalue, maxbinsize, start, stop), highindexes
     value = 0.0
     error = 0.0
     for i in range(start, stop, -1):
@@ -97,11 +97,12 @@ def computeBinning(histogram, rerror):
     findBinSize(histogram, highindexes, rerror, 0, histogram.GetNbinsX(), histogram.GetNbinsX(), lowindex)
     highindexes = sorted(highindexes)
     binning = [histogram.GetBinLowEdge(0), histogram.GetBinLowEdge(lowindex)+histogram.GetBinWidth(lowindex)]
-    print highindexes
+    #print binning
+    #print highindexes
     for i in highindexes[1:]:
         binning.append(histogram.GetBinLowEdge(i))
     binning.append(histogram.GetBinLowEdge(histogram.GetNbinsX())+histogram.GetBinWidth(histogram.GetNbinsX()))
-    print binning
+    #print binning
     return binning
 
 import array
@@ -116,28 +117,32 @@ def binFile(rerror, filename, xtitle, backgrounds):
     file = TFile(filename)
     keys = file.GetListOfKeys()
 
+
     h_bkg = {}
     h_data = {}
 
     # load all the background and data histograms
     for key in keys:
         key = key.GetName()
-        print key
+        #print key
         info = hinfo(key)
         if not info.systematic:
             if info.process in backgrounds:
                 if info.channel in h_bkg:
+                    #print info.channel
                     h_bkg[info.channel] = merge(h_bkg[info.channel], file.Get(key).Clone())
                 else:
                     h_bkg[info.channel] = file.Get(key).Clone()
             elif info.process == 'data' or info.process == 'DATA':
+                #print info.process
+                #print info.channel
                 if info.channel in h_data:
                     h_data[info.channel] = merge(h_data[info.channel], file.Get(key).Clone())
                 else:
                     h_data[info.channel] = file.Get(key).Clone()
 
     canvas = TCanvas()
-    canvas.SetLogy()
+#    canvas.SetLogy()
 
     keys = file.GetListOfKeys()
 
@@ -145,7 +150,7 @@ def binFile(rerror, filename, xtitle, backgrounds):
 
     # print all the histograms for all the channels
     for key in h_bkg:
-
+        #print key
         binning = array.array('d', computeBinning(h_bkg[key], rerror))
         h_bkg[key] = h_bkg[key].Rebin(len(binning)-1, h_bkg[key].GetName(), binning)
         h_data[key] = h_data[key].Rebin(len(binning)-1, h_data[key].GetName(), binning)
@@ -181,7 +186,7 @@ def binFile(rerror, filename, xtitle, backgrounds):
         legend.SetFillColor(10);
         legend.SetBorderSize(0);
         legend.AddEntry(h_bkg[key], "Background", "f")
-        legend.AddEntry(h_data[key], "CMS Data 2015", "lp")
+        legend.AddEntry(h_data[key], "CMS Data 2016", "lp")
         legend.Draw()
 
         labelcms = TLegend(.15, .91, 1, .96)
@@ -197,7 +202,9 @@ def binFile(rerror, filename, xtitle, backgrounds):
         labellumi.SetMargin(0.12);
         labellumi.SetFillColor(10);
         labellumi.SetBorderSize(0);
-        labellumi.SetHeader('L = 2.4 fb^{-1}')
+#        labellumi.SetHeader('L = 3.99 fb^{-1}')
+#        labellumi.SetHeader('L = 12.9 fb^{-1}')
+        labellumi.SetHeader('L = 35.9 fb^{-1}')
         labellumi.Draw()
 
         labellumi2 = TLegend(.67, .70, .89, .75)
@@ -215,34 +222,61 @@ def binFile(rerror, filename, xtitle, backgrounds):
             info = hinfo(hkey)
             if info.channel == key:
                 histogram = file.Get(hkey).Clone()
-                # Hack to fix the data lowercase names
-                #if info.systematic == 'pdf':
-                #    continue
-                if (info.systematic == 'scale' or info.systematic == 'matching') and 'light' in info.process and '1btag' in info.channel:
-                    print "Excluding : ", info.systematic, info.process, info.channel
-                    continue
-                if 'data' in info.process:
-                    histogram.SetName(histogram.GetName().replace('data','DATA'))
-                if 'ttbar' in info.process and info.systematic == 'scale':
-                    orig = histogram.GetName()
-                    histogram.SetName(histogram.GetName().replace('scale','scale_ttbar'))
-                    print "Renaming: %s to %s" % (orig, histogram.GetName())
-                if ('wlight' in info.process or 'zlight' in info.process) and info.systematic == 'scale':
-                    orig = histogram.GetName()
-                    histogram.SetName(histogram.GetName().replace('scale','scale_vjets'))
-                    print "Renaming: %s to %s" % (orig, histogram.GetName())
-                if ('wlight' in info.process or 'zlight' in info.process) and info.systematic == 'matching':
-                    orig = histogram.GetName()
-                    histogram.SetName(histogram.GetName().replace('matching','matching_vjets'))
-                    print "Renaming: %s to %s" % (orig, histogram.GetName())
-                if info.process.startswith('zp') or info.process.startswith('rsg'):
-                    print "Scaling signal sample %s by x0.1" % histogram.GetName()
-                    histogram.Scale(0.1)
-                histogram = histogram.Rebin(len(binning)-1, histogram.GetName(), binning)
+                # #if info.systematic == 'pdf':
+                # #    continue
+                # if (info.systematic == 'scale' or info.systematic == 'matching') and 'light' in info.process and '1btag' in info.channel:
+                #     print "Excluding : ", info.systematic, info.process, info.channel
+                #     continue
+                # # Hack to fix the data lowercase names
+                # if 'data' in info.process:
+                #     histogram.SetName(histogram.GetName().replace('data','DATA'))
+                # if 'ttbar' in info.process and info.systematic == 'scale':
+                #     orig = histogram.GetName()
+                #     histogram.SetName(histogram.GetName().replace('scale','scale_ttbar'))
+                #     print "Renaming: %s to %s" % (orig, histogram.GetName())
+                # if ('wlight' in info.process or 'zlight' in info.process) and info.systematic == 'scale':
+                #     orig = histogram.GetName()
+                #     histogram.SetName(histogram.GetName().replace('scale','scale_vjets'))
+                #     print "Renaming: %s to %s" % (orig, histogram.GetName())
+                # if ('wlight' in info.process or 'zlight' in info.process) and info.systematic == 'matching':
+                #     orig = histogram.GetName()
+                #     histogram.SetName(histogram.GetName().replace('matching','matching_vjets'))
+                #     print "Renaming: %s to %s" % (orig, histogram.GetName())
+                # if info.process.startswith('zp') or info.process.startswith('rsg'):
+                #     print "Scaling signal sample %s by x0.1" % histogram.GetName()
+                #     histogram.Scale(0.1)
+                # histogram = histogram.Rebin(len(binning)-1, histogram.GetName(), binning)
                 output.cd()
                 histogram.Write()
 
-binFile(0.30,  'mu_theta_0413_wide_v1.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','diboson', 'zjets'])
+
+#binFile(0.30,  'el_theta_0411_narrow_v1.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson', 'zjets'])
+#binFile(0.30,  'mu_theta_0413_narrow_v1.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson', 'zjets'])
+#binFile(0.30,  'mu_theta_20160703.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson', 'zjets'])
+#binFile(0.30,  'el_theta_20160703.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson', 'zjets'])
+#binFile(0.30,  'el_theta_weight.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson', 'zjets'])
+#binFile(0.30,  'el_theta_20160708.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson', 'zjets'])
+
+#binFile(0.30,  'mu_theta_20160712.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson', 'zjets'])
+#binFile(0.30,  'el_theta_20160712.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson','zjets'])
+
+#binFile(0.30,  'el_theta_20160725.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson','zjets'])
+#binFile(0.30,  'el_theta_20161004_wjets.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjetsL','wjetsB','wjetsC','diboson','zjets'])
+#binFile(0.30,  'el_theta_20161004_wjets_ttbar.root','M_{t#bar{t}} [GeV/c^{2}]', ['wjetsL','wjetsH','ttbar'])
+#binFile(0.30,  'el_theta_20161004_wjets_TEST.root','M_{t#bar{t}} [GeV/c^{2}]', ['wjetsL','wjetsH'])
+#binFile(0.30,  'el_theta_20161004_TEST.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjetsL','wjetsH','diboson'])
+
+#binFile(0.30,  'el_theta_20161004_wjets_ttbar_TEST.root','M_{t#bar{t}} [GeV/c^{2}]', ['wjetsL','wjetsH','ttbar'])
+#binFile(0.30,  'mu_theta_20160725.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson','zjets'])
+
+
+#binFile(0.30,  'mu_theta_20160712.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_b','wjets_c'])
+
+#binFile(0.30,  'lep_theta_20160712.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson', 'zjets'])
+#binFile(0.30,  'mu_theta_20160712.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson', 'zjets'])
+#binFile(0.30,  'mu_theta_20160703.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson', 'zjets'])
+
+#binFile(0.30,  'mu_theta_0413_wide_v1.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','diboson', 'zjets'])
 #binFile(0.3, 'itheta_lepton_0709.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar'])
 #binFile(0.3, 'theta_input_twochannel.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar', 'wlight', 'wc', 'wb', 'zlight', 'singletop', 'diboson'])
 #binFile(0.3, 'theta_input_threechannel.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar', 'wlight', 'wc', 'wb', 'zlight', 'singletop', 'diboson'])
@@ -255,4 +289,11 @@ binFile(0.30,  'mu_theta_0413_wide_v1.root','M_{t#bar{t}} [GeV/c^{2}]', ['single
 #binFile(0.3, 'boosted_semileptonic_muon_interpolated.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar', 'wlight', 'wc', 'wb', 'zlight', 'singletop', 'diboson'])
 #binFile(0.3, 'boosted_semileptonic_lepton_interpolated.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar', 'wlight', 'wc', 'wb', 'zlight', 'singletop', 'diboson'])
 
+#binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson','qcd'])
+#binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson','qcd','zjets'])
+#binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson'])
+
+#binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets','other'])
+
+binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_b','wjets_c','diboson'])
 
