@@ -20,7 +20,7 @@ kYellow     = 400   #FFFF00
 kOrange     = 800   #FFCC00
 
 label_TL = '#font[62]{CMS}'
-label_TR = '4.0 fb^{-1} (13 TeV)'
+label_TR = '36.0 fb^{-1} (13 TeV)'
 
 signal_dict = {
   'n': ['Z\'', 'Topcolor Z\' 1.0% width'],
@@ -173,7 +173,7 @@ def limit_plot(ifile_, signal_, output_name_):
 ###
 
 for s in signal_dict:
-    #limit_plot('limits_allsyst_mu_wide_0413.txt', s, s+'_mujets_allsyst_wide_0413')
+#    limit_plot('limits_allsyst_mu_wide_0413.txt', s, s+'_mujets_allsyst_wide_0413')
 #    limit_plot('limits.txt', s, s+'_el_theta_0408_narrow_v1')
 #    limit_plot('limits_data.txt', s, s+'_el_theta_0408_narrow_v1')
 #    limit_plot('limits_muon_narrow.txt', s, s+'_mu_theta_0408_narrow_v1')
@@ -182,4 +182,6 @@ for s in signal_dict:
  #s = {'n': ['Z\'', 'Topcolor Z\' 1.0% width']}
 #s = {'r': ['g_{KK}', 'KK gluon']}
 #    limit_plot('limits_muon_'+s+'.txt', s, s+'_mu_theta_v1')
-    limit_plot('limits_elec_'+s+'.txt', s, s+'_el_theta_v1')
+#    limit_plot('limits_elec_'+s+'.txt', s, s+'_el_theta_v1')
+    limit_plot('limits_Zprime_narrow.txt', s, s+'_el_theta_1128_narrow_v1')
+#    limit_plot('limits_Zprime_narrow.txt', s, s+'_el_theta_1128_narrow_v1')

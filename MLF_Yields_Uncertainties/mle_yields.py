@@ -3,7 +3,7 @@
 print 'Hello World'
 muo_ifile = ['mu_theta_20160708_rebinned.root']
 #ele_ifile = ['el_theta_20160703_rebinned.root']
-ele_ifile = ['el_theta_weight_rebinned.root']
+ele_ifile = ['el_theta_20161124_rebinned.root']
 lep_ifile = ['lep_theta_20160703_rebinned.root']
 
 def narrow_resonances(hname):

@@ -31,27 +31,32 @@ def generate_yield_table(rate_table):
     f.write('}\n \\hline\n Process')
     for c in cols:
         if c=='process': continue
-        latex_colname = {#'el_0btag_mttbar': 'electron channel, $N_{\\text{b-tag}}=0$',
-                         #'el_1btag_mttbar': 'electron channel, $N_{\\text{b-tag}} \\ge 1$',
-                         #'el_0top0btag_mttbar': 'electron channel, $N_{\\text{top-tag}} \\ge 0, $N_{\\text{b-tag}} \\ge 0$',
-                         #'el_0top1btag_mttbar': 'electron channel, $N_{\\text{top-tag}} \\ge 0, $N_{\\text{b-tag}} \\ge 1$',
-                         #'el_0top2btag_mttbar': 'electron channel, $N_{\\text{top-tag}} \\ge 0, $N_{\\text{b-tag}} \\ge 2$',
-                         #'el_1top0btag_mttbar': 'electron channel, $N_{\\text{top-tag}} \\ge 1, $N_{\\text{b-tag}} \\ge 0$',
-                         #'el_1top1btag_mttbar': 'electron channel, $N_{\\text{top-tag}} \\ge 1, $N_{\\text{b-tag}} \\ge 1$',
-                         #'el_1top2btag_mttbar': 'electron channel, $N_{\\text{top-tag}} \\ge 1, $N_{\\text{b-tag}} \\ge 2$',
-                         #'el_1top_mttbar': 'elec channel, $N_{\\text{top-tag}}=1$, $\chi^{2}$<30',
-                         #'el_0top1btag_mttbar': 'elec channel, $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 1$, $\chi^{2}$<30',
-                         #'el_0top0btag_mttbar': 'elec channel, $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 0$, $\chi^{2}$<30',
-                         #'el_1top_mttbar_highChi2': 'elec channel, $N_{\\text{top-tag}}=1$, $\chi^{2}$>30',
-                         #'el_0top1btag_mttbar_highChi2': 'elec channel, $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 1$, $\chi^{2}$>30',
-                         #'el_0top0btag_mttbar_highChi2': 'elec channel, $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 0$, $\chi^{2}$>30'}[c]
-                         'mu_1top_mttbar': 'muon channel, $N_{\\text{top-tag}}=1$',
-                         'mu_0top1btag_mttbar': 'muon channel, $N_{\\text{top-tag}} = 0 $N_{\\text{b-tag}} = 1$',
-                         'mu_0top0btag_mttbar': 'muon channel, $N_{\\text{top-tag}} = 0 $N_{\\text{b-tag}} = 0$',
-                         'mu_1top_mttbar_highChi2': 'muon channel, $N_{\\text{top-tag}}=1$, $\chi^{2}$<30',
-                         'mu_0top1btag_mttbar_highChi2': 'muon channel, $N_{\\text{top-tag}} = 0 $N_{\\text{b-tag}} = 1$, $\chi^{2}$<30',
-                         'mu_0top0btag_mttbar_highChi2': 'muon channel, $N_{\\text{top-tag}} = 0 $N_{\\text{b-tag}} = 0$, $\chi^{2}$<30',
-                         'mu_mll': 'muon channel, $M_{ll}$'}[c]
+        latex_colname = {'el_0btag_mttbar': 'electron channel, $N_{\\text{b-tag}}=0$',
+                         'el_1btag_mttbar': 'electron channel, $N_{\\text{b-tag}} \\ge 1$',
+                         'el_0top0btag_mttbar': 'electron channel, $N_{\\text{top-tag}} \\ge 0, $N_{\\text{b-tag}} \\ge 0$',
+                         'el_0top1btag_mttbar': 'electron channel, $N_{\\text{top-tag}} \\ge 0, $N_{\\text{b-tag}} \\ge 1$',
+                         'el_0top2btag_mttbar': 'electron channel, $N_{\\text{top-tag}} \\ge 0, $N_{\\text{b-tag}} \\ge 2$',
+                         'el_1top0btag_mttbar': 'electron channel, $N_{\\text{top-tag}} \\ge 1, $N_{\\text{b-tag}} \\ge 0$',
+                         'el_1top1btag_mttbar': 'electron channel, $N_{\\text{top-tag}} \\ge 1, $N_{\\text{b-tag}} \\ge 1$',
+                         'el_1top2btag_mttbar': 'electron channel, $N_{\\text{top-tag}} \\ge 1, $N_{\\text{b-tag}} \\ge 2$',
+                         'el_1top_mttbar': 'elec channel, $N_{\\text{top-tag}}=1$, $\chi^{2}$<30',
+                         'el_0top1btag_mttbar': 'elec channel, $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 1$, $\chi^{2}$<30',
+                         'el_0top0btag_mttbar': 'elec channel, $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 0$, $\chi^{2}$<30',
+                         'el_1top_mttbar_highChi2': 'elec channel, $N_{\\text{top-tag}}=1$, $\chi^{2}$>30',
+                         'el_0top1btag_mttbar_highChi2': 'elec channel, $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 1$, $\chi^{2}$>30',
+                         'el_0top0btag_mttbar_highChi2': 'elec channel, $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 0$, $\chi^{2}$>30',
+                         'ele_0top_WJetsMVA_mttbar': 'elec channel, $N_{\\text{top-tag}} = 0$, $\chi^{2}$>30, BDT$_{W+jets}$>0.5',
+                         'ele_1top_WJetsMVA_mttbar': 'elec channel, $N_{\\text{top-tag}} = 1$, $\chi^{2}$>30, BDT$_{W+jets}$>0.5',
+                         'mu_0top_WJetsMVA_mttbar': 'muon channel, $N_{\\text{top-tag}} = 0$, $\chi^{2}$>30, BDT$_{W+jets}$>0.5',
+                         'mu_1top_WJetsMVA_mttbar': 'muon channel, $N_{\\text{top-tag}} = 1$, $\chi^{2}$>30, BDT$_{W+jets}$>0.5',
+                         'ele_mll': 'elec channel, $M_{ll}$'}[c]
+                         # 'mu_1top_mttbar': 'muon channel, $N_{\\text{top-tag}}=1$',
+                         # 'mu_0top1btag_mttbar': 'muon channel, $N_{\\text{top-tag}} = 0 $N_{\\text{b-tag}} = 1$',
+                         # 'mu_0top0btag_mttbar': 'muon channel, $N_{\\text{top-tag}} = 0 $N_{\\text{b-tag}} = 0$',
+                         # 'mu_1top_mttbar_highChi2': 'muon channel, $N_{\\text{top-tag}}=1$, $\chi^{2}$<30',
+                         # 'mu_0top1btag_mttbar_highChi2': 'muon channel, $N_{\\text{top-tag}} = 0 $N_{\\text{b-tag}} = 1$, $\chi^{2}$<30',
+                         # 'mu_0top0btag_mttbar_highChi2': 'muon channel, $N_{\\text{top-tag}} = 0 $N_{\\text{b-tag}} = 0$, $\chi^{2}$<30',
+                         # 'mu_mll': 'muon channel, $M_{ll}$'}[c]
         f.write('& %s' % latex_colname)
     f.write('\\\\\n')
     for r in rows:
@@ -90,6 +95,20 @@ def generate_yield_table_AN(rate_table,prefix,channel):
                 'mu_1top_mttbar_highChi2': ' 1-t, $\chi^{2}$>30',
                 'mu_0top1btag_mttbar_highChi2': ' 0-t, 1-b, $\chi^{2}$>30',
                 'mu_0top0btag_mttbar_highChi2': ' 0-t, 0-b, $\chi^{2}$>30',
+                'mu_0top_WJetsMVA_mttbar': '$T0$, BDT$_{W+jets}$>0.5',
+                'mu_1top_WJetsMVA_mttbar': '$T1$, BDT$_{W+jets}$>0.5',
+                'mu_0top_antiWJetsMVA_mttbar': '$T0$, BDT$_{W+jets}$<0.5',
+                'mu_1top_antiWJetsMVA_mttbar': '$T1$, BDT$_{W+jets}$<0.5',
+                'mu_0top_WJetsMVA_chi2_mttbar': '$T0$, bdt, $\chi^{2}$',
+                'mu_1top_WJetsMVA_chi2_mttbar': '$T1$, bdt, $\chi^{2}$',
+                'mu_0top_antiWJetsMVA_chi2_mttbar': '$T0$, a-bdt, $\chi^{2}$',
+                'mu_1top_antiWJetsMVA_chi2_mttbar': '$T1$, a-bdt, $\chi^{2}$',
+                'mu_0top_WJetsMVA_antichi2_mttbar': '$T0$, bdt, a-$\chi^{2}$',
+                'mu_1top_WJetsMVA_antichi2_mttbar': '$T1$, bdt, a-$\chi^{2}$',
+                'mu_0top_antiWJetsMVA_antichi2_mttbar': '$T0$, a-bdt, a-$\chi^{2}$',
+                'mu_1top_antiWJetsMVA_antichi2_mttbar': '$T1$, a-bdt, a-$\chi^{2}$',
+                'mu_01top_WJetsMVA_antichi2_mttbar': 'bdt, a-$\chi^{2}$ ',
+                'mu_01top_antiWJetsMVA_antichi2_mttbar': 'a-bdt, a-$\chi^{2}$' ,
                 'mu_mll': ' $M_{ll}$'}[c]
 
         if channel=='elec':
@@ -99,6 +118,18 @@ def generate_yield_table_AN(rate_table,prefix,channel):
                 'el_1top_mttbar_highChi2': ' $N_{\\text{top-tag}}=1$, $\chi^{2}$>30',
                 'el_0top1btag_mttbar_highChi2': ' $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 1$, $\chi^{2}$>30',
                 'el_0top0btag_mttbar_highChi2': ' $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 0$, $\chi^{2}$>30',
+                'ele_0top_WJetsMVA_mttbar': '$T0$, BDT$_{W+jets}$>0.5',
+                'ele_1top_WJetsMVA_mttbar': '$T1$, BDT$_{W+jets}$>0.5',
+                'ele_0top_antiWJetsMVA_mttbar': '$T0$, BDT$_{W+jets}$<0.5',
+                'ele_1top_antiWJetsMVA_mttbar': '$T1$, BDT$_{W+jets}$<0.5',
+                'ele_0top_WJetsMVA_chi2_mttbar': '$T0$, bdt, $\chi^{2}$',
+                'ele_1top_WJetsMVA_chi2_mttbar': '$T1$, bdt, $\chi^{2}$',
+                'ele_0top_antiWJetsMVA_chi2_mttbar': '$T0$, a-bdt, $\chi^{2}$',
+                'ele_1top_antiWJetsMVA_chi2_mttbar': '$T1$, a-bdt, $\chi^{2}$',
+                'ele_0top_WJetsMVA_antichi2_mttbar': '$T0$, bdt, a-$\chi^{2}$',
+                'ele_01top_WJetsMVA_antichi2_mttbar': 'bdt, a-$\chi^{2}$',
+                'ele_01top_antiWJetsMVA_antichi2_mttbar': 'a-bdt, a-$\chi^{2}$',
+#                'ele_01top_antiWJetsMVA_antichi2_mttbar': '$T1$, a-bdt, a-$\chi^{2}$',
                 'el_mll': ' $M_{ll}$'}[c]
 
         if channel=='lep':
@@ -114,7 +145,30 @@ def generate_yield_table_AN(rate_table,prefix,channel):
                 'el_0top0btag_mttbar': ' $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 0$, $\chi^{2}$<30',
                 'el_1top_mttbar_highChi2': ' $N_{\\text{top-tag}}=1$, $\chi^{2}$>30',
                 'el_0top1btag_mttbar_highChi2': ' $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 1$, $\chi^{2}$>30',
-                'el_0top0btag_mttbar_highChi2': ' $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 0$, $\chi^{2}$>30'}[c]
+                'el_0top0btag_mttbar_highChi2': ' $N_{\\text{top-tag}} = 0$, $N_{\\text{b-tag}} = 0$, $\chi^{2}$>30',
+                'mu_0top_WJetsMVA_chi2_mttbar': '$T0$, bdt, $\chi^{2}$',
+                'mu_1top_WJetsMVA_chi2_mttbar': '$T1$, bdt, $\chi^{2}$',
+                'mu_0top_antiWJetsMVA_chi2_mttbar': '$T0$, a-bdt, $\chi^{2}$ ',
+                'mu_1top_antiWJetsMVA_chi2_mttbar': '$T1$, a-bdt, $\chi^{2}$ ',
+                'mu_0top_WJetsMVA_antichi2_mttbar': '$T0$, bdt, a-$\chi^{2}$ ',
+                'mu_1top_WJetsMVA_antichi2_mttbar': '$T1$, bdt, a-$\chi^{2}$ ',
+                'mu_0top_antiWJetsMVA_antichi2_mttbar': '$T0$, a-bdt, a-$\chi^{2}$ ',
+                'mu_1top_antiWJetsMVA_antichi2_mttbar': '$T1$, a-bdt, a-$\chi^{2}$ ',
+                'mu_01top_WJetsMVA_antichi2_mttbar': 'bdt, a-$\chi^{2}$ ',
+                'mu_01top_antiWJetsMVA_antichi2_mttbar': 'a-bdt, a-$\chi^{2}$' ,
+                'ele_0top_WJetsMVA_chi2_mttbar': '$T0$, bdt, $\chi^{2}$',
+                'ele_1top_WJetsMVA_chi2_mttbar': '$T1$, bdt, $\chi^{2}$',
+                'ele_0top_antiWJetsMVA_chi2_mttbar': '$T0$, a-bdt, $\chi^{2}$',
+                'ele_1top_antiWJetsMVA_chi2_mttbar': '$T1$, a-bdt, $\chi^{2}$',
+                'ele_0top_WJetsMVA_antichi2_mttbar': '$T0$, bdt, a-$\chi^{2}$',
+                'ele_1top_WJetsMVA_antichi2_mttbar': '$T1$, bdt, a-$\chi^{2}$',
+                'ele_0top_antiWJetsMVA_antichi2_mttbar': '$T0$, a-bdt, a-$\chi^{2}$',
+                'ele_1top_antiWJetsMVA_antichi2_mttbar': '$T1$, a-bdt, a-$\chi^{2}$',
+                'ele_01top_WJetsMVA_antichi2_mttbar': 'bdt, a-$\chi^{2}$',
+                'ele_01top_antiWJetsMVA_antichi2_mttbar': 'a-bdt, a-$\chi^{2}$',
+                'mu_01top_WJetsMVA_antichi2_mttbar': 'bdt, a-$\chi^{2}$ ',
+                'mu_01top_antiWJetsMVA_antichi2_mttbar': 'a-bdt, a-$\chi^{2}$' ,
+                'el_mll': ' $M_{ll}$'}[c]
 
         f.write('& %s' % latex_colname)
     f.write('\\\\\n')

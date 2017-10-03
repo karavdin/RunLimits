@@ -204,7 +204,7 @@ def binFile(rerror, filename, xtitle, backgrounds):
         labellumi.SetBorderSize(0);
 #        labellumi.SetHeader('L = 3.99 fb^{-1}')
 #        labellumi.SetHeader('L = 12.9 fb^{-1}')
-        labellumi.SetHeader('L = 36.2 fb^{-1}')
+        labellumi.SetHeader('L = 35.9 fb^{-1}')
         labellumi.Draw()
 
         labellumi2 = TLegend(.67, .70, .89, .75)
@@ -290,4 +290,10 @@ def binFile(rerror, filename, xtitle, backgrounds):
 #binFile(0.3, 'boosted_semileptonic_lepton_interpolated.root', 'M_{t#bar{t}} [GeV/c^{2}]', ['ttbar', 'wlight', 'wc', 'wb', 'zlight', 'singletop', 'diboson'])
 
 #binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson','qcd'])
-binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson','qcd'])
+#binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson','qcd','zjets'])
+#binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson'])
+
+#binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets','other'])
+
+binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_b','wjets_c','diboson'])
+

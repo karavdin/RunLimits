@@ -141,7 +141,8 @@ def build_model(files_, key_, mcstat_ = True):
 
 # theta__run add-on
 #ifiles = ["xttlj13__160218_T1_v01__l2p60__160222__mod__rebinned_e30_m50__rescaled.root"]
-ifiles = ["mu_theta_20160703_rebinned.root"]
+#ifiles = ["mu_theta_20160703_rebinned.root"]
+ifiles = ["mu_theta_bdt0p5_chi30_rebinned.root"]
 #an_key = "zpn"
 an_key = "zpn_muo"
 model = build_model(ifiles, an_key, True)
