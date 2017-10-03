@@ -250,7 +250,13 @@ def binFile(rerror, filename, xtitle, backgrounds):
                 histogram.Write()
 
 
+#binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets_l','wjets_b','wjets_c','diboson','qcd'])
+#binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson','qcd','zjets'])
+#binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['singletop','ttbar','wjets','diboson'])
 
+#binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets','other'])
+
+binFile(0.30,  'el_theta_20170519.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_b','wjets_c','diboson'])
 
 #binFile(0.30,  'ele_theta_bdt0p5_chi30.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','diboson'])
 binFile(0.30,  'mu_theta_bdt0p5_chi30.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','diboson'])
