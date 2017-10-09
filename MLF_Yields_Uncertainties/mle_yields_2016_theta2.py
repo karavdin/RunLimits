@@ -57,10 +57,11 @@ def build_boosted_semileptonic_model(files, filter, signal, mcstat = True):
     model.add_lognormal_uncertainty('others_rate',  math.log(1.50), 'wjets_c')
     model.add_lognormal_uncertainty('wl_rate',  math.log(1.25), 'wjets_l')
     model.add_lognormal_uncertainty('others_rate', math.log(1.50), 'diboson')
-    #model.add_lognormal_uncertainty('qcd_rate', math.log(1.50), 'qcd')
+    model.add_lognormal_uncertainty('qcd_rate', math.log(1.50), 'qcd')
+#    model.add_lognormal_uncertainty('others_rate', math.log(1.50), 'qcd')
 
-# # #    model.add_lognormal_uncertainty('st_rate', math.log(1.20), 'qcd')
-# # #    model.add_lognormal_uncertainty('st_rate', math.log(1.20), 'diboson')
+# # #    model.add_lognormal_uncertainty('st_rate', math.log(1.15), 'qcd')
+# # #    model.add_lognormal_uncertainty('st_rate', math.log(1.15), 'diboson')
 
     return model
 
@@ -176,12 +177,17 @@ def build_model(type):
             model.distribution.set_distribution_parameters(p, range = [-5.0, 5.0])
         if (p == 'toptag'): model.distribution.set_distribution_parameters(p, width = float('Inf'))
 #        if (p == 'w_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
-        if (p == 'wb_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
+#        if (p == 'wb_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
 #        if (p == 'wc_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
-        if (p == 'wl_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
-        if (p == 'ttbar_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf'))
+#        if (p == 'wl_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
+#        if (p == 'ttbar_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf'))
+#        if (p == 'elecHLT'): model.distribution.set_distribution_parameters(p, mean = 0.00, width = 0.0001)
 #        if (p == 'q2wjets'): model.distribution.set_distribution_parameters(p, mean = 0.17, width = 0.0001)
 #        if (p == 'q2wjets'): model.distribution.set_distribution_parameters(p, mean = 0.00, width = 0.0001)
+        # if (p == 'q2ttbarMuF'): model.distribution.set_distribution_parameters(p, mean = 0.00, width = 0.0001)
+        # if (p == 'q2ttbarMuR'): model.distribution.set_distribution_parameters(p, mean = 0.00, width = 0.0001)
+        # if (p == 'q2wjetsMuR'): model.distribution.set_distribution_parameters(p, mean = 0.00, width = 0.0001)
+        # if (p == 'q2wjetsMuF'): model.distribution.set_distribution_parameters(p, mean = 0.00, width = 0.0001)
 #        if (p == 'q2wjets'): model.distribution.set_distribution_parameters(p, mean = 0.27, width = 0.0001)
         #if (p == 'zj_rate'): model.distribution.set_distribution_parameters(p, width = float('Inf'))
         #if (p == 'st_rate'): model.distribution.set_distribution_parameters(p, mean = 1.0, width = 0.0001)
@@ -244,18 +250,18 @@ def build_model(type):
 #options = Options()
 #options.set('minimizer','strategy','robust')
 
-#args = {'type': 'narrow_resonances_electron'}
+args = {'type': 'narrow_resonances_electron'}
 #args = {'type': 'narrow_resonances_muon'}
-args = {'type': 'narrow_resonances_lepton'}
+#args = {'type': 'narrow_resonances_lepton'}
 #args = {'type': 'bkg_muon'}
 model = build_model(**args)
 #print model.distribution.get_parameters()
 #model_summary(model)
 execfile('/afs/desy.de/user/k/karavdia/RunLimits_Zprime/MLF_Yields_Uncertainties/utils.py')
 tablesIn = model_summary(model)
-#generate_yield_table_AN(tablesIn['rate_table'],'BEFORE','elec')
+generate_yield_table_AN(tablesIn['rate_table'],'BEFORE','elec')
 #generate_yield_table_AN(tablesIn['rate_table'],'BEFORE','muon')
-generate_yield_table_AN(tablesIn['rate_table'],'BEFORE','lep')
+#generate_yield_table_AN(tablesIn['rate_table'],'BEFORE','lep')
 # # # file3 = open('before_MLE_rates.txt', 'w')
 # # # file3.write(tablesIn['rate_table'].tex())
 # # # file3.close()
@@ -264,15 +270,18 @@ generate_yield_table_AN(tablesIn['rate_table'],'BEFORE','lep')
 
 ### theta 2 ###
 options = Options()
+options.set('minimizer', 'strategy', 'newton_vanilla')
+
 #options.set('minimizer', 'strategy', 'robust')
 #options.set('minimizer', 'minuit_tolerance_factor', '100')
-options.set('minimizer', 'strategy', 'newton_vanilla')
+
 #options.set('global', 'debug', 'True')
 #options.set('minimizer', 'strategy', 'robust')
 sig = ''
 sig_a = []
 if sig != '': sig_a.append(sig)
 res = mle(model, input='data', n=1, signal_process_groups = {sig : sig_a}, signal_prior = 'fix:0', chi2 = True, with_error = True, options = options)
+#res = mle(model, input='data', n=100, signal_process_groups = {sig : sig_a}, signal_prior = 'fix:0', chi2 = True, with_error = True, options = options)
 #res = mle(model, input='toys:0.0', n=100, signal_process_groups = {sig : sig_a}, chi2 = True,  with_error = True, options = options)
 print '\\n-- MLE: fit results (# = '+str(len(res[sig][model.get_parameters(sig_a)[0]]))+')'
 fitres = {}
@@ -340,9 +349,9 @@ for obs in model.get_observables():
 print '\\n'
 for p in par_values:
     if p == 'lumi':     print '%.3f' % 1.027**par_values[p], '%.3f' % par_err_values[p] + ' ' + p
-    if p == 'ttbar_rate':     print '%.3f' % 1.20**par_values[p] + ' ' + p
-    elif p == 'w_rate':      print '%.3f' % 1.25**par_values[p] + ' ' + p
-    elif p == 'wl_rate':      print '%.3f' % 1.25**par_values[p] + ' ' + p
+    if p == 'ttbar_rate':     print '%.3f' % 1.15**par_values[p] + ' ' + p
+    elif p == 'w_rate':      print '%.3f' % 1.20**par_values[p] + ' ' + p
+    elif p == 'wl_rate':      print '%.3f' % 1.20**par_values[p] + ' ' + p
     elif p == 'wc_rate':      print '%.3f' % 1.50**par_values[p] + ' ' + p
     elif p == 'wb_rate':      print '%.3f' % 1.50**par_values[p] + ' ' + p
     elif p == 'st_rate':      print '%.3f' % 1.50**par_values[p] + ' ' + p
@@ -363,15 +372,17 @@ apply_factors(model, mle_coeff)
 tables = model_summary(model)
 #generate_yield_table(tables['rate_table'])
 #generate_yield_table_AN(tables['rate_table'],'AFTER','muon')
-#generate_yield_table_AN(tables['rate_table'],'AFTER','elec')
-generate_yield_table_AN(tables['rate_table'],'AFTER','lep')
+generate_yield_table_AN(tables['rate_table'],'AFTER','elec')
+#generate_yield_table_AN(tables['rate_table'],'AFTER','lep')
+
 #histos = evaluate_prediction(model, par_values, include_signal=False, observables=None)
+#write_histograms_to_rootfile(histos, 'histos-mle.root')
 #tables = model_summary(model)
 # file2 = open('after_MLE_rates.txt', 'w')
 # file2.write(tables['rate_table'].tex())
 # file2.close()
 #print histos
-#plot(histos['el_0top1btag_mttbar'],'Mttbar','N')
-#write_histograms_to_rootfile(histos, 'histos-mle.root')
+#plot(histos['ele_01top_antiWJetsMVA_antichi2_mttbar'],'Mttbar','N')
+
 #model_summary(model)
 report.write_html('htmlout')

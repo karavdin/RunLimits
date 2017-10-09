@@ -2,33 +2,30 @@
 
 ### Filter definitions ###
 
-muo_ifile = ['mu_theta_bdt0p5_chi30_rebinned.root']
-#ele_ifile = ['el_theta_0411_narrow_v1_rebinned.root']
-#muo_ifile = ['mu_theta_20160703_rebinned.root']
-#ele_ifile = ['el_theta_weight_rebinned.root']
-#ele_ifile = ['ele_theta_bdt0p5_chi30_rebinned.root']
-lep_ifile = ['']
+muo_ifile = ['mu_theta_bdt0p5_chi30_limits_rebinned.root']
+ele_ifile = ['ele_theta_bdt0p5_chi30_limits_rebinned.root']
+lep_ifile = ['lep_theta_bdt0p5_chi30_limits_rebinned.root']
 
 def narrow_resonances(hname):
     if not ('RSgluon' in hname or 'Zprime' in hname): return True
     pname = hname.split('__')[1]
     if not 'ZprimeNarrow' in pname: return False
     mass = pname.strip('ZprimeNarrow')
-    return float(mass) <= 4000
+    return float(mass) <= 6000
 
 def wide_resonances(hname):
     if not ('RSgluon' in hname or 'Zprime' in hname): return True
     pname = hname.split('__')[1]
     if not 'ZprimeWide' in pname: return False
     mass = pname.strip('ZprimeWide')
-    return float(mass) <= 4000
+    return float(mass) <= 6000
 
 def rsg_resonances(hname):
     if not ('RSgluon' in hname or 'Zprime' in hname): return True
     pname = hname.split('__')[1]
     if not 'RSgluon' in pname: return False
     mass = pname.strip('RSgluon')
-    return float(mass) <= 4000
+    return float(mass) <= 6000
 
 def build_boosted_semileptonic_model(files, filter, signal, eflag=False):
     model = build_model_from_rootfile(files, filter, include_mc_uncertainties = True)
@@ -239,14 +236,18 @@ def build_model(type):
 # Building the statistical model
 #args = {'type': 'narrow_resonances_electron'}
 
-args = {'type': 'narrow_resonances_muon'}
+#args = {'type': 'narrow_resonances_muon'}
 #args = {'type': 'wide_resonances_muon'}
 #args = {'type': 'rsg_resonances_muon'}
 
-#args = {'type': 'narrow_resonances_electron_no_nuisance'}
+
 #args = {'type': 'narrow_resonances_electron'}
 #args = {'type': 'wide_resonances_electron'}
 #args = {'type': 'rsg_resonances_electron'}
+
+args = {'type': 'narrow_resonances_lepton'}
+#args = {'type': 'wide_resonances_lepton'}
+#args = {'type': 'rsg_resonances_lepton'}
 
 model = build_model(**args)
 
