@@ -5,27 +5,16 @@ import numpy
 
 
 #'nominal'
-#systematic_direction = { 'pileup', 'q2ttbar' }
-#systematic_direction = { 'pileup' }
-#systematic_direction={'__btag','__misbtag'}
-#systematic_direction={'__misbtag'}
-#systematic_direction={'__pileup','__btag','__misbtag','__toptag','__mistoptag','__elecID','__elecTRK','__elecHTL'}
-systematic_direction={'__pileup','__toptag','__mistoptag','__elecID','__elecTRK','__elecHLT'}
-#systematic_direction={'__pileup','__toptag','__mistoptag'}
-#systematic_direction={'__elecHLT'}
+#systematic_direction={'__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1','__csv_hfstats2','__csv_jes','__csv_lf','__csv_lfstats1','__csv_lfstats2'}
+#systematic_direction={'__pileup','__toptag','__mistoptag','__elecID','__elecTRK','__elecHLT'}
 #systematic_direction={'__q2ttbar'} #ttbar
-#systematic_direction={'__pileup'} #other
-#systematic_direction={'__q2wjets'} #wjets
-#samplelist = {'DATA','singletop','diboson','ttbar','wjets','ZprimeNarrow0500','zjets'}
-#samplelist = {'singletop','diboson','ttbar','wjets','zjets'}
+#systematic_direction={'__q2ttbarMuR','__q2ttbarMuF'} #ttbar
+systematic_direction={'__q2wjets'} #wjets
+#systematic_direction={'__q2wjetsMuR','__q2wjetsMuF'} #wjets
 #samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','diboson'}
-#samplelist = {'wjets_l'}
 #samplelist = {'ttbar'}
-samplelist = {'ttbar','wjets_l'}
-#samplelist = {'wjets_l','wjets_c','wjets_b'}
-#samplelist = {'wjets_l'}
-#samplelist = {'other'}
-#samplelist = {'wjets'}
+#samplelist = {'ttbar','wjets_l'}
+samplelist = {'wjets_l'}
 
 #categories=['el_0top0btag_mttbar__','el_0top0btag_mttbar_highChi2__','el_1top_mttbar__','el_1top_mttbar_highChi2__','el_0top1btag_mttbar__','el_0top1btag_mttbar_highChi2__']
 #categories=['el_0top0btag_mttbar__','el_0top0btag_mttbar_highChi2__','el_0top1btag_mttbar__','el_0top1btag_mttbar_highChi2__']
@@ -80,7 +69,7 @@ for samp in samplelist:
                 print "Now we're going through ", cat+samp+syst
                 systvarhistDraw[cat+samp+syst+'__plus'] = systvarhist[cat+samp+syst+'__plus'].DrawClone('ep')
                 systvarhistDraw[cat+samp+syst+'__plus'].GetXaxis().SetTitle("M_{ttbar}, GeV")
-                systvarhistDraw[cat+samp+syst+'__plus'].GetXaxis().SetRangeUser(0,3000)
+                systvarhistDraw[cat+samp+syst+'__plus'].GetXaxis().SetRangeUser(0,2000)
 
 #                systvarhistDraw[cat+samp+syst+'__plus'].GetYaxis().SetRangeUser(0,500)
                 systvarhistDraw[cat+samp+syst+'__plus'].SetMarkerColor(kRed)
