@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from ROOT import ROOT, TCanvas, TColor, TGraph, TLegend, TPaveText, TString, TLine
 from read_input_file import *
-from theory_XsecBR import *
+from theory_XsecBR_2016 import *
 
 kWhite      = 0     #FFFFFF
 kBlack      = 1     #000000
@@ -25,6 +25,8 @@ label_TR = '36.0 fb^{-1} (13 TeV)'
 signal_dict = {
   'n': ['Z\'', 'Topcolor Z\' 1.0% width'],
   'w': ['Z\'', 'Topcolor Z\' 10% width'],
+  'ew': ['Z\'', 'Topcolor Z\' 30% width'],
+  'ttjets': ['Z\'', 'Z\' + jets'],
   'r': ['g_{KK}', 'KK gluon']
 }
 
@@ -124,7 +126,8 @@ def limit_canvas(limits_, signal_, oname_):
     c.SetLogy()
 
     #hr = c.DrawFrame(0.401,0.001,3.999,1000)
-    hr = c.DrawFrame(0.401,0.001,4.199,1000)
+    #hr = c.DrawFrame(0.401,0.001,4.199,1000)
+    hr = c.DrawFrame(0.401,0.001,5.199,1000)
     gExp.Sort()
     gTH.Print()
     g95.Draw('f')
@@ -183,5 +186,10 @@ for s in signal_dict:
 #s = {'r': ['g_{KK}', 'KK gluon']}
 #    limit_plot('limits_muon_'+s+'.txt', s, s+'_mu_theta_v1')
 #    limit_plot('limits_elec_'+s+'.txt', s, s+'_el_theta_v1')
-    limit_plot('limits_Zprime_narrow.txt', s, s+'_el_theta_1128_narrow_v1')
 #    limit_plot('limits_Zprime_narrow.txt', s, s+'_el_theta_1128_narrow_v1')
+
+#     limit_plot('limits_muon_'+s+'.txt', s, s+'_mu_theta_20171003')
+#      limit_plot('limits_elec_'+s+'.txt', s, s+'_el_theta_20171003')
+     limit_plot('limits_lep_'+s+'.txt', s, s+'_lep_theta_20171003')
+
+

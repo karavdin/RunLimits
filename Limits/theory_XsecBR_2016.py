@@ -58,17 +58,59 @@ def get_theory_XsecBR_graph(signal_):
         th.append([5750., 6.80722e-03])
         th.append([6000., 5.50276e-03])
 
-    elif signal_ == 'r':
+    elif signal_ == 'ew':
         kNLO = 1.0
+        th.append([ 500., 1.32811e+03])  
+        th.append([ 750., 3.61926e+02])   
+        th.append([1000., 1.29361e+02])    
+        th.append([1250., 5.52047e+01])    
+        th.append([1500., 2.65207e+01])    
+        th.append([1750., 1.38696e+01])    
+        th.append([2000., 7.74166e+00])   
+        th.append([2250., 4.55142e+00])
+        th.append([2500., 2.79430e+00])
+        th.append([2750., 1.78062e+00])
+        th.append([3000., 1.17252e+00])
+        th.append([3250., 7.95149e-01])
+        th.append([3500., 5.53916e-01])
+        th.append([3750., 3.95485e-01])
+        th.append([4000., 2.88839e-01])
+        th.append([4250., 2.15406e-01])
+        th.append([4500., 1.63747e-01])
+        th.append([4750., 1.26704e-01])
+        th.append([5000., 9.95997e-02])
+        th.append([5250., 7.94496e-02])
+        th.append([5500., 6.42139e-02])
+        th.append([5750., 5.25241e-02])
+        th.append([6000., 4.34250e-02])
+
+    elif signal_ == 'r':
+        kNLO = 1.3
         th.append([500., 275.9])
         th.append([750., 62.41])
         th.append([1000., 20.05])
+        th.append([1250., 7.92])
         th.append([1500., 3.519])
-        th.append([2000., 0.95])
-        th.append([2500., 0.313])
+        th.append([2000., 0.9528])
+        th.append([2500., 0.3136])
         th.append([3000., 0.1289])
         th.append([3500., 0.0545])
+        th.append([4000., 0.02807])
+        th.append([4500., 0.01603])
+        th.append([5000., 0.009095])
 
+    elif signal_ == 'ttjets':
+        kNLO = 1.0
+        th.append([500., 8.570e+00])
+        th.append([750., 1.855e+00])
+        th.append([1000., 5.449e-01])
+        th.append([1250., 1.919e-01])
+        th.append([1500., 7.396e-02])
+        th.append([2000., 1.379e-02])
+        th.append([2500., 3.063e-03])
+        th.append([3000., 7.784e-04])
+        th.append([3500., 2.030e-04])
+        th.append([4000., 5.553e-05])
     else:
         print '\n@@@ FATAL -- undefined signal model. stopping script.\n'
         raise SystemExit
