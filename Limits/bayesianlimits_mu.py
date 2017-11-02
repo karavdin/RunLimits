@@ -78,6 +78,7 @@ def build_boosted_semileptonic_model(files, filter, signal, eflag=False):
 #    model.add_lognormal_uncertainty('st_rate',      math.log(1.20), 'singletop')
 #    model.add_lognormal_uncertainty('zj_rate',      math.log(1.20), 'zjets')
     model.add_lognormal_uncertainty('ST_DY_VV_rate', math.log(1.20), 'diboson')
+    model.add_lognormal_uncertainty('qcd_rate', math.log(1.20), 'qcd')
 #    model.add_lognormal_uncertainty('ST_rate', math.log(1.20), 'ST')
 
     return model
@@ -308,7 +309,7 @@ def build_model(type):
 #args = {'type': 'wide_resonances_muon'}
 #args = {'type': 'rsg_resonances_muon'}
 #args = {'type': 'extrawide_resonances_muon'}
-#args = {'type': 'ttjets_resonances_muon'}
+args = {'type': 'ttjets_resonances_muon'}
 
 #args = {'type': 'narrow_resonances_electron'}
 #args = {'type': 'wide_resonances_electron'}
@@ -320,7 +321,7 @@ def build_model(type):
 #args = {'type': 'wide_resonances_lepton'}
 #args = {'type': 'rsg_resonances_lepton'}
 #args = {'type': 'extrawide_resonances_lepton'}
-args = {'type': 'ttjets_resonances_lepton'}
+#args = {'type': 'ttjets_resonances_lepton'}
 
 model = build_model(**args)
 
