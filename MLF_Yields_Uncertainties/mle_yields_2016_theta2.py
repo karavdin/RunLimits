@@ -1,17 +1,9 @@
 #! /usr/bin/env pythonDWE
 ### Filter definitions ###
 print 'Hello MLE'
-#muo_ifile = ['mu_theta_20160725_rebinned.root']
-#ele_ifile = ['el_theta_20160703_rebinned.root']
-#ele_ifile = ['el_theta_20160725_rebinned.root']
-#ele_ifile = ['el_theta_20161127_rebinned.root']
-#ele_ifile = ['el_theta_20170519_rebinned.root']
-#ele_ifile = ['el_theta_weight.root']
-#ele_ifile = ['ele_theta_bdt0p5_chi30_rebinned.root']
-ele_ifile = ['ele_theta_bdt0p5_chi30_rebinned.root']
-muo_ifile = ['mu_theta_bdt0p5_chi30_rebinned.root']
-lep_ifile = ['lep_theta_bdt0p5_chi30_rebinned.root']
-#lep_ifile = ['lep_theta_20160725_rebinned.root']
+ele_ifile = ['ele_theta_bdt0p5_chi30_rebinned_addedQ2.root']
+muo_ifile = ['mu_theta_bdt0p5_chi30_rebinned_addedQ2.root']
+lep_ifile = ['lep_theta_bdt0p5_chi30_rebinned_addedQ2.root']
 
 def narrow_resonances(hname):
     if not ('RSgluon' in hname or 'Zprime' in hname): return True
@@ -20,7 +12,7 @@ def narrow_resonances(hname):
     if not 'Zprime' in pname: return False
 #    mass = pname.strip('ZprimeNarrow')
     mass = pname.strip('Zprime')
-    return float(mass) <= 700
+    return float(mass) <= 7000
 
 def wide_resonances(hname):
     if not ('RSgluon' in hname or 'Zprime' in hname): return True
@@ -53,12 +45,19 @@ def build_boosted_semileptonic_model(files, filter, signal, mcstat = True):
 #     #     model.add_lognormal_uncertainty('eleORjet_trig', math.log(1.05), p, obs)
 
     model.add_lognormal_uncertainty('ttbar_rate',   math.log(1.20), 'ttbar')
-    model.add_lognormal_uncertainty('others_rate',  math.log(1.50), 'wjets_b')
-    model.add_lognormal_uncertainty('others_rate',  math.log(1.50), 'wjets_c')
-    model.add_lognormal_uncertainty('wl_rate',  math.log(1.25), 'wjets_l')
-    model.add_lognormal_uncertainty('others_rate', math.log(1.50), 'diboson')
+    # model.add_lognormal_uncertainty('others_rate',  math.log(1.50), 'wjets_b')
+    # model.add_lognormal_uncertainty('others_rate',  math.log(1.50), 'wjets_c')
+    model.add_lognormal_uncertainty('wb_rate',  math.log(1.50), 'wjets_b')
+#    model.add_lognormal_uncertainty('others_rate',  math.log(1.50), 'wjets_b')
+    model.add_lognormal_uncertainty('wc_rate',  math.log(1.50), 'wjets_c')
+#    model.add_lognormal_uncertainty('others_rate',  math.log(1.50), 'wjets_c')
+    model.add_lognormal_uncertainty('wl_rate',  math.log(1.30), 'wjets_l')
+#    model.add_lognormal_uncertainty('diboson_rate', math.log(1.50), 'diboson')
+#    model.add_lognormal_uncertainty('zjets_rate', math.log(1.50), 'zjets')
+#    model.add_lognormal_uncertainty('ST_rate', math.log(1.50), 'ST')
+    model.add_lognormal_uncertainty('wb_rate', math.log(1.50), 'diboson')
     model.add_lognormal_uncertainty('qcd_rate', math.log(1.50), 'qcd')
-#    model.add_lognormal_uncertainty('others_rate', math.log(1.50), 'qcd')
+#    model.add_lognormal_uncertainty('others_rate', math.log(1.50), 'diboson')
 
 # # #    model.add_lognormal_uncertainty('st_rate', math.log(1.15), 'qcd')
 # # #    model.add_lognormal_uncertainty('st_rate', math.log(1.15), 'diboson')
@@ -179,8 +178,10 @@ def build_model(type):
 #        if (p == 'w_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
 #        if (p == 'wb_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
 #        if (p == 'wc_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
-#        if (p == 'wl_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
-#        if (p == 'ttbar_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf'))
+        if (p == 'wl_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
+        if (p == 'ST_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
+        if (p == 'qcd_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
+        if (p == 'ttbar_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf'))
 #        if (p == 'elecHLT'): model.distribution.set_distribution_parameters(p, mean = 0.00, width = 0.0001)
 #        if (p == 'q2wjets'): model.distribution.set_distribution_parameters(p, mean = 0.17, width = 0.0001)
 #        if (p == 'q2wjets'): model.distribution.set_distribution_parameters(p, mean = 0.00, width = 0.0001)
@@ -250,17 +251,18 @@ def build_model(type):
 #options = Options()
 #options.set('minimizer','strategy','robust')
 
-args = {'type': 'narrow_resonances_electron'}
-#args = {'type': 'narrow_resonances_muon'}
+#args = {'type': 'narrow_resonances_electron'}
+args = {'type': 'narrow_resonances_muon'}
 #args = {'type': 'narrow_resonances_lepton'}
 #args = {'type': 'bkg_muon'}
 model = build_model(**args)
 #print model.distribution.get_parameters()
 #model_summary(model)
-execfile('/afs/desy.de/user/k/karavdia/RunLimits_Zprime/MLF_Yields_Uncertainties/utils.py')
+#execfile('/afs/desy.de/user/k/karavdia/RunLimits_Zprime/MLF_Yields_Uncertainties/utils.py')
+execfile('/afs/desy.de/user/k/karavdia/xxl/af-cms/RunLimitsZprime_2016/RunLimits/MLF_Yields_Uncertainties/utils.py')
 tablesIn = model_summary(model)
-generate_yield_table_AN(tablesIn['rate_table'],'BEFORE','elec')
-#generate_yield_table_AN(tablesIn['rate_table'],'BEFORE','muon')
+#generate_yield_table_AN(tablesIn['rate_table'],'BEFORE','elec')
+generate_yield_table_AN(tablesIn['rate_table'],'BEFORE','muon')
 #generate_yield_table_AN(tablesIn['rate_table'],'BEFORE','lep')
 # # # file3 = open('before_MLE_rates.txt', 'w')
 # # # file3.write(tablesIn['rate_table'].tex())
@@ -272,16 +274,17 @@ generate_yield_table_AN(tablesIn['rate_table'],'BEFORE','elec')
 options = Options()
 options.set('minimizer', 'strategy', 'newton_vanilla')
 
-#options.set('minimizer', 'strategy', 'robust')
+#TEST
+#options.set('minimizer', 'strategy', 'robust') #TEST
 #options.set('minimizer', 'minuit_tolerance_factor', '100')
 
-#options.set('global', 'debug', 'True')
+options.set('global', 'debug', 'True')
 #options.set('minimizer', 'strategy', 'robust')
 sig = ''
 sig_a = []
 if sig != '': sig_a.append(sig)
 res = mle(model, input='data', n=1, signal_process_groups = {sig : sig_a}, signal_prior = 'fix:0', chi2 = True, with_error = True, options = options)
-#res = mle(model, input='data', n=100, signal_process_groups = {sig : sig_a}, signal_prior = 'fix:0', chi2 = True, with_error = True, options = options)
+#res = mle(model, input='data', n=1, signal_process_groups = {sig : sig_a}, signal_prior = 'fix:0', chi2 = True, options = options, with_covariance=True) #TEST
 #res = mle(model, input='toys:0.0', n=100, signal_process_groups = {sig : sig_a}, chi2 = True,  with_error = True, options = options)
 print '\\n-- MLE: fit results (# = '+str(len(res[sig][model.get_parameters(sig_a)[0]]))+')'
 fitres = {}
@@ -306,6 +309,7 @@ for p in model.get_parameters(sig_a):
 file1.close()
 par_values = {}
 par_err_values = {}
+#print model.get_parameters([])
 for p in model.get_parameters([]):
     par_values[p] = fitres[p][0]
     par_err_values[p] = fitres[p][1]
@@ -348,20 +352,37 @@ for obs in model.get_observables():
 
 print '\\n'
 for p in par_values:
-    if p == 'lumi':     print '%.3f' % 1.027**par_values[p], '%.3f' % par_err_values[p] + ' ' + p
-    if p == 'ttbar_rate':     print '%.3f' % 1.15**par_values[p] + ' ' + p
+    if p == 'lumi':     print '%.3f' % 1.027**par_values[p] + ' ' + p
+    if p == 'ttbar_rate':     print '%.3f' % 1.20**par_values[p] + ' ' + p
     elif p == 'w_rate':      print '%.3f' % 1.20**par_values[p] + ' ' + p
-    elif p == 'wl_rate':      print '%.3f' % 1.20**par_values[p] + ' ' + p
+    elif p == 'wl_rate':      print '%.3f' % 1.30**par_values[p] + ' ' + p
     elif p == 'wc_rate':      print '%.3f' % 1.50**par_values[p] + ' ' + p
     elif p == 'wb_rate':      print '%.3f' % 1.50**par_values[p] + ' ' + p
-    elif p == 'st_rate':      print '%.3f' % 1.50**par_values[p] + ' ' + p
-    elif p == 'zj_rate':      print '%.3f' % 1.50**par_values[p] + ' ' + p
+    elif p == 'ST_rate':      print '%.3f' % 1.50**par_values[p] + ' ' + p
+    elif p == 'zjets_rate':      print '%.3f' % 1.50**par_values[p] + ' ' + p
     elif p == 'diboson_rate': print '%.3f' % 1.50**par_values[p] + ' ' + p
     elif p == 'others_rate': print '%.3f' % 1.50**par_values[p] + ' ' + p
     elif p == 'toptag':       print '%.3f' % 1.25**par_values[p] + ' ' + p
     elif p == 'mistoptag':    print '%.3f' % 1.07**par_values[p] + ' ' + p
     elif p == 'subjbtag':     print '%.3f' % 1.50**par_values[p] + ' ' + p
     elif p == 'qcd_rate':     print '%.3f' % 1.5**par_values[p] + ' ' + p
+print '\\n'
+for p in par_values:
+    if p == 'lumi':     print '%.3f' % 1.027**par_values[p], '%.3f' % 1.027**par_err_values[p] + ' ' + p
+    if p == 'ttbar_rate':     print '%.3f' % 1.20**par_values[p], '%.3f' % 1.20**par_err_values[p] + ' ' + p
+    elif p == 'w_rate':      print '%.3f' % 1.20**par_values[p], '%.3f' % 1.20**par_err_values[p] + ' ' + p
+    elif p == 'wl_rate':      print '%.3f' % 1.30**par_values[p], '%.3f' % 1.30**par_err_values[p] + ' ' + p
+    elif p == 'wc_rate':      print '%.3f' % 1.50**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
+    elif p == 'wb_rate':      print '%.3f' % 1.50**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
+    elif p == 'ST_rate':      print '%.3f' % 1.50**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
+    elif p == 'zjets_rate':      print '%.3f' % 1.50**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
+    elif p == 'diboson_rate': print '%.3f' % 1.50**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
+    elif p == 'others_rate': print '%.3f' % 1.50**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
+    elif p == 'toptag':       print '%.3f' % 1.15**par_values[p], '%.3f' % 1.15**par_err_values[p] + ' ' + p
+    elif p == 'mistoptag':    print '%.3f' % 1.07**par_values[p], '%.3f' % 1.07**par_err_values[p] + ' ' + p
+    elif p == 'subjbtag':     print '%.3f' % 1.50**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
+    elif p == 'qcd_rate':     print '%.3f' % 1.5**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
+
 
 
 #factors = print_obsproc_factors_rateonly2(model)
@@ -371,8 +392,8 @@ file.close()
 apply_factors(model, mle_coeff)
 tables = model_summary(model)
 #generate_yield_table(tables['rate_table'])
-#generate_yield_table_AN(tables['rate_table'],'AFTER','muon')
-generate_yield_table_AN(tables['rate_table'],'AFTER','elec')
+generate_yield_table_AN(tables['rate_table'],'AFTER','muon')
+#generate_yield_table_AN(tables['rate_table'],'AFTER','elec')
 #generate_yield_table_AN(tables['rate_table'],'AFTER','lep')
 
 #histos = evaluate_prediction(model, par_values, include_signal=False, observables=None)
