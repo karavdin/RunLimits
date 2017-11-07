@@ -5,36 +5,19 @@ import numpy
 
 
 #'nominal'
-#systematic_direction={'__pileup'}
 #systematic_direction={'__pileup','__toptag','__mistoptag','__muID','__muTRK','__muHLT'}
-#systematic_direction={'__pileup','__toptag','__mistoptag'}
-#systematic_direction={'__pileup','__muID','__muTRK','__muHLT'}
-systematic_direction={'__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1','__csv_hfstats2','__csv_jes','__csv_lf','__csv_lfstats1','__csv_lfstats2'}
-#systematic_direction={'__q2ttbar'} #ttbar
+#systematic_direction={'__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1','__csv_hfstats2','__csv_jes','__csv_lf','__csv_lfstats1','__csv_lfstats2'}
+systematic_direction={'__q2ttbar'} #ttbar
 #systematic_direction={'__q2wjets'} #wjets
 
 #samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','diboson'}
-#samplelist = {'wjets_c','wjets_b','diboson'}
-#samplelist = {'ttbar'}
+samplelist = {'ttbar'}
 #samplelist = {'ttbar','wjets_l'}
-samplelist = {'wjets_l'}
-#samplelist = {'wjets_b','wjets_c','ST'}
+#samplelist = {'wjets_l'}
 
-#categories=['el_0top0btag_mttbar__','el_0top0btag_mttbar_highChi2__','el_1top_mttbar__','el_1top_mttbar_highChi2__','el_0top1btag_mttbar__','el_0top1btag_mttbar_highChi2__']
-#categories=['el_0top0btag_mttbar__','el_0top0btag_mttbar_highChi2__','el_0top1btag_mttbar__','el_0top1btag_mttbar_highChi2__']
-#categories=['ele_1top_WJetsMVA_mttbar__','ele_0top_WJetsMVA_mttbar__','ele_1top_antiWJetsMVA_mttbar__','ele_0top_antiWJetsMVA_mttbar__']
-#categories=['mu_1top_WJetsMVA_mttbar__','mu_0top_WJetsMVA_mttbar__','mu_1top_antiWJetsMVA_mttbar__','mu_0top_antiWJetsMVA_mttbar__']
-#categories=['mu_1top_WJetsMVA_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','mu_1top_antiWJetsMVA_chi2_mttbar__','mu_0top_antiWJetsMVA_chi2_mttbar__','mu_1top_WJetsMVA_antichi2_mttbar__','mu_0top_WJetsMVA_antichi2_mttbar__','mu_1top_antiWJetsMVA_antichi2_mttbar__','mu_0top_antiWJetsMVA_antichi2_mttbar__']
-#categories=['mu_1top_WJetsMVA_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','mu_1top_antiWJetsMVA_chi2_mttbar__','mu_0top_antiWJetsMVA_chi2_mttbar__','mu_01top_WJetsMVA_antichi2_mttbar__','mu_01top_antiWJetsMVA_antichi2_mttbar__']
-#categories=['mu_1top_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','mu_01top_antiWJetsMVA2_antichi2_mttbar__']
-#categories=['mu_1top_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','mu_01top_antiWJetsMVA2_antichi2_mttbar__','mu_0top_antiWJetsMVA2_chi2_mttbar__']
 
-#categories=['mu_1top_WJetsMVA_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','mu_0top_antiWJetsMVA3_antichi2_mttbar__','mu_0top_antiWJetsMVA2_antichi2_mttbar__']
-categories=['mu_0top_WJetsMVA_chi2_mttbar__','mu_0top_antiWJetsMVA3_antichi2_mttbar__','mu_0top_antiWJetsMVA2_antichi2_mttbar__']
-#categories=['ele_1top_antiWJetsMVA_mttbar__']
-#fin = TFile('el_theta_20170519.root', 'open')
-#fin = TFile('ele_theta_bdt0p5_chi30_rebinned.root', 'open')
-fin = TFile('mu_theta_bdt0p5_chi30_rebinned.root', 'open')
+categories=['mu_1top_WJetsMVA_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','mu_0top_antiWJetsMVA3_antichi2_mttbar__','mu_0top_antiWJetsMVA2_antichi2_mttbar__']
+fin = TFile('mu_theta_bdt0p5_chi30_rebinned_addedQ2.root', 'open')
 nominalhist = {}
 nominalhistDraw = {}
 systvarhist = {}
@@ -114,8 +97,8 @@ for samp in samplelist:
                 pad2[cat+samp+syst].cd();      # pad2 becomes the current pad
                 systvarhistRatio[cat+samp+syst+'__plus__ratio']  = systvarhistDraw[cat+samp+syst+'__plus'].Clone(cat+samp+syst+'__plus__ratio')
                 systvarhistRatio[cat+samp+syst+'__plus__ratio'].Divide(nominalhistDraw[cat+samp])
-                #systvarhistRatio[cat+samp+syst+'__plus__ratio'].GetYaxis().SetRangeUser(0.6,1.4)
-                systvarhistRatio[cat+samp+syst+'__plus__ratio'].GetYaxis().SetRangeUser(0.9,1.1)
+                systvarhistRatio[cat+samp+syst+'__plus__ratio'].GetYaxis().SetRangeUser(0.6,1.4)
+#                systvarhistRatio[cat+samp+syst+'__plus__ratio'].GetYaxis().SetRangeUser(0.9,1.1)
                 systvarhistRatio[cat+samp+syst+'__plus__ratio'].GetYaxis().SetNdivisions(5,5,0)
                 systvarhistRatio[cat+samp+syst+'__plus__ratio'].GetYaxis().SetLabelSize(0.12)
                 systvarhistRatio[cat+samp+syst+'__plus__ratio'].GetXaxis().SetLabelSize(0.12)

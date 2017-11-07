@@ -6,28 +6,16 @@ import numpy
 
 #'nominal'
 #systematic_direction={'__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1','__csv_hfstats2','__csv_jes','__csv_lf','__csv_lfstats1','__csv_lfstats2'}
-systematic_direction={'__pileup','__toptag','__mistoptag','__elecID','__elecTRK','__elecHLT'}
+#systematic_direction={'__pileup','__toptag','__mistoptag','__elecID','__elecTRK','__elecHLT'}
 #systematic_direction={'__q2ttbar'} #ttbar
-#systematic_direction={'__q2ttbarMuR','__q2ttbarMuF'} #ttbar
-#systematic_direction={'__q2wjets'} #wjets
-#systematic_direction={'__q2wjetsMuR','__q2wjetsMuF'} #wjets
+systematic_direction={'__q2wjets'} #wjets
 #samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','diboson'}
 #samplelist = {'ttbar'}
-samplelist = {'ttbar','wjets_l'}
-#samplelist = {'wjets_l'}
+samplelist = {'wjets_l'}
 
-#categories=['el_0top0btag_mttbar__','el_0top0btag_mttbar_highChi2__','el_1top_mttbar__','el_1top_mttbar_highChi2__','el_0top1btag_mttbar__','el_0top1btag_mttbar_highChi2__']
-#categories=['el_0top0btag_mttbar__','el_0top0btag_mttbar_highChi2__','el_0top1btag_mttbar__','el_0top1btag_mttbar_highChi2__']
-#categories=['ele_1top_WJetsMVA_mttbar__','ele_0top_WJetsMVA_mttbar__','ele_1top_antiWJetsMVA_mttbar__','ele_0top_antiWJetsMVA_mttbar__']
-#categories=['ele_1top_WJetsMVA_chi2_mttbar__','ele_0top_WJetsMVA_chi2_mttbar__','ele_1top_antiWJetsMVA_chi2_mttbar__','ele_0top_antiWJetsMVA_chi2_mttbar__','ele_1top_WJetsMVA_antichi2_mttbar__','ele_0top_WJetsMVA_antichi2_mttbar__','ele_1top_antiWJetsMVA_antichi2_mttbar__','ele_0top_antiWJetsMVA_antichi2_mttbar__']
-#categories=['ele_1top_WJetsMVA_chi2_mttbar__','ele_0top_WJetsMVA_chi2_mttbar__','ele_1top_antiWJetsMVA_chi2_mttbar__','ele_0top_antiWJetsMVA_chi2_mttbar__','ele_01top_WJetsMVA_antichi2_mttbar__','ele_01top_antiWJetsMVA_antichi2_mttbar__']
-#categories=['ele_1top_chi2_mttbar__','ele_0top_WJetsMVA_chi2_mttbar__','ele_01top_antiWJetsMVA2_antichi2_mttbar__','ele_0top_antiWJetsMVA2_chi2_mttbar__']
 categories=['ele_1top_WJetsMVA_chi2_mttbar__','ele_0top_WJetsMVA_chi2_mttbar__','ele_0top_antiWJetsMVA2_antichi2_mttbar__','ele_0top_antiWJetsMVA3_antichi2_mttbar__']
-#categories=['mu_1top_WJetsMVA_mttbar__','mu_0top_WJetsMVA_mttbar__','mu_1top_antiWJetsMVA_mttbar__','mu_0top_antiWJetsMVA_mttbar__']
-#categories=['ele_1top_antiWJetsMVA_mttbar__']
-#fin = TFile('el_theta_20170519.root', 'open')
-fin = TFile('ele_theta_bdt0p5_chi30_rebinned.root', 'open')
-#fin = TFile('mu_theta_bdt0p5_chi30_rebinned.root', 'open')
+#fin = TFile('ele_theta_bdt0p5_chi30_rebinned.root', 'open')
+fin = TFile('ele_theta_bdt0p5_chi30_rebinned_addedQ2.root', 'open')
 nominalhist = {}
 nominalhistDraw = {}
 systvarhist = {}
@@ -64,11 +52,11 @@ for samp in samplelist:
                 
 
                 systvarhist[cat+samp+syst+'__plus'] = fin.Get(cat+samp+syst+'__plus')
-                systvarhist[cat+samp+syst+'__plus'].Print()
+#                systvarhist[cat+samp+syst+'__plus'].Print()
                 systvarhist[cat+samp+syst+'__minus'] = fin.Get(cat+samp+syst+'__minus')
-                systvarhist[cat+samp+syst+'__minus'].Print()
+#                systvarhist[cat+samp+syst+'__minus'].Print()
                 
-                print "Now we're going through ", cat+samp+syst
+                #print "Now we're going through ", cat+samp+syst
                 systvarhistDraw[cat+samp+syst+'__plus'] = systvarhist[cat+samp+syst+'__plus'].DrawClone('ep')
                 systvarhistDraw[cat+samp+syst+'__plus'].GetXaxis().SetTitle("M_{ttbar}, GeV")
                 systvarhistDraw[cat+samp+syst+'__plus'].GetXaxis().SetRangeUser(0,2000)
