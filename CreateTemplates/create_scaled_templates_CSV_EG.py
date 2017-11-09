@@ -2,15 +2,7 @@ from ROOT import *
 import sys
 import numpy
 #ct = '(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfmu_HLT)*(weight_sfmu_ID)'
-ct = '(weight_pu)*(wgtMC__ttagSF_ct)*(weight_csv_central)'
-
-# systematic_direction_ttbar={'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-# }
-# systematic_direction_wjets={'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-# }
-# systematic_direction_otherbkgs = {'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',}
-
-# systematic_direction_signal= {'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',    }
+#ct = '(weight_pu)*(wgtMC__ttagSF_ct)*(weight_csv_central)'
 
 systematic_direction_ttbar={'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'pileup__plus':'(weight_sfelec_ID)*(weight_pu_up)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
@@ -25,22 +17,6 @@ systematic_direction_ttbar={'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_sf
                             'toptag__minus':'(weight_pu)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',      
                             'mistoptag__plus':'(weight_pu)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
                             'mistoptag__minus':'(weight_pu)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2ttbar__minus':'(wgtMC__muRmuF_min)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2ttbar__plus':'(wgtMC__muRmuF_max)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-#                            'q2ttbar__minus':'(wgtMC__muR_up__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-#                            'q2ttbar__plus':'(wgtMC__muR_dn__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2ttbar__muR_dn__muF_dn':'(wgtMC__muR_dn__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2ttbar__muR_up__muF_up':'(wgtMC__muR_up__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2ttbar__muR_dn__muF_ct':'(wgtMC__muR_dn__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2ttbar__muR_up__muF_ct':'(wgtMC__muR_up__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2ttbar__muR_ct__muF_dn':'(wgtMC__muR_ct__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2ttbar__muR_ct__muF_up':'(wgtMC__muR_ct__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2ttbar__plus':'(wgtMC__muR_dn__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2ttbar__minus':'(wgtMC__muR_up__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2ttbarMuR__plus':'(wgtMC__muR_dn__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2ttbarMuR__minus':'(wgtMC__muR_up__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2ttbarMuF__plus':'(wgtMC__muR_ct__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2ttbarMuF__minus':'(wgtMC__muR_ct__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
                             'csv_cferr1__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_cferr1up)',
                             'csv_cferr1__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_cferr1down)',
                             'csv_cferr2__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_cferr2up)',
@@ -58,7 +34,20 @@ systematic_direction_ttbar={'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_sf
                             'csv_lfstats1__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats1up)', 
                             'csv_lfstats1__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats1down)',
                             'csv_lfstats2__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats2up)', 
-                            'csv_lfstats2__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats2down)'
+                            'csv_lfstats2__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats2down)',
+                             #add q2 variations. plus and minus to not break the next script for rebinning
+                            'q2ttbarMuRdnMuFdn__plus':'(wgtMC__muR_dn__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2ttbarMuRupMuFup__plus':'(wgtMC__muR_up__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2ttbarMuRdnMuFct__plus':'(wgtMC__muR_dn__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2ttbarMuRupMuFct__plus':'(wgtMC__muR_up__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2ttbarMuRctMuFdn__plus':'(wgtMC__muR_ct__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2ttbarMuRctMuFup__plus':'(wgtMC__muR_ct__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2ttbarMuRdnMuFdn__minus':'(wgtMC__muR_dn__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2ttbarMuRupMuFup__minus':'(wgtMC__muR_up__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2ttbarMuRdnMuFct__minus':'(wgtMC__muR_dn__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2ttbarMuRupMuFct__minus':'(wgtMC__muR_up__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2ttbarMuRctMuFdn__minus':'(wgtMC__muR_ct__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2ttbarMuRctMuFup__minus':'(wgtMC__muR_ct__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
 }
 systematic_direction_wjets={'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'pileup__plus':'(weight_sfelec_ID)*(weight_pu_up)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
@@ -73,23 +62,6 @@ systematic_direction_wjets={'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_sf
                             'toptag__minus':'(weight_pu)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
                             'mistoptag__plus':'(weight_pu)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
                             'mistoptag__minus':'(weight_pu)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjets__plus':'(wgtMC__muRmuF_max)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjets__minus':'(wgtMC__muRmuF_min)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
- #                           'q2wjets__plus':'(wgtMC__muR_dn__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
- #                           'q2wjets__minus':'(wgtMC__muR_up__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjets__muR_dn__muF_dn':'(wgtMC__muR_dn__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjets__muR_up__muF_up':'(wgtMC__muR_up__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjets__muR_dn__muF_ct':'(wgtMC__muR_dn__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjets__muR_up__muF_ct':'(wgtMC__muR_up__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjets__muR_ct__muF_dn':'(wgtMC__muR_ct__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjets__muR_ct__muF_up':'(wgtMC__muR_ct__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjets__minus':'(wgtMC__muR_dn__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjets__plus':'(wgtMC__muR_up__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjetsMuR__plus':'(wgtMC__muR_dn__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjetsMuR__minus':'(wgtMC__muR_up__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjetsMuF__plus':'(wgtMC__muR_ct__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjetsMuF__minus':'(wgtMC__muR_ct__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-      
                             'csv_cferr1__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_cferr1up)',
                             'csv_cferr1__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_cferr1down)',
                             'csv_cferr2__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_cferr2up)',
@@ -107,21 +79,22 @@ systematic_direction_wjets={'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_sf
                             'csv_lfstats1__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats1up)', 
                             'csv_lfstats1__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats1down)',
                             'csv_lfstats2__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats2up)', 
-                            'csv_lfstats2__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats2down)'
+                            'csv_lfstats2__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats2down)',
+                              #add q2 variations. plus and minus to not break the next script for rebinning
+                            'q2wjetsMuRdnMuFdn__plus':'(wgtMC__muR_dn__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2wjetsMuRupMuFup__plus':'(wgtMC__muR_up__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2wjetsMuRdnMuFct__plus':'(wgtMC__muR_dn__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2wjetsMuRupMuFct__plus':'(wgtMC__muR_up__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2wjetsMuRctMuFdn__plus':'(wgtMC__muR_ct__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2wjetsMuRctMuFup__plus':'(wgtMC__muR_ct__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2wjetsMuRdnMuFdn__minus':'(wgtMC__muR_dn__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2wjetsMuRupMuFup__minus':'(wgtMC__muR_up__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2wjetsMuRdnMuFct__minus':'(wgtMC__muR_dn__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2wjetsMuRupMuFct__minus':'(wgtMC__muR_up__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2wjetsMuRctMuFdn__minus':'(wgtMC__muR_ct__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2wjetsMuRctMuFup__minus':'(wgtMC__muR_ct__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
 }          
 systematic_direction_otherbkgs = {'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-#                            'pileup__plus':'(weight_sfelec_ID)*(weight_pu_up)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-#                            'pileup__minus':'(weight_sfelec_ID)*(weight_pu_down)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-#                            'elecID__plus':'(weight_sfelec_ID_up)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-#                            'elecID__minus':'(weight_sfelec_ID_down)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-#                            'elecTRK__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf_up)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-#                            'elecTRK__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf_down)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-                           # 'elecHLT__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT_up)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-                           # 'elecHLT__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT_down)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-#                            'toptag__plus':'(weight_pu)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-#                            'toptag__minus':'(weight_pu)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-#                            'mistoptag__plus':'(weight_pu)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-#                            'mistoptag__minus':'(weight_pu)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
 }                
 systematic_direction_signal= {'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',    
                              'pileup__plus':'(weight_sfelec_ID)*(weight_pu_up)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
@@ -157,18 +130,9 @@ systematic_direction_signal= {'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_
 
 }         
 
-
-#samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA.root'}
-
-
 samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA.root',
-#'singletop':'uhh2.AnalysisModuleRunner.MC.SingleTop.root','diboson':'uhh2.AnalysisModuleRunner.MC.Diboson.root',
-#'zjets':'uhh2.AnalysisModuleRunner.MC.DY.root',
-#'diboson':'uhh2.AnalysisModuleRunner.MC.VV.root',
-'ST':'uhh2.AnalysisModuleRunner.MC.ST.root',
-#'diboson':'uhh2.AnalysisModuleRunner.MC.ST_+_DY_+_VV.root',
-#'qcd':'uhh2.AnalysisModuleRunner.MC.QCD_Pt.root',
-#'wjets':'uhh2.AnalysisModuleRunner.MC.WJets.root',
+'diboson':'uhh2.AnalysisModuleRunner.MC.ST_+_DY_+_VV.root',
+'qcd':'uhh2.AnalysisModuleRunner.MC.QCD_Pt.root',
 'wjets_l':'uhh2.AnalysisModuleRunner.MC.WJets__L.root',
 'wjets_b':'uhh2.AnalysisModuleRunner.MC.WJets__B.root',
 'wjets_c':'uhh2.AnalysisModuleRunner.MC.WJets__C.root',
@@ -178,268 +142,32 @@ samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA.root',
 'Zprime2500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M2500.root', 'Zprime2000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M2000.root',
 'Zprime3000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M3000.root' ,
 'Zprime3500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M3500.root'}
-#categories=['T1','T0','T01']
-#categories=['T1','T0']
+
 categories=['T0','T1']
-#categories=['T1']
-#subcategories=['WJetsMVA','antiWJetsMVA']
-#subcategories=['WJetsMVA_chi2','antiWJetsMVA_chi2','WJetsMVA_antichi2','antiWJetsMVA_antichi2']
-#subcategories=['WJetsMVA_chi2','antiWJetsMVA_chi2']
-#subcategories2=['WJetsMVA_antichi2','antiWJetsMVA_antichi2']
-#subcategoriesT1=['chi2']
-
-#subcategoriesT1=['WJetsMVA_chi2','antiWJetsMVA3_chi2']
-#subcategoriesT0=['WJetsMVA_chi2','antiWJetsMVA2_chi2']
-#subcategoriesT0=['antiWJetsMVA2_antichi2','chi2','antiWJetsMVA3_antichi2']
-#subcategoriesT0=['antiWJetsMVA2_antichi2','WJetsMVA_chi2','antiWJetsMVA_chi2','antiWJetsMVA3_antichi2']
-#subcategoriesT0=['antiWJetsMVA2_antichi2','WJetsMVA_chi2','antiWJetsMVA3_antichi2']
-#subcategoriesT0=['antiWJetsMVA2_antichi2','antiWJetsMVA3_antichi2']
-#subcategoriesT0=['WJetsMVA_step1_antichi2','WJetsMVA_step2_antichi2','WJetsMVA_step3_antichi2','WJetsMVA_step4_antichi2','WJetsMVA_step5_antichi2','WJetsMVA_step6_antichi2','WJetsMVA_step7_antichi2','WJetsMVA_step8_antichi2','WJetsMVA_step1_chi2','WJetsMVA_step2_chi2','WJetsMVA_step3_chi2','WJetsMVA_step4_chi2','WJetsMVA_step5_chi2','WJetsMVA_step6_chi2','WJetsMVA_step7_chi2','WJetsMVA_step8_chi2']
-
-#subcategoriesT0=['WJetsMVA_step1_antichi2','WJetsMVA_step2_antichi2','WJetsMVA_step3_antichi2','WJetsMVA_step4_antichi2','WJetsMVA_step5_antichi2','WJetsMVA_step6_antichi2','WJetsMVA_step7_antichi2','WJetsMVA_step8_antichi2','WJetsMVA_step1_chi2','WJetsMVA_step2_chi2','WJetsMVA_step3_chi2','WJetsMVA_step4_chi2']
-#subcategoriesT1=['WJetsMVA_step5_chi2','WJetsMVA_step6_chi2','WJetsMVA_step7_chi2','WJetsMVA_step8_chi2']
-
-
-#subcategoriesT0=['WJetsMVA_step1_chi2','WJetsMVA_step2_chi2','WJetsMVA_step3_chi2','WJetsMVA_step4_chi2','WJetsMVA_step5_chi2','WJetsMVA_step6_chi2','WJetsMVA_step7_chi2','WJetsMVA_step8_chi2']
-#subcategoriesT1=['WJetsMVA_step5_chi2','WJetsMVA_step6_chi2','WJetsMVA_step7_chi2','WJetsMVA_step8_chi2']
-#subcategoriesT0=['WJetsMVA_step1_chi2','WJetsMVA_step5_chi2','WJetsMVA_step6_chi2','WJetsMVA_step7_chi2','WJetsMVA_step8_chi2']
-#subcategoriesT1=['WJetsMVA_step7_chi2','WJetsMVA_step8_chi2']
-#subcategoriesT1=['WJetsMVA_step1_chi2','WJetsMVA_step2_chi2','WJetsMVA_step3_chi2','WJetsMVA_step4_chi2','WJetsMVA_step5_chi2','WJetsMVA_step6_chi2','WJetsMVA_step7_chi2','WJetsMVA_step8_chi2']
-
-# subcategoriesT1=['WJetsMVA_chi2']
-# subcategoriesT0=['antiWJetsMVA2_antichi2','WJetsMVA_chi2','antiWJetsMVA3_antichi2']
-
-#subcategoriesT0=['antiWJetsMVA2_chi2','WJetsMVA_chi2','antiWJetsMVA3_chi2']
-#subcategoriesT0=['antiWJetsMVA2_chi2','WJetsMVA_chi2','antiWJetsMVA3_chi2','antiWJetsMVA2_antichi2','antiWJetsMVA3_antichi2']
-
-# subcategoriesT0=['WJetsMVA_step1_antichi2','WJetsMVA_step2_antichi2','WJetsMVA_step7_chi2','WJetsMVA_step8_chi2']
-# subcategoriesT1=['WJetsMVA_step5_chi2','WJetsMVA_step6_chi2','WJetsMVA_step7_chi2','WJetsMVA_step8_chi2']
-
-#subcategoriesT1=['WJetsMVA_chi2','antiWJetsMVA3_chi2']
-#subcategoriesT1=['WJetsMVA4_chi2']
 subcategoriesT1=['WJetsMVA_chi2']
 subcategoriesT0=['antiWJetsMVA2_antichi2','WJetsMVA_chi2','antiWJetsMVA3_antichi2']
-#subcategoriesT0=['antiWJetsMVA2_antichi2','WJetsMVA_chi2','antiWJetsMVA3_antichi2','antiWJetsMVA_chi2']
 
-
-#subcategoriesT01=['antiWJetsMVA_antichi2']
-subcategoriesT01=['antiWJetsMVA2_antichi2']
-#categories=['T1_WJetsMVA','T0_WJetsMVA','T1_antiWJetsMVA','T0_antiWJetsMVA']
 fout = TFile('ele_theta_bdt0p5_chi30.root', 'recreate')
 gROOT.SetBatch(kTRUE)
 for cat in categories:
-#    cut_string='(eleN==1 & rec_chi2<30 & WJets_TMVA_response>=0.5'
-#    cut_string_GL='(eleN==1 & rec_chi2<30 & '
     cut_string_GL='(eleN==1 & '
-    if cat == 'T01':
-        h_string_GL='ele_01top_'
-        #for subcat in subcategories2:
-        for subcat in subcategoriesT01:
-            # if subcat == 'WJetsMVA_chi2':
-            #     cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & rec_chi2<30  '
-            #     h_string = h_string_GL + 'WJetsMVA_chi2_mttbar__'
-            # if subcat == 'antiWJetsMVA_chi2':
-            #     cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & rec_chi2<30 '
-            #     h_string = h_string_GL + 'antiWJetsMVA_chi2_mttbar__'
-            if subcat == 'WJetsMVA_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & rec_chi2>=30 '
-                h_string = h_string_GL + 'WJetsMVA_antichi2_mttbar__'
-            if subcat == 'antiWJetsMVA_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & rec_chi2>=30 '
-                h_string = h_string_GL + 'antiWJetsMVA_antichi2_mttbar__'
-            if subcat == 'antiWJetsMVA2_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<-0.75 & rec_chi2>=30 '
-                h_string = h_string_GL + 'antiWJetsMVA2_antichi2_mttbar__'
-                
-            for key_sample in samplelist:
-                myfile = TFile(samplelist[key_sample])
-                print "opening", myfile
-                mytree = myfile.Get("AnalysisTree")
-                print "getting", mytree
-                mytree.SetAlias("invmass","Mttbar")
-                if key_sample == 'DATA':
-                    cut = str(cut_string+' & ttagN>=0   & btagN>=0)')
-                    print "Processing: ",key_sample
-                    print "Applying cut:",cut
-                    tempdata = TH1F("tempdata","tempdata",30,100,2000)
-                    mytree.Draw("invmass>>tempdata",cut)
-                    tempdata.SetName(h_string+key_sample)
-                    tempdata.Print()
-                    fout.WriteObject(tempdata,h_string+key_sample)
-                    del tempdata
-                elif 'Zprime'in key_sample:
-                    for syst in systematic_direction_signal:
-                        cut = str(cut_string+' & ttagN>=0 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
-                        print "Processing: ",key_sample
-                        print "Applying cut:",cut
-                        if syst == 'nominal':
-                            temp = TH1F("temp","temp",30,100,2000)
-                            mytree.Draw("invmass>>temp",cut)
-                            temp.SetName(h_string+key_sample)
-                            print "Rebinning T01 nom:", str(temp.GetNbinsX())
-                            fout.WriteObject(temp,h_string+key_sample)
-                            del temp
-                        elif 'nominal' not in syst:
-                            tempsys = TH1F("tempsys","tempsys",30,100,2000)
-                            mytree.Draw("invmass>>tempsys",cut)
-                            tempsys.SetName(h_string+key_sample+"__"+syst)
-                            print "Rebinning T01 nom+sys:", str(tempsys.GetNbinsX())
-                            tempsys.Print()  
-                            fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
-                            del tempsys
-                elif 'ttbar' in key_sample:
-                    for syst in systematic_direction_ttbar:
-#                        cut = str(cut_string+' & ttagN==1 & btagN>=0)*0.75*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
-                        cut = str(cut_string+' & ttagN>=0 & btagN>=0)*1.00*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
-                        print "Processing: ",key_sample
-                        print "Applying cut:",cut
-                        if syst == 'nominal':
-                            temp = TH1F("temp","temp",30,100,2000)
-                            mytree.Draw("invmass>>temp",cut)
-                            temp.SetName(h_string+key_sample)
-                            print "Rebinning T01 nom:", str(temp.GetNbinsX())
-                            temp.Print()  
-                            fout.WriteObject(temp,h_string+key_sample)
-                            del temp
-                        elif 'nominal' not in syst:
-                            tempsys = TH1F("tempsys","tempsys",30,100,2000)
-                            mytree.Draw("invmass>>tempsys",cut)
-                            tempsys.SetName(h_string+key_sample+"__"+syst)
-                            print "Rebinning T01 nom+sys:", str(tempsys.GetNbinsX())
-                            tempsys.Print()  
-                            fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
-                            del tempsys
-                elif 'wjets_l' in key_sample:
-                     for syst in systematic_direction_wjets:
-#                    for syst in systematic_direction_otherbkgs:
-                        cut = str(cut_string+'  &  ttagN>=0 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
-                        print "Processing: ",key_sample
-                        print "Applying cut:",cut
-                        if syst == 'nominal':
-                            temp = TH1F("temp","temp",30,100,2000)
-                            mytree.Draw("invmass>>temp",cut)
-                            temp.SetName(h_string+key_sample)
-                            print "Rebinning T01 nom:", str(temp.GetNbinsX())
-                            fout.WriteObject(temp,h_string+key_sample)
-                            del temp
-                        elif 'nominal' not in syst:
-                            tempsys = TH1F("tempsys","tempsys",30,100,2000)
-                            mytree.Draw("invmass>>tempsys",cut)
-                            tempsys.SetName(h_string+key_sample+"__"+syst)
-                            print "Rebinning T01 nom+sys:", str(tempsys.GetNbinsX())
-                            fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
-                            del tempsys
-                elif 'zjets' or 'diboson' or 'others' or 'wjets_b' or 'wjets_c' or 'ST' in key_sample:
-                    for syst in systematic_direction_otherbkgs:
-                        cut = str(cut_string+' & ttagN>=0 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
-                        print "Processing: ",key_sample
-                        print "Applying cut:",cut
-                        if syst == 'nominal':
-                            temp = TH1F("temp","temp",30,100,2000)
-                            mytree.Draw("invmass>>temp",cut)
-                            temp.SetName(h_string+key_sample)
-                            print "Rebinning T01 nom:", str(temp.GetNbinsX())
-                            fout.WriteObject(temp,h_string+key_sample)
-                            del temp
-                        elif 'nominal' not in syst:
-                            tempsys = TH1F("tempsys","tempsys",30,100,2000)
-                            mytree.Draw("invmass>>tempsys",cut)
-                            tempsys.SetName(h_string+key_sample+"__"+syst)
-                            print "Rebinning T01 nom+sys:", str(tempsys.GetNbinsX())
-                            fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
-                            del tempsys
-
+   
     if cat == 'T1':
         h_string_GL='ele_1top_'
         #for subcat in subcategories:
         for subcat in subcategoriesT1:
-            # if subcat == 'WJetsMVA':
-            #     cut_string = cut_string_GL+' WJets_TMVA_response>=0.5'
-            #     h_string = h_string_GL + 'WJetsMVA_mttbar__' 
-            # if subcat == 'antiWJetsMVA':
-            #     cut_string = cut_string_GL+' WJets_TMVA_response<0.5' 
-            #     h_string = h_string_GL + 'antiWJetsMVA_mttbar__' 
             if subcat == 'WJetsMVA_chi2':
                 cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & rec_chi2<30  '
                 h_string = h_string_GL + 'WJetsMVA_chi2_mttbar__'
-            if subcat == 'antiWJetsMVA_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & rec_chi2<30 '
-                h_string = h_string_GL + 'antiWJetsMVA_chi2_mttbar__'
-            if subcat == 'WJetsMVA_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & rec_chi2>=30 '
-                h_string = h_string_GL + 'WJetsMVA_antichi2_mttbar__'
-            if subcat == 'antiWJetsMVA_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & rec_chi2>=30 '
-                h_string = h_string_GL + 'antiWJetsMVA_antichi2_mttbar__'
-            if subcat == 'antiWJetsMVA2_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<-0.75 & rec_chi2>=30 '
-                h_string = h_string_GL + 'antiWJetsMVA2_antichi2_mttbar__'
-            if subcat == 'antiWJetsMVA3_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>0.0 & WJets_TMVA_response<0.5 & rec_chi2<30 '
-                h_string = h_string_GL + 'antiWJetsMVA3_chi2_mttbar__'
             if subcat == 'WJetsMVA4_chi2':
                 cut_string = cut_string_GL+' WJets_TMVA_response>=0.0 & rec_chi2<30  '
                 h_string = h_string_GL + 'WJetsMVA4_chi2_mttbar__'
-
-            if subcat == 'chi2':
-                cut_string = cut_string_GL+' & rec_chi2<30  '
-                h_string = h_string_GL + 'chi2_mttbar__'
-            if subcat == 'WJetsMVA_step1_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>-1 & WJets_TMVA_response<-0.75 & rec_chi2>=30 '
-                h_string = h_string_GL + 'WJetsMVA_step1_antichi2_mttbar__'
-            if subcat == 'WJetsMVA_step2_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>-0.75 & WJets_TMVA_response<-0.50 & rec_chi2>=30 '
-                h_string = h_string_GL + 'WJetsMVA_step2_antichi2_mttbar__'
-            if subcat == 'WJetsMVA_step3_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>-0.50 & WJets_TMVA_response<-0.25 & rec_chi2>=30 '
-                h_string = h_string_GL + 'WJetsMVA_step3_antichi2_mttbar__'
-            if subcat == 'WJetsMVA_step4_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>-0.25 & WJets_TMVA_response<0.00 & rec_chi2>=30 '
-                h_string = h_string_GL + 'WJetsMVA_step4_antichi2_mttbar__'
-            if subcat == 'WJetsMVA_step5_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>0.00 & WJets_TMVA_response<0.25 & rec_chi2>=30 '
-                h_string = h_string_GL + 'WJetsMVA_step5_antichi2_mttbar__'
-            if subcat == 'WJetsMVA_step6_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>0.25 & WJets_TMVA_response<0.50 & rec_chi2>=30 '
-                h_string = h_string_GL + 'WJetsMVA_step6_antichi2_mttbar__'
-            if subcat == 'WJetsMVA_step7_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>0.50 & WJets_TMVA_response<0.75 & rec_chi2>=30 '
-                h_string = h_string_GL + 'WJetsMVA_step7_antichi2_mttbar__'
-            if subcat == 'WJetsMVA_step8_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>0.75 & WJets_TMVA_response<1.00 & rec_chi2>=30 '
-                h_string = h_string_GL + 'WJetsMVA_step8_antichi2_mttbar__'
-            if subcat == 'WJetsMVA_step1_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>-1 & WJets_TMVA_response<-0.75 & rec_chi2<30 '
-                h_string = h_string_GL + 'WJetsMVA_step1_chi2_mttbar__'
-            if subcat == 'WJetsMVA_step2_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>-0.75 & WJets_TMVA_response<-0.50 & rec_chi2<30 '
-                h_string = h_string_GL + 'WJetsMVA_step2_chi2_mttbar__'
-            if subcat == 'WJetsMVA_step3_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>-0.50 & WJets_TMVA_response<-0.25 & rec_chi2<30 '
-                h_string = h_string_GL + 'WJetsMVA_step3_chi2_mttbar__'
-            if subcat == 'WJetsMVA_step4_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>-0.25 & WJets_TMVA_response<0.00 & rec_chi2<30 '
-                h_string = h_string_GL + 'WJetsMVA_step4_chi2_mttbar__'
-            if subcat == 'WJetsMVA_step5_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>0.00 & WJets_TMVA_response<0.25 & rec_chi2<30 '
-                h_string = h_string_GL + 'WJetsMVA_step5_chi2_mttbar__'
-            if subcat == 'WJetsMVA_step6_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>0.25 & WJets_TMVA_response<0.50 & rec_chi2<30 '
-                h_string = h_string_GL + 'WJetsMVA_step6_chi2_mttbar__'
-            if subcat == 'WJetsMVA_step7_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>0.50 & WJets_TMVA_response<0.75 & rec_chi2<30 '
-                h_string = h_string_GL + 'WJetsMVA_step7_chi2_mttbar__'
-            if subcat == 'WJetsMVA_step8_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>0.75 & WJets_TMVA_response<1.00 & rec_chi2<30 '
-                h_string = h_string_GL + 'WJetsMVA_step8_chi2_mttbar__'
-
 
             for key_sample in samplelist:
                 myfile = TFile(samplelist[key_sample])
                 print "opening", myfile
                 mytree = myfile.Get("AnalysisTree")
                 print "getting", mytree
-        #        mytree.SetAlias("invmass","sqrt(pow(rec_tlep.Energy()+rec_thad.Energy(),2)-(pow(rec_thad.Px(),2)+pow(rec_thad.Py(),2)+pow(rec_thad.Pz(),2)+pow(rec_tlep.Px(),2)+pow(rec_tlep.Py(),2)+pow(rec_tlep.Pz(),2)+2*(rec_thad.Px()*rec_tlep.Px()+rec_thad.Py()*rec_tlep.Py()+rec_thad.Pz()*rec_tlep.Pz())))")
                 mytree.SetAlias("invmass","Mttbar")
                 if key_sample == 'DATA':
                     cut = str(cut_string+' & ttagN==1   & btagN>=0)')
@@ -472,7 +200,6 @@ for cat in categories:
                             del tempsys
                 elif 'ttbar' in key_sample:
                     for syst in systematic_direction_ttbar:
-#                        cut = str(cut_string+' & ttagN==1 & btagN>=0)*0.75*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
                         cut = str(cut_string+' & ttagN==1 & btagN>=0)*1.00*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
                         print "Processing: ",key_sample
                         print "Applying cut:",cut
@@ -510,8 +237,7 @@ for cat in categories:
                             print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
                             fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                             del tempsys
-#                elif 'zjets' or 'diboson' or 'others' or 'wjets_b' or 'wjets_c' in key_sample:
-                elif 'zjets' or 'diboson' or 'others' or 'ST' in key_sample:
+                elif 'zjets' or 'diboson' or 'others' or 'wjets_b' or 'wjets_c' in key_sample:
                     for syst in systematic_direction_otherbkgs:
                         cut = str(cut_string+' & ttagN==1 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
                         print "Processing: ",key_sample
@@ -532,100 +258,24 @@ for cat in categories:
                             del tempsys
     elif cat == 'T0':
         h_string_GL='ele_0top_'
-        #for subcat in subcategories:
         for subcat in subcategoriesT0:
-            # if subcat == 'WJetsMVA':
-            #     cut_string = cut_string_GL+' WJets_TMVA_response>=0.5'
-            #     h_string = h_string_GL + 'WJetsMVA_mttbar__' 
-            # if subcat == 'antiWJetsMVA':
-            #     cut_string = cut_string_GL+' WJets_TMVA_response<0.5' 
-            #     h_string = h_string_GL + 'antiWJetsMVA_mttbar__' 
+          
             if subcat == 'WJetsMVA_chi2':
                 cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & rec_chi2<30  '
                 h_string = h_string_GL + 'WJetsMVA_chi2_mttbar__'
-            if subcat == 'antiWJetsMVA_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & rec_chi2<30 '
-                h_string = h_string_GL + 'antiWJetsMVA_chi2_mttbar__'
-            if subcat == 'WJetsMVA_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & rec_chi2>=30 '
-                h_string = h_string_GL + 'WJetsMVA_antichi2_mttbar__'
-            if subcat == 'antiWJetsMVA_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & rec_chi2>=30 '
-                h_string = h_string_GL + 'antiWJetsMVA_antichi2_mttbar__'
-            if subcat == 'antiWJetsMVA2_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<-0.75 & rec_chi2<30 '
-                h_string = h_string_GL + 'antiWJetsMVA2_chi2_mttbar__'
             if subcat == 'antiWJetsMVA2_antichi2':
                 cut_string = cut_string_GL+' WJets_TMVA_response<-0.5 & rec_chi2>=30 '
                 h_string = h_string_GL + 'antiWJetsMVA2_antichi2_mttbar__'
             if subcat == 'antiWJetsMVA3_antichi2':
                 cut_string = cut_string_GL+' WJets_TMVA_response>0.0 & WJets_TMVA_response<0.5 & rec_chi2>=30 '
                 h_string = h_string_GL + 'antiWJetsMVA3_antichi2_mttbar__'
-            if subcat == 'antiWJetsMVA3_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>0.0 & WJets_TMVA_response<0.5 & rec_chi2<30 '
-                h_string = h_string_GL + 'antiWJetsMVA3_chi2_mttbar__'
-
-            if subcat == 'chi2':
-                cut_string = cut_string_GL+' & rec_chi2<30  '
-                h_string = h_string_GL + 'chi2_mttbar__'
-            if subcat == 'WJetsMVA_step1_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>-1 & WJets_TMVA_response<-0.75 & rec_chi2>=30 '
-                h_string = h_string_GL + 'WJetsMVA_step1_antichi2_mttbar__'
-            if subcat == 'WJetsMVA_step2_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>-0.75 & WJets_TMVA_response<-0.50 & rec_chi2>=30 '
-                h_string = h_string_GL + 'WJetsMVA_step2_antichi2_mttbar__'
-            if subcat == 'WJetsMVA_step3_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>-0.50 & WJets_TMVA_response<-0.25 & rec_chi2>=30 '
-                h_string = h_string_GL + 'WJetsMVA_step3_antichi2_mttbar__'
-            if subcat == 'WJetsMVA_step4_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>-0.25 & WJets_TMVA_response<0.00 & rec_chi2>=30 '
-                h_string = h_string_GL + 'WJetsMVA_step4_antichi2_mttbar__'
-            if subcat == 'WJetsMVA_step5_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>0.00 & WJets_TMVA_response<0.25 & rec_chi2>=30 '
-                h_string = h_string_GL + 'WJetsMVA_step5_antichi2_mttbar__'
-            if subcat == 'WJetsMVA_step6_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>0.25 & WJets_TMVA_response<0.50 & rec_chi2>=30 '
-                h_string = h_string_GL + 'WJetsMVA_step6_antichi2_mttbar__'
-            if subcat == 'WJetsMVA_step7_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>0.50 & WJets_TMVA_response<0.75 & rec_chi2>=30 '
-                h_string = h_string_GL + 'WJetsMVA_step7_antichi2_mttbar__'
-            if subcat == 'WJetsMVA_step8_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>0.75 & WJets_TMVA_response<1.00 & rec_chi2>=30 '
-                h_string = h_string_GL + 'WJetsMVA_step8_antichi2_mttbar__'
-            if subcat == 'WJetsMVA_step1_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>-1 & WJets_TMVA_response<-0.75 & rec_chi2<30 '
-                h_string = h_string_GL + 'WJetsMVA_step1_chi2_mttbar__'
-            if subcat == 'WJetsMVA_step2_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>-0.75 & WJets_TMVA_response<-0.50 & rec_chi2<30 '
-                h_string = h_string_GL + 'WJetsMVA_step2_chi2_mttbar__'
-            if subcat == 'WJetsMVA_step3_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>-0.50 & WJets_TMVA_response<-0.25 & rec_chi2<30 '
-                h_string = h_string_GL + 'WJetsMVA_step3_chi2_mttbar__'
-            if subcat == 'WJetsMVA_step4_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>-0.25 & WJets_TMVA_response<0.00 & rec_chi2<30 '
-                h_string = h_string_GL + 'WJetsMVA_step4_chi2_mttbar__'
-            if subcat == 'WJetsMVA_step5_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>0.00 & WJets_TMVA_response<0.25 & rec_chi2<30 '
-                h_string = h_string_GL + 'WJetsMVA_step5_chi2_mttbar__'
-            if subcat == 'WJetsMVA_step6_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>0.25 & WJets_TMVA_response<0.50 & rec_chi2<30 '
-                h_string = h_string_GL + 'WJetsMVA_step6_chi2_mttbar__'
-            if subcat == 'WJetsMVA_step7_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>0.50 & WJets_TMVA_response<0.75 & rec_chi2<30 '
-                h_string = h_string_GL + 'WJetsMVA_step7_chi2_mttbar__'
-            if subcat == 'WJetsMVA_step8_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>0.75 & WJets_TMVA_response<1.00 & rec_chi2<30 '
-                h_string = h_string_GL + 'WJetsMVA_step8_chi2_mttbar__'
-
-
-
+                
             for key_sample in samplelist:
                 myfile = TFile(samplelist[key_sample])
                 print "opening", myfile
                 mytree = myfile.Get("AnalysisTree")
                 print "getting", mytree
                 mytree.SetAlias("invmass","Mttbar")
-#                mytree.SetAlias("invmass","sqrt(pow(rec_tlep.Energy()+rec_thad.Energy(),2)-(pow(rec_thad.Px(),2)+pow(rec_thad.Py(),2)+pow(rec_thad.Pz(),2)+pow(rec_tlep.Px(),2)+pow(rec_tlep.Py(),2)+pow(rec_tlep.Pz(),2)+2*(rec_thad.Px()*rec_tlep.Px()+rec_thad.Py()*rec_tlep.Py()+rec_thad.Pz()*rec_tlep.Pz())))")
                 if key_sample == 'DATA':
                     cut = str(cut_string+' & ttagN==0 & btagN>=0)')
                     print "Processing: ",key_sample
@@ -655,7 +305,6 @@ for cat in categories:
                             del temp2sys
                 elif 'ttbar' in key_sample:
                     for syst in systematic_direction_ttbar:
-#                        cut = str(cut_string+' & ttagN==0 & btagN>=0)*0.75*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
                         cut = str(cut_string+' & ttagN==0 & btagN>=0)*1.00*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
                         print "Processing: ",key_sample
                         print "Applying cut:",cut
@@ -671,8 +320,7 @@ for cat in categories:
                             temp2sys.SetName(h_string+key_sample+"__"+syst)
                             fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
                             del temp2sys
-#                elif 'wjets_l' in key_sample:
-                elif 'wjets_l' or 'ST' in key_sample:
+                elif 'wjets_l' in key_sample:
                     for syst in systematic_direction_wjets:
                         cut = str(cut_string+' & ttagN==0 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
                         print "Processing: ",key_sample
@@ -689,7 +337,6 @@ for cat in categories:
                             temp2sys.SetName(h_string+key_sample+"__"+syst)
                             fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
                             del temp2sys
-#                elif 'zjets' or 'diboson' or 'others' or 'wjets_b' or 'wjets_c' or 'ST' or 'qcd' in key_sample:
                 elif 'zjets' or 'diboson' or 'others' or 'wjets_b' or 'wjets_c' or 'qcd' in key_sample:
                     for syst in systematic_direction_otherbkgs:
                         cut = str(cut_string+' & ttagN==0 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
