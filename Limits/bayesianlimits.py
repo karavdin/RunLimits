@@ -5,6 +5,17 @@
 muo_ifile = ['mu_theta_bdt0p5_chi30_limits_rebinned.root']
 ele_ifile = ['ele_theta_bdt0p5_chi30_limits_rebinned.root']
 lep_ifile = ['lep_theta_bdt0p5_chi30_limits_rebinned.root']
+mle_coeff_file = '../MLF_Yields_Uncertainties/mle_coeff.p'
+
+def apply_factors(model, factors):
+    #print factors
+    for obs in factors:
+        for proc in factors[obs]:
+            f = factors[obs][proc]
+            if type(f) == str: continue # can happen for "n/a"
+            if "Zprime" in proc or "RSgluon" in proc: continue
+            print f, proc, obs
+            model.scale_predictions(f, proc, obs)
 
 def narrow_resonances(hname):
     if not ('RSgluon' in hname or 'Zprime' in hname): return True
@@ -68,16 +79,19 @@ def build_boosted_semileptonic_model(files, filter, signal, eflag=False):
       #       #for obs in ['el_0top0btag_mttbar','el_0top1btag_mttbar','el_1top_mttbar']:
       #           #model.add_lognormal_uncertainty('eleORjet_trig', math.log(1.01), p, obs)
 
-    model.add_lognormal_uncertainty('ttbar_rate',   math.log(1.09), 'ttbar')
+    mle_coeff = pickle.load(open(mle_coeff_file,"rb"))
+    apply_factors(model, mle_coeff)
+
+#    model.add_lognormal_uncertainty('ttbar_rate',   math.log(1.09), 'ttbar')
 #    model.add_lognormal_uncertainty('wjets_rate',      math.log(1.09), 'wjets')
-    model.add_lognormal_uncertainty('wjets_rate',      math.log(1.09), 'wjets_c')
-    model.add_lognormal_uncertainty('wjets_rate',      math.log(1.09), 'wjets_b')
-    model.add_lognormal_uncertainty('wjets_rate',      math.log(1.09), 'wjets_l')
+#    model.add_lognormal_uncertainty('wjets_rate',      math.log(1.09), 'wjets_c')
+#    model.add_lognormal_uncertainty('wjets_rate',      math.log(1.09), 'wjets_b')
+#    model.add_lognormal_uncertainty('wjets_rate',      math.log(1.09), 'wjets_l')
 #    model.add_lognormal_uncertainty('wjetsh_rate',      math.log(1.09), 'wjets_h')
-    #model.add_lognormal_uncertainty('wb_rate',      math.log(1.23), 'wb')
+#    model.add_lognormal_uncertainty('wb_rate',      math.log(1.23), 'wb')
 #    model.add_lognormal_uncertainty('st_rate',      math.log(1.20), 'singletop')
 #    model.add_lognormal_uncertainty('zj_rate',      math.log(1.20), 'zjets')
-    model.add_lognormal_uncertainty('ST_DY_VV_rate', math.log(1.20), 'diboson')
+#    model.add_lognormal_uncertainty('ST_DY_VV_rate', math.log(1.20), 'diboson')
 #    model.add_lognormal_uncertainty('ST_rate', math.log(1.20), 'ST')
 
     return model
@@ -136,7 +150,7 @@ def build_model(type):
            'ZprimeNarrow*',
            eflag = False
         )
-    
+
     elif type == 'wide_resonances_muon':
 
         model = build_boosted_semileptonic_model(
@@ -144,7 +158,7 @@ def build_model(type):
            wide_resonances,
            'ZprimeWide*',
            eflag = False
-        )        
+        )
     elif type == 'ttjets_resonances_muon':
 
         model = build_boosted_semileptonic_model(
@@ -152,7 +166,7 @@ def build_model(type):
            ttjets_resonances,
            'ZprimeTTJets*',
            eflag = False
-        )        
+        )
 
     elif type == 'extrawide_resonances_muon':
 
@@ -161,7 +175,7 @@ def build_model(type):
            extrawide_resonances,
            'ZprimeExtraWide*',
            eflag = False
-        )        
+        )
 
     elif type == 'rsg_resonances_muon':
 
@@ -182,7 +196,7 @@ def build_model(type):
         )
 
     elif type == 'narrow_resonances_electron_no_nuisance':
-    
+
         model = build_boosted_semileptonic_model_no_nuisance(
            ele_ifile,
            narrow_resonances,
@@ -279,17 +293,17 @@ def build_model(type):
     #     #      'xsec_zjets',
     #     # 'toptag',
     #     ]
-    
+
     # fixd_params = [
     #     #      'muRF_ttbar',
     #     #      'muRF_wjets',
     #     ]
-    
+
     # for p in model.distribution.get_parameters():
     #     if p in free_params: model.distribution.set_distribution_parameters(p, width = float('inf'))
     #     if p in fixd_params: model.distribution.set_distribution_parameters(p, width = float(.0001))
-        
-        
+
+
     for p in model.distribution.get_parameters():
         d = model.distribution.get_distribution(p)
         if d['typ'] == 'gauss' and d['mean'] == 0.0 and d['width'] == 1.0:
@@ -297,7 +311,7 @@ def build_model(type):
             if (p == 'toptag'): model.distribution.set_distribution_parameters(p, width = float("inf"))
 
     return model
-    
+
 
 # Code introduced by theta_driver
 
