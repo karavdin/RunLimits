@@ -66,6 +66,7 @@ def build_boosted_semileptonic_model(files, filter, signal, mcstat = True):
 
 
 import exceptions
+import pickle
 
 def build_model(type):
 
@@ -389,6 +390,7 @@ for p in par_values:
 file = open('mle_coeff.py', 'w')
 file.write(repr(mle_coeff))
 file.close()
+pickle.dump(mle_coeff, open( "mle_coeff.p", "wb" ) )
 apply_factors(model, mle_coeff)
 tables = model_summary(model)
 #generate_yield_table(tables['rate_table'])
