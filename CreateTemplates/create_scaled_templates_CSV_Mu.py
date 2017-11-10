@@ -217,24 +217,44 @@ for cat in categories:
                             fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                             del tempsys
                 elif 'wjets_l' in key_sample:
-                     for syst in systematic_direction_wjets:
-                        cut = str(cut_string+' &  ttagN==1 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
-                        print "Processing: ",key_sample
-                        print "Applying cut:",cut
-                        if syst == 'nominal':
-                            temp = TH1F("temp","temp",30,100,2000)
-                            mytree.Draw("invmass>>temp",cut)
-                            temp.SetName(h_string+key_sample)
-                            print "Rebinning T1 nom:", str(temp.GetNbinsX())
-                            fout.WriteObject(temp,h_string+key_sample)
-                            del temp
-                        elif 'nominal' not in syst:
-                            tempsys = TH1F("tempsys","tempsys",30,100,2000)
-                            mytree.Draw("invmass>>tempsys",cut)
-                            tempsys.SetName(h_string+key_sample+"__"+syst)
-                            print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
-                            fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
-                            del tempsys
+                    if subcat == 'WJetsMVA_chi2':
+                        for syst in systematic_direction_otherbkgs:
+                            cut = str(cut_string+' &  ttagN==1 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
+                            print "Processing: ",key_sample
+                            print "Applying cut:",cut
+                            if syst == 'nominal':
+                                temp = TH1F("temp","temp",30,100,2000)
+                                mytree.Draw("invmass>>temp",cut)
+                                temp.SetName(h_string+key_sample)
+                                print "Rebinning T1 nom:", str(temp.GetNbinsX())
+                                fout.WriteObject(temp,h_string+key_sample)
+                                del temp
+                            elif 'nominal' not in syst:
+                                tempsys = TH1F("tempsys","tempsys",30,100,2000)
+                                mytree.Draw("invmass>>tempsys",cut)
+                                tempsys.SetName(h_string+key_sample+"__"+syst)
+                                print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
+                                fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
+                                del tempsys
+                    else:
+                        for syst in systematic_direction_wjets:
+                            cut = str(cut_string+' &  ttagN==1 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
+                            print "Processing: ",key_sample
+                            print "Applying cut:",cut
+                            if syst == 'nominal':
+                                temp = TH1F("temp","temp",30,100,2000)
+                                mytree.Draw("invmass>>temp",cut)
+                                temp.SetName(h_string+key_sample)
+                                print "Rebinning T1 nom:", str(temp.GetNbinsX())
+                                fout.WriteObject(temp,h_string+key_sample)
+                                del temp
+                            elif 'nominal' not in syst:
+                                tempsys = TH1F("tempsys","tempsys",30,100,2000)
+                                mytree.Draw("invmass>>tempsys",cut)
+                                tempsys.SetName(h_string+key_sample+"__"+syst)
+                                print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
+                                fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
+                                del tempsys
                 elif 'zjets' or 'diboson' or 'others' or 'wjets_b' or 'wjets_c' in key_sample:
                     for syst in systematic_direction_otherbkgs:
                         cut = str(cut_string+' & ttagN==1 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
@@ -317,22 +337,40 @@ for cat in categories:
                             fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
                             del temp2sys
                 elif 'wjets_l' in key_sample: 
-                    for syst in systematic_direction_wjets:
-                        cut = str(cut_string+' & ttagN==0 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
-                        print "Processing: ",key_sample
-                        print "Applying cut:",cut
-                        if syst == 'nominal':
-                            temp2 = TH1F("temp2","temp2",30,100,2000)
-                            mytree.Draw("invmass>>temp2",cut)
-                            temp2.SetName(h_string+key_sample)
-                            fout.WriteObject(temp2,h_string+key_sample)
-                            del temp2
-                        elif 'nominal' not in syst:
-                            temp2sys = TH1F("temp2sys","temp2sys",30,100,2000)
-                            mytree.Draw("invmass>>temp2sys",cut)
-                            temp2sys.SetName(h_string+key_sample+"__"+syst)
-                            fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
-                            del temp2sys
+                    if subcat == 'WJetsMVA_chi2':
+                        for syst in systematic_direction_otherbkgs:
+                            cut = str(cut_string+' & ttagN==0 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
+                            print "Processing: ",key_sample
+                            print "Applying cut:",cut
+                            if syst == 'nominal':
+                                temp2 = TH1F("temp2","temp2",30,100,2000)
+                                mytree.Draw("invmass>>temp2",cut)
+                                temp2.SetName(h_string+key_sample)
+                                fout.WriteObject(temp2,h_string+key_sample)
+                                del temp2
+                            elif 'nominal' not in syst:
+                                temp2sys = TH1F("temp2sys","temp2sys",30,100,2000)
+                                mytree.Draw("invmass>>temp2sys",cut)
+                                temp2sys.SetName(h_string+key_sample+"__"+syst)
+                                fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
+                                del temp2sys
+                    else:
+                        for syst in systematic_direction_wjets:
+                            cut = str(cut_string+' & ttagN==0 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
+                            print "Processing: ",key_sample
+                            print "Applying cut:",cut
+                            if syst == 'nominal':
+                                temp2 = TH1F("temp2","temp2",30,100,2000)
+                                mytree.Draw("invmass>>temp2",cut)
+                                temp2.SetName(h_string+key_sample)
+                                fout.WriteObject(temp2,h_string+key_sample)
+                                del temp2
+                            elif 'nominal' not in syst:
+                                temp2sys = TH1F("temp2sys","temp2sys",30,100,2000)
+                                mytree.Draw("invmass>>temp2sys",cut)
+                                temp2sys.SetName(h_string+key_sample+"__"+syst)
+                                fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
+                                del temp2sys
                 elif 'zjets' or 'diboson' or 'others' or 'wjets_b' or 'wjets_c' or 'qcd' in key_sample:
                     for syst in systematic_direction_otherbkgs:
                         cut = str(cut_string+' & ttagN==0 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
