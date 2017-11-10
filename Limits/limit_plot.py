@@ -2,6 +2,7 @@
 from ROOT import ROOT, TCanvas, TColor, TGraph, TLegend, TPaveText, TString, TLine
 from read_input_file import *
 from theory_XsecBR_2016 import *
+ROOT.gROOT.SetBatch()
 
 kWhite      = 0     #FFFFFF
 kBlack      = 1     #000000
@@ -103,7 +104,7 @@ def limit_canvas(limits_, signal_, oname_):
     leg.AddEntry(g68,'#pm1#sigma Expected','f')
     leg.AddEntry(g95,'#pm2#sigma Expected','f')
 
-    text_TL = TPaveText(0.14,0.830,0.44,0.900,'NDC')
+    text_TL = TPaveText(0.18,0.830,0.44,0.900,'NDC')
     text_TL.AddText(label_TL)
     text_TL.SetFillColor(0)
     text_TL.SetTextAlign(12)

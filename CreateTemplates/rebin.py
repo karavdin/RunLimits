@@ -150,7 +150,7 @@ def binFile(rerror, filename, xtitle, backgrounds):
 
     # print all the histograms for all the channels
     for key in h_bkg:
-        #print key
+        print h_bkg[key]
         binning = array.array('d', computeBinning(h_bkg[key], rerror))
         h_bkg[key] = h_bkg[key].Rebin(len(binning)-1, h_bkg[key].GetName(), binning)
         h_data[key] = h_data[key].Rebin(len(binning)-1, h_data[key].GetName(), binning)

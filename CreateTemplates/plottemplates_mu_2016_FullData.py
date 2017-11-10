@@ -7,17 +7,28 @@ import numpy
 #'nominal'
 #systematic_direction={'__pileup','__toptag','__mistoptag','__muID','__muTRK','__muHLT'}
 #systematic_direction={'__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1','__csv_hfstats2','__csv_jes','__csv_lf','__csv_lfstats1','__csv_lfstats2'}
-systematic_direction={'__q2ttbar'} #ttbar
+systematic_direction={'__pileup','__toptag','__mistoptag','__muID','__muTRK','__muHLT','__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1','__csv_hfstats2','__csv_jes','__csv_lf','__csv_lfstats1','__csv_lfstats2','__q2ttbar','__q2wjets','__jec','__jer'}
+#systematic_direction={'__q2ttbar'} #ttbar
 #systematic_direction={'__q2wjets'} #wjets
 
-#samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','diboson'}
-samplelist = {'ttbar'}
+samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','diboson','qcd'}
+#samplelist = {'wjets_c','wjets_b','diboson'}
+#samplelist = {'ttbar'}
 #samplelist = {'ttbar','wjets_l'}
 #samplelist = {'wjets_l'}
 
-
-categories=['mu_1top_WJetsMVA_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','mu_0top_antiWJetsMVA3_antichi2_mttbar__','mu_0top_antiWJetsMVA2_antichi2_mttbar__']
-fin = TFile('mu_theta_bdt0p5_chi30_rebinned_addedQ2.root', 'open')
+#categories=['el_0top0btag_mttbar__','el_0top0btag_mttbar_highChi2__','el_1top_mttbar__','el_1top_mttbar_highChi2__','el_0top1btag_mttbar__','el_0top1btag_mttbar_highChi2__']
+#categories=['el_0top0btag_mttbar__','el_0top0btag_mttbar_highChi2__','el_0top1btag_mttbar__','el_0top1btag_mttbar_highChi2__']
+#categories=['ele_1top_WJetsMVA_mttbar__','ele_0top_WJetsMVA_mttbar__','ele_1top_antiWJetsMVA_mttbar__','ele_0top_antiWJetsMVA_mttbar__']
+#categories=['mu_0top0btag_mttbar__','mu_0top0btag_mttbar_highChi2__','mu_1top_mttbar__','mu_1top_mttbar_highChi2__','mu_0top1btag_mttbar__','mu_0top1btag_mttbar_highChi2__']
+#categories=['mu_1top_WJetsMVA_mttbar__','mu_0top_WJetsMVA_mttbar__','mu_1top_antiWJetsMVA_mttbar__','mu_0top_antiWJetsMVA_mttbar__']
+#categories=['mu_1top_WJetsMVA_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','mu_1top_antiWJetsMVA_chi2_mttbar__','mu_0top_antiWJetsMVA_chi2_mttbar__','mu_1top_WJetsMVA_antichi2_mttbar__','mu_0top_WJetsMVA_antichi2_mttbar__','mu_1top_antiWJetsMVA_antichi2_mttbar__','mu_0top_antiWJetsMVA_antichi2_mttbar__']
+#categories=['mu_1top_WJetsMVA_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','mu_1top_antiWJetsMVA_chi2_mttbar__','mu_0top_antiWJetsMVA_chi2_mttbar__','mu_01top_WJetsMVA_antichi2_mttbar__','mu_01top_antiWJetsMVA_antichi2_mttbar__']
+categories=['mu_1top_WJetsMVA_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','mu_0top_antiWJetsMVA2_antichi2_mttbar__','mu_0top_antiWJetsMVA3_antichi2_mttbar__']
+#categories=['ele_1top_antiWJetsMVA_mttbar__']
+#fin = TFile('el_theta_20170519.root', 'open')
+#fin = TFile('ele_theta_bdt0p5_chi30_rebinned.root', 'open')
+fin = TFile('mu_theta_bdt0p5_chi30_rebinned.root', 'open')
 nominalhist = {}
 nominalhistDraw = {}
 systvarhist = {}
@@ -32,15 +43,22 @@ gROOT.SetBatch(kTRUE)
 for samp in samplelist:
     for cat in categories:
         nominalhist[cat+samp] = fin.Get(cat+samp)
-        print "Work with ", cat+samp
+        print "Work with ", cat+samp,fin.Get(cat+samp)
         print "Number of events ", nominalhist[cat+samp].GetEntries()
         if(nominalhist[cat+samp].GetEntries()>0):
             for syst in systematic_direction:
                 print 'systematc: ', syst
+                if not fin.Get(cat+samp+syst+'__plus'):
+                    print cat+samp+syst+'__plus is NULL'
+                    continue
+                if not fin.Get(cat+samp+syst+'__minus'):
+                    print cat+samp+syst+'__minus is NULL'
+                    continue
                 canvas_Bkg[cat+samp+syst] = TCanvas("SystVariation_"+cat+samp+syst,"SystVariation_"+cat+samp+syst,800,600)
             #            legend = TLegend(.54,.70,.99,.95) 
 #                legend = TLegend(.34,.70,.99,.99) 
-                legend = TLegend(.50,.70,.99,.99) 
+                legend = TLegend(.50,.70,.99,.99)
+                legend.SetFillColor(kWhite)
                 gStyle.SetOptStat(0)
                 gStyle.SetOptTitle(0)
                 
@@ -59,21 +77,22 @@ for samp in samplelist:
                 systvarhist[cat+samp+syst+'__minus'].Print()
                 
                 print "Now we're going through ", cat+samp+syst
-                systvarhistDraw[cat+samp+syst+'__plus'] = systvarhist[cat+samp+syst+'__plus'].DrawClone('ep')
+                systvarhist[cat+samp+syst+'__plus'].SetMaximum(1.2*max([systvarhist[cat+samp+syst+'__plus'].GetMaximum(),systvarhist[cat+samp+syst+'__minus'].GetMaximum(),nominalhist[cat+samp].GetMaximum()]))
+                systvarhistDraw[cat+samp+syst+'__plus'] = systvarhist[cat+samp+syst+'__plus'].DrawClone('hist')
                 systvarhistDraw[cat+samp+syst+'__plus'].GetXaxis().SetTitle("M_{ttbar}, GeV")
-                systvarhistDraw[cat+samp+syst+'__plus'].GetXaxis().SetRangeUser(0,3000)
+                systvarhistDraw[cat+samp+syst+'__plus'].GetXaxis().SetRangeUser(0,2000)
 
 #                systvarhistDraw[cat+samp+syst+'__plus'].GetYaxis().SetRangeUser(0,500)
                 systvarhistDraw[cat+samp+syst+'__plus'].SetMarkerColor(kRed)
                 systvarhistDraw[cat+samp+syst+'__plus'].SetMarkerStyle(21)
                 systvarhistDraw[cat+samp+syst+'__plus'].SetLineColor(kRed)
                 
-                systvarhistDraw[cat+samp+syst+'__minus'] = systvarhist[cat+samp+syst+'__minus'].DrawClone('same')
+                systvarhistDraw[cat+samp+syst+'__minus'] = systvarhist[cat+samp+syst+'__minus'].DrawClone('hist same')
                 systvarhistDraw[cat+samp+syst+'__minus'].SetMarkerColor(kBlue)
                 systvarhistDraw[cat+samp+syst+'__minus'].SetMarkerStyle(21)
                 systvarhistDraw[cat+samp+syst+'__minus'].SetLineColor(kBlue)
 
-                nominalhistDraw[cat+samp] = nominalhist[cat+samp].DrawClone('same')
+                nominalhistDraw[cat+samp] = nominalhist[cat+samp].DrawClone('ep same')
                 nominalhistDraw[cat+samp].GetXaxis().SetTitle("M_{ttbar}, GeV")
                 nominalhistDraw[cat+samp].SetMarkerStyle(20)
                 nominalhistDraw[cat+samp].SetMarkerSize(1.5)
@@ -98,7 +117,6 @@ for samp in samplelist:
                 systvarhistRatio[cat+samp+syst+'__plus__ratio']  = systvarhistDraw[cat+samp+syst+'__plus'].Clone(cat+samp+syst+'__plus__ratio')
                 systvarhistRatio[cat+samp+syst+'__plus__ratio'].Divide(nominalhistDraw[cat+samp])
                 systvarhistRatio[cat+samp+syst+'__plus__ratio'].GetYaxis().SetRangeUser(0.6,1.4)
-#                systvarhistRatio[cat+samp+syst+'__plus__ratio'].GetYaxis().SetRangeUser(0.9,1.1)
                 systvarhistRatio[cat+samp+syst+'__plus__ratio'].GetYaxis().SetNdivisions(5,5,0)
                 systvarhistRatio[cat+samp+syst+'__plus__ratio'].GetYaxis().SetLabelSize(0.12)
                 systvarhistRatio[cat+samp+syst+'__plus__ratio'].GetXaxis().SetLabelSize(0.12)

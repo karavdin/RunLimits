@@ -2,7 +2,7 @@
 import ROOT
 #from ROOT import ROOT, TCanvas, TGraph, TGraphAsymmErrors, TPaveText, TColor
 from ROOT import TGraph, TGraphAsymmErrors, TCanvas, TGraph, TGraphAsymmErrors, TPaveText, TColor
-
+ROOT.gROOT.SetBatch()
 label_TL = '#font[62]{CMS}'
 
 class parameter:

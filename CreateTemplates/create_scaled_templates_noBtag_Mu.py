@@ -65,22 +65,23 @@ systematic_direction_signal= {'nominal':'(weight_sfmu_ID)*(weight_pu)*(weight_sf
                              'mistoptag__minus':'(weight_pu)*(wgtMC__ttagSF_dnL)*(weight_sfmu_TRK)*(weight_sfmu_ID)*(weight_sfmu_HLT)*(wgtMC__ttagSF_ct)',
 }         
 
-
-samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA.root',
-#'singletop':'uhh2.AnalysisModuleRunner.MC.SingleTop.root','diboson':'uhh2.AnalysisModuleRunner.MC.Diboson.root',
-#'zjets':'uhh2.AnalysisModuleRunner.MC.DYJets.root',
-'diboson':'uhh2.AnalysisModuleRunner.MC.ST_+_DY_+_VV.root',
-#'wjets':'uhh2.AnalysisModuleRunner.MC.WJets.root',
-'wjets_l':'uhh2.AnalysisModuleRunner.MC.WJets__L.root',
-'wjets_b':'uhh2.AnalysisModuleRunner.MC.WJets__B.root',
-'wjets_c':'uhh2.AnalysisModuleRunner.MC.WJets__C.root',
-'ttbar':'uhh2.AnalysisModuleRunner.MC.TTbar.root',
-'Zprime0500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M0500.root','Zprime4000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M4000.root',
-'Zprime1000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M1000.root','Zprime1500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M1500.root',
-'Zprime2500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M2500.root', 'Zprime2000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M2000.root',
-'Zprime3000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M3000.root' ,
-'Zprime3500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M3500.root'}
-categories=['T1','T0','T01']
+inputdir="/uscms_data/d2/drberry/ZPrimeSemiLeptonic_2016/CMSSW_8_0_24_patch1/test/UHH2/ZprimeSemiLeptonic/config/TTbarLJAnalysisLiteResults/"
+samplelist = {'DATA':'TTbarLJAnalysis.DATA_SingleMuon.root',
+#'singletop':'TTbarLJAnalysis.SingleTop.root','diboson':'TTbarLJAnalysis.Diboson.root',
+#'zjets':'TTbarLJAnalysis.DYJets.root',
+#'diboson':'TTbarLJAnalysis.Others.root',
+#'wjets':'TTbarLJAnalysis.WJets.root',
+'wjets_l':'TTbarLJAnalysis.WJets__L.root',
+'wjets_b':'TTbarLJAnalysis.WJets__B.root',
+'wjets_c':'TTbarLJAnalysis.WJets__C.root',
+'ttbar':'TTbarLJAnalysis.TTbar.root',
+'Zprime0500':'TTbarLJAnalysis.ZprimeToTT_01w_M0500.root','Zprime4000':'TTbarLJAnalysis.ZprimeToTT_01w_M4000.root',
+'Zprime1000':'TTbarLJAnalysis.ZprimeToTT_01w_M1000.root','Zprime1500':'TTbarLJAnalysis.ZprimeToTT_01w_M1500.root',
+'Zprime2500':'TTbarLJAnalysis.ZprimeToTT_01w_M2500.root', 'Zprime2000':'TTbarLJAnalysis.ZprimeToTT_01w_M2000.root',
+'Zprime3000':'TTbarLJAnalysis.ZprimeToTT_01w_M3000.root' ,
+'Zprime3500':'TTbarLJAnalysis.ZprimeToTT_01w_M3500.root'}
+#categories=['T1','T0','T01']
+categories=['T1','T0']
 #subcategories=['WJetsMVA','antiWJetsMVA']
 subcategories=['WJetsMVA_chi2','antiWJetsMVA_chi2']
 subcategories2=['WJetsMVA_antichi2','antiWJetsMVA_antichi2']
@@ -88,7 +89,7 @@ subcategories2=['WJetsMVA_antichi2','antiWJetsMVA_antichi2']
 fout = TFile('mu_theta_bdt0p5_chi30.root', 'recreate')
 gROOT.SetBatch(kTRUE)
 for cat in categories:
-#    cut_string='(muoN==1 & rec_chi2<30 & WJets_TMVA_response>=0.5'
+#    cut_string='(muoN==1 & H_Rec_chi2<30 & WJets_TMVA_response>=0.5'
     cut_string_GL='(muoN==1 & '
     if cat == 'T01':
         h_string_GL='mu_01top_'
@@ -100,20 +101,20 @@ for cat in categories:
             #     cut_string = cut_string_GL+' WJets_TMVA_response<0.5' 
             #     h_string = h_string_GL + 'antiWJetsMVA_mttbar__' 
             if subcat == 'WJetsMVA_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & rec_chi2<30  '
+                cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & H_Rec_chi2<30  '
                 h_string = h_string_GL + 'WJetsMVA_chi2_mttbar__' 
             if subcat == 'antiWJetsMVA_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & rec_chi2<30 ' 
+                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & H_Rec_chi2<30 ' 
                 h_string = h_string_GL + 'antiWJetsMVA_chi2_mttbar__' 
             if subcat == 'WJetsMVA_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & rec_chi2>=30 '
+                cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & H_Rec_chi2>=30 '
                 h_string = h_string_GL + 'WJetsMVA_antichi2_mttbar__' 
             if subcat == 'antiWJetsMVA_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & rec_chi2>=30 ' 
+                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & H_Rec_chi2>=30 ' 
                 h_string = h_string_GL + 'antiWJetsMVA_antichi2_mttbar__' 
 
             for key_sample in samplelist:
-                myfile = TFile(samplelist[key_sample])
+                myfile = TFile(inputdir+samplelist[key_sample])
                 print "opening", myfile
                 mytree = myfile.Get("AnalysisTree")
                 print "getting", mytree
@@ -216,20 +217,20 @@ for cat in categories:
             #     cut_string = cut_string_GL+' WJets_TMVA_response<0.5' 
             #     h_string = h_string_GL + 'antiWJetsMVA_mttbar__' 
             if subcat == 'WJetsMVA_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & rec_chi2<30  '
+                cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & H_Rec_chi2<30  '
                 h_string = h_string_GL + 'WJetsMVA_chi2_mttbar__' 
             if subcat == 'antiWJetsMVA_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & rec_chi2<30 ' 
+                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & H_Rec_chi2<30 ' 
                 h_string = h_string_GL + 'antiWJetsMVA_chi2_mttbar__' 
             if subcat == 'WJetsMVA_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & rec_chi2>=30 '
+                cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & H_Rec_chi2>=30 '
                 h_string = h_string_GL + 'WJetsMVA_antichi2_mttbar__' 
             if subcat == 'antiWJetsMVA_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & rec_chi2>=30 ' 
+                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & H_Rec_chi2>=30 ' 
                 h_string = h_string_GL + 'antiWJetsMVA_antichi2_mttbar__' 
 
             for key_sample in samplelist:
-                myfile = TFile(samplelist[key_sample])
+                myfile = TFile(inputdir+samplelist[key_sample])
                 print "opening", myfile
                 mytree = myfile.Get("AnalysisTree")
                 print "getting", mytree
@@ -331,21 +332,21 @@ for cat in categories:
             #     cut_string = cut_string_GL+' WJets_TMVA_response<0.5' 
             #     h_string = h_string_GL + 'antiWJetsMVA_mttbar__' 
             if subcat == 'WJetsMVA_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & rec_chi2<30  '
+                cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & H_Rec_chi2<30  '
                 h_string = h_string_GL + 'WJetsMVA_chi2_mttbar__' 
             if subcat == 'antiWJetsMVA_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & rec_chi2<30 ' 
+                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & H_Rec_chi2<30 ' 
                 h_string = h_string_GL + 'antiWJetsMVA_chi2_mttbar__' 
             if subcat == 'WJetsMVA_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & rec_chi2>=30 '
+                cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & H_Rec_chi2>=30 '
                 h_string = h_string_GL + 'WJetsMVA_antichi2_mttbar__' 
             if subcat == 'antiWJetsMVA_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & rec_chi2>=30 ' 
+                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & H_Rec_chi2>=30 ' 
                 h_string = h_string_GL + 'antiWJetsMVA_antichi2_mttbar__' 
 
 
             for key_sample in samplelist:
-                myfile = TFile(samplelist[key_sample])
+                myfile = TFile(inputdir+samplelist[key_sample])
                 print "opening", myfile
                 mytree = myfile.Get("AnalysisTree")
                 print "getting", mytree
