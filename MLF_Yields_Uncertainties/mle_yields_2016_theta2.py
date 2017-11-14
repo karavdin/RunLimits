@@ -1,9 +1,10 @@
 #! /usr/bin/env pythonDWE
 ### Filter definitions ###
 print 'Hello MLE'
-ele_ifile = ['ele_theta_bdt0p5_chi30_rebinned_addedQ2.root']
-muo_ifile = ['mu_theta_bdt0p5_chi30_rebinned_addedQ2.root']
-lep_ifile = ['lep_theta_bdt0p5_chi30_rebinned_addedQ2.root']
+ele_ifile = ['ele_theta_bdt0p5_chi30_rebinned_addedQ2_addedPDF.root']
+muo_ifile = ['mu_theta_bdt0p5_chi30_rebinned_addedQ2_addedPDF.root']
+#muo_ifile = ['mu_theta_bdt0p5_chi30_rebinned_addedQ2.root']
+lep_ifile = ['lep_theta_bdt0p5_chi30_rebinned_addedQ2_addedPDF.root']
 
 def narrow_resonances(hname):
     if not ('RSgluon' in hname or 'Zprime' in hname): return True

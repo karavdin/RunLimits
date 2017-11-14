@@ -1,8 +1,12 @@
+# script to estimate variation for flat "shape" systematics in the channels/categories with limited stats
+# copy of create_scaled_templates_CSV_EG.py script with 1 Mttbar bin
+
 from ROOT import *
 import sys
 import numpy
 ct = '(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)'
 addPDF = True
+#addPDF = False
 
 systematic_direction_ttbar={'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'pileup__plus':'(weight_sfelec_ID)*(weight_pu_up)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
@@ -11,8 +15,8 @@ systematic_direction_ttbar={'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_sf
                             'elecID__minus':'(weight_sfelec_ID_down)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'elecTRK__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf_up)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',              
                             'elecTRK__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf_down)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-#                            'elecHLT__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT_up)*(wgtMC__ttagSF_ct)*(weight_csv_central)',                           
-#                            'elecHLT__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT_down)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'elecHLT__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT_up)*(wgtMC__ttagSF_ct)*(weight_csv_central)',      
+                            'elecHLT__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT_down)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'toptag__plus':'(weight_pu)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
                             'toptag__minus':'(weight_pu)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',      
                             'mistoptag__plus':'(weight_pu)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
@@ -42,12 +46,6 @@ systematic_direction_ttbar={'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_sf
                             'q2ttbarMuRupMuFct__plus':'(wgtMC__muR_up__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
                             'q2ttbarMuRctMuFdn__plus':'(wgtMC__muR_ct__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
                             'q2ttbarMuRctMuFup__plus':'(wgtMC__muR_ct__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2ttbarMuRdnMuFdn__minus':'(wgtMC__muR_dn__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2ttbarMuRupMuFup__minus':'(wgtMC__muR_up__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2ttbarMuRdnMuFct__minus':'(wgtMC__muR_dn__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2ttbarMuRupMuFct__minus':'(wgtMC__muR_up__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2ttbarMuRctMuFdn__minus':'(wgtMC__muR_ct__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2ttbarMuRctMuFup__minus':'(wgtMC__muR_ct__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
                             #add JEC and JER
                             'jec__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'jec__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
@@ -61,8 +59,8 @@ systematic_direction_wjets={'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_sf
                             'elecID__minus':'(weight_sfelec_ID_down)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'elecTRK__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf_up)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'elecTRK__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf_down)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
- #                           'elecHLT__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT_up)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
- #                           'elecHLT__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT_down)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'elecHLT__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT_up)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'elecHLT__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT_down)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'toptag__plus':'(weight_pu)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
                             'toptag__minus':'(weight_pu)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
                             'mistoptag__plus':'(weight_pu)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
@@ -92,12 +90,6 @@ systematic_direction_wjets={'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_sf
                             'q2wjetsMuRupMuFct__plus':'(wgtMC__muR_up__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
                             'q2wjetsMuRctMuFdn__plus':'(wgtMC__muR_ct__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
                             'q2wjetsMuRctMuFup__plus':'(wgtMC__muR_ct__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjetsMuRdnMuFdn__minus':'(wgtMC__muR_dn__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjetsMuRupMuFup__minus':'(wgtMC__muR_up__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjetsMuRdnMuFct__minus':'(wgtMC__muR_dn__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjetsMuRupMuFct__minus':'(wgtMC__muR_up__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjetsMuRctMuFdn__minus':'(wgtMC__muR_ct__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjetsMuRctMuFup__minus':'(wgtMC__muR_ct__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',   
                             #add JEC and JER
                             'jec__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'jec__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
@@ -111,8 +103,8 @@ systematic_direction_otherbkgs = {'nominal':'(weight_sfelec_ID)*(weight_pu)*(wei
                             'elecID__minus':'(weight_sfelec_ID_down)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'elecTRK__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf_up)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'elecTRK__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf_down)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
- #                           'elecHLT__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT_up)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
- #                           'elecHLT__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT_down)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'elecHLT__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT_up)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'elecHLT__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT_down)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'toptag__plus':'(weight_pu)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
                             'toptag__minus':'(weight_pu)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
                             'mistoptag__plus':'(weight_pu)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
@@ -135,19 +127,6 @@ systematic_direction_otherbkgs = {'nominal':'(weight_sfelec_ID)*(weight_pu)*(wei
                             'csv_lfstats1__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats1down)',
                             'csv_lfstats2__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats2up)', 
                             'csv_lfstats2__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats2down)',
-                             #add q2 variations. "plus" to not break the next script for rebinning
-                            'q2wjetsMuRdnMuFdn__plus':'(wgtMC__muR_dn__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            'q2wjetsMuRupMuFup__plus':'(wgtMC__muR_up__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            'q2wjetsMuRdnMuFct__plus':'(wgtMC__muR_dn__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            'q2wjetsMuRupMuFct__plus':'(wgtMC__muR_up__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            'q2wjetsMuRctMuFdn__plus':'(wgtMC__muR_ct__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            'q2wjetsMuRctMuFup__plus':'(wgtMC__muR_ct__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjetsMuRdnMuFdn__minus':'(wgtMC__muR_dn__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjetsMuRupMuFup__minus':'(wgtMC__muR_up__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjetsMuRdnMuFct__minus':'(wgtMC__muR_dn__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjetsMuRupMuFct__minus':'(wgtMC__muR_up__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjetsMuRctMuFdn__minus':'(wgtMC__muR_ct__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            # 'q2wjetsMuRctMuFup__minus':'(wgtMC__muR_ct__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',   
                             #add JEC and JER
                             'jec__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'jec__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
@@ -162,8 +141,8 @@ systematic_direction_signal= {'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_
                               'elecID__minus':'(weight_sfelec_ID_down)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                               'elecTRK__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf_up)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)', 
                               'elecTRK__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf_down)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-                              #                             'elecHLT__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT_up)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-                              #                             'elecHLT__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT_down)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                              'elecHLT__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT_up)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                              'elecHLT__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT_down)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                               'toptag__plus':'(weight_pu)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)', 
                               'toptag__minus':'(weight_pu)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',   
                               'mistoptag__plus':'(weight_pu)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
@@ -195,7 +174,7 @@ systematic_direction_signal= {'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_
 
 if addPDF:
     for i in range(244):
-    #for i in range(300):
+    #for i in range(100):
         pdfstring  = '*(wgtMC__PDF['+str(i)+'])'
         systematic_direction_ttbar['wgtMCPDF_'+str(i)+'__plus'] = ct+pdfstring
         systematic_direction_wjets['wgtMCPDF_'+str(i)+'__plus'] = ct+pdfstring
@@ -250,7 +229,7 @@ for cat in categories:
                     cut = str(cut_string+' & ttagN==1   & btagN>=0)')
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
-                    tempdata = TH1F("tempdata","tempdata",30,100,2000)
+                    tempdata = TH1F("tempdata","tempdata",1,100,2000)
                     mytree.Draw("invmass>>tempdata",cut)
                     tempdata.SetName(h_string+key_sample)
                     tempdata.Print()
@@ -262,7 +241,7 @@ for cat in categories:
                         print "Processing: ",key_sample
                         print "Applying cut:",cut
                         if syst == 'nominal':
-                            temp = TH1F("temp","temp",30,100,2000)
+                            temp = TH1F("temp","temp",1,100,2000)
                             mytree.Draw("invmass>>temp",cut)
                             temp.SetName(h_string+key_sample)
                             print "Rebinning T1 nom:", str(temp.GetNbinsX())
@@ -282,14 +261,14 @@ for cat in categories:
                                 je_file = TFile(jerdowndir+samplelist[key_sample])
                                 je_tree = je_file.Get("AnalysisTree")
                             je_tree.SetAlias("invmass","Mttbar")
-                            tempsys = TH1F("tempsys","tempsys",30,100,2000)
+                            tempsys = TH1F("tempsys","tempsys",1,100,2000)
                             je_tree.Draw("invmass>>tempsys",cut)
                             tempsys.SetName(h_string+key_sample+"__"+syst)
                             print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
                             fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                             del tempsys
                         elif 'nominal' not in syst:
-                            tempsys = TH1F("tempsys","tempsys",30,100,2000)
+                            tempsys = TH1F("tempsys","tempsys",1,100,2000)
                             mytree.Draw("invmass>>tempsys",cut)
                             tempsys.SetName(h_string+key_sample+"__"+syst)
                             print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
@@ -301,7 +280,7 @@ for cat in categories:
                         print "Processing: ",key_sample
                         print "Applying cut:",cut
                         if syst == 'nominal':
-                            temp = TH1F("temp","temp",30,100,2000)
+                            temp = TH1F("temp","temp",1,100,2000)
                             mytree.Draw("invmass>>temp",cut)
                             temp.SetName(h_string+key_sample)
                             print "Rebinning T1 nom:", str(temp.GetNbinsX())
@@ -321,27 +300,29 @@ for cat in categories:
                                 je_file = TFile(jerdowndir+samplelist[key_sample])
                                 je_tree = je_file.Get("AnalysisTree")
                             je_tree.SetAlias("invmass","Mttbar")
-                            tempsys = TH1F("tempsys","tempsys",30,100,2000)
+                            tempsys = TH1F("tempsys","tempsys",1,100,2000)
                             je_tree.Draw("invmass>>tempsys",cut)
                             tempsys.SetName(h_string+key_sample+"__"+syst)
                             print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
                             fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                             del tempsys
                         elif 'nominal' not in syst:
-                            tempsys = TH1F("tempsys","tempsys",30,100,2000)
+                            tempsys = TH1F("tempsys","tempsys",1,100,2000)
                             mytree.Draw("invmass>>tempsys",cut)
                             tempsys.SetName(h_string+key_sample+"__"+syst)
                             print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
                             fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                             del tempsys
-                elif 'wjets_l' in key_sample:
+                #elif 'wjets_l' in key_sample:
+                elif 'wjets' in key_sample:
                     if subcat == 'WJetsMVA_chi2':
-                        for syst in systematic_direction_otherbkgs:
+                        #for syst in systematic_direction_otherbkgs:
+                        for syst in systematic_direction_wjets:
                             cut = str(cut_string+' &  ttagN==1 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
                             print "Processing: ",key_sample
                             print "Applying cut:",cut
                             if syst == 'nominal':
-                                temp = TH1F("temp","temp",30,100,2000)
+                                temp = TH1F("temp","temp",1,100,2000)
                                 mytree.Draw("invmass>>temp",cut)
                                 temp.SetName(h_string+key_sample)
                                 print "Rebinning T1 nom:", str(temp.GetNbinsX())
@@ -361,14 +342,14 @@ for cat in categories:
                                     je_file = TFile(jerdowndir+samplelist[key_sample])
                                     je_tree = je_file.Get("AnalysisTree")
                                 je_tree.SetAlias("invmass","Mttbar")
-                                tempsys = TH1F("tempsys","tempsys",30,100,2000)
+                                tempsys = TH1F("tempsys","tempsys",1,100,2000)
                                 je_tree.Draw("invmass>>tempsys",cut)
                                 tempsys.SetName(h_string+key_sample+"__"+syst)
                                 print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
                                 fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                                 del tempsys
                             elif 'nominal' not in syst:
-                                tempsys = TH1F("tempsys","tempsys",30,100,2000)
+                                tempsys = TH1F("tempsys","tempsys",1,100,2000)
                                 mytree.Draw("invmass>>tempsys",cut)
                                 tempsys.SetName(h_string+key_sample+"__"+syst)
                                 print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
@@ -381,7 +362,7 @@ for cat in categories:
                             print "Processing: ",key_sample
                             print "Applying cut:",cut
                             if syst == 'nominal':
-                                temp = TH1F("temp","temp",30,100,2000)
+                                temp = TH1F("temp","temp",1,100,2000)
                                 mytree.Draw("invmass>>temp",cut)
                                 temp.SetName(h_string+key_sample)
                                 print "Rebinning T1 nom:", str(temp.GetNbinsX())
@@ -401,26 +382,26 @@ for cat in categories:
                                     je_file = TFile(jerdowndir+samplelist[key_sample])
                                     je_tree = je_file.Get("AnalysisTree")
                                 je_tree.SetAlias("invmass","Mttbar")
-                                tempsys = TH1F("tempsys","tempsys",30,100,2000)
+                                tempsys = TH1F("tempsys","tempsys",1,100,2000)
                                 je_tree.Draw("invmass>>tempsys",cut)
                                 tempsys.SetName(h_string+key_sample+"__"+syst)
                                 print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
                                 fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                                 del tempsys
                             elif 'nominal' not in syst:
-                                tempsys = TH1F("tempsys","tempsys",30,100,2000)
+                                tempsys = TH1F("tempsys","tempsys",1,100,2000)
                                 mytree.Draw("invmass>>tempsys",cut)
                                 tempsys.SetName(h_string+key_sample+"__"+syst)
                                 print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
                                 fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                                 del tempsys
-                elif 'zjets' or 'diboson' or 'others' or 'wjets_b' or 'wjets_c' in key_sample:
+                elif 'zjets' or 'diboson' or 'others' or 'qcd' in key_sample:
                     for syst in systematic_direction_otherbkgs:
                         cut = str(cut_string+' & ttagN==1 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
                         print "Processing: ",key_sample
                         print "Applying cut:",cut
                         if syst == 'nominal':
-                            temp = TH1F("temp","temp",30,100,2000)
+                            temp = TH1F("temp","temp",1,100,2000)
                             mytree.Draw("invmass>>temp",cut)
                             temp.SetName(h_string+key_sample)
                             print "Rebinning T1 nom:", str(temp.GetNbinsX())
@@ -440,14 +421,14 @@ for cat in categories:
                                     je_file = TFile(jerdowndir+samplelist[key_sample])
                                     je_tree = je_file.Get("AnalysisTree")
                                 je_tree.SetAlias("invmass","Mttbar")
-                                tempsys = TH1F("tempsys","tempsys",30,100,2000)
+                                tempsys = TH1F("tempsys","tempsys",1,100,2000)
                                 je_tree.Draw("invmass>>tempsys",cut)
                                 tempsys.SetName(h_string+key_sample+"__"+syst)
                                 print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
                                 fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                                 del tempsys
                         elif 'nominal' not in syst:
-                            tempsys = TH1F("tempsys","tempsys",30,100,2000)
+                            tempsys = TH1F("tempsys","tempsys",1,100,2000)
                             mytree.Draw("invmass>>tempsys",cut)
                             tempsys.SetName(h_string+key_sample+"__"+syst)
                             print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
@@ -477,7 +458,7 @@ for cat in categories:
                     cut = str(cut_string+' & ttagN==0 & btagN>=0)')
                     print "Processing: ",key_sample
                     print "Applying cut:",cut
-                    temp2data = TH1F("temp2data","temp2data",30,100,2000)
+                    temp2data = TH1F("temp2data","temp2data",1,100,2000)
                     mytree.Draw("invmass>>temp2data",cut)
                     temp2data.SetName(h_string+key_sample)
                     temp2data.Print()
@@ -489,7 +470,7 @@ for cat in categories:
                         print "Processing: ",key_sample
                         print "Applying cut:",cut
                         if syst == 'nominal':
-                            temp2 = TH1F("temp2","temp2",30,100,2000)
+                            temp2 = TH1F("temp2","temp2",1,100,2000)
                             mytree.Draw("invmass>>temp2",cut)
                             temp2.SetName(h_string+key_sample)
                             fout.WriteObject(temp2,h_string+key_sample)
@@ -508,14 +489,14 @@ for cat in categories:
                                 je_file = TFile(jerdowndir+samplelist[key_sample])
                                 je_tree = je_file.Get("AnalysisTree")
                             je_tree.SetAlias("invmass","Mttbar")
-                            tempsys = TH1F("tempsys","tempsys",30,100,2000)
+                            tempsys = TH1F("tempsys","tempsys",1,100,2000)
                             je_tree.Draw("invmass>>tempsys",cut)
                             tempsys.SetName(h_string+key_sample+"__"+syst)
                             print "Rebinning T0 nom+sys:", str(tempsys.GetNbinsX())
                             fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                             del tempsys
                         elif 'nominal' not in syst:
-                            temp2sys = TH1F("temp2sys","temp2sys",30,100,2000)
+                            temp2sys = TH1F("temp2sys","temp2sys",1,100,2000)
                             mytree.Draw("invmass>>temp2sys",cut)
                             temp2sys.SetName(h_string+key_sample+"__"+syst)
                             fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
@@ -526,7 +507,7 @@ for cat in categories:
                         print "Processing: ",key_sample
                         print "Applying cut:",cut
                         if syst == 'nominal':
-                            temp2 = TH1F("temp2","temp2",30,100,2000)
+                            temp2 = TH1F("temp2","temp2",1,100,2000)
                             mytree.Draw("invmass>>temp2",cut)
                             temp2.SetName(h_string+key_sample)
                             fout.WriteObject(temp2,h_string+key_sample)
@@ -545,26 +526,28 @@ for cat in categories:
                                 je_file = TFile(jerdowndir+samplelist[key_sample])
                                 je_tree = je_file.Get("AnalysisTree")
                             je_tree.SetAlias("invmass","Mttbar")
-                            tempsys = TH1F("tempsys","tempsys",30,100,2000)
+                            tempsys = TH1F("tempsys","tempsys",1,100,2000)
                             je_tree.Draw("invmass>>tempsys",cut)
                             tempsys.SetName(h_string+key_sample+"__"+syst)
                             print "Rebinning T0 nom+sys:", str(tempsys.GetNbinsX())
                             fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                             del tempsys
                         elif 'nominal' not in syst:
-                            temp2sys = TH1F("temp2sys","temp2sys",30,100,2000)
+                            temp2sys = TH1F("temp2sys","temp2sys",1,100,2000)
                             mytree.Draw("invmass>>temp2sys",cut)
                             temp2sys.SetName(h_string+key_sample+"__"+syst)
                             fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
                             del temp2sys
-                elif 'wjets_l' in key_sample:
+                #elif 'wjets_l' in key_sample:
+                elif 'wjets' in key_sample:
                     if subcat == 'WJetsMVA_chi2':
-                        for syst in systematic_direction_otherbkgs:
+                        for syst in systematic_direction_wjets:
+#                        for syst in systematic_direction_otherbkgs:
                             cut = str(cut_string+' & ttagN==0 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
                             print "Processing: ",key_sample
                             print "Applying cut:",cut
                             if syst == 'nominal':
-                                temp2 = TH1F("temp2","temp2",30,100,2000)
+                                temp2 = TH1F("temp2","temp2",1,100,2000)
                                 mytree.Draw("invmass>>temp2",cut)
                                 temp2.SetName(h_string+key_sample)
                                 fout.WriteObject(temp2,h_string+key_sample)
@@ -583,14 +566,14 @@ for cat in categories:
                                     je_file = TFile(jerdowndir+samplelist[key_sample])
                                     je_tree = je_file.Get("AnalysisTree")
                                 je_tree.SetAlias("invmass","Mttbar")
-                                tempsys = TH1F("tempsys","tempsys",30,100,2000)
+                                tempsys = TH1F("tempsys","tempsys",1,100,2000)
                                 je_tree.Draw("invmass>>tempsys",cut)
                                 tempsys.SetName(h_string+key_sample+"__"+syst)
                                 print "Rebinning T0 nom+sys:", str(tempsys.GetNbinsX())
                                 fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                                 del tempsys
                             elif 'nominal' not in syst:
-                                temp2sys = TH1F("temp2sys","temp2sys",30,100,2000)
+                                temp2sys = TH1F("temp2sys","temp2sys",1,100,2000)
                                 mytree.Draw("invmass>>temp2sys",cut)
                                 temp2sys.SetName(h_string+key_sample+"__"+syst)
                                 fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
@@ -601,7 +584,7 @@ for cat in categories:
                             print "Processing: ",key_sample
                             print "Applying cut:",cut
                             if syst == 'nominal':
-                                temp2 = TH1F("temp2","temp2",30,100,2000)
+                                temp2 = TH1F("temp2","temp2",1,100,2000)
                                 mytree.Draw("invmass>>temp2",cut)
                                 temp2.SetName(h_string+key_sample)
                                 fout.WriteObject(temp2,h_string+key_sample)
@@ -620,25 +603,25 @@ for cat in categories:
                                     je_file = TFile(jerdowndir+samplelist[key_sample])
                                     je_tree = je_file.Get("AnalysisTree")
                                 je_tree.SetAlias("invmass","Mttbar")
-                                tempsys = TH1F("tempsys","tempsys",30,100,2000)
+                                tempsys = TH1F("tempsys","tempsys",1,100,2000)
                                 je_tree.Draw("invmass>>tempsys",cut)
                                 tempsys.SetName(h_string+key_sample+"__"+syst)
                                 print "Rebinning T0 nom+sys:", str(tempsys.GetNbinsX())
                                 fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                                 del tempsys
                             elif 'nominal' not in syst:
-                                temp2sys = TH1F("temp2sys","temp2sys",30,100,2000)
+                                temp2sys = TH1F("temp2sys","temp2sys",1,100,2000)
                                 mytree.Draw("invmass>>temp2sys",cut)
                                 temp2sys.SetName(h_string+key_sample+"__"+syst)
                                 fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
                                 del temp2sys
-                elif 'zjets' or 'diboson' or 'others' or 'wjets_b' or 'wjets_c' or 'qcd' in key_sample:
+                elif 'zjets' or 'diboson' or 'others' or 'qcd' in key_sample:
                     for syst in systematic_direction_otherbkgs:
                         cut = str(cut_string+' & ttagN==0 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
                         print "Processing: ",key_sample
                         print "Applying cut:",cut
                         if syst == 'nominal':
-                            temp2 = TH1F("temp2","temp2",30,100,2000)
+                            temp2 = TH1F("temp2","temp2",1,100,2000)
                             mytree.Draw("invmass>>temp2",cut)
                             temp2.SetName(h_string+key_sample)
                             fout.WriteObject(temp2,h_string+key_sample)
@@ -657,14 +640,14 @@ for cat in categories:
                                     je_file = TFile(jerdowndir+samplelist[key_sample])
                                     je_tree = je_file.Get("AnalysisTree")
                                 je_tree.SetAlias("invmass","Mttbar")
-                                tempsys = TH1F("tempsys","tempsys",30,100,2000)
+                                tempsys = TH1F("tempsys","tempsys",1,100,2000)
                                 je_tree.Draw("invmass>>tempsys",cut)
                                 tempsys.SetName(h_string+key_sample+"__"+syst)
                                 print "Rebinning T0 nom+sys:", str(tempsys.GetNbinsX())
                                 fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                                 del tempsys
                         elif 'nominal' not in syst:
-                            temp2sys = TH1F("temp2sys","temp2sys",30,100,2000)
+                            temp2sys = TH1F("temp2sys","temp2sys",1,100,2000)
                             mytree.Draw("invmass>>temp2sys",cut)
                             temp2sys.SetName(h_string+key_sample+"__"+syst)
                             fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)

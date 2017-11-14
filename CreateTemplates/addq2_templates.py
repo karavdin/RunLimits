@@ -129,12 +129,13 @@ def addq2File(rerror, filename, xtitle, backgrounds):
       if info.process in backgrounds:
         if info.systematic == "q2wjetsMuRdnMuFdn":
           if info.shift == "plus":
+            #print info.process
             h_q2syst_q2wjets["q2wjets__plus"+info.channel] = h_bkg[info.channel+info.process+info.systematic].Clone()
-            h_q2syst_q2wjets["q2wjets__plus"+info.channel].SetName(info.channel+"__wjets_l"+"__q2wjets__plus")
-            h_q2syst_q2wjets["q2wjets__plus"+info.channel].SetTitle(info.channel+"__wjets_l"+"__q2wjets__plus")
+            h_q2syst_q2wjets["q2wjets__plus"+info.channel].SetName(info.channel+"__"+info.process+"__q2wjets__plus")
+            h_q2syst_q2wjets["q2wjets__plus"+info.channel].SetTitle(info.channel+"__"+info.process+"__q2wjets__plus")
             h_q2syst_q2wjets["q2wjets__minus"+info.channel] = h_bkg[info.channel+info.process+info.systematic].Clone()
-            h_q2syst_q2wjets["q2wjets__minus"+info.channel].SetName(info.channel+"__wjets_l"+"__q2wjets__minus")
-            h_q2syst_q2wjets["q2wjets__minus"+info.channel].SetTitle(info.channel+"__wjets_l"+"__q2wjets__minus")
+            h_q2syst_q2wjets["q2wjets__minus"+info.channel].SetName(info.channel+"__"+info.process+"__q2wjets__minus")
+            h_q2syst_q2wjets["q2wjets__minus"+info.channel].SetTitle(info.channel+"__"+info.process+"__q2wjets__minus")
             canvas = TCanvas()
             for i in range(1,h_bkg[info.channel+info.process+info.systematic].GetNbinsX()+1):
               #print i, h_tmp_q2syst_q2wjets[info.channel+info.process+str(i)].GetMean(), h_tmp_q2syst_q2wjets[info.channel+info.process+str(i)].GetRMS()
@@ -181,3 +182,6 @@ def addq2File(rerror, filename, xtitle, backgrounds):
 #addq2File(0.30,  'ele_theta_bdt0p5_chi30_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','diboson','qcd','wjets_b','wjets_c'])
 addq2File(0.30,  'ele_theta_bdt0p5_chi30_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
 addq2File(0.30,  'mu_theta_bdt0p5_chi30_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
+addq2File(0.30,  'ele_theta_bdt0p5_chi30.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+addq2File(0.30,  'mu_theta_bdt0p5_chi30.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+#addq2File(0.30,  'ele_theta_bdt0p5_chi30.root','M_{t#bar{t}} [GeV/c^{2}]',['wjets_c','wjets_b'])
