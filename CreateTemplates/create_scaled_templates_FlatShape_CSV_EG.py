@@ -188,7 +188,7 @@ jerdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbar
 
 samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA.root',
 'diboson':'uhh2.AnalysisModuleRunner.MC.ST_+_DY_+_VV.root',
-'qcd':'uhh2.AnalysisModuleRunner.MC.QCD_Pt.root',
+#'qcd':'uhh2.AnalysisModuleRunner.MC.QCD_Pt.root',
 'wjets_l':'uhh2.AnalysisModuleRunner.MC.WJets__L.root',
 'wjets_b':'uhh2.AnalysisModuleRunner.MC.WJets__B.root',
 'wjets_c':'uhh2.AnalysisModuleRunner.MC.WJets__C.root',

@@ -6,13 +6,14 @@ import sys
 import numpy
 
 
-#'nominal'
-systematic_direction={'__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1','__csv_hfstats2','__csv_jes','__csv_lf','__csv_lfstats1','__csv_lfstats2','__pileup','__toptag','__mistoptag','__elecID','__elecTRK','__elecHLT','__jer','__jec','__PDF','__q2wjets'}
-#systematic_direction={'__PDF','__q2wjets'}
-#samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','diboson','qcd'}
-samplelist = {'wjets_c','wjets_b','wjets_l','diboson','qcd'}
-#samplelist = {'diboson','qcd'}
-#samplelist = {'wjets_c','wjets_b','wjets_l'}
+#samplelist = {'wjets_c','wjets_b','wjets_l','diboson','qcd'}
+
+#systematic_direction={'__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1','__csv_hfstats2','__csv_jes','__csv_lf','__csv_lfstats1','__csv_lfstats2','__pileup','__toptag','__mistoptag','__elecID','__elecTRK','__elecHLT','__jer','__jec','__PDF','__q2wjets'}
+#samplelist = {'wjets_c','wjets_b','wjets_l','diboson','qcd'}
+#samplelist = {'wjets_c','wjets_b','diboson','qcd'}
+
+systematic_direction={'__PDF','__q2wjets'}
+samplelist = {'wjets_c','wjets_b','wjets_l'}
 
 categories=['ele_1top_WJetsMVA_chi2_mttbar__','ele_0top_WJetsMVA_chi2_mttbar__','ele_0top_antiWJetsMVA2_antichi2_mttbar__','ele_0top_antiWJetsMVA3_antichi2_mttbar__']
 fin = TFile('ele_theta_bdt0p5_chi30_addedQ2_addedPDF.root', 'open')

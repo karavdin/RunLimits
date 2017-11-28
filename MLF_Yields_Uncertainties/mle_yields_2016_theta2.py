@@ -53,11 +53,11 @@ def build_boosted_semileptonic_model(files, filter, signal, mcstat = True):
     model.add_lognormal_uncertainty('wc_rate',  math.log(1.50), 'wjets_c')
 #    model.add_lognormal_uncertainty('others_rate',  math.log(1.50), 'wjets_c')
     model.add_lognormal_uncertainty('wl_rate',  math.log(1.30), 'wjets_l')
-#    model.add_lognormal_uncertainty('diboson_rate', math.log(1.50), 'diboson')
+    model.add_lognormal_uncertainty('diboson_rate', math.log(1.50), 'diboson')
 #    model.add_lognormal_uncertainty('zjets_rate', math.log(1.50), 'zjets')
 #    model.add_lognormal_uncertainty('ST_rate', math.log(1.50), 'ST')
     model.add_lognormal_uncertainty('wb_rate', math.log(1.50), 'diboson')
-    model.add_lognormal_uncertainty('qcd_rate', math.log(1.50), 'qcd')
+#    model.add_lognormal_uncertainty('qcd_rate', math.log(1.50), 'qcd')
 #    model.add_lognormal_uncertainty('others_rate', math.log(1.50), 'diboson')
 
 # # #    model.add_lognormal_uncertainty('st_rate', math.log(1.15), 'qcd')
@@ -253,8 +253,8 @@ def build_model(type):
 #options = Options()
 #options.set('minimizer','strategy','robust')
 
-#args = {'type': 'narrow_resonances_electron'}
-args = {'type': 'narrow_resonances_muon'}
+args = {'type': 'narrow_resonances_electron'}
+#args = {'type': 'narrow_resonances_muon'}
 #args = {'type': 'narrow_resonances_lepton'}
 #args = {'type': 'bkg_muon'}
 model = build_model(**args)
@@ -263,8 +263,8 @@ model = build_model(**args)
 #execfile('/afs/desy.de/user/k/karavdia/RunLimits_Zprime/MLF_Yields_Uncertainties/utils.py')
 execfile('/afs/desy.de/user/k/karavdia/xxl/af-cms/RunLimitsZprime_2016/RunLimits/MLF_Yields_Uncertainties/utils.py')
 tablesIn = model_summary(model)
-#generate_yield_table_AN(tablesIn['rate_table'],'BEFORE','elec')
-generate_yield_table_AN(tablesIn['rate_table'],'BEFORE','muon')
+generate_yield_table_AN(tablesIn['rate_table'],'BEFORE','elec')
+#generate_yield_table_AN(tablesIn['rate_table'],'BEFORE','muon')
 #generate_yield_table_AN(tablesIn['rate_table'],'BEFORE','lep')
 # # # file3 = open('before_MLE_rates.txt', 'w')
 # # # file3.write(tablesIn['rate_table'].tex())
@@ -395,8 +395,8 @@ pickle.dump(mle_coeff, open( "mle_coeff.p", "wb" ) )
 apply_factors(model, mle_coeff)
 tables = model_summary(model)
 #generate_yield_table(tables['rate_table'])
-generate_yield_table_AN(tables['rate_table'],'AFTER','muon')
-#generate_yield_table_AN(tables['rate_table'],'AFTER','elec')
+#generate_yield_table_AN(tables['rate_table'],'AFTER','muon')
+generate_yield_table_AN(tables['rate_table'],'AFTER','elec')
 #generate_yield_table_AN(tables['rate_table'],'AFTER','lep')
 
 #histos = evaluate_prediction(model, par_values, include_signal=False, observables=None)
