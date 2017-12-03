@@ -35,7 +35,7 @@ def build_boosted_semileptonic_model(files, filter, signal, mcstat = True):
     model.set_signal_processes(signal)
 
     for p in model.processes:
-        model.add_lognormal_uncertainty('lumi', math.log(1.027), p)
+        model.add_lognormal_uncertainty('lumi', math.log(1.025), p)
 
     # for obs in ['el_0top0btag_mttbar','el_0top1btag_mttbar','el_1top_mttbar']:
     #     if 'ttbar' in p:
