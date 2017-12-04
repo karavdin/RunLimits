@@ -35,7 +35,7 @@ def build_boosted_semileptonic_model(files, filter, signal, mcstat = True):
     model.set_signal_processes(signal)
 
     for p in model.processes:
-        model.add_lognormal_uncertainty('lumi', math.log(1.027), p)
+        model.add_lognormal_uncertainty('lumi', math.log(1.025), p)
 
     # for obs in ['el_0top0btag_mttbar','el_0top1btag_mttbar','el_1top_mttbar']:
     #     if 'ttbar' in p:
@@ -336,7 +336,7 @@ for obs in model.get_observables():
 #     # elif p == 'diboson_rate': print '%.3f' % 1.20**par_values[p] + ' ' + p
 #     # elif p == 'toptag':       print '%.3f' % 1.20**par_values[p] + ' ' + p
 #     # elif p == 'subjbtag':     print '%.3f' % 1.20**par_values[p] + ' ' + p
-#     if p == 'lumi':     print '%.3f' % 1.027**par_values[p] + ' ' + p
+#     if p == 'lumi':     print '%.3f' % 1.025**par_values[p] + ' ' + p
 #     if p == 'ttbar_rate':     print '%.3f' % 1.20**par_values[p] + ' ' + p
 #     elif p == 'w_rate':      print '%.3f' % 1.25**par_values[p] + ' ' + p
 #     elif p == 'wl_rate':      print '%.3f' % 1.25**par_values[p] + ' ' + p
@@ -353,7 +353,7 @@ for obs in model.get_observables():
 
 print '\\n'
 for p in par_values:
-    if p == 'lumi':     print '%.3f' % 1.027**par_values[p] + ' ' + p
+    if p == 'lumi':     print '%.3f' % 1.025**par_values[p] + ' ' + p
     if p == 'ttbar_rate':     print '%.3f' % 1.20**par_values[p] + ' ' + p
     elif p == 'w_rate':      print '%.3f' % 1.20**par_values[p] + ' ' + p
     elif p == 'wl_rate':      print '%.3f' % 1.30**par_values[p] + ' ' + p
@@ -369,7 +369,7 @@ for p in par_values:
     elif p == 'qcd_rate':     print '%.3f' % 1.5**par_values[p] + ' ' + p
 print '\\n'
 for p in par_values:
-    if p == 'lumi':     print '%.3f' % 1.027**par_values[p], '%.3f' % 1.027**par_err_values[p] + ' ' + p
+    if p == 'lumi':     print '%.3f' % 1.025**par_values[p], '%.3f' % 1.025**par_err_values[p] + ' ' + p
     if p == 'ttbar_rate':     print '%.3f' % 1.20**par_values[p], '%.3f' % 1.20**par_err_values[p] + ' ' + p
     elif p == 'w_rate':      print '%.3f' % 1.20**par_values[p], '%.3f' % 1.20**par_err_values[p] + ' ' + p
     elif p == 'wl_rate':      print '%.3f' % 1.30**par_values[p], '%.3f' % 1.30**par_err_values[p] + ' ' + p
