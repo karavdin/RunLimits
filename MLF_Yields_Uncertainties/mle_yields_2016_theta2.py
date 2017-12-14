@@ -58,7 +58,7 @@ def build_boosted_semileptonic_model(files, filter, signal, mcstat = True):
     model.add_lognormal_uncertainty('diboson_rate', math.log(1.50), 'diboson')
 #    model.add_lognormal_uncertainty('zjets_rate', math.log(1.50), 'zjets')
 #    model.add_lognormal_uncertainty('ST_rate', math.log(1.50), 'ST')
-    model.add_lognormal_uncertainty('wb_rate', math.log(1.50), 'diboson')
+#    model.add_lognormal_uncertainty('wb_rate', math.log(1.50), 'diboson')
  #   model.add_lognormal_uncertainty('qcd_rate', math.log(1.50), 'qcd_mu')
 #    model.add_lognormal_uncertainty('qcd_rate', math.log(1.50), 'qcd_el')
 #    model.add_lognormal_uncertainty('others_rate', math.log(1.50), 'diboson')
@@ -388,13 +388,19 @@ for p in par_values:
     elif p == 'subjbtag':     print '%.3f' % 1.50**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
     elif p == 'qcd_rate':     print '%.3f' % 1.5**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
 
-
+mle_uncer = {}
+for p in par_values:
+    if 'rate' in p:
+        if 'ttbar_rate' in p: mle_uncer[p] = 1.20**par_err_values[p]
+        if 'wl_rate' in p: mle_uncer[p] = 1.30**par_err_values[p]
+        else: mle_uncer[p] = 1.50**par_err_values[p]
 
 #factors = print_obsproc_factors_rateonly2(model)
 file = open('mle_coeff.py', 'w')
 file.write(repr(mle_coeff))
 file.close()
 pickle.dump(mle_coeff, open( "mle_coeff.p", "wb" ) )
+pickle.dump(mle_uncer, open( "mle_uncer.p", "wb" ) )
 apply_factors(model, mle_coeff)
 tables = model_summary(model)
 #generate_yield_table(tables['rate_table'])
