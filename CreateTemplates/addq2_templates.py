@@ -180,8 +180,10 @@ def addq2File(rerror, filename, xtitle, backgrounds):
         h_all_system[info.channel+"__"+info.process+"__"+info.systematic+"__"+info.shift].Write()
        
 #addq2File(0.30,  'ele_theta_bdt0p5_chi30_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','diboson','qcd','wjets_b','wjets_c'])
-addq2File(0.30,  'ele_theta_bdt0p5_chi30_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
-addq2File(0.30,  'mu_theta_bdt0p5_chi30_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
+addq2File(0.30,  'ele_theta_wFlatShapeSyst_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
+addq2File(0.30,  'mu_theta_wFlatShapeSyst_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
 addq2File(0.30,  'ele_theta_bdt0p5_chi30.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
 addq2File(0.30,  'mu_theta_bdt0p5_chi30.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+addq2File(0.30,  'ele_theta_bdt0p5_chi30_1MttbarBin.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+addq2File(0.30,  'mu_theta_bdt0p5_chi30_1MttbarBin.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
 #addq2File(0.30,  'ele_theta_bdt0p5_chi30.root','M_{t#bar{t}} [GeV/c^{2}]',['wjets_c','wjets_b'])

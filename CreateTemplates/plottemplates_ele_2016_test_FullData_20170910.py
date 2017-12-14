@@ -5,7 +5,10 @@ import numpy
 
 
 #'nominal'
-systematic_direction={'__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1','__csv_hfstats2','__csv_jes','__csv_lf','__csv_lfstats1','__csv_lfstats2','__pileup','__toptag','__mistoptag','__elecID','__elecTRK','__elecHLT','__jer','__jec','__PDF','__q2ttbar','__q2wjets'}
+#systematic_direction={'__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1','__csv_hfstats2','__csv_jes','__csv_lf','__csv_lfstats1','__csv_lfstats2','__pileup','__toptag','__mistoptag','__elecID','__elecTRK','__elecHLT','__jer','__jec','__PDF','__q2ttbar','__q2wjets'}
+#systematic_direction={'__toppt_reweight'}
+systematic_direction={'__PDF'}
+
 #systematic_direction={'__jer','__jec'}
 #systematic_direction={'__PDF','__q2ttbar'}
 #systematic_direction={'__PDF','__q2wjets'}
@@ -16,7 +19,7 @@ systematic_direction={'__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1',
 #systematic_direction={'__PDF'}
 #systematic_direction={'__q2ttbar'} #ttbar
 #systematic_direction={'__q2wjets'} #wjets
-samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','diboson','qcd'}
+samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','diboson'}
 #samplelist = {'wjets_c','wjets_b','wjets_l'}
 #samplelist = {'wjets_b','qcd'}
 #samplelist = {'ttbar'}
@@ -27,8 +30,8 @@ categories=['ele_1top_WJetsMVA_chi2_mttbar__','ele_0top_WJetsMVA_chi2_mttbar__',
 #categories=['ele_0top_antiWJetsMVA2_antichi2_mttbar__','ele_0top_antiWJetsMVA3_antichi2_mttbar__'] #CR
 #fin = TFile('ele_theta_bdt0p5_chi30_rebinned.root', 'open')
 #fin = TFile('ele_theta_bdt0p5_chi30_rebinned_addedQ2.root', 'open')
-#fin = TFile('ele_theta_bdt0p5_chi30_rebinned_addedQ2_addedPDF.root', 'open')
-fin = TFile('ele_theta_bdt0p5_chi30_addedQ2_addedPDF.root', 'open')
+fin = TFile('ele_theta_wFlatShapeSyst_rebinned_addedQ2_addedPDF.root', 'open')
+#fin = TFile('ele_theta_bdt0p5_chi30_addedQ2_addedPDF.root', 'open')
 
 nominalhist = {}
 nominalhistDraw = {}
@@ -100,8 +103,8 @@ for samp in samplelist:
                     pad2[cat+samp+syst].cd();      # pad2 becomes the current pad
                     systvarhistRatio[cat+samp+syst+'__plus__ratio']  = systvarhistDraw[cat+samp+syst+'__plus'].Clone(cat+samp+syst+'__plus__ratio')
                     systvarhistRatio[cat+samp+syst+'__plus__ratio'].Divide(nominalhistDraw[cat+samp])
-#                    systvarhistRatio[cat+samp+syst+'__plus__ratio'].GetYaxis().SetRangeUser(0.6,1.4)
-                    systvarhistRatio[cat+samp+syst+'__plus__ratio'].GetYaxis().SetRangeUser(0.89,1.11)
+                    systvarhistRatio[cat+samp+syst+'__plus__ratio'].GetYaxis().SetRangeUser(0.6,1.4)
+#                    systvarhistRatio[cat+samp+syst+'__plus__ratio'].GetYaxis().SetRangeUser(0.89,1.11)
                     #systvarhistRatio[cat+samp+syst+'__plus__ratio'].GetYaxis().SetRangeUser(0.50,1.50) #flat "shape" systematics JEC/JER
                     systvarhistRatio[cat+samp+syst+'__plus__ratio'].GetYaxis().SetNdivisions(5,5,0)
                     systvarhistRatio[cat+samp+syst+'__plus__ratio'].GetYaxis().SetLabelSize(0.12)

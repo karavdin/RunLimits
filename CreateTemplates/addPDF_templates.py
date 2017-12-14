@@ -103,7 +103,7 @@ def addPDFFile(rerror, filename, xtitle, backgrounds):
               #   h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].Print()
               #   h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].Draw('e')
               #   canvas_tmp.SaveAs(info.channel+'_'+info.process+'_'+str(i)+'.pdf')
-              #   print h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].GetMean(), h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].GetRMS()
+#              print h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].GetMean(), h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].GetRMS()
 
               h_PDF["PDF__plus"+info.channel+'_'+info.process].SetBinContent(i,h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].GetMean()+h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].GetRMS())
               h_PDF["PDF__minus"+info.channel+'_'+info.process].SetBinContent(i,h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].GetMean()-h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].GetRMS())
@@ -142,5 +142,7 @@ def addPDFFile(rerror, filename, xtitle, backgrounds):
 
 addPDFFile(0.30,  'ele_theta_bdt0p5_chi30_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
 addPDFFile(0.30,  'mu_theta_bdt0p5_chi30_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
-addPDFFile(0.30,  'ele_theta_bdt0p5_chi30_rebinned_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
-addPDFFile(0.30,  'mu_theta_bdt0p5_chi30_rebinned_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
+addPDFFile(0.30,  'ele_theta_wFlatShapeSyst_rebinned_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
+addPDFFile(0.30,  'mu_theta_wFlatShapeSyst_rebinned_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
+addPDFFile(0.30,  'ele_theta_bdt0p5_chi30_1MttbarBin_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+addPDFFile(0.30,  'mu_theta_bdt0p5_chi30_1MttbarBin_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])

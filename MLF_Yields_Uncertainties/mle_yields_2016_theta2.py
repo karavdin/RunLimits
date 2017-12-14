@@ -1,9 +1,11 @@
 #! /usr/bin/env pythonDWE
 ### Filter definitions ###
 print 'Hello MLE'
-ele_ifile = ['ele_theta_bdt0p5_chi30_rebinned_addedQ2_addedPDF.root']
-muo_ifile = ['mu_theta_bdt0p5_chi30_rebinned_addedQ2_addedPDF.root']
-#muo_ifile = ['mu_theta_bdt0p5_chi30_rebinned_addedQ2.root']
+
+ele_ifile = ['ele_theta_wFlatShapeSyst_rebinned_addedQ2_addedPDF.root']
+#ele_ifile = ['ele_theta_bdt0p5_chi30_rebinned_addedQ2_addedPDF.root']
+#muo_ifile = ['mu_theta_bdt0p5_chi30_rebinned_addedQ2_addedPDF.root']
+muo_ifile = ['mu_theta_bdt0p5_chi30_rebinned_addedQ2.root']
 lep_ifile = ['lep_theta_bdt0p5_chi30_rebinned_addedQ2_addedPDF.root']
 
 def narrow_resonances(hname):
@@ -36,7 +38,7 @@ def build_boosted_semileptonic_model(files, filter, signal, mcstat = True):
     model.set_signal_processes(signal)
 
     for p in model.processes:
-        model.add_lognormal_uncertainty('lumi', math.log(1.027), p)
+        model.add_lognormal_uncertainty('lumi', math.log(1.025), p)
 
     # for obs in ['el_0top0btag_mttbar','el_0top1btag_mttbar','el_1top_mttbar']:
     #     if 'ttbar' in p:
@@ -57,7 +59,8 @@ def build_boosted_semileptonic_model(files, filter, signal, mcstat = True):
 #    model.add_lognormal_uncertainty('zjets_rate', math.log(1.50), 'zjets')
 #    model.add_lognormal_uncertainty('ST_rate', math.log(1.50), 'ST')
     model.add_lognormal_uncertainty('wb_rate', math.log(1.50), 'diboson')
-#    model.add_lognormal_uncertainty('qcd_rate', math.log(1.50), 'qcd')
+ #   model.add_lognormal_uncertainty('qcd_rate', math.log(1.50), 'qcd_mu')
+#    model.add_lognormal_uncertainty('qcd_rate', math.log(1.50), 'qcd_el')
 #    model.add_lognormal_uncertainty('others_rate', math.log(1.50), 'diboson')
 
 # # #    model.add_lognormal_uncertainty('st_rate', math.log(1.15), 'qcd')
@@ -354,7 +357,7 @@ for obs in model.get_observables():
 
 print '\\n'
 for p in par_values:
-    if p == 'lumi':     print '%.3f' % 1.027**par_values[p] + ' ' + p
+    if p == 'lumi':     print '%.3f' % 1.025**par_values[p] + ' ' + p
     if p == 'ttbar_rate':     print '%.3f' % 1.20**par_values[p] + ' ' + p
     elif p == 'w_rate':      print '%.3f' % 1.20**par_values[p] + ' ' + p
     elif p == 'wl_rate':      print '%.3f' % 1.30**par_values[p] + ' ' + p
@@ -370,7 +373,7 @@ for p in par_values:
     elif p == 'qcd_rate':     print '%.3f' % 1.5**par_values[p] + ' ' + p
 print '\\n'
 for p in par_values:
-    if p == 'lumi':     print '%.3f' % 1.027**par_values[p], '%.3f' % 1.027**par_err_values[p] + ' ' + p
+    if p == 'lumi':     print '%.3f' % 1.025**par_values[p], '%.3f' % 1.025**par_err_values[p] + ' ' + p
     if p == 'ttbar_rate':     print '%.3f' % 1.20**par_values[p], '%.3f' % 1.20**par_err_values[p] + ' ' + p
     elif p == 'w_rate':      print '%.3f' % 1.20**par_values[p], '%.3f' % 1.20**par_err_values[p] + ' ' + p
     elif p == 'wl_rate':      print '%.3f' % 1.30**par_values[p], '%.3f' % 1.30**par_err_values[p] + ' ' + p

@@ -203,7 +203,7 @@ categories=['T0','T1']
 subcategoriesT1=['WJetsMVA_chi2']
 subcategoriesT0=['antiWJetsMVA2_antichi2','WJetsMVA_chi2','antiWJetsMVA3_antichi2']
 
-fout = TFile('ele_theta_bdt0p5_chi30.root', 'recreate')
+fout = TFile('ele_theta_bdt0p5_chi30_1MttbarBin.root', 'recreate')
 gROOT.SetBatch(kTRUE)
 for cat in categories:
     cut_string_GL='(eleN==1 & '

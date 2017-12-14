@@ -7,23 +7,24 @@ import numpy
 
 
 #'nominal'
-systematic_direction={'__pileup','__toptag','__mistoptag','__muID','__muTRK','__muHLT','__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1','__csv_hfstats2','__csv_jes','__csv_lf','__csv_lfstats1','__csv_lfstats2','__q2wjets','__PDF','__jer','__jec'}
+#systematic_direction={'__pileup','__toptag','__mistoptag','__muID','__muTRK','__muHLT','__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1','__csv_hfstats2','__csv_jes','__csv_lf','__csv_lfstats1','__csv_lfstats2','__q2wjets','__PDF','__jer','__jec'}
 #systematic_direction={'__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1','__csv_hfstats2','__csv_jes','__csv_lf','__csv_lfstats1','__csv_lfstats2'}
 #systematic_direction={'__q2ttbar'} #ttbar
 #systematic_direction={'__jer','__jec'}
-#systematic_direction={'__PDF'}
+systematic_direction={'__PDF'}
 #systematic_direction={'__q2wjets'} #wjets
 
-samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','diboson','qcd'}
+#samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','diboson','qcd'}
 #samplelist = {'ttbar'}
-#samplelist = {'ttbar','wjets_l'}
+samplelist = {'ttbar','wjets_l'}
 #samplelist = {'wjets_l'}
 
 
 categories=['mu_1top_WJetsMVA_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','mu_0top_antiWJetsMVA3_antichi2_mttbar__','mu_0top_antiWJetsMVA2_antichi2_mttbar__']
 #categories=['mu_0top_antiWJetsMVA3_antichi2_mttbar__','mu_0top_antiWJetsMVA2_antichi2_mttbar__'] #CR
 #fin = TFile('mu_theta_bdt0p5_chi30_rebinned_addedQ2.root', 'open')
-fin = TFile('mu_theta_bdt0p5_chi30_addedQ2_addedPDF.root', 'open')
+#fin = TFile('mu_theta_bdt0p5_chi30_addedQ2_addedPDF.root', 'open')
+fin = TFile('mu_theta_bdt0p5_chi30_1MttbarBin_addedQ2_addedPDF.root', 'open')
 nominalhist = {}
 nominalhistDraw = {}
 systvarhist = {}
