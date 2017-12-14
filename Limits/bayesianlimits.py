@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+import pickle
 
 ### Filter definitions ###
 
@@ -7,6 +8,7 @@ ele_ifile = ['ele_theta_bdt0p5_chi30_limits_rebinned.root']
 lep_ifile = ['lep_theta_bdt0p5_chi30_limits_rebinned.root']
 #mle_coeff_file = '../MLF_Yields_Uncertainties/mle_coeff.p'
 mle_coeff_file = 'mle_coeff.p'
+mle_uncer_file = 'mle_uncer.p'
 
 def apply_factors(model, factors):
     #print factors
@@ -18,6 +20,10 @@ def apply_factors(model, factors):
             print f, proc, obs
             model.scale_predictions(f, proc, obs)
 
+def gethistname(name):
+    if name[0] == 'w': return name[0]+'jets_'+name[1]
+    else: return name.replace('_rate','')
+                            
 def narrow_resonances(hname):
     if not ('RSgluon' in hname or 'Zprime' in hname): return True
     pname = hname.split('__')[1]
@@ -59,7 +65,7 @@ def build_boosted_semileptonic_model(files, filter, signal, eflag=False):
     model.set_signal_processes(signal)
 
     for p in model.processes:
-        model.add_lognormal_uncertainty('lumi', math.log(1.07), p)
+        model.add_lognormal_uncertainty('lumi', math.log(1.025), p)
       #   for obs in ['el_0top0btag_mttbar','el_0top1btag_mttbar','el_1top_mttbar']:
       # #  for obs in ['mu_0top0btag_mttbar','mu_0top1btag_mttbar','mu_1top_mttbar']:
       #       if 'ttbar' in p and '0top0btag' in obs:
@@ -82,6 +88,12 @@ def build_boosted_semileptonic_model(files, filter, signal, eflag=False):
 
     mle_coeff = pickle.load(open(mle_coeff_file,"rb"))
     apply_factors(model, mle_coeff)
+
+    mle_uncer = pickle.load(open(mle_uncer_file,"rb"))
+    print "Rate Uncertainties for Limit Calculation"
+    for key in mle_uncer:
+        print key,round(mle_uncer[key],3),gethistname(key)
+        model.add_lognormal_uncertainty(key, math.log(mle_uncer[key]), gethistname(key))
 
 #    model.add_lognormal_uncertainty('ttbar_rate',   math.log(1.09), 'ttbar')
 #    model.add_lognormal_uncertainty('wjets_rate',      math.log(1.09), 'wjets')
