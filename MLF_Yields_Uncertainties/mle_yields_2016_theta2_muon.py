@@ -4,6 +4,7 @@ print 'Hello MLE'
 
 ele_ifile = ['ele_theta_wFlatShapeSyst_addedPDF_addedQ2_rebinned.root']
 muo_ifile = ['mu_theta_wFlatShapeSyst_addedPDF_addedQ2_rebinned.root']
+#muo_ifile = ['mu_theta_wFlatShapeSyst_METcut_addedPDF_addedQ2_rebinned.root']
 lep_ifile = ['lep_theta_wFlatShapeSyst_rebinned_addedQ2_addedPDF.root']
 
 def narrow_resonances(hname):
@@ -34,26 +35,60 @@ def build_boosted_semileptonic_model(files, filter, signal, mcstat = True):
     model = build_model_from_rootfile(files, filter, include_mc_uncertainties = mcstat)
     model.fill_histogram_zerobins()
     model.set_signal_processes(signal)
+ #    obs =  model.get_observables()
+#     print "set1 ", obs
+# #    model.restrict_to_observables(set(['mu_0top_antiWJetsMVA3_antichi2_mttbar', 'mu_1top_WJetsMVA_chi2_mttbar', 'mu_0top_WJetsMVA_chi2_mttbar']))
+# #    model.restrict_to_observables(set(['mu_0top_antiWJetsMVA2_antichi2_mttbar', 'mu_1top_WJetsMVA_chi2_mttbar', 'mu_0top_WJetsMVA_chi2_mttbar']))
+# #    model.restrict_to_observables(set(['mu_1top_WJetsMVA_chi2_mttbar']))
+#     model.restrict_to_observables(set(['mu_0top_antiWJetsMVA3_antichi2_mttbar','mu_0top_antiWJetsMVA2_antichi2_mttbar']))
+#     obs =  model.get_observables()
+#     print "set2 ", obs
 
     for p in model.processes:
-        #print "model.processes :", p
         model.add_lognormal_uncertainty('lumi', math.log(1.025), p)
-        if 'ttbar' in p:
-            print "!!! scale predictions by 0.80 for ",p
-            model.scale_predictions(0.80,p)
+        # if 'ttbar' in p:
+        #     print "!!! scale predictions by 0.81 for ",p
+        #     model.scale_predictions(0.81,p)
+        # if 'wjets_l' in p:
+        #     print "!!! scale predictions by 0.80 for ",p
+        #     model.scale_predictions(0.80,p)
+        # if 'diboson' in p:
+        #     print "!!! scale predictions by 0.80 for ",p
+        #     model.scale_predictions(0.80,p)
+        # if 'wjets_c' in p:
+        #     print "!!! scale predictions by 0.80 for ",p
+        #     model.scale_predictions(0.80,p)
         # if 'wjets_b' in p:
-        #     print "!!! scale predictions by 1.5 for ",p
-        #     model.scale_predictions(1.5,p)
+        #     print "!!! scale predictions by 0.80 for ",p
+        #     model.scale_predictions(0.80,p)
+
+    # for obs in ['el_0top0btag_mttbar','el_0top1btag_mttbar','el_1top_mttbar']:
+    #     if 'ttbar' in p:
+    #         models.scale_predictions(0.921,obs)
+            
+#     # for obs in ['el_0top0btag_mttbar','el_0top1btag_mttbar','el_1top_mttbar']:
+#     #     model.add_lognormal_uncertainty('eleORjet_trig', math.log(1.05), p, obs)
 
     model.add_lognormal_uncertainty('ttbar_rate',   math.log(1.20), 'ttbar')
-    model.add_lognormal_uncertainty('wb_rate',  math.log(1.50), 'wjets_b')
-    model.add_lognormal_uncertainty('wc_rate',  math.log(1.50), 'wjets_c')
-    model.add_lognormal_uncertainty('wl_rate',  math.log(1.30), 'wjets_l')
-    model.add_lognormal_uncertainty('diboson_rate', math.log(1.50), 'diboson')
+    # model.add_lognormal_uncertainty('others_rate',  math.log(1.50), 'wjets_b')
+    # model.add_lognormal_uncertainty('others_rate',  math.log(1.50), 'wjets_c')
+    model.add_lognormal_uncertainty('wh_rate',  math.log(1.20), 'wjets_b')
+    model.add_lognormal_uncertainty('wh_rate',  math.log(1.20), 'wjets_c')
+
+#     model.add_lognormal_uncertainty('wb_rate',  math.log(1.50), 'wjets_b')
+# #    model.add_lognormal_uncertainty('others_rate',  math.log(1.50), 'wjets_b')
+#     model.add_lognormal_uncertainty('wc_rate',  math.log(1.50), 'wjets_c')
+#    model.add_lognormal_uncertainty('others_rate',  math.log(1.50), 'wjets_c')
+    model.add_lognormal_uncertainty('wl_rate',  math.log(1.20), 'wjets_l')
+    model.add_lognormal_uncertainty('diboson_rate', math.log(1.20), 'diboson')
+#    model.add_lognormal_uncertainty('zjets_rate', math.log(1.50), 'zjets')
+#    model.add_lognormal_uncertainty('ST_rate', math.log(1.50), 'ST')
     model.add_lognormal_uncertainty('qcd_rate', math.log(1.50), 'qcd_mu')
 #    model.add_lognormal_uncertainty('qcd_rate', math.log(1.50), 'qcd_el')
+#    model.add_lognormal_uncertainty('others_rate', math.log(1.50), 'diboson')
 
-   
+# # #    model.add_lognormal_uncertainty('st_rate', math.log(1.15), 'qcd')
+# # #    model.add_lognormal_uncertainty('st_rate', math.log(1.15), 'diboson')
 
     return model
 
@@ -147,28 +182,70 @@ def build_model(type):
 
     else: raise exceptions.ValueError('Type %s is undefined' % type)
 
+    # for p in model.distribution.get_parameters():
+    #     d = model.distribution.get_distribution(p)
+    #     if d['typ'] == 'gauss' and d['mean'] == 0.0 and d['width'] == 1.0:
+    #         model.distribution.set_distribution_parameters(p, range = [-5.0, 5.0])
+    #     if p == 'toptag' or p == 'subjbtag':
+    #         model.distribution.set_distribution_parameters(p, width = float("inf"))
+    #     if (p == 'topmistag'): model.distribution.set_distribution_parameters(p, width = float(1.25))
+    #     #        if (p == 'subjbtag'): model.distribution.set_distribution_parameters(p, width = float(0.00001))
+    #     if (p == 'q2'): model.distribution.set_distribution_parameters(p, width = float(0.0001))
+    #     if (p == 'q2_wjets'): model.distribution.set_distribution_parameters(p, width = float(0.0001))
+    #     if (p == 'matching_wjets'): model.distribution.set_distribution_parameters(p, width = float(0.0001))
+    #     if (p == 'pdf'): model.distribution.set_distribution_parameters(p, width = float(0.0001))
+    #     if (p == 'misErr'): model.distribution.set_distribution_parameters(p, width = float(0.0001))
+
     for p in model.distribution.get_parameters():
         #print p
         d = model.distribution.get_distribution(p)
 #        print d
         if d['typ'] == 'gauss' and d['mean'] == 0.0 and d['width'] == 1.0:
+          #  model.distribution.set_distribution_parameters(p, range = [-2.0, 2.0])
+#            model.distribution.set_distribution_parameters(p, range = [-3.0, 3.0])
             model.distribution.set_distribution_parameters(p, range = [-5.0, 5.0])
-        if (p == 'toptag'): model.distribution.set_distribution_parameters(p, width = float('Inf'))
-        #if (p == 'mistoptag'): model.distribution.set_distribution_parameters(p, width = float('Inf'))
-        if (p == 'wb_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
-        #if (p == 'wb_rate'): model.distribution.set_distribution_parameters(p, width = 0.0001)
-        if (p == 'wc_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
+ #       if (p == 'toptag'): model.distribution.set_distribution_parameters(p, width = float('Inf'))
+ #       if (p == 'toptag'): model.distribution.set_distribution_parameters(p, width = 0.5)
+ #       if (p == 'toptag'): model.distribution.set_distribution_parameters(p, width = 0.001)
+ #       if (p == 'mistoptag'): model.distribution.set_distribution_parameters(p, width = float('Inf'))
+        if (p == 'mistoptag'): model.distribution.set_distribution_parameters(p, width = 0.001)
+#        if (p == 'w_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
+#        if (p == 'wb_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
+#        if (p == 'wc_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
         if (p == 'wl_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
-        if (p == 'diboson_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
-        #if (p == 'qcd_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
-        if (p == 'ttbar_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf'))
-        #if (p == 'q2_wjets'): model.distribution.set_distribution_parameters(p, width = float(0.0001))
-       # if (p == 'PDF'): model.distribution.set_distribution_parameters(p, width = float(0.0001))
-#        if (p == 'elecHLT'): model.distribution.set_distribution_parameters(p, mean = 0.00, width = 0.0001)
+#        if (p == 'wl_rate'): model.distribution.set_distribution_parameters(p,  width = 1.0) 
+        if (p == 'wh_rate'): model.distribution.set_distribution_parameters(p,  width = 1.0) 
+ #       if (p == 'ST_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
+#        if (p == 'diboson_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
+   #     if (p == 'diboson_rate'): model.distribution.set_distribution_parameters(p, width = 0.001) 
+   #     if (p == 'qcd_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
+        if (p == 'ttbar_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
+#        if (p == 'ttbar_rate'): model.distribution.set_distribution_parameters(p,  width = 0.001) 
+        if (p == 'elecHLT'): model.distribution.set_distribution_parameters(p, width = 1.50)
 #        if (p == 'muHLT'): model.distribution.set_distribution_parameters(p, mean = 0.00, width = 0.0001)
 #        if (p == 'toppt_reweight'): model.distribution.set_distribution_parameters(p, mean = 0.00, width = 0.0001)
 #        if (p == 'q2wjets'): model.distribution.set_distribution_parameters(p, mean = 0.17, width = 0.0001)
-#        if (p == 'q2wjets'): model.distribution.set_distribution_parameters(p, mean = 0.00, width = 0.0001)
+        if (p == 'csv_hf'): model.distribution.set_distribution_parameters(p, width = 0.75)
+        # if (p == 'csv_hfstats2'): model.distribution.set_distribution_parameters(p, width = 0.5)
+        # if (p == 'csv_cferr1'): model.distribution.set_distribution_parameters(p, width = 0.5)
+        # if (p == 'csv_cferr2'): model.distribution.set_distribution_parameters(p, width = 0.5)
+        # if (p == 'jec'): model.distribution.set_distribution_parameters(p, width = 0.5)
+#        if (p == 'csv_hfstats1'): model.distribution.set_distribution_parameters(p, width = 0.85)
+#        if (p == 'csv_cferr1'): model.distribution.set_distribution_parameters(p, width = 0.85)
+        if (p == 'q2wjets'): model.distribution.set_distribution_parameters(p, width = 0.55)
+
+        # #if (p == 'q2ttbar'): model.distribution.set_distribution_parameters(p, width = 0.55)
+        # #if (p == 'PDF'): model.distribution.set_distribution_parameters(p, width = 0.01)
+        # if (p == 'toptag'): model.distribution.set_distribution_parameters(p, width = 0.001)
+        #if (p == 'toppt_reweight'): model.distribution.set_distribution_parameters(p, width = 0.001)
+        # if (p == 'q2ttbar'): model.distribution.set_distribution_parameters(p, width = 0.001)
+        # if (p == 'csv_hfstats1'): model.distribution.set_distribution_parameters(p, width = 0.25)
+        # if (p == 'csv_hfstats2'): model.distribution.set_distribution_parameters(p, width = 0.25)
+        # if (p == 'csv_cferr1'): model.distribution.set_distribution_parameters(p, width = 0.25)
+        # if (p == 'csv_cferr2'): model.distribution.set_distribution_parameters(p, width = 0.25)
+        #if (p == 'jec'): model.distribution.set_distribution_parameters(p, width = 0.001)
+        #if (p == 'jer'): model.distribution.set_distribution_parameters(p, width = 0.001)
+
         # if (p == 'q2ttbarMuF'): model.distribution.set_distribution_parameters(p, mean = 0.00, width = 0.0001)
         # if (p == 'q2ttbarMuR'): model.distribution.set_distribution_parameters(p, mean = 0.00, width = 0.0001)
         # if (p == 'q2wjetsMuR'): model.distribution.set_distribution_parameters(p, mean = 0.00, width = 0.0001)
@@ -180,7 +257,14 @@ def build_model(type):
         
         print p, model.distribution.get_distribution(p)
         
-
+ #    # #     #     # if p == 'mistoptag':
+ #    # #     #     #     model.distribution.set_distribution_parameters(p, width = float('Inf'))
+ #    # #     #     #     print p, model.distribution.get_distribution(p)
+        
+ #    #     # if (p == 'wb_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf'))  
+ #    #     # if (p == 'wc_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf'))  
+ #    #     #if (p == 'wl_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf'))  
+ #    #     # if (p == 'wh_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
         
   
  #    # # #for p in ['toptag', 'topmistag', 'bmistag', 'btag']:
@@ -299,21 +383,49 @@ for obs in model.get_observables():
         coeff = model.get_coeff(obs, p).get_value(par_values)
         mle_coeff[obs][p] = coeff
 #print mle_coeff
+# add stuff.. eg make histograms at the ML point
+# print '\\n'
+# for p in par_values:
+#     # if p == 'ttbar_rate':     print '%.3f' % 1.3**par_values[p] + ' ' + p
+#     # elif p == 'wjets_rate':   print '%.3f' % 1.3**par_values[p] + ' ' + p
+#     # elif p == 'wl_rate':      print '%.3f' % 1.09**par_values[p] + ' ' + p
+#     # elif p == 'wc_rate':      print '%.3f' % 1.23**par_values[p] + ' ' + p
+#     # elif p == 'wb_rate':      print '%.3f' % 1.23**par_values[p] + ' ' + p
+#     # elif p == 'st_rate':      print '%.3f' % 1.23**par_values[p] + ' ' + p
+#     # elif p == 'zj_rate':      print '%.3f' % 1.50**par_values[p] + ' ' + p
+#     # elif p == 'diboson_rate': print '%.3f' % 1.20**par_values[p] + ' ' + p
+#     # elif p == 'toptag':       print '%.3f' % 1.20**par_values[p] + ' ' + p
+#     # elif p == 'subjbtag':     print '%.3f' % 1.20**par_values[p] + ' ' + p
+#     if p == 'lumi':     print '%.3f' % 1.027**par_values[p] + ' ' + p
+#     if p == 'ttbar_rate':     print '%.3f' % 1.20**par_values[p] + ' ' + p
+#     elif p == 'w_rate':      print '%.3f' % 1.25**par_values[p] + ' ' + p
+#     elif p == 'wl_rate':      print '%.3f' % 1.25**par_values[p] + ' ' + p
+#     elif p == 'wc_rate':      print '%.3f' % 1.25**par_values[p] + ' ' + p
+#     elif p == 'wb_rate':      print '%.3f' % 1.50**par_values[p] + ' ' + p
+#     elif p == 'st_rate':      print '%.3f' % 1.20**par_values[p] + ' ' + p
+#     elif p == 'zj_rate':      print '%.3f' % 1.20**par_values[p] + ' ' + p
+#     elif p == 'diboson_rate': print '%.3f' % 1.50**par_values[p] + ' ' + p
+#     elif p == 'others_rate': print '%.3f' % 1.50**par_values[p] + ' ' + p
+#     elif p == 'toptag':       print '%.3f' % 1.25**par_values[p] + ' ' + p
+#     elif p == 'subjbtag':     print '%.3f' % 1.50**par_values[p] + ' ' + p
+#     elif p == 'qcd_rate':     print '%.3f' % 1.5**par_values[p] + ' ' + p
+
 
 print '\\n'
 for p in par_values:
     if p == 'lumi':     print '%.3f' % 1.025**par_values[p] + ' ' + p
     if p == 'ttbar_rate':     print '%.3f' % 1.20**par_values[p] + ' ' + p
     elif p == 'w_rate':      print '%.3f' % 1.20**par_values[p] + ' ' + p
-    elif p == 'wl_rate':      print '%.3f' % 1.30**par_values[p] + ' ' + p
+    elif p == 'wl_rate':      print '%.3f' % 1.20**par_values[p] + ' ' + p
     elif p == 'wc_rate':      print '%.3f' % 1.50**par_values[p] + ' ' + p
     elif p == 'wb_rate':      print '%.3f' % 1.50**par_values[p] + ' ' + p
+    elif p == 'wh_rate':      print '%.3f' % 1.20**par_values[p] + ' ' + p
     elif p == 'ST_rate':      print '%.3f' % 1.50**par_values[p] + ' ' + p
     elif p == 'zjets_rate':      print '%.3f' % 1.50**par_values[p] + ' ' + p
-    elif p == 'diboson_rate': print '%.3f' % 1.50**par_values[p] + ' ' + p
+    elif p == 'diboson_rate': print '%.3f' % 1.15**par_values[p] + ' ' + p
     elif p == 'others_rate': print '%.3f' % 1.50**par_values[p] + ' ' + p
-    elif p == 'toptag':       print '%.3f' % 1.25**par_values[p] + ' ' + p
-    elif p == 'mistoptag':    print '%.3f' % 1.07**par_values[p] + ' ' + p
+    elif p == 'toptag':       print '%.3f' % 1.15**par_values[p] + ' ' + p
+    elif p == 'mistoptag':    print '%.3f' % 1.15**par_values[p] + ' ' + p
     elif p == 'subjbtag':     print '%.3f' % 1.50**par_values[p] + ' ' + p
     elif p == 'qcd_rate':     print '%.3f' % 1.5**par_values[p] + ' ' + p
 print '\\n'
@@ -321,15 +433,16 @@ for p in par_values:
     if p == 'lumi':     print '%.3f' % 1.025**par_values[p], '%.3f' % 1.025**par_err_values[p] + ' ' + p
     if p == 'ttbar_rate':     print '%.3f' % 1.20**par_values[p], '%.3f' % 1.20**par_err_values[p] + ' ' + p
     elif p == 'w_rate':      print '%.3f' % 1.20**par_values[p], '%.3f' % 1.20**par_err_values[p] + ' ' + p
-    elif p == 'wl_rate':      print '%.3f' % 1.30**par_values[p], '%.3f' % 1.30**par_err_values[p] + ' ' + p
+    elif p == 'wl_rate':      print '%.3f' % 1.20**par_values[p], '%.3f' % 1.20**par_err_values[p] + ' ' + p
     elif p == 'wc_rate':      print '%.3f' % 1.50**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
     elif p == 'wb_rate':      print '%.3f' % 1.50**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
+    elif p == 'wh_rate':      print '%.3f' % 1.20**par_values[p], '%.3f' % 1.20**par_err_values[p] + ' ' + p
     elif p == 'ST_rate':      print '%.3f' % 1.50**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
     elif p == 'zjets_rate':      print '%.3f' % 1.50**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
-    elif p == 'diboson_rate': print '%.3f' % 1.50**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
+    elif p == 'diboson_rate': print '%.3f' % 1.15**par_values[p], '%.3f' % 1.15**par_err_values[p] + ' ' + p
     elif p == 'others_rate': print '%.3f' % 1.50**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
     elif p == 'toptag':       print '%.3f' % 1.15**par_values[p], '%.3f' % 1.15**par_err_values[p] + ' ' + p
-    elif p == 'mistoptag':    print '%.3f' % 1.07**par_values[p], '%.3f' % 1.07**par_err_values[p] + ' ' + p
+    elif p == 'mistoptag':    print '%.3f' % 1.15**par_values[p], '%.3f' % 1.15**par_err_values[p] + ' ' + p
     elif p == 'subjbtag':     print '%.3f' % 1.50**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
     elif p == 'qcd_rate':     print '%.3f' % 1.5**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
 
