@@ -8,17 +8,18 @@ import numpy
 
 #samplelist = {'wjets_c','wjets_b','wjets_l','diboson','qcd'}
 
-#systematic_direction={'__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1','__csv_hfstats2','__csv_jes','__csv_lf','__csv_lfstats1','__csv_lfstats2','__pileup','__toptag','__mistoptag','__elecID','__elecTRK','__elecHLT','__jer','__jec','__PDF','__q2wjets'}
-#samplelist = {'wjets_c','wjets_b','wjets_l','diboson','qcd'}
-systematic_direction={'__PDF'}
-samplelist = {'ttbar','wjets_l'}
+systematic_direction={'__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1','__csv_hfstats2','__csv_jes','__csv_lf','__csv_lfstats1','__csv_lfstats2','__pileup','__toptag','__mistoptag','__elecID','__elecTRK','__elecHLT','__jer','__jec','__PDF','__q2wjets'}
+samplelist = {'wjets_c','wjets_b','wjets_l','diboson','qcd_el','ST','DY','VV'}
+# systematic_direction={'__PDF'}
+# samplelist = {'ttbar','wjets_l'}
 #samplelist = {'wjets_c','wjets_b','wjets_l','diboson','qcd','ttbar'}
 
 
 # systematic_direction={'__PDF','__q2wjets'}
 # samplelist = {'wjets_c','wjets_b','wjets_l'}
 
-categories=['ele_1top_WJetsMVA_chi2_mttbar__','ele_0top_WJetsMVA_chi2_mttbar__','ele_0top_antiWJetsMVA2_antichi2_mttbar__','ele_0top_antiWJetsMVA3_antichi2_mttbar__']
+#categories=['ele_1top_WJetsMVA_chi2_mttbar__','ele_0top_WJetsMVA_chi2_mttbar__','ele_0top_antiWJetsMVA2_antichi2_mttbar__','ele_0top_antiWJetsMVA3_antichi2_mttbar__']
+categories=['ele_1top_WJetsMVA_chi2_mttbar__','ele_0top_WJetsMVA_chi2_mttbar__','ele_0top_antiWJetsMVA2_antichi2_mttbar__','ele_0top_antiWJetsMVA3_antichi2_mttbar__','ele_0top_antiWJetsMVA2_chi2_mttbar__','ele_0top_antiWJetsMVA3_chi2_mttbar__']
 fin = TFile('ele_theta_bdt0p5_chi30_1MttbarBin_addedQ2_addedPDF.root', 'open')
 #fin = TFile('ele_theta_bdt0p5_chi30_1MttbarBin_addedQ2.root', 'open')
 

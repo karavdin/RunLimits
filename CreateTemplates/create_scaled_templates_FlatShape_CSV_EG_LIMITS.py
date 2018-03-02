@@ -244,7 +244,8 @@ subcategoriesT0=['antiWJetsMVA2_antichi2','WJetsMVA_chi2','antiWJetsMVA3_antichi
 
 fout = TFile('ele_theta_wFlatShapeSyst_Limits.root', 'recreate')
 gROOT.SetBatch(kTRUE)
-from FlatScale_ele import *
+#from FlatScale_ele import *
+from FlatScale_ele_JERhybrid import *
 #print "scale_ele_1top_WJetsMVA_chi2_mttbar__wjets_c__PDF__plus=", scale_ele_1top_WJetsMVA_chi2_mttbar__wjets_c__PDF__plus
 for cat in categories:
     cut_string_GL='(eleN==1 & '

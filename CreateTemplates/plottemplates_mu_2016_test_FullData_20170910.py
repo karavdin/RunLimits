@@ -6,6 +6,7 @@ import numpy
 
 #'nominal'
 systematic_direction={'__pileup','__toptag','__mistoptag','__muID','__muTRK','__muHLT','__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1','__csv_hfstats2','__csv_jes','__csv_lf','__csv_lfstats1','__csv_lfstats2','__PDF','__q2ttbar','__q2wjets','__jer','__jec'}
+#systematic_direction={'__jec'}
 #systematic_direction={'__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1','__csv_hfstats2','__csv_jes','__csv_lf','__csv_lfstats1','__csv_lfstats2'}
 #systematic_direction={'__q2ttbar'} #ttbar
 #systematic_direction={'__jer','__jec'}
@@ -13,19 +14,33 @@ systematic_direction={'__pileup','__toptag','__mistoptag','__muID','__muTRK','__
 #systematic_direction={'__q2wjets'} #wjets
 #systematic_direction={'__toppt_reweight'}
 
-samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','diboson','qcd_mu'}
+samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','diboson','qcd_mu','ST','DY','VV'}
+#samplelist = {'ST','DY'}
 #samplelist = {'ttbar'}
 #samplelist = {'ttbar','wjets_l'}
 #samplelist = {'wjets_l'}
+#samplelist = {'qcd_mu'}
 
-
-categories=['mu_1top_WJetsMVA_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','mu_0top_antiWJetsMVA3_antichi2_mttbar__','mu_0top_antiWJetsMVA2_antichi2_mttbar__']
+#categories=['mu_1top_WJetsMVA_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','mu_0top_antiWJetsMVA3_antichi2_mttbar__','mu_0top_antiWJetsMVA2_antichi2_mttbar__']
+categories=['mu_1top_WJetsMVA_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','mu_0top_antiWJetsMVA3_antichi2_mttbar__','mu_0top_antiWJetsMVA2_antichi2_mttbar__','mu_0top_antiWJetsMVA3_chi2_mttbar__','mu_0top_antiWJetsMVA2_chi2_mttbar__']
 #categories=['mu_0top_antiWJetsMVA3_antichi2_mttbar__','mu_0top_antiWJetsMVA2_antichi2_mttbar__'] #CR
+#categories=['mu_0top_WJetsMVA_chi2_mttbar__']
 #fin = TFile('mu_theta_bdt0p5_chi30_rebinned_addedQ2.root', 'open')
 #fin = TFile('mu_theta_bdt0p5_chi30_rebinned_addedQ2_addedPDF.root', 'open')
 #fin = TFile('mu_theta_wFlatShapeSyst_rebinned_addedQ2_addedPDF.root', 'open')
 #fin = TFile('mu_theta_wFlatShapeSyst.root', 'open')
-fin = TFile('mu_theta_wFlatShapeSyst_addedPDF_addedQ2_rebinned.root', 'open')
+#fin = TFile('mu_theta_wFlatShapeSyst_addedPDF_addedQ2_rebinned.root', 'open')
+#fin = TFile('mu_theta_wFlatShapeSyst_addedPDF_addedQ2_rebinned_woPDF.root', 'open')
+#fin = TFile('mu_theta_wFlatShapeSyst_addedPDF_addedQ2_rebinned_woPDF_wST_wDY_wVV.root', 'open')
+#fin = TFile('mu_theta_wFlatShapeSyst_addedPDF_addedQ2_rebinned_wPDF_wST_wDY_wVV_wDiboson.root', 'open')
+#fin = TFile('mu_theta_wFlatShapeSyst_widerBins_addedPDF_addedQ2_rebinned.root', 'open')
+#fin = TFile('mu_theta_wFlatShapeSyst_min250_addedPDF_addedQ2_rebinned.root', 'open')
+#fin = TFile('mu_theta_wFlatShapeSyst_narrowBins_addedPDF_addedQ2_rebinned.root', 'open')
+#fin = TFile('mu_theta_wFlatShapeSyst_min200_addedPDF_addedQ2_rebinned.root', 'open')
+#fin = TFile('mu_theta_wFlatShapeSyst_min200_allPDF_addedPDF_addedQ2_rebinned30.root', 'open')
+#fin = TFile('mu_theta_wFlatShapeSyst_min200_allPDF_rebinned30_addedPDF_addedQ2.root', 'open')
+#fin = TFile('mu_theta_wFlatShapeSyst_min200_PDFttbarAndWjetsL_rebinned_addedPDF_addedQ2.root', 'open')
+fin = TFile('mu_theta_wFlatShapeSyst_min200_100bins_allPDF_rebinnedSmallBkg_rebinned_addedPDF_addedQ2.root', 'open')
 
 nominalhist = {}
 nominalhistDraw = {}
@@ -69,7 +84,7 @@ for samp in samplelist:
                     
                     systvarhistDraw[cat+samp+syst+'__plus'] = systvarhist[cat+samp+syst+'__plus'].DrawClone('ep')
                     systvarhistDraw[cat+samp+syst+'__plus'].GetXaxis().SetTitle("M_{ttbar}, GeV")
-                    systvarhistDraw[cat+samp+syst+'__plus'].GetXaxis().SetRangeUser(0,3000)
+                    systvarhistDraw[cat+samp+syst+'__plus'].GetXaxis().SetRangeUser(100,2000)
                     systvarhistDraw[cat+samp+syst+'__plus'].SetMarkerColor(kRed)
                     systvarhistDraw[cat+samp+syst+'__plus'].SetMarkerStyle(21)
                     systvarhistDraw[cat+samp+syst+'__plus'].SetLineColor(kRed)

@@ -33,7 +33,7 @@ def name(channel, process, systematic = None, shift = None):
 
 
 
-def addPDFFile(rerror, filename, xtitle, backgrounds):
+def addPDFFile(filename, xtitle, backgrounds):
   file = TFile(filename)
   keys = file.GetListOfKeys()
   h_bkg = {}
@@ -42,18 +42,15 @@ def addPDFFile(rerror, filename, xtitle, backgrounds):
   h_tmp_PDF = {}
   h_PDF = {} # final "PDF__plus","PDF__minus" hists
   
-  # system_q2wjets_list={"q2wjetsMuRdnMuFdn","q2wjetsMuRupMuFup","q2wjetsMuRdnMuFct","q2wjetsMuRupMuFct","q2wjetsMuRctMuFdn","q2wjetsMuRctMuFup"}
-  # h_tmp_q2syst_q2wjets = {}
-  # h_q2syst_q2wjets = {} # final "q2wjets__plus","q2wjets__minus" hists
-  
-  # load all the background histograms and create tmp hists to store q2 variations
+  # load all the background histograms and create tmp hists to store PDF variations
   for key in keys:
     key = key.GetName()
     info = hinfo(key)
     if not info.systematic:
       h_bkg[info.channel+info.process] = file.Get(key).Clone()
       for i in range(1,h_bkg[info.channel+info.process].GetNbinsX()+1):
-        h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)] = ROOT.TH1F(info.channel+info.process+"_"+str(i)+"_PDF",info.channel+info.process+"_"+str(i)+"_PDF", 150000, 1., 15000.)
+#        h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)] = ROOT.TH1F(info.channel+info.process+"_"+str(i)+"_PDF",info.channel+info.process+"_"+str(i)+"_PDF", 20000000, 0., 20000000.)
+        h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)] = ROOT.TH1F(info.channel+info.process+"_"+str(i)+"_PDF",info.channel+info.process+"_"+str(i)+"_PDF", 50000, 1., 50000.)
         
   #read 244 variations for PDF and store them in a histogram. One histtogram per Mttbar bin        
   for key in keys:
@@ -62,12 +59,12 @@ def addPDFFile(rerror, filename, xtitle, backgrounds):
     if info.systematic:
       #print info.systematic
       if  'wgtMCPDF' in info.systematic:
-        #print info.process
+#        print info.process, info.systematic
         h_bkg[info.channel+'_'+info.process+'_'+info.systematic] = file.Get(key).Clone()
         for i in range(1,h_bkg[info.channel+'_'+info.process+'_'+info.systematic].GetNbinsX()+1):
           value = h_bkg[info.channel+'_'+info.process+'_'+info.systematic].GetBinContent(i)
-          h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].Fill(value)
-#          print info.channel+'_'+info.process+'_'+str(i)
+          if value>0: h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].Fill(value)
+#          print info.channel+'_'+info.process+'_'+str(i), value
       # if info.process in backgrounds:
       #   for key_q2syst_q2ttbar in system_q2ttbar_list:
       #     if key_q2syst_q2ttbar == info.systematic:
@@ -87,7 +84,7 @@ def addPDFFile(rerror, filename, xtitle, backgrounds):
     info = hinfo(key)
     if info.systematic:
       if info.process in backgrounds:
-        if info.systematic == "wgtMCPDF_1":
+        if info.systematic == "wgtMCPDF_9":
           if info.shift == "plus":
             h_PDF["PDF__plus"+info.channel+'_'+info.process] = h_bkg[info.channel+'_'+info.process+'_'+info.systematic].Clone()
             h_PDF["PDF__plus"+info.channel+'_'+info.process].SetName(info.channel+"__"+info.process+"__PDF__plus")
@@ -99,11 +96,11 @@ def addPDFFile(rerror, filename, xtitle, backgrounds):
             canvas = TCanvas()
             for i in range(1,h_bkg[info.channel+'_'+info.process+'_'+info.systematic].GetNbinsX()+1):
               # if 'wjets_l' in info.process:
-              #   canvas_tmp = TCanvas()
-              #   h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].Print()
-              #   h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].Draw('e')
-              #   canvas_tmp.SaveAs(info.channel+'_'+info.process+'_'+str(i)+'.pdf')
-#              print h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].GetMean(), h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].GetRMS()
+              # #   canvas_tmp = TCanvas()
+              # #   h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].Print()
+              # #   h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].Draw('e')
+              # #   canvas_tmp.SaveAs(info.channel+'_'+info.process+'_'+str(i)+'.pdf')
+              #   print h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].GetMean(), h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].GetRMS()/h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].GetMean()
 
               h_PDF["PDF__plus"+info.channel+'_'+info.process].SetBinContent(i,h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].GetMean()+h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].GetRMS())
               h_PDF["PDF__minus"+info.channel+'_'+info.process].SetBinContent(i,h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].GetMean()-h_tmp_PDF[info.channel+'_'+info.process+'_'+str(i)].GetRMS())
@@ -140,11 +137,18 @@ def addPDFFile(rerror, filename, xtitle, backgrounds):
           output.cd()
           h_all_system[info.channel+"__"+info.process+"__"+info.systematic+"__"+info.shift].Write()
 
-addPDFFile(0.30,  'mu_theta_wFlatShapeSyst.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
-addPDFFile(0.30,  'mu_theta_wFlatShapeSyst_METcut.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
-addPDFFile(0.30,  'ele_theta_wFlatShapeSyst.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
-addPDFFile(0.30,  'mu_theta_wFlatShapeSyst_Limits.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
-addPDFFile(0.30,  'ele_theta_wFlatShapeSyst_Limits.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
+#addPDFFile(0.30,  'mu_theta_wFlatShapeSyst_min200.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
+
+#addPDFFile(0.30,  'mu_theta_wFlatShapeSyst_widerBins.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
+#addPDFFile(0.30,  'mu_theta_wFlatShapeSyst_min250.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
+#addPDFFile(0.30,  'mu_theta_wFlatShapeSyst_widerBins_min250.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
+#addPDFFile(0.30,  'mu_theta_wFlatShapeSyst_narrowBins.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
+
+# addPDFFile(0.30,  'mu_theta_wFlatShapeSyst.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
+# addPDFFile(0.30,  'mu_theta_wFlatShapeSyst_METcut.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
+# addPDFFile(0.30,  'ele_theta_wFlatShapeSyst.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
+# addPDFFile(0.30,  'mu_theta_wFlatShapeSyst_Limits.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
+# addPDFFile(0.30,  'ele_theta_wFlatShapeSyst_Limits.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
 
 # addPDFFile(0.30,  'ele_theta_bdt0p5_chi30_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
 # addPDFFile(0.30,  'mu_theta_bdt0p5_chi30_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
@@ -152,5 +156,31 @@ addPDFFile(0.30,  'ele_theta_wFlatShapeSyst_Limits.root','M_{t#bar{t}} [GeV/c^{2
 # addPDFFile(0.30,  'ele_theta_wFlatShapeSyst_Limits_rebinned_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
 # addPDFFile(0.30,  'mu_theta_wFlatShapeSyst_rebinned_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
 # addPDFFile(0.30,  'mu_theta_wFlatShapeSyst_Limits_rebinned_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l'])
-# addPDFFile(0.30,  'ele_theta_bdt0p5_chi30_1MttbarBin_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
-# addPDFFile(0.30,  'mu_theta_bdt0p5_chi30_1MttbarBin_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+
+#addPDFFile(0.30,  'ele_theta_bdt0p5_chi30_1MttbarBin_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY','diboson'])
+#addPDFFile(0.30,  'mu_theta_bdt0p5_chi30_1MttbarBin_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY','diboson'])
+
+#addPDFFile(0.30,  'ele_theta_wFlatShapeSyst_min200_allPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY','diboson'])
+#addPDFFile(0.30,  'mu_theta_wFlatShapeSyst_min200_allPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY','diboson'])
+
+#addPDFFile(0.30,  'ele_theta_wFlatShapeSyst_min200_allPDF_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY','diboson'])
+#addPDFFile(0.30,  'ele_theta_wFlatShapeSyst_min200_allPDF_onlyEleStream_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY','diboson'])
+
+#addPDFFile('mu_theta_wFlatShapeSyst_min200_allPDF_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+#addPDFFile('mu_theta_wFlatShapeSyst_min200_PDFttbarAndWjetsL_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY','VV','qcd_mu'])
+#addPDFFile('ele_theta_wFlatShapeSyst_min200_PDFttbarAndWjetsL_onlyEleStream_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY','VV'])
+
+#addPDFFile('ele_theta_wFlatShapeSyst_min200_allPDF_onlyEleStream_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+#addPDFFile('mu_theta_wFlatShapeSyst_min200_allPDF_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+#addPDFFile('mu_theta_wFlatShapeSyst_min200_QCDHT_allPDF_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+#addPDFFile('mu_theta_wFlatShapeSyst_min200_20bins_allPDF_rebinnedSmallBkg_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+#addPDFFile('mu_theta_wFlatShapeSyst_min200_20bins_allPDF_QCDt0only_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+#addPDFFile('mu_theta_wFlatShapeSyst_min200_20bins_allPDF_MET120_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+
+#addPDFFile('mu_theta_wFlatShapeSyst_min200_20bins_allPDF_QCD_SR_CR4_only_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+
+#addPDFFile('mu_theta_wFlatShapeSyst_min200_20bins_allPDF_QCD_SR_CR4_only_rebinnedSmallBkg_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+#addPDFFile('ele_theta_wFlatShapeSyst_min200_allPDF_onlyEleStream_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+
+#addPDFFile('ele_theta_wFlatShapeSyst_onlyEleStream_allSyst_LIMITS_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+addPDFFile('mu_theta_wFlatShapeSyst_allSyst_LIMITS_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])

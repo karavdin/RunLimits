@@ -2,7 +2,7 @@
 from ROOT import ROOT, TCanvas, TColor, TGraph, TLegend, TPaveText, TString, TLine
 from read_input_file import *
 from theory_XsecBR_2016 import *
-ROOT.gROOT.SetBatch()
+#ROOT.gROOT.SetBatch()
 
 kWhite      = 0     #FFFFFF
 kBlack      = 1     #000000
@@ -189,8 +189,8 @@ for s in signal_dict:
 #    limit_plot('limits_elec_'+s+'.txt', s, s+'_el_theta_v1')
 #    limit_plot('limits_Zprime_narrow.txt', s, s+'_el_theta_1128_narrow_v1')
 
-#     limit_plot('limits_muon_'+s+'.txt', s, s+'_mu_theta_20171003')
-#      limit_plot('limits_elec_'+s+'.txt', s, s+'_el_theta_20171003')
-     limit_plot('limits_lep_'+s+'.txt', s, s+'_lep_theta_20171003')
+#     limit_plot('limits_muon_'+s+'.txt', s, s+'_mu_theta_20170302')
+#      limit_plot('limits_elec_'+s+'.txt', s, s+'_el_theta_20170302')
+     limit_plot('limits_lep_'+s+'.txt', s, s+'_lep_theta_20170302')
 
 

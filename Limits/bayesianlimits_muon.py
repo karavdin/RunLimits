@@ -3,13 +3,13 @@ import pickle
 
 ### Filter definitions ###
 
-muo_ifile = ['mu_theta_bdt0p5_chi30_limits_rebinned.root']
+muo_ifile = ['mu_theta_wFlatShapeSyst_allSyst_LIMITS_rebinned_addedPDF_addedQ2.root']
 #muo_ifile = ['mu_theta_bdt0p5_chi30_limits_rebinned.root']
 #ele_ifile = ['ele_theta_bdt0p5_chi30_limits_rebinned.root']
 ele_ifile = ['ele_theta_wFlatShapeSyst_onlyEleStream_allSyst_LIMITS_rebinned_addedPDF_addedQ2.root']
-lep_ifile = ['lep_theta_wFlatShapeSyst_allSyst_LIMITS.root']
+lep_ifile = ['lep_theta_bdt0p5_chi30_limits_rebinned.root']
 #mle_coeff_file = '../MLF_Yields_Uncertainties/mle_coeff.p'
-mle_coeff_file = 'mle_coeff.p'
+mle_coeff_file = 'mle_coeff_muon.p'
 
 def apply_factors(model, factors):
     #print factors
@@ -326,7 +326,7 @@ def build_model(type):
 #args = {'type': 'wide_resonances_muon'}
 #args = {'type': 'rsg_resonances_muon'}
 #args = {'type': 'extrawide_resonances_muon'}
-#args = {'type': 'ttjets_resonances_muon'}
+args = {'type': 'ttjets_resonances_muon'}
 
 #args = {'type': 'narrow_resonances_electron'}
 #args = {'type': 'wide_resonances_electron'}
@@ -338,7 +338,7 @@ def build_model(type):
 #args = {'type': 'wide_resonances_lepton'}
 #args = {'type': 'rsg_resonances_lepton'}
 #args = {'type': 'extrawide_resonances_lepton'}
-args = {'type': 'ttjets_resonances_lepton'}
+#args = {'type': 'ttjets_resonances_lepton'}
 
 model = build_model(**args)
 

@@ -192,10 +192,10 @@ if addPDF:
 
 #inputdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid/T1_v06/muon/" 
 inputdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight/T1_v06/muon/"
-jecupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_jec_up/T1_v06/muon/"
-jecdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_jec_down/T1_v06/muon/"
-jerupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_jer_up/T1_v06/muon/"
-jerdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_jer_down/T1_v06/muon/"
+jecupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jec_up/T1_v06/muon/"
+jecdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jec_down/T1_v06/muon/"
+jerupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jer_up/T1_v06/muon/"
+jerdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jer_down/T1_v06/muon/"
 samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA.root',
 'diboson':'uhh2.AnalysisModuleRunner.MC.ST_+_DY_+_VV.root',
 'qcd_mu':'uhh2.AnalysisModuleRunner.MC.QCD_Pt.root',
@@ -215,7 +215,8 @@ subcategoriesT0=['antiWJetsMVA2_antichi2','WJetsMVA_chi2','antiWJetsMVA3_antichi
 
 fout = TFile('mu_theta_wFlatShapeSyst.root', 'recreate')
 gROOT.SetBatch(kTRUE)
-from FlatScale_mu import *
+#from FlatScale_mu import *
+from FlatScale_mu_JERhybrid import *
 for cat in categories:
     cut_string_GL='(muoN==1 & Mttbar<2000. & '
     if cat == 'T1':

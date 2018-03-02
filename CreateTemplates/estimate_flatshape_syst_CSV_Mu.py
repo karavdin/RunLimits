@@ -15,8 +15,8 @@ systematic_direction_ttbar={'nominal':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu
                             'muID__minus':'(weight_sfmu_ID_down)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'muTRK__plus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK_up)*(weight_sfmu_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',              
                             'muTRK__minus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK_down)*(weight_sfmu_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
- #                           'muHLT__plus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT_up)*(wgtMC__ttagSF_ct)*(weight_csv_central)',       
- #                           'muHLT__minus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT_down)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'muHLT__plus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT_up)*(wgtMC__ttagSF_ct)*(weight_csv_central)',       
+                            'muHLT__minus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT_down)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'toptag__plus':'(weight_pu)*(wgtMC__ttagSF_upT)*(weight_sfmu_TRK)*(weight_sfmu_ID)*(weight_sfmu_HLT)*(weight_csv_central)',
                             'toptag__minus':'(weight_pu)*(wgtMC__ttagSF_dnT)*(weight_sfmu_TRK)*(weight_sfmu_ID)*(weight_sfmu_HLT)*(weight_csv_central)',      
                             'mistoptag__plus':'(weight_pu)*(wgtMC__ttagSF_upL)*(weight_sfmu_TRK)*(weight_sfmu_ID)*(weight_sfmu_HLT)*(weight_csv_central)',
@@ -66,8 +66,8 @@ systematic_direction_wjets={'nominal':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu
                             'muID__minus':'(weight_sfmu_ID_down)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'muTRK__plus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK_up)*(weight_sfmu_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'muTRK__minus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK_down)*(weight_sfmu_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-#                            'muHLT__plus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT_up)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-#                            'muHLT__minus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT_down)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'muHLT__plus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT_up)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'muHLT__minus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT_down)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'toptag__plus':'(weight_pu)*(wgtMC__ttagSF_upT)*(weight_sfmu_TRK)*(weight_sfmu_ID)*(weight_sfmu_HLT)*(weight_csv_central)',
                             'toptag__minus':'(weight_pu)*(wgtMC__ttagSF_dnT)*(weight_sfmu_TRK)*(weight_sfmu_ID)*(weight_sfmu_HLT)*(weight_csv_central)',
                             'mistoptag__plus':'(weight_pu)*(wgtMC__ttagSF_upL)*(weight_sfmu_TRK)*(weight_sfmu_ID)*(weight_sfmu_HLT)*(weight_csv_central)',
@@ -117,8 +117,8 @@ systematic_direction_otherbkgs = {'nominal':'(weight_sfmu_ID)*(weight_pu)*(weigh
                                   'muID__minus':'(weight_sfmu_ID_down)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                                   'muTRK__plus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK_up)*(weight_sfmu_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                                   'muTRK__minus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK_down)*(weight_sfmu_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-#                            'muHLT__plus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT_up)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-#                            'muHLT__minus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT_down)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                                  'muHLT__plus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT_up)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                                  'muHLT__minus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT_down)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                                   'toptag__plus':'(weight_pu)*(wgtMC__ttagSF_upT)*(weight_sfmu_TRK)*(weight_sfmu_ID)*(weight_sfmu_HLT)*(weight_csv_central)',
                                   'toptag__minus':'(weight_pu)*(wgtMC__ttagSF_dnT)*(weight_sfmu_TRK)*(weight_sfmu_ID)*(weight_sfmu_HLT)*(weight_csv_central)',
                                   'mistoptag__plus':'(weight_pu)*(wgtMC__ttagSF_upL)*(weight_sfmu_TRK)*(weight_sfmu_ID)*(weight_sfmu_HLT)*(weight_csv_central)',
@@ -154,8 +154,8 @@ systematic_direction_signal= {'nominal':'(weight_sfmu_ID)*(weight_pu)*(weight_sf
                              'muID__minus':'(weight_sfmu_ID_down)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                              'muTRK__plus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK_up)*(weight_sfmu_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)', 
                              'muTRK__minus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK_down)*(weight_sfmu_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
- #                            'muHLT__plus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT_up)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
- #                            'muHLT__minus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT_down)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                             'muHLT__plus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT_up)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                             'muHLT__minus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT_down)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                              'toptag__plus':'(weight_pu)*(wgtMC__ttagSF_upT)*(weight_sfmu_TRK)*(weight_sfmu_ID)*(weight_sfmu_HLT)*(weight_csv_central)', 
                              'toptag__minus':'(weight_pu)*(wgtMC__ttagSF_dnT)*(weight_sfmu_TRK)*(weight_sfmu_ID)*(weight_sfmu_HLT)*(weight_csv_central)',   
                              'mistoptag__plus':'(weight_pu)*(wgtMC__ttagSF_upL)*(weight_sfmu_TRK)*(weight_sfmu_ID)*(weight_sfmu_HLT)*(weight_csv_central)',
@@ -185,33 +185,49 @@ systematic_direction_signal= {'nominal':'(weight_sfmu_ID)*(weight_pu)*(weight_sf
                             'jer__minus':'(weight_sfmu_ID)*(weight_pu)*(weight_sfmu_TRK)*(weight_sfmu_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
 }         
 if addPDF:
-    for i in range(244):
+    for i in range(9, 109):
         pdfstring  = '*(wgtMC__PDF['+str(i)+'])'
         systematic_direction_ttbar['wgtMCPDF_'+str(i)+'__plus'] = ct+pdfstring
         systematic_direction_wjets['wgtMCPDF_'+str(i)+'__plus'] = ct+pdfstring
+        systematic_direction_otherbkgs['wgtMCPDF_'+str(i)+'__plus'] = ct+pdfstring
         systematic_direction_signal['wgtMCPDF_'+str(i)+'__plus'] = ct+pdfstring
 
-inputdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_dRPUPPI10_wCSVshapeSF_wMisTopTagSF_wHTlep_NOTBLINED_WJetsOLDbdt_muRmuF_HLT1ORHLT2_updTTAGeff_20171108/T1_v06/muon/"
-jecupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_dRPUPPI10_wCSVshapeSF_wMisTopTagSF_wHTlep_NOTBLINED_WJetsOLDbdt_muRmuF_HLT1ORHLT2_updTTAGeff_20171108_jec_up/T1_v06/muon/"
-jecdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_dRPUPPI10_wCSVshapeSF_wMisTopTagSF_wHTlep_NOTBLINED_WJetsOLDbdt_muRmuF_HLT1ORHLT2_updTTAGeff_20171108_jec_down/T1_v06/muon/"
-jerupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_dRPUPPI10_wCSVshapeSF_wMisTopTagSF_wHTlep_NOTBLINED_WJetsOLDbdt_muRmuF_HLT1ORHLT2_updTTAGeff_20171108_jer_up/T1_v06/muon/"
-jerdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_dRPUPPI10_wCSVshapeSF_wMisTopTagSF_wHTlep_NOTBLINED_WJetsOLDbdt_muRmuF_HLT1ORHLT2_updTTAGeff_20171108_jer_down/T1_v06/muon/"
-samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA.root',
+inputdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight/T1_v06/muon/"
+jecupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jec_up/T1_v06/muon/"
+jecdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jec_down/T1_v06/muon/"
+jerupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jer_up/T1_v06/muon/"
+jerdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jer_down/T1_v06/muon/"
+
+
+# inputdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_dRPUPPI10_wCSVshapeSF_wMisTopTagSF_wHTlep_NOTBLINED_WJetsOLDbdt_muRmuF_HLT1ORHLT2_updTTAGeff_20171108/T1_v06/muon/"
+# jecupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_dRPUPPI10_wCSVshapeSF_wMisTopTagSF_wHTlep_NOTBLINED_WJetsOLDbdt_muRmuF_HLT1ORHLT2_updTTAGeff_20171108_jec_up/T1_v06/muon/"
+# jecdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_dRPUPPI10_wCSVshapeSF_wMisTopTagSF_wHTlep_NOTBLINED_WJetsOLDbdt_muRmuF_HLT1ORHLT2_updTTAGeff_20171108_jec_down/T1_v06/muon/"
+# jerupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_dRPUPPI10_wCSVshapeSF_wMisTopTagSF_wHTlep_NOTBLINED_WJetsOLDbdt_muRmuF_HLT1ORHLT2_updTTAGeff_20171108_jer_up/T1_v06/muon/"
+# jerdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_dRPUPPI10_wCSVshapeSF_wMisTopTagSF_wHTlep_NOTBLINED_WJetsOLDbdt_muRmuF_HLT1ORHLT2_updTTAGeff_20171108_jer_down/T1_v06/muon/"
+
+
+samplelist = {
+#'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA.root',
 'diboson':'uhh2.AnalysisModuleRunner.MC.ST_+_DY_+_VV.root',
-'qcd':'uhh2.AnalysisModuleRunner.MC.QCD_Pt.root',
+'qcd_mu':'uhh2.AnalysisModuleRunner.MC.QCD_Pt.root',
 'wjets_l':'uhh2.AnalysisModuleRunner.MC.WJets__L.root',
 'wjets_b':'uhh2.AnalysisModuleRunner.MC.WJets__B.root',
 'wjets_c':'uhh2.AnalysisModuleRunner.MC.WJets__C.root',
-'ttbar':'uhh2.AnalysisModuleRunner.MC.TTbar.root',
-'Zprime0500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M0500.root','Zprime4000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M4000.root',
-'Zprime1000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M1000.root','Zprime1500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M1500.root',
-'Zprime2500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M2500.root', 'Zprime2000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M2000.root',
-'Zprime3000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M3000.root' ,
-'Zprime3500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M3500.root'}
+#'ttbar':'uhh2.AnalysisModuleRunner.MC.TTbar.root',
+# 'Zprime0500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M0500.root','Zprime4000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M4000.root',
+# 'Zprime1000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M1000.root','Zprime1500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M1500.root',
+# 'Zprime2500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M2500.root', 'Zprime2000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M2000.root',
+# 'Zprime3000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M3000.root' ,
+# 'Zprime3500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M3500.root',
+'ST':'uhh2.AnalysisModuleRunner.MC.ST.root',
+'DY':'uhh2.AnalysisModuleRunner.MC.DY.root',
+'VV':'uhh2.AnalysisModuleRunner.MC.VV.root',
+}
 
 categories=['T0','T1']
 subcategoriesT1=['WJetsMVA_chi2'] 
-subcategoriesT0=['antiWJetsMVA2_antichi2','WJetsMVA_chi2','antiWJetsMVA3_antichi2']
+#subcategoriesT0=['antiWJetsMVA2_antichi2','WJetsMVA_chi2','antiWJetsMVA3_antichi2']
+subcategoriesT0=['antiWJetsMVA2_antichi2','antiWJetsMVA3_antichi2','antiWJetsMVA2_chi2','antiWJetsMVA3_chi2','WJetsMVA_chi2']
 
 fout = TFile('mu_theta_bdt0p5_chi30_1MttbarBin.root', 'recreate')
 gROOT.SetBatch(kTRUE)
@@ -401,7 +417,7 @@ for cat in categories:
                                 print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
                                 fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                                 del tempsys
-                elif 'zjets' or 'diboson' or 'others' or 'qcd' in key_sample:
+                elif 'zjets' or 'diboson' or 'others' or 'qcd' or 'ST' or 'DY' or 'VV' in key_sample:
                     for syst in systematic_direction_otherbkgs:
                         cut = str(cut_string+' & ttagN==1 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
                         print "Processing: ",key_sample
@@ -452,6 +468,12 @@ for cat in categories:
             if subcat == 'antiWJetsMVA3_antichi2':
                 cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & WJets_TMVA_response>0.0 & rec_chi2>=30 '
                 h_string = h_string_GL + 'antiWJetsMVA3_antichi2_mttbar__'
+            if subcat == 'antiWJetsMVA2_chi2':
+                cut_string = cut_string_GL+' WJets_TMVA_response<-0.75 & rec_chi2<30 '
+                h_string = h_string_GL + 'antiWJetsMVA2_chi2_mttbar__'
+            if subcat == 'antiWJetsMVA3_chi2':
+                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & WJets_TMVA_response>0.0 & rec_chi2<30 '
+                h_string = h_string_GL + 'antiWJetsMVA3_chi2_mttbar__'
 
             for key_sample in samplelist:
                 myfile = TFile(inputdir+samplelist[key_sample])
@@ -619,7 +641,7 @@ for cat in categories:
                                 temp2sys.SetName(h_string+key_sample+"__"+syst)
                                 fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
                                 del temp2sys
-                elif 'zjets' or 'diboson' or 'others' or 'qcd' in key_sample:
+                elif 'zjets' or 'diboson' or 'others' or 'qcd' or 'ST' or 'DY' or 'VV' in key_sample:
                     for syst in systematic_direction_otherbkgs:
                         cut = str(cut_string+' & ttagN==0 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
                         print "Processing: ",key_sample

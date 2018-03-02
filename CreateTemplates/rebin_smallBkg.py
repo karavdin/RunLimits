@@ -146,7 +146,7 @@ def binFile(rerror, filename, xtitle, backgrounds):
 
     keys = file.GetListOfKeys()
 
-    output = TFile(filename.split('.')[0]+'_rebinned.root', 'RECREATE')
+    output = TFile(filename.split('.')[0]+'_rebinnedSmallBkg.root', 'RECREATE')
 
     # print all the histograms for all the channels
     for key in h_bkg:
@@ -249,10 +249,8 @@ def binFile(rerror, filename, xtitle, backgrounds):
                 output.cd()
                 histogram.Write()
 
-#binFile(0.10,  'mu_theta_wFlatShapeSyst_min200_20bins_allPDF_QCD_SR_CR4_only_rebinnedSmallBkg.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','qcd_mu','ST','DY'])
-#binFile(0.10, 'ele_theta_wFlatShapeSyst_min200_allPDF_onlyEleStream.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','qcd_mu','ST','DY','VV'])
 
-#binFile(0.30,  'ele_theta_wFlatShapeSyst_onlyEleStream_allSyst_LIMITS.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','qcd_mu','ST','DY'])
 
-binFile(0.30,  'mu_theta_wFlatShapeSyst_allSyst_LIMITS.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','qcd_mu','ST','DY'])
+binFile(0.15,  'mu_theta_wFlatShapeSyst_min200_20bins_allPDF_QCD_SR_CR4_only.root','M_{t#bar{t}} [GeV/c^{2}]', ['wjets_c','wjets_b','qcd_mu','DY'])
+#binFile(0.10,  'ele_theta_wFlatShapeSyst_onlyEleStream_allSyst_LIMITS.root','M_{t#bar{t}} [GeV/c^{2}]', ['wjets_c','wjets_b','qcd_mu','DY'])
 
