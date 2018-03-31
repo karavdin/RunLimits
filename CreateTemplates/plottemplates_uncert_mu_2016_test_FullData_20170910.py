@@ -19,7 +19,8 @@ categories=['mu_1top_WJetsMVA_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','m
 #fin = TFile('mu_theta_wFlatShapeSyst_min200_100bins_allPDF_rebinnedSmallBkg_rebinned_addedPDF_addedQ2.root', 'open')
 #fin = TFile('mu_theta_wFlatShapeSyst_min200_20bins_allPDF_QCDt0only_rebinned_addedPDF_addedQ2.root', 'open')
 #fin = TFile('mu_theta_wFlatShapeSyst_min200_20bins_allPDF_QCD_SR_CR4_only_rebinned_addedPDF_addedQ2.root', 'open')
-fin = TFile('mu_theta_wFlatShapeSyst_min200_20bins_allPDF_QCD_SR_CR4_only_rebinnedSmallBkg_rebinned_addedPDF_addedQ2.root', 'open')
+#fin = TFile('mu_theta_wFlatShapeSyst_min200_20bins_allPDF_QCD_SR_CR4_only_rebinnedSmallBkg_rebinned_addedPDF_addedQ2.root', 'open')
+fin = TFile('mu_theta_wFlatShapeSyst_min200_20bins_wTopPtrewSymSyst_rebinned_addedPDF_addedQ2.root', 'open')
 
 nominalhist = {}
 nominalhistsum = {}

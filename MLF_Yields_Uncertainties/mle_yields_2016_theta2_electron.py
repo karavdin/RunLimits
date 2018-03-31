@@ -8,7 +8,8 @@ print 'Hello MLE'
 #ele_ifile = ['ele_theta_wFlatShapeSyst_min200_allPDF_onlyEleStream_rebinned_addedPDF_addedQ2.root']
 #ele_ifile = ['ele_theta_wFlatShapeSyst_min200_PDFttbarAndWjetsL_onlyEleStream_rebinned_addedPDF_addedQ2.root']
 #ele_ifile = ['ele_theta_wFlatShapeSyst_min200_allPDF_onlyEleStream_rebinned10_addedPDF_addedQ2.root']
-ele_ifile = ['ele_theta_wFlatShapeSyst_min200_allPDF_onlyEleStream_rebinned_addedPDF_addedQ2.root']
+#ele_ifile = ['ele_theta_wFlatShapeSyst_min200_allPDF_onlyEleStream_rebinned_addedPDF_addedQ2.root']
+ele_ifile = ['ele_theta_wFlatShapeSyst_min200_20bins_wTopPtrewSymSyst_rebinned_addedPDF_addedQ2.root']
 
 muo_ifile = ['mu_theta_wFlatShapeSyst_addedPDF_addedQ2_rebinned.root']
 lep_ifile = ['lep_theta_wFlatShapeSyst_rebinned_addedQ2_addedPDF.root']
@@ -55,12 +56,12 @@ def build_boosted_semileptonic_model(files, filter, signal, mcstat = True):
 
     for p in model.processes:
         model.add_lognormal_uncertainty('lumi', math.log(1.025), p)
-        # if 'qcd_el' in p:
-        #     print "!!! scale predictions by 0.0 for ",p
-        #     model.scale_predictions(0.0,p)
-        # if 'VV' in p:
-        #     print "!!! scale predictions by 0.0 for ",p
-        #     model.scale_predictions(0.0,p)
+        if 'qcd_el' in p:
+            print "!!! scale predictions by 0.0 for ",p
+            model.scale_predictions(0.0,p)
+        if 'VV' in p:
+            print "!!! scale predictions by 0.0 for ",p
+            model.scale_predictions(0.0,p)
         # if 'DY' in p:
         #     print "!!! scale predictions by 0.0 for ",p
         #     model.scale_predictions(0.0,p)
@@ -102,16 +103,17 @@ def build_boosted_semileptonic_model(files, filter, signal, mcstat = True):
     model.add_lognormal_uncertainty('ttbar_rate',   math.log(1.20), 'ttbar')
     # model.add_lognormal_uncertainty('others_rate',  math.log(1.50), 'wjets_b')
     # model.add_lognormal_uncertainty('others_rate',  math.log(1.50), 'wjets_c')
-    model.add_lognormal_uncertainty('other_rate',  math.log(1.20), 'wjets_b')
-    model.add_lognormal_uncertainty('other_rate',  math.log(1.20), 'wjets_c')
+    model.add_lognormal_uncertainty('other_rate',  math.log(1.25), 'wjets_b')
+    model.add_lognormal_uncertainty('other_rate',  math.log(1.25), 'wjets_c')
 
 #     model.add_lognormal_uncertainty('wb_rate',  math.log(1.50), 'wjets_b')
-# #    model.add_lognormal_uncertainty('others_rate',  math.log(1.50), 'wjets_b')
+#    model.add_lognormal_uncertainty('others_rate',  math.log(1.50), 'wjets_b')
 #     model.add_lognormal_uncertainty('wc_rate',  math.log(1.50), 'wjets_c')
-#    model.add_lognormal_uncertainty('others_rate',  math.log(1.50), 'wjets_c')
+ #   model.add_lognormal_uncertainty('others_rate',  math.log(1.50), 'wjets_c')
     model.add_lognormal_uncertainty('wl_rate',  math.log(1.20), 'wjets_l')
     model.add_lognormal_uncertainty('ST_rate', math.log(1.50), 'ST')
-    model.add_lognormal_uncertainty('other_rate', math.log(1.50), 'DY')
+#    model.add_lognormal_uncertainty('other_rate', math.log(1.50), 'ST')
+    model.add_lognormal_uncertainty('other_rate', math.log(1.25), 'DY')
 #    model.add_lognormal_uncertainty('VV_rate', math.log(1.50), 'VV')
 #    model.add_lognormal_uncertainty('zjets_rate', math.log(1.50), 'zjets')
 #    model.add_lognormal_uncertainty('ST_rate', math.log(1.50), 'ST')
@@ -248,7 +250,7 @@ def build_model(type):
 #        if (p == 'wl_rate'): model.distribution.set_distribution_parameters(p,  width = 1.0) 
         #if (p == 'wh_rate'): model.distribution.set_distribution_parameters(p,  width = 1.0) 
   #      if (p == 'wh_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
-        if (p == 'ST_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
+     #   if (p == 'ST_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
  #       if (p == 'diboson_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
    #     if (p == 'diboson_rate'): model.distribution.set_distribution_parameters(p, width = 0.001) 
    #     if (p == 'qcd_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
@@ -268,7 +270,7 @@ def build_model(type):
 #        if (p == 'csv_hfstats1'): model.distribution.set_distribution_parameters(p, width = 0.85)
 #        if (p == 'csv_cferr1'): model.distribution.set_distribution_parameters(p, width = 0.85)
         #if (p == 'q2wjets'): model.distribution.set_distribution_parameters(p, width = 0.5)
-        if (p == 'toppt_reweight'): model.distribution.set_distribution_parameters(p, width = 0.0001)
+#        if (p == 'toppt_reweight'): model.distribution.set_distribution_parameters(p, width = 0.0001)
 
 #        if (p == 'q2ttbar'): model.distribution.set_distribution_parameters(p, width = 1.50)
         # if (p == 'q2ttbarMuF'): model.distribution.set_distribution_parameters(p, mean = 0.00, width = 0.0001)
@@ -450,7 +452,7 @@ for p in par_values:
     elif p == 'ST_rate':      print '%.3f' % 1.50**par_values[p] + ' ' + p
     elif p == 'zjets_rate':      print '%.3f' % 1.50**par_values[p] + ' ' + p
     elif p == 'diboson_rate': print '%.3f' % 1.15**par_values[p] + ' ' + p
-    elif p == 'others_rate': print '%.3f' % 1.50**par_values[p] + ' ' + p
+    elif p == 'others_rate': print '%.3f' % 1.250**par_values[p] + ' ' + p
     elif p == 'toptag':       print '%.3f' % 1.15**par_values[p] + ' ' + p
     elif p == 'mistoptag':    print '%.3f' % 1.15**par_values[p] + ' ' + p
     elif p == 'subjbtag':     print '%.3f' % 1.50**par_values[p] + ' ' + p
@@ -472,7 +474,7 @@ for p in par_values:
     elif p == 'mistoptag':    print '%.3f' % 1.15**par_values[p], '%.3f' % 1.15**par_err_values[p] + ' ' + p
     elif p == 'subjbtag':     print '%.3f' % 1.50**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
     elif p == 'qcd_rate':     print '%.3f' % 1.5**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
-    elif p == 'other_rate':     print '%.3f' % 1.5**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
+    elif p == 'other_rate':     print '%.3f' % 1.25**par_values[p], '%.3f' % 1.250**par_err_values[p] + ' ' + p
 
 
 

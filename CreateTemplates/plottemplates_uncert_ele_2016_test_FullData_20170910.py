@@ -14,7 +14,8 @@ systematic_direction={'__PDF'}
 #systematic_direction={'__q2wjets'} #wjets
 #systematic_direction={'__toppt_reweight'}
 
-samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','diboson','ST','DY','VV'}
+#samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','diboson','ST','DY','VV'}
+samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','ST','DY'}
 #samplelist = {'ST','DY'}
 #samplelist = {'ttbar'}
 #samplelist = {'ttbar','wjets_l'}
@@ -22,8 +23,11 @@ samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','diboson','ST','DY','VV'}
 #samplelist = {'qcd_mu'}
 
 #categories=['mu_1top_WJetsMVA_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','mu_0top_antiWJetsMVA3_antichi2_mttbar__','mu_0top_antiWJetsMVA2_antichi2_mttbar__']
-categories=['ele_1top_WJetsMVA_chi2_mttbar__','ele_0top_WJetsMVA_chi2_mttbar__','ele_0top_antiWJetsMVA2_antichi2_mttbar__','ele_0top_antiWJetsMVA3_antichi2_mttbar__','ele_0top_antiWJetsMVA2_chi2_mttbar__','ele_0top_antiWJetsMVA3_chi2_mttbar__']
-fin = TFile('ele_theta_wFlatShapeSyst_min200_allPDF_onlyEleStream_rebinned10_addedPDF_addedQ2.root', 'open')
+# categories=['ele_1top_WJetsMVA_chi2_mttbar__','ele_0top_WJetsMVA_chi2_mttbar__','ele_0top_antiWJetsMVA2_antichi2_mttbar__','ele_0top_antiWJetsMVA3_antichi2_mttbar__','ele_0top_antiWJetsMVA2_chi2_mttbar__','ele_0top_antiWJetsMVA3_chi2_mttbar__']
+# fin = TFile('ele_theta_wFlatShapeSyst_min200_allPDF_onlyEleStream_rebinned10_addedPDF_addedQ2.root', 'open')
+
+categories=['ele_1top_WJetsMVA_chi2_mttbar__','ele_0top_WJetsMVA_chi2_mttbar__','ele_0top_antiWJetsMVA2_chi2_mttbar__','ele_0top_antiWJetsMVA3_chi2_mttbar__']
+fin = TFile('ele_theta_wFlatShapeSyst_min200_20bins_wTopPtrewSymSyst_rebinned_addedPDF_addedQ2.root', 'open')
 
 
 nominalhist = {}

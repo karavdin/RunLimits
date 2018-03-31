@@ -5,7 +5,7 @@ import numpy
 
 
 #'nominal'
-systematic_direction={'__pileup','__toptag','__mistoptag','__muID','__muTRK','__muHLT','__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1','__csv_hfstats2','__csv_jes','__csv_lf','__csv_lfstats1','__csv_lfstats2','__PDF','__q2ttbar','__q2wjets','__jer','__jec'}
+systematic_direction={'__pileup','__toptag','__mistoptag','__muID','__muTRK','__muHLT','__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1','__csv_hfstats2','__csv_jes','__csv_lf','__csv_lfstats1','__csv_lfstats2','__PDF','__q2ttbar','__q2wjets','__jer','__jec','__toppt_reweight'}
 #systematic_direction={'__jec'}
 #systematic_direction={'__csv_cferr1','__csv_cferr2','__csv_hf','__csv_hfstats1','__csv_hfstats2','__csv_jes','__csv_lf','__csv_lfstats1','__csv_lfstats2'}
 #systematic_direction={'__q2ttbar'} #ttbar
@@ -14,7 +14,8 @@ systematic_direction={'__pileup','__toptag','__mistoptag','__muID','__muTRK','__
 #systematic_direction={'__q2wjets'} #wjets
 #systematic_direction={'__toppt_reweight'}
 
-samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','diboson','qcd_mu','ST','DY','VV'}
+#samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','diboson','qcd_mu','ST','DY','VV'}
+samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','qcd_mu','ST','DY'}
 #samplelist = {'ST','DY'}
 #samplelist = {'ttbar'}
 #samplelist = {'ttbar','wjets_l'}
@@ -22,7 +23,8 @@ samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','diboson','qcd_mu','ST','DY'
 #samplelist = {'qcd_mu'}
 
 #categories=['mu_1top_WJetsMVA_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','mu_0top_antiWJetsMVA3_antichi2_mttbar__','mu_0top_antiWJetsMVA2_antichi2_mttbar__']
-categories=['mu_1top_WJetsMVA_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','mu_0top_antiWJetsMVA3_antichi2_mttbar__','mu_0top_antiWJetsMVA2_antichi2_mttbar__','mu_0top_antiWJetsMVA3_chi2_mttbar__','mu_0top_antiWJetsMVA2_chi2_mttbar__']
+#categories=['mu_1top_WJetsMVA_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','mu_0top_antiWJetsMVA3_antichi2_mttbar__','mu_0top_antiWJetsMVA2_antichi2_mttbar__','mu_0top_antiWJetsMVA3_chi2_mttbar__','mu_0top_antiWJetsMVA2_chi2_mttbar__']
+categories=['mu_1top_WJetsMVA_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','mu_0top_antiWJetsMVA3_chi2_mttbar__','mu_0top_antiWJetsMVA2_chi2_mttbar__']
 #categories=['mu_0top_antiWJetsMVA3_antichi2_mttbar__','mu_0top_antiWJetsMVA2_antichi2_mttbar__'] #CR
 #categories=['mu_0top_WJetsMVA_chi2_mttbar__']
 #fin = TFile('mu_theta_bdt0p5_chi30_rebinned_addedQ2.root', 'open')
@@ -40,7 +42,7 @@ categories=['mu_1top_WJetsMVA_chi2_mttbar__','mu_0top_WJetsMVA_chi2_mttbar__','m
 #fin = TFile('mu_theta_wFlatShapeSyst_min200_allPDF_addedPDF_addedQ2_rebinned30.root', 'open')
 #fin = TFile('mu_theta_wFlatShapeSyst_min200_allPDF_rebinned30_addedPDF_addedQ2.root', 'open')
 #fin = TFile('mu_theta_wFlatShapeSyst_min200_PDFttbarAndWjetsL_rebinned_addedPDF_addedQ2.root', 'open')
-fin = TFile('mu_theta_wFlatShapeSyst_min200_100bins_allPDF_rebinnedSmallBkg_rebinned_addedPDF_addedQ2.root', 'open')
+fin = TFile('mu_theta_wFlatShapeSyst_min200_20bins_wTopPtrewSymSyst_rebinned_addedPDF_addedQ2.root', 'open')
 
 nominalhist = {}
 nominalhistDraw = {}

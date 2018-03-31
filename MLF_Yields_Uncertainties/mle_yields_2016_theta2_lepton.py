@@ -7,7 +7,8 @@ muo_ifile = ['mu_theta_wFlatShapeSyst_min200_allPDF_addedPDF_addedQ2_rebinned30.
 #lep_ifile = ['lep_theta_wFlatShapeSyst_min200_allPDF_addedPDF_addedQ2_rebinned30.root']
 #lep_ifile = ['lep_theta_wFlatShapeSyst_min200_allPDF_rebinned30_addedPDF_addedQ2.root']
 #lep_ifile = ['lep_theta_wFlatShapeSyst_min200_allPDF_rebinned30_addedPDF_addedQ2_SingleElecOnly.root']
-lep_ifile = ['lep_theta_wFlatShapeSyst_min200_allPDF_fixed.root']
+#lep_ifile = ['lep_theta_wFlatShapeSyst_min200_allPDF_fixed.root']
+lep_ifile = ['lep_theta_wFlatShapeSyst_min200_20bins_wTopPtrewSymSyst_rebinned_addedPDF_addedQ2.root']
 #lep_ifile = ['lep_theta_wFlatShapeSyst_min200_allPDF_rebinned3010_addedPDF_addedQ2_SingleElecOnly.root']
 
 def narrow_resonances(hname):
@@ -41,27 +42,20 @@ def build_boosted_semileptonic_model(files, filter, signal, mcstat = False):
     model.set_signal_processes(signal)
     obs =  model.get_observables()
     print "set1 ", obs
-#    model.restrict_to_observables(set(['ele_0top_WJetsMVA_chi2_mttbar','ele_0top_antiWJetsMVA2_chi2_mttbar','ele_0top_antiWJetsMVA3_antichi2_mttbar','ele_0top_antiWJetsMVA3_chi2_mttbar','ele_1top_WJetsMVA_chi2_mttbar','mu_0top_WJetsMVA_chi2_mttbar','mu_0top_antiWJetsMVA2_chi2_mttbar','mu_0top_antiWJetsMVA3_antichi2_mttbar','mu_0top_antiWJetsMVA3_chi2_mttbar','mu_1top_WJetsMVA_chi2_mttbar']))
-    model.restrict_to_observables(set(['ele_0top_WJetsMVA_chi2_mttbar','ele_0top_antiWJetsMVA2_chi2_mttbar','ele_0top_antiWJetsMVA3_chi2_mttbar','ele_1top_WJetsMVA_chi2_mttbar','mu_0top_WJetsMVA_chi2_mttbar','mu_0top_antiWJetsMVA2_chi2_mttbar','mu_0top_antiWJetsMVA3_chi2_mttbar','mu_1top_WJetsMVA_chi2_mttbar']))
-# #    model.restrict_to_observables(set(['mu_0top_antiWJetsMVA3_chi2_mttbar', 'mu_1top_WJetsMVA_chi2_mttbar', 'mu_0top_WJetsMVA_chi2_mttbar','mu_0top_antiWJetsMVA2_chi2_mttbar',]))
-
-#     #model.restrict_to_observables(set(['mu_0top_antiWJetsMVA3_antichi2_mttbar', 'mu_0top_antiWJetsMVA2_antichi2_mttbar', 'mu_1top_WJetsMVA_chi2_mttbar', 'mu_0top_WJetsMVA_chi2_mttbar']))
-# #    model.restrict_to_observables(set(['mu_0top_antiWJetsMVA3_chi2_mttbar', 'mu_0top_antiWJetsMVA2_chi2_mttbar', 'mu_1top_WJetsMVA_chi2_mttbar', 'mu_0top_WJetsMVA_chi2_mttbar']))
-#     model.restrict_to_observables(set(['mu_0top_antiWJetsMVA3_chi2_mttbar', 'mu_0top_antiWJetsMVA2_chi2_mttbar', 'mu_1top_WJetsMVA_chi2_mttbar', 'mu_0top_WJetsMVA_chi2_mttbar','mu_0top_antiWJetsMVA3_antichi2_mttbar']))
-
-# #    model.restrict_to_observables(set(['mu_0top_antiWJetsMVA3_chi2_mttbar','mu_0top_antiWJetsMVA2_chi2_mttbar', 'mu_1top_WJetsMVA_chi2_mttbar', 'mu_0top_WJetsMVA_chi2_mttbar', 'mu_0top_antiWJetsMVA3_antichi2_mttbar']))
+   model.restrict_to_observables(set(['ele_0top_WJetsMVA_chi2_mttbar','ele_0top_antiWJetsMVA2_chi2_mttbar','ele_0top_antiWJetsMVA3_chi2_mttbar','ele_1top_WJetsMVA_chi2_mttbar','mu_0top_WJetsMVA_chi2_mttbar','mu_0top_antiWJetsMVA2_chi2_mttbar','mu_0top_antiWJetsMVA3_chi2_mttbar','mu_1top_WJetsMVA_chi2_mttbar']))
+ #   model.restrict_to_observables(set(['ele_0top_WJetsMVA_chi2_mttbar','ele_0top_antiWJetsMVA2_chi2_mttbar','ele_0top_antiWJetsMVA3_chi2_mttbar','mu_0top_WJetsMVA_chi2_mttbar','mu_0top_antiWJetsMVA2_chi2_mttbar','mu_0top_antiWJetsMVA3_chi2_mttbar']))
     obs =  model.get_observables()
     print "set2 ", obs
     #print model
 
     for p in model.processes:
         model.add_lognormal_uncertainty('lumi', math.log(1.025), p)
-        # if 'VV' in p:
-        #     print "!!! scale predictions by 0.0 for ",p
-        #     model.scale_predictions(0.0,p)
-        # if 'diboson' in p:
-        #     print "!!! scale predictions by 0.0 for ",p
-        #     model.scale_predictions(0.0,p)
+        if 'VV' in p:
+            print "!!! scale predictions by 0.0 for ",p
+            model.scale_predictions(0.0,p)
+        if 'diboson' in p:
+            print "!!! scale predictions by 0.0 for ",p
+            model.scale_predictions(0.0,p)
         # if 'qcd_el' in p:
         #     print "!!! scale predictions by 0.0 for ",p
         #     model.scale_predictions(0.0,p)
@@ -111,7 +105,7 @@ def build_boosted_semileptonic_model(files, filter, signal, mcstat = False):
 #     # for obs in ['el_0top0btag_mttbar','el_0top1btag_mttbar','el_1top_mttbar']:
 #     #     model.add_lognormal_uncertainty('eleORjet_trig', math.log(1.05), p, obs)
 
-    model.add_lognormal_uncertainty('ttbar_rate',   math.log(1.20), 'ttbar')
+    model.add_lognormal_uncertainty('ttbar_rate',   math.log(1.10), 'ttbar')
  #   model.add_asymmetric_lognormal_uncertainty('ttbar_rate',   math.log(1.20),math.log(1.20), 'ttbar')
     model.add_lognormal_uncertainty('others_rate',  math.log(1.50), 'wjets_b')
     model.add_lognormal_uncertainty('others_rate',  math.log(1.50), 'wjets_c')
@@ -132,9 +126,9 @@ def build_boosted_semileptonic_model(files, filter, signal, mcstat = False):
   #  model.add_lognormal_uncertainty('ST_rate', math.log(1.50), 'ST')
     #model.add_lognormal_uncertainty('other_rate', math.log(1.50), 'ST')
     model.add_lognormal_uncertainty('ST_rate', math.log(1.50), 'ST')
-    model.add_lognormal_uncertainty('other_rate', math.log(1.50), 'DY')
+    model.add_lognormal_uncertainty('others_rate', math.log(1.50), 'DY')
   #     model.add_lognormal_uncertainty('VV_rate', math.log(1.50), 'VV')
-    model.add_lognormal_uncertainty('other_rate', math.log(1.50), 'qcd_mu')
+    model.add_lognormal_uncertainty('others_rate', math.log(1.50), 'qcd_mu')
 # # 
 #    model.add_lognormal_uncertainty('qcd_rate', math.log(1.50), 'qcd_el')
 #    model.add_lognormal_uncertainty('others_rate', math.log(1.50), 'diboson')
@@ -257,12 +251,12 @@ def build_model(type):
 #        print d
         if d['typ'] == 'gauss' and d['mean'] == 0.0 and d['width'] == 1.0:
           #   model.distribution.set_distribution_parameters(p, range = [-1.0, 1.0])
-            model.distribution.set_distribution_parameters(p, range = [-3.0, 3.0])
-  #          model.distribution.set_distribution_parameters(p, range = [-5.0, 5.0])
-  #       #if (p == 'toptag'): model.distribution.set_distribution_parameters(p, width = float('Inf'))
+  #          model.distribution.set_distribution_parameters(p, range = [-3.0, 3.0])
+            model.distribution.set_distribution_parameters(p, range = [-5.0, 5.0])
+        if (p == 'toptag'): model.distribution.set_distribution_parameters(p, width = float('Inf'))
         if (p == 'wl_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
         #if (p == 'wc_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
-        #if (p == 'ST_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
+        if (p == 'ST_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
 #  #       if (p == 'diboson_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
 #        if (p == 'qcd_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
         if (p == 'ttbar_rate'): model.distribution.set_distribution_parameters(p,  width = float('Inf')) 
@@ -270,7 +264,7 @@ def build_model(type):
 
         #if (p == 'diboson_rate'): model.distribution.set_distribution_parameters(p,  mean = -1.00, width = 0.001) 
 
-        if (p == 'toppt_reweight'): model.distribution.set_distribution_parameters(p, width = 0.001)
+#        if (p == 'toppt_reweight'): model.distribution.set_distribution_parameters(p, width = 0.001)
 #        if (p == 'q2wjets'): model.distribution.set_distribution_parameters(p, width = 0.001)
 
         #if (p == 'PDF'): model.distribution.set_distribution_parameters(p, width = 0.0001)
@@ -498,7 +492,7 @@ for obs in model.get_observables():
 print '\\n'
 for p in par_values:
     if p == 'lumi':     print '%.3f' % 1.025**par_values[p] + ' ' + p
-    if p == 'ttbar_rate':     print '%.3f' % 1.20**par_values[p] + ' ' + p
+    if p == 'ttbar_rate':     print '%.3f' % 1.10**par_values[p] + ' ' + p
     elif p == 'w_rate':      print '%.3f' % 1.20**par_values[p] + ' ' + p
     elif p == 'wl_rate':      print '%.3f' % 1.20**par_values[p] + ' ' + p
     elif p == 'wc_rate':      print '%.3f' % 1.50**par_values[p] + ' ' + p
@@ -515,7 +509,7 @@ for p in par_values:
 print '\\n'
 for p in par_values:
     if p == 'lumi':     print '%.3f' % 1.025**par_values[p], '%.3f' % 1.025**par_err_values[p] + ' ' + p
-    if p == 'ttbar_rate':     print '%.3f' % 1.20**par_values[p], '%.3f' % 1.20**par_err_values[p] + ' ' + p
+    if p == 'ttbar_rate':     print '%.3f' % 1.10**par_values[p], '%.3f' % 1.10**par_err_values[p] + ' ' + p
     elif p == 'w_rate':      print '%.3f' % 1.20**par_values[p], '%.3f' % 1.20**par_err_values[p] + ' ' + p
     elif p == 'wl_rate':      print '%.3f' % 1.20**par_values[p], '%.3f' % 1.20**par_err_values[p] + ' ' + p
     elif p == 'wc_rate':      print '%.3f' % 1.50**par_values[p], '%.3f' % 1.50**par_err_values[p] + ' ' + p
