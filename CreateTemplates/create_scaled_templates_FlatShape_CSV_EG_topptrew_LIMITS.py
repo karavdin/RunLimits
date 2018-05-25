@@ -186,12 +186,16 @@ if addPDF:
         systematic_direction_wjets['wgtMCPDF_'+str(i)+'__plus'] = ct+pdfstring
         systematic_direction_signal['wgtMCPDF_'+str(i)+'__plus'] = ct+pdfstring
 
-
-inputdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight/T1_v06/elec/"
-jecupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jec_up/T1_v06/elec/"
-jecdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jec_down/T1_v06/elec/"
-jerupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jer_up/T1_v06/elec/"
-jerdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jer_down/T1_v06/elec/"
+inputdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_addTTBarRecDebugVars_dRlepAK8_removeAK8/T1_v06/elec/"
+jecupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_addTTBarRecDebugVars_dRlepAK8_removeAK8_jec_up/T1_v06/elec/"
+jecdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_addTTBarRecDebugVars_dRlepAK8_removeAK8_jec_down/T1_v06/elec/"
+jerupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_addTTBarRecDebugVars_dRlepAK8_removeAK8_jer_up/T1_v06/elec/"
+jerdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_addTTBarRecDebugVars_dRlepAK8_removeAK8_jer_down/T1_v06/elec/"
+# inputdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight/T1_v06/elec/"
+# jecupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jec_up/T1_v06/elec/"
+# jecdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jec_down/T1_v06/elec/"
+# jerupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jer_up/T1_v06/elec/"
+# jerdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jer_down/T1_v06/elec/"
 
 
 samplelist = {
@@ -247,7 +251,7 @@ subcategoriesT1=['WJetsMVA_chi2']
 #subcategoriesT0=['antiWJetsMVA2_antichi2','WJetsMVA_chi2','antiWJetsMVA3_antichi2','antiWJetsMVA2_chi2','antiWJetsMVA3_chi2']
 subcategoriesT0=['WJetsMVA_chi2','antiWJetsMVA2_chi2','antiWJetsMVA3_chi2']
 
-fout = TFile('ele_theta_wFlatShapeSyst_onlyEleStream_allSyst_LIMITS.root', 'recreate')
+fout = TFile('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS.root', 'recreate')
 gROOT.SetBatch(kTRUE)
 from FlatScale_ele_JERhybrid_ST_DY_VV_6cat_PDFforDY import *
 #print "scale_ele_1top_WJetsMVA_chi2_mttbar__wjets_c__PDF__plus=", scale_ele_1top_WJetsMVA_chi2_mttbar__wjets_c__PDF__plus
@@ -281,7 +285,7 @@ for cat in categories:
                     tempdata.Print()
                     fout.WriteObject(tempdata,h_string+key_sample)
                     del tempdata
-                elif 'Zprime' or 'RSgluon' in key_sample:
+                elif 'Zprime' in key_sample or 'RSgluon' in key_sample:
                     for syst in systematic_direction_signal:
                         cut = str(cut_string+' & ttagN==1 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
                         print "Processing: ",key_sample
@@ -420,7 +424,7 @@ for cat in categories:
                                 print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
                                 fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                                 del tempsys
-                elif 'zjets' or 'diboson' or 'others' or 'wjets_b' or 'wjets_c' or 'qcd_el' or 'ST' or 'DY' or 'VV' in key_sample:
+                elif 'zjets' in key_sample or 'diboson' in key_sample or 'others' in key_sample or 'wjets_b' in key_sample or 'wjets_c' in key_sample or 'qcd_el' in key_sample or 'ST' in key_sample or 'DY' in key_sample or 'VV' in key_sample:
 #                elif 'ST' in key_sample:
                     for syst in systematic_direction_otherbkgs:
                         cut = str(cut_string+' & ttagN==1 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
@@ -449,13 +453,13 @@ for cat in categories:
                 cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & rec_chi2<30  '
                 h_string = h_string_GL + 'WJetsMVA_chi2_mttbar__'
             if subcat == 'antiWJetsMVA2_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<-0.5 & rec_chi2>=30 '
+                cut_string = cut_string_GL+' WJets_TMVA_response<-0.75 & rec_chi2>=30 '
                 h_string = h_string_GL + 'antiWJetsMVA2_antichi2_mttbar__'
             if subcat == 'antiWJetsMVA3_antichi2':
                 cut_string = cut_string_GL+' WJets_TMVA_response>0.0 & WJets_TMVA_response<0.5 & rec_chi2>=30 '
                 h_string = h_string_GL + 'antiWJetsMVA3_antichi2_mttbar__'
             if subcat == 'antiWJetsMVA2_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<-0.5 & rec_chi2<30 '
+                cut_string = cut_string_GL+' WJets_TMVA_response<-0.75 & rec_chi2<30 '
                 h_string = h_string_GL + 'antiWJetsMVA2_chi2_mttbar__'
             if subcat == 'antiWJetsMVA3_chi2':
                 cut_string = cut_string_GL+' WJets_TMVA_response>0.0 & WJets_TMVA_response<0.5 & rec_chi2<30 '
@@ -477,7 +481,7 @@ for cat in categories:
                     temp2data.Print()
                     fout.WriteObject(temp2data,h_string+key_sample)
                     del temp2data
-                elif 'Zprime' or 'RSgluon' in key_sample:
+                elif 'Zprime' in key_sample or 'RSgluon' in key_sample:
                     for syst in systematic_direction_signal:
                         cut = str(cut_string+' & ttagN==0 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
                         print "Processing: ",key_sample
@@ -607,7 +611,7 @@ for cat in categories:
                                 temp2sys.SetName(h_string+key_sample+"__"+syst)
                                 fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
                                 del temp2sys
-                elif 'zjets' or 'diboson' or 'others' or 'wjets_b' or 'wjets_c' or 'qcd_el' or 'ST' or 'DY' or 'VV' in key_sample:
+                elif 'zjets' in key_sample or 'diboson' in key_sample or 'others' in key_sample or 'wjets_b' in key_sample or 'wjets_c' in key_sample or 'qcd_el' in key_sample or 'ST' in key_sample or 'DY' in key_sample or 'VV' in key_sample:
                     for syst in systematic_direction_otherbkgs:
                         cut = str(cut_string+' & ttagN==0 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
                         print "Processing: ",key_sample

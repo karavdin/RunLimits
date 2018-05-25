@@ -182,11 +182,18 @@ if addPDF:
         systematic_direction_wjets['wgtMCPDF_'+str(i)+'__plus'] = ct+pdfstring
         systematic_direction_signal['wgtMCPDF_'+str(i)+'__plus'] = ct+pdfstring
 
-inputdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight/T1_v06/muon/"
-jecupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jec_up/T1_v06/muon/"
-jecdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jec_down/T1_v06/muon/"
-jerupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jer_up/T1_v06/muon/"
-jerdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jer_down/T1_v06/muon/"
+# inputdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight/T1_v06/muon/"
+# jecupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jec_up/T1_v06/muon/"
+# jecdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jec_down/T1_v06/muon/"
+# jerupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jer_up/T1_v06/muon/"
+# jerdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180108_JERhybrid_topptReweight_jer_down/T1_v06/muon/"
+inputdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_addTTBarRecDebugVars_dRlepAK8_removeAK8/T1_v06/muon/"
+jecupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_addTTBarRecDebugVars_dRlepAK8_removeAK8_jec_up/T1_v06/muon/"
+jecdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_addTTBarRecDebugVars_dRlepAK8_removeAK8_jec_down/T1_v06/muon/"
+jerupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_addTTBarRecDebugVars_dRlepAK8_removeAK8_jer_up/T1_v06/muon/"
+jerdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_addTTBarRecDebugVars_dRlepAK8_removeAK8_jer_down/T1_v06/muon/"
+
+
 samplelist = {
 'ttbar':'uhh2.AnalysisModuleRunner.MC.TTbar.root',
 #'diboson':'uhh2.AnalysisModuleRunner.MC.diboson.root',
@@ -237,7 +244,8 @@ subcategoriesT1=['WJetsMVA_chi2']
 subcategoriesT0=['WJetsMVA_chi2','antiWJetsMVA2_chi2','antiWJetsMVA3_chi2']
 
 
-fout = TFile('mu_theta_wFlatShapeSyst_allSyst_LIMITS.root', 'recreate')
+fout = TFile('mu_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS.root', 'recreate')
+#fout = TFile('mu_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_woPDF_LIMITS.root', 'recreate')
 gROOT.SetBatch(kTRUE)
 from FlatScale_mu_JERhybrid_ST_DY_VV_6cat_PDFforDY import *
 for cat in categories:
@@ -269,7 +277,8 @@ for cat in categories:
                     fout.WriteObject(tempdata,h_string+key_sample)
                     del tempdata
                 #elif 'Zprime' or 'ST' or 'DY' or 'VV' in key_sample:
-                elif 'Zprime' or 'RSgluon' in key_sample:
+#                elif 'Zprime' or 'RSgluon' in key_sample:
+                elif 'Zprime' in key_sample or 'RSgluon' in key_sample:
                     for syst in systematic_direction_signal:
                         cut = str(cut_string+' & ttagN==1 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
                         print "Processing Zprime or ST or DY or VV : ",key_sample
@@ -446,7 +455,7 @@ for cat in categories:
                     temp2data.SetName(h_string+key_sample)
                     fout.WriteObject(temp2data,h_string+key_sample)
                     del temp2data
-                elif 'Zprime' or 'RSgluon' in key_sample:
+                elif 'Zprime' in key_sample or 'RSgluon' in key_sample:
                     for syst in systematic_direction_signal:
                         cut = str(cut_string+' & ttagN==0 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
                         print "Processing: ",key_sample

@@ -52,8 +52,8 @@ def addq2File(filename, xtitle, backgrounds):
     if not info.systematic:
       h_bkg[info.channel+info.process] = file.Get(key).Clone()
       for i in range(1,h_bkg[info.channel+info.process].GetNbinsX()+1):
-        h_tmp_q2syst_q2ttbar[info.channel+info.process+str(i)] = ROOT.TH1F(info.channel+info.process+"_"+str(i)+"_q2ttbar",info.channel+info.process+"_"+str(i)+"_q2ttbar", 200000, 1., 100000.)
-        h_tmp_q2syst_q2wjets[info.channel+info.process+str(i)] = ROOT.TH1F(info.channel+info.process+"_"+str(i)+"_q2wjets",info.channel+info.process+"_"+str(i)+"_q2wjets", 200000, 1., 100000.)
+        h_tmp_q2syst_q2ttbar[info.channel+info.process+str(i)] = ROOT.TH1F(info.channel+info.process+"_"+str(i)+"_q2ttbar",info.channel+info.process+"_"+str(i)+"_q2ttbar", 20000, 1., 10000.)
+        h_tmp_q2syst_q2wjets[info.channel+info.process+str(i)] = ROOT.TH1F(info.channel+info.process+"_"+str(i)+"_q2wjets",info.channel+info.process+"_"+str(i)+"_q2wjets", 20000, 1., 10000.)
         
   #read 6 variations for q2ttbar and store them in a histogram. One histtogram per Mttbar bin        
   for key in keys:
@@ -95,6 +95,7 @@ def addq2File(filename, xtitle, backgrounds):
     if info.systematic:
       if info.process in backgrounds:
         if info.systematic == "q2ttbarMuRdnMuFdn":
+#          print "create q2ttbar"       
           if info.shift == "plus":
             h_q2syst_q2ttbar["q2ttbar__plus"+info.channel] = h_bkg[info.channel+info.process+info.systematic].Clone()
             h_q2syst_q2ttbar["q2ttbar__plus"+info.channel].SetName(info.channel+"__ttbar"+"__q2ttbar__plus")
@@ -137,7 +138,7 @@ def addq2File(filename, xtitle, backgrounds):
             h_q2syst_q2wjets["q2wjets__minus"+info.channel].SetTitle(info.channel+"__"+info.process+"__q2wjets__minus")
             canvas = TCanvas()
             for i in range(1,h_bkg[info.channel+info.process+info.systematic].GetNbinsX()+1):
-              print i, h_tmp_q2syst_q2wjets[info.channel+info.process+str(i)].GetMean(), h_tmp_q2syst_q2wjets[info.channel+info.process+str(i)].GetRMS()
+#              print i, h_tmp_q2syst_q2wjets[info.channel+info.process+str(i)].GetMean(), h_tmp_q2syst_q2wjets[info.channel+info.process+str(i)].GetRMS()
               h_q2syst_q2wjets["q2wjets__plus"+info.channel].SetBinContent(i,h_tmp_q2syst_q2wjets[info.channel+info.process+str(i)].GetMean()+h_tmp_q2syst_q2wjets[info.channel+info.process+str(i)].GetRMS())
               h_q2syst_q2wjets["q2wjets__minus"+info.channel].SetBinContent(i,h_tmp_q2syst_q2wjets[info.channel+info.process+str(i)].GetMean()-h_tmp_q2syst_q2wjets[info.channel+info.process+str(i)].GetRMS())
               # canvasTMP = TCanvas()
@@ -239,5 +240,24 @@ def addq2File(filename, xtitle, backgrounds):
 
 #addq2File('ele_theta_wFlatShapeSyst_onlyEleStream_allSyst_LIMITS_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
 
-#addq2File('ele_theta_wFlatShapeSyst_min200_20bins_wTopPtrewSymSyst_rebinned_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
-addq2File('mu_theta_wFlatShapeSyst_min200_20bins_wTopPtrewSymSyst_rebinned_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+# #addq2File('ele_theta_wFlatShapeSyst_min200_20bins_wTopPtrewSymSyst_rebinned_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+# #addq2File('mu_theta_wFlatShapeSyst_min200_20bins_wTopPtrewSymSyst_rebinned_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+
+# addq2File('ele_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T01_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+# addq2File('ele_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T1_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+# addq2File('ele_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T0_SR_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+# addq2File('ele_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T0_CR1_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+# addq2File('ele_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T0_CR2_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+
+addq2File('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T01_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+# addq2File('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T0_CR1_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+# addq2File('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T0_SR_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+# addq2File('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T1_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+# addq2File('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T0_CR2_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+
+#addq2File('ele_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T01_VV_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+
+# addq2File('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_rebinned_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+# addq2File('mu_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_rebinned_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+# addq2File('mu_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+# addq2File('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])

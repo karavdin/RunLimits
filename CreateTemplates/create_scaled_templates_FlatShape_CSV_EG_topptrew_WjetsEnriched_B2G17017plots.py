@@ -2,56 +2,56 @@ from ROOT import *
 import sys
 import numpy
 
-ct = '(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)'
+ct = '(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)'
 #addPDF = True
 addPDF = False
 
-systematic_direction_ttbar={'nominal':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-                            'pileup__plus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu_up)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-                            'pileup__minus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu_down)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-                            'elecID__plus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID_up)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-                            'elecID__minus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID_down)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-                            'elecTRK__plus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf_up)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',              
-                            'elecTRK__minus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf_down)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-                            'elecHLT__plus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*1.02*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-                            'elecHLT__minus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*0.98*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-                            'toptag__plus':'(wgtMC__topptREWGT_ct)*(weight_pu)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            'toptag__minus':'(wgtMC__topptREWGT_ct)*(weight_pu)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',      
-                            'mistoptag__plus':'(wgtMC__topptREWGT_ct)*(weight_pu)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            'mistoptag__minus':'(wgtMC__topptREWGT_ct)*(weight_pu)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            'csv_cferr1__plus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_cferr1up)',
-                            'csv_cferr1__minus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_cferr1down)',
-                            'csv_cferr2__plus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_cferr2up)',
-                            'csv_cferr2__minus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_cferr2down)',
-                            'csv_hf__plus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_hfup)',
-                            'csv_hf__minus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_hfdown)',
-                            'csv_hfstats1__plus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_hfstats1up)',
-                            'csv_hfstats1__minus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_hfstats1down)',
-                            'csv_hfstats2__plus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_hfstats2up)',
-                            'csv_hfstats2__minus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_hfstats2down)',
-                            'csv_jes__plus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_jesup)',
-                            'csv_jes__minus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_jesdown)',
-                            'csv_lf__plus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfup)',
-                            'csv_lf__minus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfdown)',
-                            'csv_lfstats1__plus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats1up)', 
-                            'csv_lfstats1__minus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats1down)',
-                            'csv_lfstats2__plus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats2up)', 
-                            'csv_lfstats2__minus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats2down)',
+systematic_direction_ttbar={'nominal':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'pileup__plus':'(1)*(weight_sfelec_ID)*(weight_pu_up)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'pileup__minus':'(1)*(weight_sfelec_ID)*(weight_pu_down)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'elecID__plus':'(1)*(weight_sfelec_ID_up)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'elecID__minus':'(1)*(weight_sfelec_ID_down)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'elecTRK__plus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf_up)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',              
+                            'elecTRK__minus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf_down)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'elecHLT__plus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*1.02*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'elecHLT__minus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*0.98*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'toptag__plus':'(1)*(weight_pu)*(wgtMC__ttagSF_upT)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'toptag__minus':'(1)*(weight_pu)*(wgtMC__ttagSF_dnT)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',      
+                            'mistoptag__plus':'(1)*(weight_pu)*(wgtMC__ttagSF_upL)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'mistoptag__minus':'(1)*(weight_pu)*(wgtMC__ttagSF_dnL)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'csv_cferr1__plus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_cferr1up)',
+                            'csv_cferr1__minus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_cferr1down)',
+                            'csv_cferr2__plus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_cferr2up)',
+                            'csv_cferr2__minus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_cferr2down)',
+                            'csv_hf__plus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_hfup)',
+                            'csv_hf__minus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_hfdown)',
+                            'csv_hfstats1__plus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_hfstats1up)',
+                            'csv_hfstats1__minus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_hfstats1down)',
+                            'csv_hfstats2__plus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_hfstats2up)',
+                            'csv_hfstats2__minus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_hfstats2down)',
+                            'csv_jes__plus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_jesup)',
+                            'csv_jes__minus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_jesdown)',
+                            'csv_lf__plus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfup)',
+                            'csv_lf__minus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfdown)',
+                            'csv_lfstats1__plus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats1up)', 
+                            'csv_lfstats1__minus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats1down)',
+                            'csv_lfstats2__plus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats2up)', 
+                            'csv_lfstats2__minus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats2down)',
                              #add q2 variations. "plus" to not break the next script for rebinning
-                            'q2ttbarMuRdnMuFdn__plus':'(wgtMC__topptREWGT_ct)*(wgtMC__muR_dn__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            'q2ttbarMuRupMuFup__plus':'(wgtMC__topptREWGT_ct)*(wgtMC__muR_up__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            'q2ttbarMuRdnMuFct__plus':'(wgtMC__topptREWGT_ct)*(wgtMC__muR_dn__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            'q2ttbarMuRupMuFct__plus':'(wgtMC__topptREWGT_ct)*(wgtMC__muR_up__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            'q2ttbarMuRctMuFdn__plus':'(wgtMC__topptREWGT_ct)*(wgtMC__muR_ct__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
-                            'q2ttbarMuRctMuFup__plus':'(wgtMC__topptREWGT_ct)*(wgtMC__muR_ct__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2ttbarMuRdnMuFdn__plus':'(1)*(wgtMC__muR_dn__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2ttbarMuRupMuFup__plus':'(1)*(wgtMC__muR_up__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2ttbarMuRdnMuFct__plus':'(1)*(wgtMC__muR_dn__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2ttbarMuRupMuFct__plus':'(1)*(wgtMC__muR_up__muF_ct)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2ttbarMuRctMuFdn__plus':'(1)*(wgtMC__muR_ct__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
+                            'q2ttbarMuRctMuFup__plus':'(1)*(wgtMC__muR_ct__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
 
                             #add JEC and JER
-                            'jec__plus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-                            'jec__minus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-                            'jer__plus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-                            'jer__minus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-                            'toppt_reweight__minus':'(wgtMC__topptREWGT_dn)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-                            'toppt_reweight__plus':'(wgtMC__topptREWGT_up)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'jec__plus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'jec__minus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'jer__plus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'jer__minus':'(1)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+#                            'toppt_reweight__minus':'(wgtMC__topptREWGT_dn)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+#                            'toppt_reweight__plus':'(wgtMC__topptREWGT_up)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
 }
 systematic_direction_wjets={'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'pileup__plus':'(weight_sfelec_ID)*(weight_pu_up)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
@@ -219,10 +219,9 @@ subcategoriesT01=['antiWJetsMVA_antichi2']
 
 
 #Variable stored in the template: name, number of bins, low_bin, high_bin
-variables={'Mttbar':[120,200,6000,'M_{t#bar{t}} [GeV]'],'nJets':[40,0,20,'N_{jets};'],
-'toppuppijet_Msdp_matched':[100,0,500,'AK8PUPPI M_{softdrop} [GeV]'],
+variables={'toppuppijet_Msdp_matched':[40,0,400,'AK8PUPPI M_{softdrop} [GeV]'],
 'toppuppijet_tau32_matched':[48, 0, 1.2, 'AK8PUPPI #tau_{32}'],
-'topjet_pt':[90,0,900,'AK8CHS pt [GeV]'],
+'topjet_pt':[40,350,900,'AK8CHS pt [GeV]'],
 'topjet_eta':[60,-3,3,'AK8CHS #eta'],
 }
 
@@ -231,14 +230,14 @@ gROOT.SetBatch(kTRUE)
 from FlatScale_ele_JERhybrid_ST_DY_VV_6cat_PDFforDY import *
 for cat in categories:
     #cut_string_GL='(eleN==1 & Mttbar<2000. & Mttbar>200. & '
-    cut_string_GL='(eleN==1 & '
+    cut_string_GL='(eleN==1 & & topjet_pt > 400 &'
    
     if cat == 'T1':
         h_string_GL='ele_1top_'
         #for subcat in subcategories:
         for subcat in subcategoriesT1:
             if subcat == 'antiWJetsMVA_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<-0.5 & rec_chi2>30  '
+                cut_string = cut_string_GL+' WJets_TMVA_response<-0.5 & H_Rec_chi2>30 & toppuppijet_Msdp_matched>105 & toppuppijet_Msdp_matched<210 '
                 h_string = h_string_GL + 'antiWJetsMVA_antichi2_mttbar_'
 
             for key_sample in samplelist:
@@ -411,7 +410,7 @@ for cat in categories:
         for subcat in subcategoriesT0:
           
             if subcat == 'antiWJetsMVA_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<-0.5 & rec_chi2>30  '
+                cut_string = cut_string_GL+' WJets_TMVA_response<-0.5 & H_Rec_chi2>30  '
                 h_string = h_string_GL + 'antiWJetsMVA_antichi2_mttbar_'
 
             for key_sample in samplelist:
@@ -577,7 +576,7 @@ for cat in categories:
         h_string_GL='ele_01top_'
         for subcat in subcategoriesT01:
             if subcat == 'antiWJetsMVA_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<-0.5 & rec_chi2>30  '
+                cut_string = cut_string_GL+' WJets_TMVA_response<-0.5 & H_Rec_chi2>30  '
                 h_string = h_string_GL + 'antiWJetsMVA_antichi2_mttbar_'
 
             for key_sample in samplelist:

@@ -188,6 +188,24 @@ def addPDFFile(filename, xtitle, backgrounds):
 #addPDFFile('ele_theta_wFlatShapeSyst_onlyEleStream_allSyst_LIMITS.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
 
 #addPDFFile('ele_theta_wFlatShapeSyst_min200_20bins_wTopPtrewSymSyst_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
-addPDFFile('mu_theta_wFlatShapeSyst_min200_20bins_wTopPtrewSymSyst_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+#addPDFFile('mu_theta_wFlatShapeSyst_min200_20bins_wTopPtrewSymSyst_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
 
-#addPDFFile('ele_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+# addPDFFile('ele_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T01.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+# addPDFFile('ele_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T1.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+# addPDFFile('ele_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T0_SR.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+# addPDFFile('ele_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T0_CR1.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+# addPDFFile('ele_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T0_CR2.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+
+addPDFFile('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T01.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+# addPDFFile('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T1.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+# addPDFFile('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T0_SR.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+# addPDFFile('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T0_CR1.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+# addPDFFile('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T0_CR2.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+
+
+# addPDFFile('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+# addPDFFile('mu_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_rebinned.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+# addPDFFile('mu_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+# addPDFFile('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ST','DY'])
+
+

@@ -91,12 +91,12 @@ def build_boosted_semileptonic_model(files, filter, signal, mcstat = True):
 
     for p in model.processes:
         model.add_lognormal_uncertainty('lumi', math.log(1.025), p)
-        if 'VV' in p:
-            print "!!! scale predictions by 0.0 for ",p
-            model.scale_predictions(0.0,p)
-        if 'diboson' in p:
-            print "!!! scale predictions by 0.0 for ",p
-            model.scale_predictions(0.0,p)
+        # if 'VV' in p:
+        #     print "!!! scale predictions by 0.0 for ",p
+        #     model.scale_predictions(0.0,p)
+        # if 'diboson' in p:
+        #     print "!!! scale predictions by 0.0 for ",p
+        #     model.scale_predictions(0.0,p)
         # if 'ttbar' in p:
         #     print "!!! scale predictions by 0.91 for ",p
         #     model.scale_predictions(0.91,p)
@@ -160,6 +160,7 @@ def build_boosted_semileptonic_model(files, filter, signal, mcstat = True):
     model.add_lognormal_uncertainty('ST_rate', math.log(1.50), 'ST')
 #    model.add_lognormal_uncertainty('other_rate', math.log(1.50), 'ST')
     model.add_lognormal_uncertainty('other_rate', math.log(1.50), 'DY')
+##    model.add_lognormal_uncertainty('other_rate', math.log(1.50), 'VV')
 #    model.add_lognormal_uncertainty('other2_rate', math.log(1.50), 'ST')
 #    model.add_lognormal_uncertainty('DY_rate', math.log(1.50), 'DY')
 #    model.add_lognormal_uncertainty('qcd_rate', math.log(1.50), 'qcd_mu')

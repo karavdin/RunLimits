@@ -11,8 +11,7 @@ ele_ifile = ['ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_rebinned_
 lep_ifile = ['lep_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_rebinned_addedPDF_addedQ2.root']
 #mle_coeff_file = '../MLF_Yields_Uncertainties/mle_coeff.p'
 #mle_coeff_file = 'mle_coeff.p'
-#mle_coeff_file = 'mle_coeff_mu.p'
-mle_coeff_file = 'mle_coeff_lep.p'
+mle_coeff_file = 'mle_coeff_elec.p'
 
 def apply_factors(model, factors):
     #print factors
@@ -335,13 +334,13 @@ def build_model(type):
 #args = {'type': 'wide_resonances_electron'}
 #args = {'type': 'rsg_resonances_electron'}
 #args = {'type': 'extrawide_resonances_electron'}
-#args = {'type': 'ttjets_resonances_electron'}
+args = {'type': 'ttjets_resonances_electron'}
 
 #args = {'type': 'narrow_resonances_lepton'}
 #args = {'type': 'wide_resonances_lepton'}
 #args = {'type': 'rsg_resonances_lepton'}
 #args = {'type': 'extrawide_resonances_lepton'}
-args = {'type': 'ttjets_resonances_lepton'}
+#args = {'type': 'ttjets_resonances_lepton'}
 
 model = build_model(**args)
 

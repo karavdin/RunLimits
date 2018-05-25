@@ -188,11 +188,11 @@ if addPDF:
         systematic_direction_signal['wgtMCPDF_'+str(i)+'__plus'] = ct+pdfstring
 
 
-inputdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180329_JERhybrid_topptReweight_oldMuonSF_toptagMLE3/T1_v06/elec/"
-jecupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180329_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_jec_up/T1_v06/elec/"
-jecdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180329_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_jec_down/T1_v06/elec/"
-jerupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180329_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_jer_up/T1_v06/elec/"
-jerdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180329_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_jer_down/T1_v06/elec/"
+inputdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3/T1_v06/elec/"
+jecupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_jec_up/T1_v06/elec/"
+jecdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_jec_down/T1_v06/elec/"
+jerupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_jer_up/T1_v06/elec/"
+jerdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_jer_down/T1_v06/elec/"
 
 
 samplelist = {
@@ -213,23 +213,23 @@ subcategoriesT0=['WJetsMVA_chi2','antiWJetsMVA2_chi2','antiWJetsMVA3_chi2']
 subcategoriesT01=['chi2']
 
 #Variable stored in the template: name, number of bins, low_bin, high_bin
-variables={'Mttbar':[120,200,6000,'M_{t#bar{t}} [GeV]'],'nJets':[40,0,20,'N_{jets};'],
-'toppuppijet__Msdp_matched_Nminus1':[100,0,500,'AK8PUPPI M_{softdrop} [GeV]'],
-'toppuppijet__tau32_matched_Nminus1':[48, 0, 1.2, 'AK8PUPPI #tau_{32}'],
-'toppuppijet__Msdp_matched':[100,0,500,'AK8PUPPI M_{softdrop} [GeV]'],
-'toppuppijet__tau32_matched':[48, 0, 1.2, 'AK8PUPPI #tau_{32}'],
-'tophad_pt':[120, 0, 1800,'pt_{top-had} [GeV]'],
-'toplep_pt':[120, 0, 1800,'pt_{top-lep} [GeV]'],
+variables={'Mttbar':[140,200,7000,'M_{t#bar{t}} [GeV]'],'nJets':[40,0,20,'N_{jets};'],
+'toppuppijet_Msdp_matched_Nminus1':[80,0,500,'AK8PUPPI M_{softdrop} [GeV]'],
+'toppuppijet_tau32_matched_Nminus1':[48, 0, 1.2, 'AK8PUPPI #tau_{32}'],
+'toppuppijet_Msdp_matched':[80,0,500,'AK8PUPPI M_{softdrop} [GeV]'],
+'toppuppijet_tau32_matched':[48, 0, 1.2, 'AK8PUPPI #tau_{32}'],
+'tophad_pt':[60, 0, 1800,'pt_{top-had} [GeV]'],
+'toplep_pt':[60, 0, 1800,'pt_{top-lep} [GeV]'],
 'Mtophad':[40, 0, 400,'M_{top-had} [GeV]'],
 'Mtoplep':[40, 0, 400,'M_{top-lep} [GeV]'],
-'dR_lep_cljet':[100,0,2,'#DeltaR_{min}(electron,jets)'],
-'met_pt':[90, 0, 900,'MET [GeV]'],
-'ljet_pt':[90, 0, 900,'jet p_{T} [GeV]'],
+'dR_lep_cljet':[90,0,2,'#DeltaR_{min}(electron,jets)'],
+'met_pt':[80, 0, 900,'MET [GeV]'],
+'ljet_pt':[80, 0, 900,'jet p_{T} [GeV]'],
 'ljet_eta':[60,-3,3,'jet #eta'],
-'jet2_pt':[90, 0, 900,'jet_{2} p_{T} [GeV]'],
-'lep_pt':[90, 0, 900,'electron p_{T} [GeV]'],
+'fjet2_pt':[80, 0, 900,'jet_{2} p_{T} [GeV]'],
+'lep_pt':[80, 0, 900,'electron p_{T} [GeV]'],
 'lep_eta':[60,-3,3,'electron #eta'],
-'WJets_TMVA_response':[100,-1.2,1.8,'W+jets BDT response'],
+'WJets_TMVA_response':[90,-1.2,1.8,'W+jets BDT response'],
 
 }
 
@@ -237,7 +237,8 @@ fout = TFile('ele_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF.root', 'r
 gROOT.SetBatch(kTRUE)
 from FlatScale_ele_JERhybrid_ST_DY_VV_6cat_PDFforDY import *
 for cat in categories:
-    cut_string_GL='(eleN==1 & Mttbar<2000. & Mttbar>200. & '
+#    cut_string_GL='(eleN==1 & Mttbar<2000. & Mttbar>200. & '
+    cut_string_GL='(eleN==1 & '
    
     if cat == 'T1':
         h_string_GL='ele_1top_'
@@ -397,7 +398,7 @@ for cat in categories:
                                     tempsys.SetName(key_var+'_'+h_string+'_'+key_sample+"__"+syst)
                                     fout.WriteObject(tempsys,key_var+'_'+h_string+'_'+key_sample+"__"+syst)
                                     del tempsys
-                    elif 'wjets_b' or 'wjets_c' or 'qcd_el' or 'ST' or 'DY' or 'VV' in key_sample:
+                    elif 'wjets_b' in key_sample or 'wjets_c' in key_sample or 'qcd_el' in key_sample or 'ST' in key_sample or 'DY' in key_sample or 'VV' in key_sample:
                         for syst in systematic_direction_otherbkgs:
                             cut = str(cut_string+' & ttagN==1 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
                             print "Applying cut:",cut
@@ -575,7 +576,7 @@ for cat in categories:
                                     temp2sys.SetName(key_var+'_'+h_string+'_'+key_sample+"__"+syst)
                                     fout.WriteObject(temp2sys,key_var+'_'+h_string+'_'+key_sample+"__"+syst)
                                     del temp2sys
-                    elif 'wjets_b' or 'wjets_c' or 'qcd_el' or 'ST' or 'DY' or 'VV' in key_sample:
+                    elif 'wjets_b' in key_sample or 'wjets_c' in key_sample or 'qcd_el' in key_sample or 'ST' in key_sample or 'DY' in key_sample or 'VV' in key_sample:
                         for syst in systematic_direction_otherbkgs:
                             cut = str(cut_string+' & ttagN==0 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
                             print "Processing: ",key_sample
@@ -686,7 +687,7 @@ for cat in categories:
                                 temp2sys.SetName(key_var+'_'+h_string+'_'+key_sample+"__"+syst)
                                 fout.WriteObject(temp2sys,key_var+'_'+h_string+'_'+key_sample+"__"+syst)
                                 del temp2sys
-                    elif 'wjets_l' or 'wjets_b' or 'wjets_c' or 'qcd_el' or 'ST' or 'DY' or 'VV'in key_sample:
+                    elif 'wjets_b' in key_sample or 'wjets_c' in key_sample or 'qcd_el' in key_sample or 'ST' in key_sample or 'DY' in key_sample or 'VV' in key_sample or 'wjets_l' in key_sample:
                         for syst in systematic_direction_wjets:
                             cut = str(cut_string+' & ttagN<2 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
                             print "Processing: ",key_sample

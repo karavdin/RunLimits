@@ -202,9 +202,9 @@ samplelist = {
 'Zprime1500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M1500.root','Zprime3000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M3000.root',
 }
 #categories=['T0','T1','T01']
-categories=['T01']
+categories=['T0']
 subcategoriesT1=['WJetsMVA_chi2'] 
-subcategoriesT0=['WJetsMVA_chi2','antiWJetsMVA2_chi2','antiWJetsMVA3_chi2']
+subcategoriesT0=['antiWJetsMVA2_chi2']
 subcategoriesT01=['chi2']
 
 #Variable stored in the template: name, number of bins, low_bin, high_bin
@@ -227,7 +227,7 @@ variables={'Mttbar':[140,200,7000,'M_{t#bar{t}} [GeV]'],'nJets':[40,0,20,'N_{jet
 'WJets_TMVA_response':[90,-1.2,1.8,'W+jets BDT response'],
 }
 
-fout = TFile('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T01.root', 'recreate')
+fout = TFile('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T0_CR1.root', 'recreate')
 gROOT.SetBatch(kTRUE)
 from FlatScale_mu_JERhybrid_ST_DY_VV_6cat_PDFforDY import *
 for cat in categories:

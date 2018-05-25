@@ -31,30 +31,31 @@ signal_dict = {
   'r': ['g_{KK}', 'KK gluon']
 }
 
-def limit_canvas(limits_, signal_, oname_):
+def limit_canvas(limits_,limits2_, signal_, oname_):
 
     m = [mp.mass for mp in limits_]
     exp = [mp.exp for mp in limits_]
-    exp68up = [mp.exp68up for mp in limits_]
-    exp68dn = [mp.exp68dn for mp in limits_]
-    exp95up = [mp.exp95up for mp in limits_]
-    exp95dn = [mp.exp95dn for mp in limits_]
-    obs = [mp.obs for mp in limits_]
+    # exp68up = [mp.exp68up for mp in limits_]
+    # exp68dn = [mp.exp68dn for mp in limits_]
+    # exp95up = [mp.exp95up for mp in limits_]
+    # exp95dn = [mp.exp95dn for mp in limits_]
+#    obs = [mp.obs for mp in limits_]
+    obs = [mp.exp for mp in limits2_]
 
     N = len(limits_)
     gExp = TGraph()
-    g68 = TGraph(2*N)
-    g95 = TGraph(2*N)
+    # g68 = TGraph(2*N)
+    # g95 = TGraph(2*N)
     gObs = TGraph()
     gTH = get_theory_XsecBR_graph(signal_)
 
     for a in range(0,N):
         gExp.SetPoint(a,m[a],exp[a])
         gObs.SetPoint(a,m[a],obs[a])
-        g68.SetPoint(a,m[a],exp68dn[a])
-        g95.SetPoint(a,m[a],exp95dn[a])
-        g68.SetPoint(N+a,m[N-a-1],exp68up[N-a-1])
-        g95.SetPoint(N+a,m[N-a-1],exp95up[N-a-1])
+        # g68.SetPoint(a,m[a],exp68dn[a])
+        # g95.SetPoint(a,m[a],exp95dn[a])
+        # g68.SetPoint(N+a,m[N-a-1],exp68up[N-a-1])
+        # g95.SetPoint(N+a,m[N-a-1],exp95up[N-a-1])
 
     trans = 0
     up = 0
@@ -73,15 +74,15 @@ def limit_canvas(limits_, signal_, oname_):
     gExp.SetLineColor(TColor.GetColor('#112288'))
 #    gExp.Print()
 
-    g68.SetLineStyle(1)
-    g68.SetLineWidth(0)
-    g68.SetLineColor(kBlack)
-    g68.SetFillColor(TColor.GetColor('#4488dd'))
+    # g68.SetLineStyle(1)
+    # g68.SetLineWidth(0)
+    # g68.SetLineColor(kBlack)
+    # g68.SetFillColor(TColor.GetColor('#4488dd'))
 
-    g95.SetLineStyle(1)
-    g95.SetLineWidth(0)
-    g95.SetLineColor(kBlack)
-    g95.SetFillColor(TColor.GetColor('#99bbff'))
+    # g95.SetLineStyle(1)
+    # g95.SetLineWidth(0)
+    # g95.SetLineColor(kBlack)
+    # g95.SetFillColor(TColor.GetColor('#99bbff'))
 
     gObs.SetLineStyle(1)
     gObs.SetLineWidth(4)
@@ -98,11 +99,11 @@ def limit_canvas(limits_, signal_, oname_):
     leg = TLegend(0.58,0.633,0.969,0.908)
     leg.SetFillColor(0)
     leg.SetBorderSize(0)
-    leg.AddEntry(gExp,'Expected (95% CL)','l')
-    leg.AddEntry(gObs,'Observed (95% CL)','l')
+    leg.AddEntry(gExp,'NEW (95% CL)','l')
+    leg.AddEntry(gObs,'OLD (95% CL)','l')
     leg.AddEntry(gTH,signal_dict[signal_][1],'l')
-    leg.AddEntry(g68,'#pm1#sigma Expected','f')
-    leg.AddEntry(g95,'#pm2#sigma Expected','f')
+#    leg.AddEntry(g68,'#pm1#sigma Expected','f')
+#    leg.AddEntry(g95,'#pm2#sigma Expected','f')
 
     text_TL = TPaveText(0.18,0.830,0.44,0.900,'NDC')
     text_TL.AddText(label_TL)
@@ -131,9 +132,9 @@ def limit_canvas(limits_, signal_, oname_):
     hr = c.DrawFrame(0.401,0.001,5.199,1000)
     gExp.Sort()
     #gTH.Print()
-    g95.Draw('f')
+#    g95.Draw('f')
     #g95.Print()
-    g68.Draw('f')
+ #   g68.Draw('f')
     gTH.Draw('L')
     gExp.Draw('L')
 
@@ -169,28 +170,18 @@ def limit_canvas(limits_, signal_, oname_):
     c.SaveAs(oname_+'.pdf')
     c.Close()
 
-def limit_plot(ifile_, signal_, output_name_):
+def limit_plot_comp(ifile_,ifile2_, signal_, output_name_):
 
     limits = get_limits_from_file(ifile_)
-    limit_canvas(limits, signal_, output_name_)
+    limits2 = get_limits_from_file(ifile2_)
+    limit_canvas(limits, limits2, signal_, output_name_)
 
 ###
 
 for s in signal_dict:
-#    limit_plot('limits_allsyst_mu_wide_0413.txt', s, s+'_mujets_allsyst_wide_0413')
-#    limit_plot('limits.txt', s, s+'_el_theta_0408_narrow_v1')
-#    limit_plot('limits_data.txt', s, s+'_el_theta_0408_narrow_v1')
-#    limit_plot('limits_muon_narrow.txt', s, s+'_mu_theta_0408_narrow_v1')
-#    limit_plot('limits_elec_narrow.txt', s, s+'_el_theta_0408_narrow_v1')
-#    limit_plot('limits_muon_narrow.txt', s, s+'_mu_theta_0408_narrow_v1')
- #s = {'n': ['Z\'', 'Topcolor Z\' 1.0% width']}
-#s = {'r': ['g_{KK}', 'KK gluon']}
-#    limit_plot('limits_muon_'+s+'.txt', s, s+'_mu_theta_v1')
-#    limit_plot('limits_elec_'+s+'.txt', s, s+'_el_theta_v1')
-#    limit_plot('limits_Zprime_narrow.txt', s, s+'_el_theta_1128_narrow_v1')
-
-     limit_plot('limits_muon_'+s+'.txt', s, s+'_mu_theta_20180507')
-     limit_plot('limits_elec_'+s+'.txt', s, s+'_el_theta_20180507')
-     limit_plot('limits_lep_'+s+'.txt', s, s+'_lep_theta_20180507')
+#     limit_plot_comp('new/limits_muon_'+s+'.txt', 'old/limits_Zprime_oldcats_'+s+'.tex', s, s+'_OLD_NEW_Comp')
+     limit_plot_comp('Limits_20180507/limits_muon_'+s+'.txt', 'Limits_20180505/limits_muon_'+s+'.txt', s, s+'_muon_OLD_NEW_Comp')
+     limit_plot_comp('Limits_20180507/limits_elec_'+s+'.txt', 'Limits_20180505/limits_elec_'+s+'.txt', s, s+'_elec_OLD_NEW_Comp')
+     limit_plot_comp('Limits_20180507/limits_lep_'+s+'.txt', 'Limits_20180505/limits_lep_'+s+'.txt', s, s+'_lep_OLD_NEW_Comp')
 
 

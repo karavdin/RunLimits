@@ -212,7 +212,7 @@ samplelist = {
 'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA_SingleMuon_Run2016_BLINDED.root',
 'ST':'uhh2.AnalysisModuleRunner.MC.ST.root',
 'DY':'uhh2.AnalysisModuleRunner.MC.DY.root',
-'VV':'uhh2.AnalysisModuleRunner.MC.VV.root',
+#'VV':'uhh2.AnalysisModuleRunner.MC.VV.root',
 'qcd_mu':'uhh2.AnalysisModuleRunner.MC.QCD_Pt.root',
 #'qcd_mu':'uhh2.AnalysisModuleRunner.MC.QCD_HT.root',
 'wjets_l':'uhh2.AnalysisModuleRunner.MC.WJets__L.root',
@@ -276,7 +276,7 @@ for cat in categories:
                 elif 'Zprime' in key_sample:
                     for syst in systematic_direction_signal:
                         cut = str(cut_string+' & ttagN==1 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
-                        print "Processing Zprime or ST or DY or VV : ",key_sample
+                        print "Processing Zprime: ",key_sample
                         print "Applying cut:",cut
                         if syst == 'nominal':
                             temp = TH1F("temp","temp",20,200,2000)
@@ -372,7 +372,7 @@ for cat in categories:
                             fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                             del tempsys                  
 
-                elif 'zjets' or 'diboson' or 'others' or 'wjets_b' or 'wjets_c' or 'qcd_mu' or 'ST' or 'DY' or 'VV' in key_sample:
+                elif 'zjets' in key_sample or 'diboson' in key_sample or 'others' in key_sample or 'wjets_b' in key_sample or 'wjets_c' in key_sample or 'qcd_mu' in key_sample or 'ST' in key_sample or 'DY' in key_sample or 'VV' in key_sample:
                     for syst in systematic_direction_otherbkgs:
                         cut = str(cut_string+' & ttagN==1 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
                         print "Processing small bkg: ",key_sample
@@ -558,7 +558,7 @@ for cat in categories:
                                 temp2sys.SetName(h_string+key_sample+"__"+syst)
                                 fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
                                 del temp2sys
-                elif 'zjets' or 'diboson' or 'others' or 'wjets_b' or 'wjets_c' or 'qcd_mu' or 'ST' or 'DY' or 'VV' in key_sample:
+                elif 'zjets' in key_sample or 'diboson' in key_sample or 'others' in key_sample or 'wjets_b' in key_sample or 'wjets_c' in key_sample or 'qcd_mu' in key_sample or 'ST' in key_sample or 'DY' in key_sample or 'VV' in key_sample:
                     for syst in systematic_direction_otherbkgs:
                         cut = str(cut_string+' & ttagN==0 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
                         print "Processing small bkg: ",key_sample

@@ -411,7 +411,7 @@ for cat in categories:
                                 print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
                                 fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                                 del tempsys
-                elif 'zjets' or 'diboson' or 'others' or 'wjets_b' or 'wjets_c' or 'qcd_el' or 'ST' or 'DY' or 'VV' in key_sample:
+                elif 'zjets' in key_sample or 'diboson' in key_sample or 'others' in key_sample or 'wjets_b' in key_sample or 'wjets_c' in key_sample or 'qcd_el' in key_sample or 'ST' in key_sample or 'DY' in key_sample or 'VV' in key_sample:
 #                elif 'ST' in key_sample:
                     for syst in systematic_direction_otherbkgs:
                         cut = str(cut_string+' & ttagN==1 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
@@ -440,13 +440,13 @@ for cat in categories:
                 cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & rec_chi2<30  '
                 h_string = h_string_GL + 'WJetsMVA_chi2_mttbar__'
             if subcat == 'antiWJetsMVA2_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<-0.5 & rec_chi2>=30 '
+                cut_string = cut_string_GL+' WJets_TMVA_response<-0.75 & rec_chi2>=30 '
                 h_string = h_string_GL + 'antiWJetsMVA2_antichi2_mttbar__'
             if subcat == 'antiWJetsMVA3_antichi2':
                 cut_string = cut_string_GL+' WJets_TMVA_response>0.0 & WJets_TMVA_response<0.5 & rec_chi2>=30 '
                 h_string = h_string_GL + 'antiWJetsMVA3_antichi2_mttbar__'
             if subcat == 'antiWJetsMVA2_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<-0.5 & rec_chi2<30 '
+                cut_string = cut_string_GL+' WJets_TMVA_response<-0.75 & rec_chi2<30 '
                 h_string = h_string_GL + 'antiWJetsMVA2_chi2_mttbar__'
             if subcat == 'antiWJetsMVA3_chi2':
                 cut_string = cut_string_GL+' WJets_TMVA_response>0.0 & WJets_TMVA_response<0.5 & rec_chi2<30 '
@@ -598,7 +598,7 @@ for cat in categories:
                                 temp2sys.SetName(h_string+key_sample+"__"+syst)
                                 fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
                                 del temp2sys
-                elif 'zjets' or 'diboson' or 'others' or 'wjets_b' or 'wjets_c' or 'qcd_el' or 'ST' or 'DY' or 'VV' in key_sample:
+                elif 'zjets' in key_sample or 'diboson' in key_sample or 'others' in key_sample or 'wjets_b' in key_sample or 'wjets_c' in key_sample or 'qcd_el' in key_sample or 'ST' in key_sample or 'DY' in key_sample or 'VV' in key_sample:
                     for syst in systematic_direction_otherbkgs:
                         cut = str(cut_string+' & ttagN==0 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
                         print "Processing: ",key_sample
