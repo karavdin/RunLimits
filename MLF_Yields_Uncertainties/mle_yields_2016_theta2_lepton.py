@@ -42,7 +42,7 @@ def build_boosted_semileptonic_model(files, filter, signal, mcstat = False):
     model.set_signal_processes(signal)
     obs =  model.get_observables()
     print "set1 ", obs
-   model.restrict_to_observables(set(['ele_0top_WJetsMVA_chi2_mttbar','ele_0top_antiWJetsMVA2_chi2_mttbar','ele_0top_antiWJetsMVA3_chi2_mttbar','ele_1top_WJetsMVA_chi2_mttbar','mu_0top_WJetsMVA_chi2_mttbar','mu_0top_antiWJetsMVA2_chi2_mttbar','mu_0top_antiWJetsMVA3_chi2_mttbar','mu_1top_WJetsMVA_chi2_mttbar']))
+    model.restrict_to_observables(set(['ele_0top_WJetsMVA_chi2_mttbar','ele_0top_antiWJetsMVA2_chi2_mttbar','ele_0top_antiWJetsMVA3_chi2_mttbar','ele_1top_WJetsMVA_chi2_mttbar','mu_0top_WJetsMVA_chi2_mttbar','mu_0top_antiWJetsMVA2_chi2_mttbar','mu_0top_antiWJetsMVA3_chi2_mttbar','mu_1top_WJetsMVA_chi2_mttbar']))
  #   model.restrict_to_observables(set(['ele_0top_WJetsMVA_chi2_mttbar','ele_0top_antiWJetsMVA2_chi2_mttbar','ele_0top_antiWJetsMVA3_chi2_mttbar','mu_0top_WJetsMVA_chi2_mttbar','mu_0top_antiWJetsMVA2_chi2_mttbar','mu_0top_antiWJetsMVA3_chi2_mttbar']))
     obs =  model.get_observables()
     print "set2 ", obs

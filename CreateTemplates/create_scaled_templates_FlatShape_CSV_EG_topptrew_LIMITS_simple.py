@@ -5,7 +5,7 @@ ct = '(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*
 addPDF = True
 #addPDF = False
 
-systematic_direction_ttbar={'nominal':ct,
+systematic_direction_ttbar={'nominal':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'pileup__plus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu_up)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'pileup__minus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu_down)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'elecID__plus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID_up)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
@@ -45,10 +45,10 @@ systematic_direction_ttbar={'nominal':ct,
                             'q2ttbarMuRctMuFup__plus':'(wgtMC__topptREWGT_ct)*(wgtMC__muR_ct__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
 
                             #add JEC and JER
-                            'jec__plus':ct,
-                            'jec__minus':ct,
-                            'jer__plus':ct,
-                            'jer__minus':ct,
+                            'jec__plus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'jec__minus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'jer__plus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'jer__minus':'(wgtMC__topptREWGT_ct)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'toppt_reweight__minus':'(wgtMC__topptREWGT_dn)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                             'toppt_reweight__plus':'(wgtMC__topptREWGT_up)*(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
 }
@@ -91,10 +91,10 @@ systematic_direction_wjets={'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_sf
                             'q2wjetsMuRctMuFdn__plus':'(wgtMC__muR_ct__muF_dn)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
                             'q2wjetsMuRctMuFup__plus':'(wgtMC__muR_ct__muF_up)*(weight_pu)*(wgtMC__ttagSF_ct)*(weight_sfelec_Gsf)*(weight_sfelec_ID)*(weight_sfelec_HLT)*(weight_csv_central)',
                             #add JEC and JER
-                            'jec__plus':ct,
-                            'jec__minus':ct,
-                            'jer__plus':ct,
-                            'jer__minus':ct,
+                            'jec__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'jec__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'jer__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
+                            'jer__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
 }          
 systematic_direction_otherbkgs = {'nominal':ct,
                             'pileup__plus':ct,
@@ -138,7 +138,7 @@ systematic_direction_otherbkgs = {'nominal':ct,
                             'PDF__plus':ct,
                             'PDF__minus':ct,
 }                
-systematic_direction_signal= {'nominal':ct,    
+systematic_direction_signal= {'nominal':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',    
                               'pileup__plus':'(weight_sfelec_ID)*(weight_pu_up)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                               'pileup__minus':'(weight_sfelec_ID)*(weight_pu_down)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                               'elecID__plus':'(weight_sfelec_ID_up)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)', 
@@ -169,16 +169,11 @@ systematic_direction_signal= {'nominal':ct,
                               'csv_lfstats1__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats1down)',
                               'csv_lfstats2__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats2up)', 
                               'csv_lfstats2__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_lfstats2down)',
-                              #add JEC and JER
+                              # #add JEC and JER
                               # 'jec__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                               # 'jec__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                               # 'jer__plus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
                               # 'jer__minus':'(weight_sfelec_ID)*(weight_pu)*(weight_sfelec_Gsf)*(weight_sfelec_HLT)*(wgtMC__ttagSF_ct)*(weight_csv_central)',
-                              'jec__plus':ct,
-                              'jec__minus':ct,
-                              'jer__plus':ct,
-                              'jer__minus':ct,
-                                    
 }         
 
 if addPDF:
@@ -263,7 +258,8 @@ subcategoriesT1=['WJetsMVA_chi2']
 #subcategoriesT0=['antiWJetsMVA2_antichi2','WJetsMVA_chi2','antiWJetsMVA3_antichi2','antiWJetsMVA2_chi2','antiWJetsMVA3_chi2']
 subcategoriesT0=['WJetsMVA_chi2','antiWJetsMVA2_chi2','antiWJetsMVA3_chi2']
 
-fout = TFile('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS.root', 'recreate')
+#fout = TFile('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS.root', 'recreate')
+fout = TFile('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_woJERJECsignal_LIMITS.root', 'recreate')
 gROOT.SetBatch(kTRUE)
 from FlatScale_ele_JERhybrid_ST_DY_VV_6cat_PDFforDY import *
 #print "scale_ele_1top_WJetsMVA_chi2_mttbar__wjets_c__PDF__plus=", scale_ele_1top_WJetsMVA_chi2_mttbar__wjets_c__PDF__plus
@@ -289,29 +285,24 @@ for cat in categories:
                 mytree.SetAlias("invmass","Mttbar")
                 if key_sample == 'DATA':
                     cut = str(cut_string+' & ttagN==1   & btagN>=0)')
-                    # print "Processing: ",key_sample
-                    # print "Applying cut:",cut
+                    print "Processing: ",key_sample
+                    print "Applying cut:",cut
                     tempdata = TH1F("tempdata","tempdata",110,200,10000)
                     mytree.Draw("invmass>>tempdata",cut)
                     tempdata.SetName(h_string+key_sample)
-                    if(tempdata.GetEntries()<1): 
-                        print "!!! Attention, missing template !!!"
-                        tempdata.Print()
+                    tempdata.Print()
                     fout.WriteObject(tempdata,h_string+key_sample)
                     del tempdata
                 elif 'Zprime' in key_sample or 'RSgluon' in key_sample:
                     for syst in systematic_direction_signal:
                         cut = str(cut_string+' & ttagN==1 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
-                        # print "Processing: ",key_sample
-                        # print "Applying cut:",cut
+                        print "Processing: ",key_sample
+                        print "Applying cut:",cut
                         if syst == 'nominal':
                             temp = TH1F("temp","temp",110,200,10000)
                             mytree.Draw("invmass>>temp",cut)
                             temp.SetName(h_string+key_sample)
-                            if(temp.GetEntries()<1): 
-                                print "!!! Attention, missing template !!!"
-                                temp.Print()
-#                            print "Rebinning T1 nom:", str(temp.GetNbinsX())
+                            print "Rebinning T1 nom:", str(temp.GetNbinsX())
                             fout.WriteObject(temp,h_string+key_sample)
                             del temp
                         elif syst=='jec__plus' or syst=='jec__minus' or syst=='jer__plus' or syst=='jer__minus':
@@ -331,35 +322,26 @@ for cat in categories:
                             tempsys = TH1F("tempsys","tempsys",110,200,10000)
                             je_tree.Draw("invmass>>tempsys",cut)
                             tempsys.SetName(h_string+key_sample+"__"+syst)
-                            if(tempsys.GetEntries()<1): 
-                                print "!!! Attention, missing template !!!"
-                                tempsys.Print()
-#                            print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
+                            print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
                             fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                             del tempsys
                         elif 'nominal' not in syst:
                             tempsys = TH1F("tempsys","tempsys",110,200,10000)
                             mytree.Draw("invmass>>tempsys",cut)
                             tempsys.SetName(h_string+key_sample+"__"+syst)
-                            if(tempsys.GetEntries()<1): 
-                                print "!!! Attention, missing template !!!"
-                                tempsys.Print()
- #                           print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
+                            print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
                             fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                             del tempsys
                 elif 'ttbar' in key_sample:
                     for syst in systematic_direction_ttbar:
                         cut = str(cut_string+' & ttagN==1 & btagN>=0)*1.00*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
-                        # print "Processing: ",key_sample
-                        # print "Applying cut:",cut
+                        print "Processing: ",key_sample
+                        print "Applying cut:",cut
                         if syst == 'nominal':
                             temp = TH1F("temp","temp",110,200,10000)
                             mytree.Draw("invmass>>temp",cut)
                             temp.SetName(h_string+key_sample)
-                            if(temp.GetEntries()<1): 
-                                print "!!! Attention, missing template !!!"
-                                temp.Print()
-#                            print "Rebinning T1 nom:", str(temp.GetNbinsX())
+                            print "Rebinning T1 nom:", str(temp.GetNbinsX())
                             fout.WriteObject(temp,h_string+key_sample)
                             del temp
                         elif syst=='jec__plus' or syst=='jec__minus' or syst=='jer__plus' or syst=='jer__minus':
@@ -379,37 +361,27 @@ for cat in categories:
                             tempsys = TH1F("tempsys","tempsys",110,200,10000)
                             je_tree.Draw("invmass>>tempsys",cut)
                             tempsys.SetName(h_string+key_sample+"__"+syst)
-                            if(tempsys.GetEntries()<1): 
-                                print "!!! Attention, missing template !!!"
-                                tempsys.Print()
-
-#                            print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
+                            print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
                             fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                             del tempsys
                         elif 'nominal' not in syst:
                             tempsys = TH1F("tempsys","tempsys",110,200,10000)
                             mytree.Draw("invmass>>tempsys",cut)
                             tempsys.SetName(h_string+key_sample+"__"+syst)
-                            if(tempsys.GetEntries()<1): 
-                                print "!!! Attention, missing template !!!"
-                                tempsys.Print()
-#                            print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
+                            print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
                             fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                             del tempsys
                 elif 'wjets_l' in key_sample:
                     if subcat == 'WJetsMVA_chi2':
                         for syst in systematic_direction_otherbkgs:
                             cut = str(cut_string+' &  ttagN==1 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
-                            # print "Processing: ",key_sample
-                            # print "Applying cut:",cut
+                            print "Processing: ",key_sample
+                            print "Applying cut:",cut
                             if syst == 'nominal':
                                 temp = TH1F("temp","temp",110,200,10000)
                                 mytree.Draw("invmass>>temp",cut)
                                 temp.SetName(h_string+key_sample)
-                                if(temp.GetEntries()<1): 
-                                    print "!!! Attention, missing template !!!"
-                                    temp.Print()
-#                                print "Rebinning T1 nom:", str(temp.GetNbinsX())
+                                print "Rebinning T1 nom:", str(temp.GetNbinsX())
                                 fout.WriteObject(temp,h_string+key_sample)
                                 del temp
                             elif 'nominal' not in syst:
@@ -417,26 +389,20 @@ for cat in categories:
                                 tempsys = TH1F("tempsys","tempsys",110,200,10000)
                                 mytree.Draw("invmass>>tempsys",cut+'*('+str(scale)+')')
                                 tempsys.SetName(h_string+key_sample+"__"+syst)
-                                if(tempsys.GetEntries()<1):
-                                    print "!!! Attention, missing template !!!"
-                                    tempsys.Print()
-#                                print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
+                                print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
                                 fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                                 del tempsys
                     else:
                         for syst in systematic_direction_wjets:
                             #                    for syst in systematic_direction_otherbkgs:
                             cut = str(cut_string+' &  ttagN==1 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
-                            # print "Processing: ",key_sample
-                            # print "Applying cut:",cut
+                            print "Processing: ",key_sample
+                            print "Applying cut:",cut
                             if syst == 'nominal':
                                 temp = TH1F("temp","temp",110,200,10000)
                                 mytree.Draw("invmass>>temp",cut)
                                 temp.SetName(h_string+key_sample)
-                                if(temp.GetEntries()<1):
-                                    print "!!! Attention, missing template !!!"
-                                    temp.Print()
-#                                print "Rebinning T1 nom:", str(temp.GetNbinsX())
+                                print "Rebinning T1 nom:", str(temp.GetNbinsX())
                                 fout.WriteObject(temp,h_string+key_sample)
                                 del temp
                             elif syst=='jec__plus' or syst=='jec__minus' or syst=='jer__plus' or syst=='jer__minus':
@@ -456,37 +422,27 @@ for cat in categories:
                                 tempsys = TH1F("tempsys","tempsys",110,200,10000)
                                 je_tree.Draw("invmass>>tempsys",cut)
                                 tempsys.SetName(h_string+key_sample+"__"+syst)
-                                if(tempsys.GetEntries()<1): 
-                                    print "!!! Attention, missing template !!!"
-                                    tempsys.Print()
-                                
-#                                print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
+                                print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
                                 fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                                 del tempsys
                             elif 'nominal' not in syst:
                                 tempsys = TH1F("tempsys","tempsys",110,200,10000)
                                 mytree.Draw("invmass>>tempsys",cut)
                                 tempsys.SetName(h_string+key_sample+"__"+syst)
-                                if(tempsys.GetEntries()<1):
-                                    print "!!! Attention, missing template !!!"
-                                    tempsys.Print()
-#                                print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
+                                print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
                                 fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                                 del tempsys
                 elif 'zjets' in key_sample or 'diboson' in key_sample or 'others' in key_sample or 'wjets_b' in key_sample or 'wjets_c' in key_sample or 'qcd_el' in key_sample or 'ST' in key_sample or 'DY' in key_sample or 'VV' in key_sample:
 #                elif 'ST' in key_sample:
                     for syst in systematic_direction_otherbkgs:
                         cut = str(cut_string+' & ttagN==1 &  btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
-                        # print "Applying cut:",cut
-                        # print "Processing: ",key_sample
+                        print "Applying cut:",cut
+                        print "Processing: ",key_sample
                         if syst == 'nominal':
                             temp = TH1F("temp","temp",110,200,10000)
                             mytree.Draw("invmass>>temp",cut)
                             temp.SetName(h_string+key_sample)
-                            if(temp.GetEntries()<1):
-                                print "!!! Attention, missing template !!!"
-                                temp.Print()
-#                            print "Rebinning T1 nom:", str(temp.GetNbinsX())
+                            print "Rebinning T1 nom:", str(temp.GetNbinsX())
                             fout.WriteObject(temp,h_string+key_sample)
                             del temp
                         elif 'nominal' not in syst:
@@ -494,10 +450,7 @@ for cat in categories:
                             tempsys = TH1F("tempsys","tempsys",110,200,10000)
                             mytree.Draw("invmass>>tempsys",cut+'*('+str(scale)+')')
                             tempsys.SetName(h_string+key_sample+"__"+syst)
-                            if(tempsys.GetEntries()<1):
-                                print "!!! Attention, missing template !!!"
-                                tempsys.Print()
-#                            print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
+                            print "Rebinning T1 nom+sys:", str(tempsys.GetNbinsX())
                             fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                             del tempsys
     elif cat == 'T0':
@@ -528,28 +481,23 @@ for cat in categories:
                 mytree.SetAlias("invmass","Mttbar")
                 if key_sample == 'DATA':
                     cut = str(cut_string+' & ttagN==0 & btagN>=0)')
-                    # print "Processing: ",key_sample
-                    # print "Applying cut:",cut
+                    print "Processing: ",key_sample
+                    print "Applying cut:",cut
                     temp2data = TH1F("temp2data","temp2data",110,200,10000)
                     mytree.Draw("invmass>>temp2data",cut)
                     temp2data.SetName(h_string+key_sample)
-                    if(temp2data.GetEntries()<1):
-                        print "!!! Attention, missing template !!!"
-                        temp2data.Print()
+                    temp2data.Print()
                     fout.WriteObject(temp2data,h_string+key_sample)
                     del temp2data
                 elif 'Zprime' in key_sample or 'RSgluon' in key_sample:
                     for syst in systematic_direction_signal:
                         cut = str(cut_string+' & ttagN==0 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_signal[syst])
-                        # print "Processing: ",key_sample
-                        # print "Applying cut:",cut
+                        print "Processing: ",key_sample
+                        print "Applying cut:",cut
                         if syst == 'nominal':
                             temp2 = TH1F("temp2","temp2",110,200,10000)
                             mytree.Draw("invmass>>temp2",cut)
                             temp2.SetName(h_string+key_sample)
-                            if(temp2.GetEntries()<1):
-                                print "!!! Attention, missing template !!!"
-                                temp2.Print()
                             fout.WriteObject(temp2,h_string+key_sample)
                             del temp2
                         elif syst=='jec__plus' or syst=='jec__minus' or syst=='jer__plus' or syst=='jer__minus':
@@ -569,11 +517,7 @@ for cat in categories:
                             tempsys = TH1F("tempsys","tempsys",110,200,10000)
                             je_tree.Draw("invmass>>tempsys",cut)
                             tempsys.SetName(h_string+key_sample+"__"+syst)
-                            if(tempsys.GetEntries()<1): 
-                                print "!!! Attention, missing template !!!"
-                                tempsys.Print()
-
-#                            print "Rebinning T0 nom+sys:", str(tempsys.GetNbinsX())
+                            print "Rebinning T0 nom+sys:", str(tempsys.GetNbinsX())
                             fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                             del tempsys
                         elif 'nominal' not in syst:
@@ -581,22 +525,16 @@ for cat in categories:
                             mytree.Draw("invmass>>temp2sys",cut)
                             temp2sys.SetName(h_string+key_sample+"__"+syst)
                             fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
-                            if(temp2sys.GetEntries()<1):
-                                print "!!! Attention, missing template !!!"
-                                temp2sys.Print()
                             del temp2sys
                 elif 'ttbar' in key_sample:
                     for syst in systematic_direction_ttbar:
                         cut = str(cut_string+' & ttagN==0 & btagN>=0)*1.00*(wgtMC__GEN)*'+systematic_direction_ttbar[syst])
-                        # print "Processing: ",key_sample
-                        # print "Applying cut:",cut
+                        print "Processing: ",key_sample
+                        print "Applying cut:",cut
                         if syst == 'nominal':
                             temp2 = TH1F("temp2","temp2",110,200,10000)
                             mytree.Draw("invmass>>temp2",cut)
                             temp2.SetName(h_string+key_sample)
-                            if(temp2.GetEntries()<1):
-                                print "!!! Attention, missing template !!!"
-                                temp2.Print()
                             fout.WriteObject(temp2,h_string+key_sample)
                             del temp2
                         elif syst=='jec__plus' or syst=='jec__minus' or syst=='jer__plus' or syst=='jer__minus':
@@ -616,35 +554,25 @@ for cat in categories:
                             tempsys = TH1F("tempsys","tempsys",110,200,10000)
                             je_tree.Draw("invmass>>tempsys",cut)
                             tempsys.SetName(h_string+key_sample+"__"+syst)
-                            if(tempsys.GetEntries()<1): 
-                                print "!!! Attention, missing template !!!"
-                                tempsys.Print()
-
-#                            print "Rebinning T0 nom+sys:", str(tempsys.GetNbinsX())
+                            print "Rebinning T0 nom+sys:", str(tempsys.GetNbinsX())
                             fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                             del tempsys
                         elif 'nominal' not in syst:
                             temp2sys = TH1F("temp2sys","temp2sys",110,200,10000)
                             mytree.Draw("invmass>>temp2sys",cut)
                             temp2sys.SetName(h_string+key_sample+"__"+syst)
-                            if(temp2sys.GetEntries()<1):
-                                print "!!! Attention, missing template !!!"
-                                temp2sys.Print()
                             fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
                             del temp2sys
                 elif 'wjets_l' in key_sample:
                     if subcat == 'WJetsMVA_chi2':
                         for syst in systematic_direction_otherbkgs:
                             cut = str(cut_string+' & ttagN==0 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
-                            # print "Processing: ",key_sample
-                            # print "Applying cut:",cut
+                            print "Processing: ",key_sample
+                            print "Applying cut:",cut
                             if syst == 'nominal':
                                 temp2 = TH1F("temp2","temp2",110,200,10000)
                                 mytree.Draw("invmass>>temp2",cut)
                                 temp2.SetName(h_string+key_sample)
-                                if(temp2.GetEntries()<1):
-                                    print "!!! Attention, missing template !!!"
-                                    temp2.Print()
                                 fout.WriteObject(temp2,h_string+key_sample)
                                 del temp2
                             elif 'nominal' not in syst:
@@ -652,23 +580,17 @@ for cat in categories:
                                 scale = scales['scale_'+h_string+key_sample+"__"+syst]
                                 mytree.Draw("invmass>>temp2sys",cut+'*('+str(scale)+')')
                                 temp2sys.SetName(h_string+key_sample+"__"+syst)
-                                if(temp2sys.GetEntries()<1):
-                                    print "!!! Attention, missing template !!!"
-                                    temp2sys.Print()
                                 fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
                                 del temp2sys
                     else:
                         for syst in systematic_direction_wjets:
                             cut = str(cut_string+' & ttagN==0 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_wjets[syst])
-                            # print "Processing: ",key_sample
-                            # print "Applying cut:",cut
+                            print "Processing: ",key_sample
+                            print "Applying cut:",cut
                             if syst == 'nominal':
                                 temp2 = TH1F("temp2","temp2",110,200,10000)
                                 mytree.Draw("invmass>>temp2",cut)
                                 temp2.SetName(h_string+key_sample)
-                                if(temp2.GetEntries()<1):
-                                    print "!!! Attention, missing template !!!"
-                                    temp2.Print()
                                 fout.WriteObject(temp2,h_string+key_sample)
                                 del temp2
                             elif syst=='jec__plus' or syst=='jec__minus' or syst=='jer__plus' or syst=='jer__minus':
@@ -688,34 +610,24 @@ for cat in categories:
                                 tempsys = TH1F("tempsys","tempsys",110,200,10000)
                                 je_tree.Draw("invmass>>tempsys",cut)
                                 tempsys.SetName(h_string+key_sample+"__"+syst)
-                                if(tempsys.GetEntries()<1):
-                                    print "!!! Attention, missing template !!!"
-                                    tempsys.Print()
-
-#                                print "Rebinning T0 nom+sys:", str(tempsys.GetNbinsX())
+                                print "Rebinning T0 nom+sys:", str(tempsys.GetNbinsX())
                                 fout.WriteObject(tempsys,h_string+key_sample+"__"+syst)
                                 del tempsys
                             elif 'nominal' not in syst:
                                 temp2sys = TH1F("temp2sys","temp2sys",110,200,10000)
                                 mytree.Draw("invmass>>temp2sys",cut)
                                 temp2sys.SetName(h_string+key_sample+"__"+syst)
-                                if(temp2sys.GetEntries()<1):
-                                    print "!!! Attention, missing template !!!"
-                                    temp2sys.Print()
                                 fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
                                 del temp2sys
                 elif 'zjets' in key_sample or 'diboson' in key_sample or 'others' in key_sample or 'wjets_b' in key_sample or 'wjets_c' in key_sample or 'qcd_el' in key_sample or 'ST' in key_sample or 'DY' in key_sample or 'VV' in key_sample:
                     for syst in systematic_direction_otherbkgs:
                         cut = str(cut_string+' & ttagN==0 & btagN>=0)*(wgtMC__GEN)*'+systematic_direction_otherbkgs[syst])
-                        # print "Processing: ",key_sample
-                        # print "Applying cut:",cut
+                        print "Processing: ",key_sample
+                        print "Applying cut:",cut
                         if syst == 'nominal':
                             temp2 = TH1F("temp2","temp2",110,200,10000)
                             mytree.Draw("invmass>>temp2",cut)
                             temp2.SetName(h_string+key_sample)
-                            if(temp2.GetEntries()<1):
-                                print "!!! Attention, missing template !!!"
-                                temp2.Print()
                             fout.WriteObject(temp2,h_string+key_sample)
                             del temp2
                         elif 'nominal' not in syst:
@@ -723,9 +635,6 @@ for cat in categories:
                             temp2sys = TH1F("temp2sys","temp2sys",110,200,10000)
                             mytree.Draw("invmass>>temp2sys",cut+'*('+str(scale)+')')
                             temp2sys.SetName(h_string+key_sample+"__"+syst)
-                            if(temp2sys.GetEntries()<1):
-                                print "!!! Attention, missing template !!!"
-                                temp2sys.Print()
                             fout.WriteObject(temp2sys,h_string+key_sample+"__"+syst)
                             del temp2sys
 

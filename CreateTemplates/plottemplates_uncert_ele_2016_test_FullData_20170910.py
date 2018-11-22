@@ -27,8 +27,9 @@ samplelist = {'ttbar','wjets_c','wjets_b','wjets_l','ST','DY'}
 # fin = TFile('ele_theta_wFlatShapeSyst_min200_allPDF_onlyEleStream_rebinned10_addedPDF_addedQ2.root', 'open')
 
 categories=['ele_1top_WJetsMVA_chi2_mttbar__','ele_0top_WJetsMVA_chi2_mttbar__','ele_0top_antiWJetsMVA2_chi2_mttbar__','ele_0top_antiWJetsMVA3_chi2_mttbar__']
-fin = TFile('ele_theta_wFlatShapeSyst_min200_20bins_wTopPtrewSymSyst_rebinned_addedPDF_addedQ2.root', 'open')
-
+#fin = TFile('ele_theta_wFlatShapeSyst_min200_20bins_wTopPtrewSymSyst_rebinned_addedPDF_addedQ2.root', 'open')
+#fin = TFile('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_rebinned_addedPDF_addedQ2.root', 'open')
+fin = TFile('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_25bins_rebinned_addedPDF_addedQ2.root', 'open')
 
 nominalhist = {}
 nominalhistDraw = {}

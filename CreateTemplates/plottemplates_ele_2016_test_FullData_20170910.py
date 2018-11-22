@@ -37,10 +37,10 @@ categories=['ele_1top_WJetsMVA_chi2_mttbar__','ele_0top_WJetsMVA_chi2_mttbar__',
 #fin = TFile('ele_theta_wFlatShapeSyst_rebinned_addedQ2_addedPDF.root', 'open')
 #fin = TFile('ele_theta_wFlatShapeSyst_addedPDF_addedQ2_rebinned.root', 'open')
 #fin = TFile('ele_theta_wFlatShapeSyst_min200_allPDF_addedPDF_addedQ2_rebinned30.root', 'open')
-#fin = TFile('ele_theta_wFlatShapeSyst_min200_allPDF_rebinned30_addedPDF_addedQ2.root', 'open')
-fin = TFile('ele_theta_wFlatShapeSyst_min200_20bins_wTopPtrewSymSyst_rebinned_addedPDF_addedQ2.root', 'open')
-
+#fin = TFile('ele_theta_wFlatShapeSyst_min200_20bins_wTopPtrewSymSyst_rebinned_addedPDF_addedQ2.root', 'open')
 #fin = TFile('ele_theta_bdt0p5_chi30_addedQ2_addedPDF.root', 'open')
+#fin = TFile('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_rebinned_addedPDF_addedQ2.root', 'open')
+fin = TFile('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_25bins_rebinned_addedPDF_addedQ2.root', 'open')
 
 nominalhist = {}
 nominalhistDraw = {}

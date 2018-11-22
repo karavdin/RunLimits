@@ -30,6 +30,11 @@ def get_theory_XsecBR_graph(signal_):
         th.append([5500., 2.07506e-04])
         th.append([5750., 1.44911e-04])
         th.append([6000., 1.03407e-04])
+        th.append([6250., 7.60116e-05])
+        th.append([6500., 5.71530e-05]) 
+        th.append([6750., 4.42244e-05]) 
+        th.append([7000., 3.49246e-05]) 
+
 
 
     elif signal_ == 'w':
@@ -57,6 +62,10 @@ def get_theory_XsecBR_graph(signal_):
         th.append([5500., 8.55804e-03])
         th.append([5750., 6.80722e-03])
         th.append([6000., 5.50276e-03])
+        th.append([6250., 4.50943e-03])
+        th.append([6500., 3.74190e-03])
+        th.append([6750., 3.13889e-03])
+        th.append([7000., 2.65864e-03])
 
     elif signal_ == 'ew':
         kNLO = 1.0
@@ -83,6 +92,10 @@ def get_theory_XsecBR_graph(signal_):
         th.append([5500., 6.42139e-02])
         th.append([5750., 5.25241e-02])
         th.append([6000., 4.34250e-02])
+        th.append([6250., 3.62486e-02]) 
+        th.append([6500., 3.05223e-02])
+        th.append([6750., 2.59064e-02]) 
+        th.append([7000., 2.21476e-02])
 
     elif signal_ == 'r':
         kNLO = 1.3

@@ -26,6 +26,8 @@ def get_limits_from_file(input_file_):
     f = open(input_file_,'r')
     for line in f:
         vals = line.split()
+        #print 'len(vals) = ', len(vals)
+        #print 'input_file_ = ',input_file_
         if len(vals) != 7:
             print '\n@@@ FATAL -- uncorrect input file format. stopping script. ('+input_file_+')\n'
             raise SystemExit
@@ -39,5 +41,4 @@ def get_limits_from_file(input_file_):
         obs = float(vals[6])
 
         mp_list.append(masspoint(mass, exp, exp68up, exp68dn, exp95up, exp95dn, obs))
-
     return mp_list

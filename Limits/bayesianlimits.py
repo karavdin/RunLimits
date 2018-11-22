@@ -8,7 +8,7 @@ muo_ifile = ['mu_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_rebinned_a
 #ele_ifile = ['ele_theta_bdt0p5_chi30_limits_rebinned.root']
 ele_ifile = ['ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_rebinned_addedPDF_addedQ2.root']
 #lep_ifile = ['lep_theta_wFlatShapeSyst_allSyst_LIMITS.root']
-lep_ifile = ['lep_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_rebinned_addedPDF_addedQ2.root']
+lep_ifile = ['lep_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_addedPDF_addedQ2_rebinned.root']
 #mle_coeff_file = '../MLF_Yields_Uncertainties/mle_coeff.p'
 #mle_coeff_file = 'mle_coeff.p'
 #mle_coeff_file = 'mle_coeff_mu.p'
@@ -29,35 +29,35 @@ def narrow_resonances(hname):
     pname = hname.split('__')[1]
     if not 'ZprimeNarrow' in pname: return False
     mass = pname.strip('ZprimeNarrow')
-    return float(mass) <= 6000
+    return float(mass) <= 8000
 
 def wide_resonances(hname):
     if not ('RSgluon' in hname or 'Zprime' in hname): return True
     pname = hname.split('__')[1]
     if not 'ZprimeWide' in pname: return False
     mass = pname.strip('ZprimeWide')
-    return float(mass) <= 6000
+    return float(mass) <= 8000
 
 def extrawide_resonances(hname):
     if not ('RSgluon' in hname or 'Zprime' in hname): return True
     pname = hname.split('__')[1]
     if not 'ZprimeExtraWide' in pname: return False
     mass = pname.strip('ZprimeExtraWide')
-    return float(mass) <= 6000
+    return float(mass) <= 8000
 
 def ttjets_resonances(hname):
     if not ('RSgluon' in hname or 'Zprime' in hname): return True
     pname = hname.split('__')[1]
     if not 'ZprimeTTJets' in pname: return False
     mass = pname.strip('ZprimeTTJets')
-    return float(mass) <= 6000
+    return float(mass) <= 8000
 
 def rsg_resonances(hname):
     if not ('RSgluon' in hname or 'Zprime' in hname): return True
     pname = hname.split('__')[1]
     if not 'RSgluon' in pname: return False
     mass = pname.strip('RSgluon')
-    return float(mass) <= 6000
+    return float(mass) <= 8000
 
 def build_boosted_semileptonic_model(files, filter, signal, eflag=False):
     model = build_model_from_rootfile(files, filter, include_mc_uncertainties = True)
@@ -337,11 +337,11 @@ def build_model(type):
 #args = {'type': 'extrawide_resonances_electron'}
 #args = {'type': 'ttjets_resonances_electron'}
 
-#args = {'type': 'narrow_resonances_lepton'}
+args = {'type': 'narrow_resonances_lepton'}
 #args = {'type': 'wide_resonances_lepton'}
-#args = {'type': 'rsg_resonances_lepton'}
 #args = {'type': 'extrawide_resonances_lepton'}
-args = {'type': 'ttjets_resonances_lepton'}
+#args = {'type': 'rsg_resonances_lepton'}
+#args = {'type': 'ttjets_resonances_lepton'}
 
 model = build_model(**args)
 
@@ -350,6 +350,7 @@ args = {}
 #results = bayesian_limits(model, run_theta = True, **args)
 #results = bayesian_limits(model, run_theta = True, n_toy = 1000, n_data = 2, **args)
 results = bayesian_limits(model, run_theta = True, n_toy = 100, n_data = 2, **args)
+#results = bayesian_limits(model, run_theta = True, n_toy = 1000, n_data = 100, **args)
 # results = bayesian_limits(model, input='toys:0', n=10, run_theta = True, **args)
 exp, obs = results
 print exp

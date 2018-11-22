@@ -182,12 +182,6 @@ if addPDF:
         systematic_direction_wjets['wgtMCPDF_'+str(i)+'__plus'] = ct+pdfstring
         systematic_direction_signal['wgtMCPDF_'+str(i)+'__plus'] = ct+pdfstring
 
-# inputdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3/T1_v06/muon/"
-# jecupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_jec_up/T1_v06/muon/"
-# jecdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_jec_down/T1_v06/muon/"
-# jerupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_jer_up/T1_v06/muon/"
-# jerdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_jer_down/T1_v06/muon/"
-
 inputdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_addTTBarRecDebugVars_dRlepAK8_removeAK8/T1_v06/muon/"
 jecupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_addTTBarRecDebugVars_dRlepAK8_removeAK8_jec_up/T1_v06/muon/"
 jecdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_addTTBarRecDebugVars_dRlepAK8_removeAK8_jec_down/T1_v06/muon/"
@@ -195,57 +189,56 @@ jerupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJ
 jerdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_addTTBarRecDebugVars_dRlepAK8_removeAK8_jer_down/T1_v06/muon/"
 
 samplelist = {
-# 'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA_SingleMuon_Run2016_BLINDED.root',
-# 'ST':'uhh2.AnalysisModuleRunner.MC.ST.root',
-# 'DY':'uhh2.AnalysisModuleRunner.MC.DY.root',
-# 'VV':'uhh2.AnalysisModuleRunner.MC.VV.root',
-# 'qcd_mu':'uhh2.AnalysisModuleRunner.MC.QCD_Pt.root',
-# #'qcd_mu':'uhh2.AnalysisModuleRunner.MC.QCD_HT.root',
-# 'wjets_l':'uhh2.AnalysisModuleRunner.MC.WJets__L.root',
-# 'wjets_b':'uhh2.AnalysisModuleRunner.MC.WJets__B.root',
-# 'wjets_c':'uhh2.AnalysisModuleRunner.MC.WJets__C.root',
-# 'ttbar':'uhh2.AnalysisModuleRunner.MC.TTbar.root',
-# 'Zprime1500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M1500.root','Zprime3000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M3000.root',
-# 'ZprimeNarrow0500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M0500.root','ZprimeNarrow4000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M4000.root', 
-# 'ZprimeNarrow1000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M1000.root','ZprimeNarrow1500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M1500.root',
-# 'ZprimeNarrow0750':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M0750.root','ZprimeNarrow1250':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M1250.root',
-# 'ZprimeNarrow2500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M2500.root', 'ZprimeNarrow2000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M2000.root',
-# 'ZprimeNarrow3000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M3000.root', 'ZprimeNarrow3500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M3500.root',
+'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA_SingleMuon_Run2016_BLINDED.root',
+'ST':'uhh2.AnalysisModuleRunner.MC.ST.root',
+'DY':'uhh2.AnalysisModuleRunner.MC.DY.root',
+'VV':'uhh2.AnalysisModuleRunner.MC.VV.root',
+'qcd_mu':'uhh2.AnalysisModuleRunner.MC.QCD_Pt.root',
+'wjets_l':'uhh2.AnalysisModuleRunner.MC.WJets__L.root',
+'wjets_b':'uhh2.AnalysisModuleRunner.MC.WJets__B.root',
+'wjets_c':'uhh2.AnalysisModuleRunner.MC.WJets__C.root',
+'ttbar':'uhh2.AnalysisModuleRunner.MC.TTbar.root',
+'Zprime1500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M1500.root','Zprime3000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M3000.root',
+'ZprimeNarrow0500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M0500.root','ZprimeNarrow4000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M4000.root', 
+'ZprimeNarrow1000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M1000.root','ZprimeNarrow1500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M1500.root',
+'ZprimeNarrow0750':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M0750.root','ZprimeNarrow1250':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M1250.root',
+'ZprimeNarrow2500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M2500.root', 'ZprimeNarrow2000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M2000.root',
+'ZprimeNarrow3000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M3000.root', 'ZprimeNarrow3500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M3500.root',
 'ZprimeNarrow4000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M4000.root', 
-#'ZprimeNarrow5000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M5000.root',
-# 'ZprimeNarrow4500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M4500.root',
-# 'ZprimeNarrow6000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M6000.root', 'ZprimeNarrow6500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M6500.root',
-# 'ZprimeNarrow7000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M7000.root',
-# 'ZprimeWide0500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M0500.root', 'ZprimeWide4000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M4000.root',
-# 'ZprimeWide1000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M1000.root', 'ZprimeWide1500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M1500.root',
-# 'ZprimeWide0750':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M0750.root', 'ZprimeWide1250':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M1250.root',
-# 'ZprimeWide2500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M2500.root', 'ZprimeWide2000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M2000.root',
-# 'ZprimeWide3000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M3000.root', 'ZprimeWide3500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M3500.root',
-# 'ZprimeWide4000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M4000.root', 'ZprimeWide5000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M5000.root', 
-# 'ZprimeWide4500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M4500.root',
-# 'ZprimeWide6000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M6000.root', 'ZprimeWide6500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M6500.root', 
-# 'ZprimeWide7000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M7000.root', 
-# 'ZprimeExtraWide1000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_30w_M1000.root',
-# 'ZprimeExtraWide2000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_30w_M2000.root',
-# 'ZprimeExtraWide3000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_30w_M3000.root',                                                                                       
-# 'ZprimeExtraWide4000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_30w_M4000.root',                                                                                       
-# 'ZprimeExtraWide5000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_30w_M5000.root', 
-# 'ZprimeExtraWide6000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_30w_M6000.root', 
-# 'ZprimeExtraWide6500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_30w_M6500.root', 
-# 'ZprimeExtraWide7000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_30w_M7000.root', 
-# 'ZprimeTTJets0500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTTJet_M0500.root',
-# 'ZprimeTTJets1000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTTJet_M1000.root','ZprimeTTJets1500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTTJet_M1500.root',
-# 'ZprimeTTJets0750':'uhh2.AnalysisModuleRunner.MC.ZprimeToTTJet_M0750.root','ZprimeTTJets1250':'uhh2.AnalysisModuleRunner.MC.ZprimeToTTJet_M1250.root',
-# 'ZprimeTTJets2500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTTJet_M2500.root','ZprimeTTJets2000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTTJet_M2000.root',
-# 'ZprimeTTJets3000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTTJet_M3000.root','ZprimeTTJets3500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTTJet_M3500.root',
-# 'ZprimeTTJets4000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTTJet_M4000.root',
-# 'RSgluon0500':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M0500.root','RSgluon4000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M4000.root',
-# 'RSgluon1000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M1000.root','RSgluon1500':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M1500.root',
-# 'RSgluon0750':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M0750.root','RSgluon1250':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M1250.root',
-# 'RSgluon2500':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M2500.root', 'RSgluon2000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M2000.root',
-# 'RSgluon3000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M3000.root' ,'RSgluon3500':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M3500.root',
-# 'RSgluon4000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M4000.root' ,'RSgluon5000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M5000.root',                             
-# 'RSgluon4500':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M4500.root'
+'ZprimeNarrow5000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M5000.root',
+'ZprimeNarrow4500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M4500.root',
+'ZprimeNarrow6000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M6000.root', 'ZprimeNarrow6500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M6500.root',
+'ZprimeNarrow7000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_01w_M7000.root',
+'ZprimeWide0500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M0500.root', 'ZprimeWide4000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M4000.root',
+'ZprimeWide1000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M1000.root', 'ZprimeWide1500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M1500.root',
+'ZprimeWide0750':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M0750.root', 'ZprimeWide1250':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M1250.root',
+'ZprimeWide2500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M2500.root', 'ZprimeWide2000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M2000.root',
+'ZprimeWide3000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M3000.root', 'ZprimeWide3500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M3500.root',
+'ZprimeWide4000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M4000.root', 'ZprimeWide5000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M5000.root', 
+'ZprimeWide4500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M4500.root',
+'ZprimeWide6000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M6000.root', 'ZprimeWide6500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M6500.root', 
+'ZprimeWide7000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_10w_M7000.root', 
+'ZprimeExtraWide1000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_30w_M1000.root',
+'ZprimeExtraWide2000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_30w_M2000.root',
+'ZprimeExtraWide3000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_30w_M3000.root',                                                                                       
+'ZprimeExtraWide4000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_30w_M4000.root',                                                                                       
+'ZprimeExtraWide5000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_30w_M5000.root', 
+'ZprimeExtraWide6000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_30w_M6000.root', 
+'ZprimeExtraWide6500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_30w_M6500.root', 
+'ZprimeExtraWide7000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTT_30w_M7000.root', 
+'ZprimeTTJets0500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTTJet_M0500.root',
+'ZprimeTTJets1000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTTJet_M1000.root','ZprimeTTJets1500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTTJet_M1500.root',
+'ZprimeTTJets0750':'uhh2.AnalysisModuleRunner.MC.ZprimeToTTJet_M0750.root','ZprimeTTJets1250':'uhh2.AnalysisModuleRunner.MC.ZprimeToTTJet_M1250.root',
+'ZprimeTTJets2500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTTJet_M2500.root','ZprimeTTJets2000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTTJet_M2000.root',
+'ZprimeTTJets3000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTTJet_M3000.root','ZprimeTTJets3500':'uhh2.AnalysisModuleRunner.MC.ZprimeToTTJet_M3500.root',
+'ZprimeTTJets4000':'uhh2.AnalysisModuleRunner.MC.ZprimeToTTJet_M4000.root',
+'RSgluon0500':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M0500.root','RSgluon4000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M4000.root',
+'RSgluon1000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M1000.root','RSgluon1500':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M1500.root',
+'RSgluon0750':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M0750.root','RSgluon1250':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M1250.root',
+'RSgluon2500':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M2500.root', 'RSgluon2000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M2000.root',
+'RSgluon3000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M3000.root' ,'RSgluon3500':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M3500.root',
+'RSgluon4000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M4000.root' ,'RSgluon5000':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M5000.root',                             
+'RSgluon4500':'uhh2.AnalysisModuleRunner.MC.RSGluonToTT_M4500.root'
 }
 categories=['T0','T1','T01']
 #categories=['T01']
@@ -255,28 +248,29 @@ subcategoriesT01=['chi2']
 
 #Variable stored in the template: name, number of bins, low_bin, high_bin
 variables={
-'Mttbar':[250,200,10000,'M_{t#bar{t}} [GeV]'],
-# 'Mttbar':[140,200,7000,'M_{t#bar{t}} [GeV]'],
-'nJets':[20,0,20,'N_{jets};'],
-'toppuppijet_Msdp_matched_Nminus1':[80,0,500,'AK8PUPPI M_{softdrop} [GeV]'],
-'toppuppijet_tau32_matched_Nminus1':[48, 0, 1.2, 'AK8PUPPI #tau_{32}'],
-'toppuppijet_Msdp_matched':[80,0,500,'AK8PUPPI M_{softdrop} [GeV]'],
-'toppuppijet_tau32_matched':[48, 0, 1.2, 'AK8PUPPI #tau_{32}'],
-'tophad_pt':[60, 0, 1800,'pt_{top-had} [GeV]'],
-'toplep_pt':[60, 0, 1800,'pt_{top-lep} [GeV]'],
-'Mtophad':[40, 0, 400,'M_{top-had} [GeV]'],
-'Mtoplep':[40, 0, 400,'M_{top-lep} [GeV]'],
-'dR_lep_cljet':[90,0,2,'#DeltaR_{min}(muon,jets)'],
-'met_pt':[80, 0, 900,'MET [GeV]'],
-'ljet_pt':[80, 0, 900,'jet p_{T} [GeV]'],
-'ljet_eta':[60,-3,3,'jet #eta'],
-'fjet2_pt':[80, 0, 900,'jet_{2} p_{T} [GeV]'],
-'lep_pt':[80, 0, 900,'muon p_{T} [GeV]'],
-'lep_eta':[60,-3,3,'muon #eta'],
-'WJets_TMVA_response':[90,-1.2,1.8,'W+jets BDT response'],
+'rec_chi2':[60,0,60,'#chi^{2}'],
+# 'Mttbar':[250,200,10000,'M_{t#bar{t}} [GeV]'],
+# # 'Mttbar':[140,200,7000,'M_{t#bar{t}} [GeV]'],
+# 'nJets':[40,0,20,'N_{jets};'],
+# 'toppuppijet_Msdp_matched_Nminus1':[80,0,500,'AK8PUPPI M_{softdrop} [GeV]'],
+# 'toppuppijet_tau32_matched_Nminus1':[48, 0, 1.2, 'AK8PUPPI #tau_{32}'],
+# 'toppuppijet_Msdp_matched':[80,0,500,'AK8PUPPI M_{softdrop} [GeV]'],
+# 'toppuppijet_tau32_matched':[48, 0, 1.2, 'AK8PUPPI #tau_{32}'],
+# 'tophad_pt':[60, 0, 1800,'pt_{top-had} [GeV]'],
+# 'toplep_pt':[60, 0, 1800,'pt_{top-lep} [GeV]'],
+# 'Mtophad':[40, 0, 400,'M_{top-had} [GeV]'],
+# 'Mtoplep':[40, 0, 400,'M_{top-lep} [GeV]'],
+# 'dR_lep_cljet':[90,0,2,'#DeltaR_{min}(muon,jets)'],
+# 'met_pt':[80, 0, 900,'MET [GeV]'],
+# 'ljet_pt':[80, 0, 900,'jet p_{T} [GeV]'],
+# 'ljet_eta':[60,-3,3,'jet #eta'],
+# 'fjet2_pt':[80, 0, 900,'jet_{2} p_{T} [GeV]'],
+# 'lep_pt':[80, 0, 900,'muon p_{T} [GeV]'],
+# 'lep_eta':[60,-3,3,'muon #eta'],
+# 'WJets_TMVA_response':[90,-1.2,1.8,'W+jets BDT response'],
 }
 
-fout = TFile('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_ZprimeNarrow4000.root', 'recreate')
+fout = TFile('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_CHI2.root', 'recreate')
 gROOT.SetBatch(kTRUE)
 from FlatScale_mu_JERhybrid_ST_DY_VV_6cat_PDFforDY import *
 for cat in categories:
@@ -286,10 +280,10 @@ for cat in categories:
         h_string_GL='mu_1top_'
         for subcat in subcategoriesT1:
             if subcat == 'WJetsMVA_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & rec_chi2<30  '
+                cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & rec_chi2<100  '
                 h_string = h_string_GL + 'WJetsMVA_chi2_mttbar_' 
             if subcat == 'WJetsMVA4_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>=0.0 & rec_chi2<30  '
+                cut_string = cut_string_GL+' WJets_TMVA_response>=0.0 & rec_chi2<100  '
                 h_string = h_string_GL + 'WJetsMVA4_chi2_mttbar_' 
 
             for key_sample in samplelist:
@@ -423,19 +417,19 @@ for cat in categories:
         h_string_GL='mu_0top_'
         for subcat in subcategoriesT0:
             if subcat == 'WJetsMVA_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & rec_chi2<30  '
+                cut_string = cut_string_GL+' WJets_TMVA_response>=0.5 & rec_chi2<100  '
                 h_string = h_string_GL + 'WJetsMVA_chi2_mttbar_' 
             if subcat == 'antiWJetsMVA2_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<-0.75 & rec_chi2>=30 '
+                cut_string = cut_string_GL+' WJets_TMVA_response<-0.75 & rec_chi2>=100 '
                 h_string = h_string_GL + 'antiWJetsMVA2_antichi2_mttbar_'
             if subcat == 'antiWJetsMVA3_antichi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & WJets_TMVA_response>0.0 & rec_chi2>=30 '
+                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & WJets_TMVA_response>0.0 & rec_chi2>=100 '
                 h_string = h_string_GL + 'antiWJetsMVA3_antichi2_mttbar_'
             if subcat == 'antiWJetsMVA2_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<-0.75 & rec_chi2<30 '
+                cut_string = cut_string_GL+' WJets_TMVA_response<-0.75 & rec_chi2<100 '
                 h_string = h_string_GL + 'antiWJetsMVA2_chi2_mttbar_'
             if subcat == 'antiWJetsMVA3_chi2':
-                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & WJets_TMVA_response>0.0 & rec_chi2<30 '
+                cut_string = cut_string_GL+' WJets_TMVA_response<0.5 & WJets_TMVA_response>0.0 & rec_chi2<100 '
                 h_string = h_string_GL + 'antiWJetsMVA3_chi2_mttbar_'
 
             for key_sample in samplelist:
@@ -605,7 +599,7 @@ for cat in categories:
         h_string_GL='mu_01top_'
         for subcat in subcategoriesT01:
             if subcat == 'chi2':
-                cut_string = cut_string_GL+' rec_chi2<30  '
+                cut_string = cut_string_GL+' rec_chi2<100  '
                 h_string = h_string_GL + 'chi2_mttbar_' 
 
             for key_sample in samplelist:
@@ -712,4 +706,24 @@ for cat in categories:
                                     je_file = TFile(jecupdir+samplelist[key_sample])
                                     je_tree = je_file.Get("AnalysisTree")
                                 if syst=='jec__minus':
-                             
+                                    je_file = TFile(jecdowndir+samplelist[key_sample])
+                                    je_tree = je_file.Get("AnalysisTree")
+                                if syst=='jer__plus':
+                                    je_file = TFile(jerupdir+samplelist[key_sample])
+                                    je_tree = je_file.Get("AnalysisTree")
+                                if syst=='jer__minus':
+                                    je_file = TFile(jerdowndir+samplelist[key_sample])
+                                    je_tree = je_file.Get("AnalysisTree")
+                                je_tree.SetAlias("variable",key_var)
+                                tempsys = TH1F("tempsys","tempsys;"+variables[key_var][3],variables[key_var][0],variables[key_var][1],variables[key_var][2])
+                                je_tree.Draw("variable>>tempsys",cut)
+                                tempsys.SetName(key_var+'_'+h_string+'_'+key_sample+"__"+syst)
+                                fout.WriteObject(tempsys,key_var+'_'+h_string+'_'+key_sample+"__"+syst)
+                                del tempsys
+                            elif 'nominal' not in syst:
+                                temp2sys = TH1F("temp2sys","temp2sys;"+variables[key_var][3],variables[key_var][0],variables[key_var][1],variables[key_var][2])
+                                mytree.Draw("variable>>temp2sys",cut)
+                                temp2sys.SetName(key_var+'_'+h_string+'_'+key_sample+"__"+syst)
+                                fout.WriteObject(temp2sys,key_var+'_'+h_string+'_'+key_sample+"__"+syst)
+                                del temp2sys
+                  

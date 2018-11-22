@@ -254,10 +254,23 @@ def binFile(rerror, filename, xtitle, backgrounds):
 
 #binFile(0.30,  'ele_theta_wFlatShapeSyst_onlyEleStream_allSyst_LIMITS.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','qcd_mu','ST','DY'])
 
-#binFile(0.30,  'mu_theta_wFlatShapeSyst_allSyst_LIMITS.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','qcd_mu','ST','DY'])
+
 
 #binFile(0.10, 'ele_theta_wFlatShapeSyst_min200_20bins_wTopPtrewSymSyst.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','qcd_mu','ST','DY','VV'])
 #binFile(0.10, 'mu_theta_wFlatShapeSyst_min200_20bins_wTopPtrewSymSyst.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','qcd_mu','ST','DY','VV'])
 
-binFile(0.30, 'mu_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','qcd_mu','ST','DY','VV'])
-binFile(0.30, 'ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','qcd_mu','ST','DY','VV'])
+#binFile(0.30, 'mu_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','qcd_mu','ST','DY','VV'])
+#binFile(0.05, 'ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','qcd_el','ST','DY','VV'])
+#binFile(0.30, 'ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_woJERJECsignal_LIMITS.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','ST','DY','VV'])
+#binFile(0.10, 'ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','qcd_mu','ST','DY','VV'])
+#binFile(0.30, 'ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_rebinnedSmallBkg.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','qcd_mu','ST','DY','VV'])
+
+#binFile(0.10, 'ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_addedPDF_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','qcd_mu','ST','DY','VV'])
+
+# binFile(0.30, 'ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_addedPDF_addedQ2_ALL.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','ST','DY','VV'])
+# binFile(0.30, 'mu_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_addedPDF_addedQ2_ALL.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','qcd_mu','ST','DY'])
+
+# binFile(0.30, 'ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_addedPDF_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','ST','DY','VV'])
+# binFile(0.30, 'mu_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_addedPDF_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','qcd_mu','ST','DY'])
+
+binFile(0.30, 'mu_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_woTopPtCT_LIMITS_addedQ2.root','M_{t#bar{t}} [GeV/c^{2}]', ['ttbar','wjets_l','wjets_c','wjets_b','qcd_mu','ST','DY'])

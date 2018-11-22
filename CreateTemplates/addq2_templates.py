@@ -52,8 +52,11 @@ def addq2File(filename, xtitle, backgrounds):
     if not info.systematic:
       h_bkg[info.channel+info.process] = file.Get(key).Clone()
       for i in range(1,h_bkg[info.channel+info.process].GetNbinsX()+1):
-        h_tmp_q2syst_q2ttbar[info.channel+info.process+str(i)] = ROOT.TH1F(info.channel+info.process+"_"+str(i)+"_q2ttbar",info.channel+info.process+"_"+str(i)+"_q2ttbar", 20000, 1., 10000.)
-        h_tmp_q2syst_q2wjets[info.channel+info.process+str(i)] = ROOT.TH1F(info.channel+info.process+"_"+str(i)+"_q2wjets",info.channel+info.process+"_"+str(i)+"_q2wjets", 20000, 1., 10000.)
+        h_tmp_q2syst_q2ttbar[info.channel+info.process+str(i)] = ROOT.TH1F(info.channel+info.process+"_"+str(i)+"_q2ttbar",info.channel+info.process+"_"+str(i)+"_q2ttbar", 80000, 0., 40000.)
+        h_tmp_q2syst_q2wjets[info.channel+info.process+str(i)] = ROOT.TH1F(info.channel+info.process+"_"+str(i)+"_q2wjets",info.channel+info.process+"_"+str(i)+"_q2wjets", 80000, 0., 40000.)
+
+        # h_tmp_q2syst_q2ttbar[info.channel+info.process+str(i)] = ROOT.TH1F(info.channel+info.process+"_"+str(i)+"_q2ttbar",info.channel+info.process+"_"+str(i)+"_q2ttbar", 20000, 1., 10000.)
+        # h_tmp_q2syst_q2wjets[info.channel+info.process+str(i)] = ROOT.TH1F(info.channel+info.process+"_"+str(i)+"_q2wjets",info.channel+info.process+"_"+str(i)+"_q2wjets", 20000, 1., 10000.)
         
   #read 6 variations for q2ttbar and store them in a histogram. One histtogram per Mttbar bin        
   for key in keys:
@@ -249,15 +252,45 @@ def addq2File(filename, xtitle, backgrounds):
 # addq2File('ele_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T0_CR1_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
 # addq2File('ele_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T0_CR2_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
 
-addq2File('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T01_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+#addq2File('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T01_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
 # addq2File('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T0_CR1_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
 # addq2File('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T0_SR_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
 # addq2File('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T1_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
 # addq2File('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T0_CR2_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
 
-#addq2File('ele_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T01_VV_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+# #addq2File('ele_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_T01_VV_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+
+
+# addq2File('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_ZprimeNarrow4000_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ZprimeNarrow4000'])
+#addq2File('ele_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_ZprimeNarrow4000_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b','ZprimeNarrow4000'])
+#addq2File('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_25bins_rebinned_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+#addq2File('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_woJERJECsignal_LIMITS_rebinned_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+
+# addq2File('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+# addq2File('ele_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
 
 # addq2File('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_rebinned_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+# # #addq2File('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_rebinnedSmallBkg_rebinned_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
 # addq2File('mu_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_rebinned_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
-# addq2File('mu_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+
+# # #addq2File('mu_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+# # #addq2File('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+
+# #addq2File('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+
+
+#addq2File('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_rebinned_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+#addq2File('mu_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_rebinned_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+
+# addq2File('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_highMasses_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
 # addq2File('ele_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+# addq2File('mu_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_highMasses_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+# addq2File('mu_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_LIMITS_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+
+#addq2File('mu_theta_wFlatShapeSyst_allSyst_wTopPtrewSymSyst_woTopPtCT_LIMITS.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+
+#addq2File('ele_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_CHI2_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+#addq2File('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_CHI2_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+
+#addq2File('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_woPDF_BkgZPrime4000.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
+addq2File('mu_theta_wFlatShapeSyst_wTopPtrewSymSyst_allVars_addPDF_BkgZPrime4000_addedPDF.root','M_{t#bar{t}} [GeV/c^{2}]',['ttbar','wjets_l','wjets_c','wjets_b'])
